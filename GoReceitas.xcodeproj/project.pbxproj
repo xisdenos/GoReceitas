@@ -17,6 +17,9 @@
 		069F5DE028B4165F00C15177 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F5DDE28B4165F00C15177 /* TagCell.swift */; };
 		069F5DE128B4165F00C15177 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 069F5DDF28B4165F00C15177 /* TagCell.xib */; };
 		1F60406D28BAA07D0024CC41 /* Favoritos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F60406C28BAA07D0024CC41 /* Favoritos.swift */; };
+		1F8773B228BC24C2009243C9 /* FavoritosHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8773B128BC24C2009243C9 /* FavoritosHome.swift */; };
+		1F8773BC28BC2C8B009243C9 /* FavoritosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8773BA28BC2C8B009243C9 /* FavoritosCollectionViewCell.swift */; };
+		1F8773BD28BC2C8B009243C9 /* FavoritosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F8773BB28BC2C8B009243C9 /* FavoritosCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		069F5DDE28B4165F00C15177 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		069F5DDF28B4165F00C15177 /* TagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
 		1F60406C28BAA07D0024CC41 /* Favoritos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favoritos.swift; sourceTree = "<group>"; };
+		1F8773B128BC24C2009243C9 /* FavoritosHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritosHome.swift; sourceTree = "<group>"; };
+		1F8773BA28BC2C8B009243C9 /* FavoritosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritosCollectionViewCell.swift; sourceTree = "<group>"; };
+		1F8773BB28BC2C8B009243C9 /* FavoritosCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritosCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +80,8 @@
 				06459BC028B01A080054F510 /* LaunchScreen.storyboard */,
 				06459BC328B01A080054F510 /* Info.plist */,
 				06459BBB28B01A060054F510 /* GoReceitas.xcdatamodeld */,
-				1F60406C28BAA07D0024CC41 /* Favoritos.swift */,
+				1F60407028BC22890024CC41 /* Favoritos */,
+				1F8773B328BC2B36009243C9 /* Collection Cell */,
 			);
 			path = GoReceitas;
 			sourceTree = "<group>";
@@ -101,6 +108,32 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1F60407028BC22890024CC41 /* Favoritos */ = {
+			isa = PBXGroup;
+			children = (
+				1F60406C28BAA07D0024CC41 /* Favoritos.swift */,
+				1F8773B128BC24C2009243C9 /* FavoritosHome.swift */,
+			);
+			path = Favoritos;
+			sourceTree = "<group>";
+		};
+		1F8773B328BC2B36009243C9 /* Collection Cell */ = {
+			isa = PBXGroup;
+			children = (
+				1F8773B428BC2B96009243C9 /* Collection Cell */,
+			);
+			path = "Collection Cell";
+			sourceTree = "<group>";
+		};
+		1F8773B428BC2B96009243C9 /* Collection Cell */ = {
+			isa = PBXGroup;
+			children = (
+				1F8773BA28BC2C8B009243C9 /* FavoritosCollectionViewCell.swift */,
+				1F8773BB28BC2C8B009243C9 /* FavoritosCollectionViewCell.xib */,
+			);
+			path = "Collection Cell";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +196,7 @@
 			files = (
 				069F5DE128B4165F00C15177 /* TagCell.xib in Resources */,
 				06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */,
+				1F8773BD28BC2C8B009243C9 /* FavoritosCollectionViewCell.xib in Resources */,
 				06459BBF28B01A080054F510 /* Assets.xcassets in Resources */,
 				06459BBA28B01A060054F510 /* Main.storyboard in Resources */,
 			);
@@ -177,9 +211,11 @@
 			files = (
 				06459BB728B01A060054F510 /* HomeViewController.swift in Sources */,
 				1F60406D28BAA07D0024CC41 /* Favoritos.swift in Sources */,
+				1F8773BC28BC2C8B009243C9 /* FavoritosCollectionViewCell.swift in Sources */,
 				06459BBD28B01A060054F510 /* GoReceitas.xcdatamodeld in Sources */,
 				069F5DE028B4165F00C15177 /* TagCell.swift in Sources */,
 				06459BB328B01A060054F510 /* AppDelegate.swift in Sources */,
+				1F8773B228BC24C2009243C9 /* FavoritosHome.swift in Sources */,
 				06459BB528B01A060054F510 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

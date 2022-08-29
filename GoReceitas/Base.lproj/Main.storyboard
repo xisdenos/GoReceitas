@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="T5C-8z-KOd">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -15,16 +15,140 @@
                     <view key="view" contentMode="scaleToFill" id="gMm-v9-sk2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Receitas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6P-4N-Wpx">
+                                <rect key="frame" x="158.5" y="49" width="97" height="29"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" red="0.58431372549019611" green="0.0039215686274509803" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXL-55-td5">
+                                <rect key="frame" x="123.5" y="49" width="30" height="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                <color key="textColor" red="0.58431372550000005" green="0.0039215686269999999" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chef-svgrepo-com 1" translatesAutoresizingMaskIntoConstraints="NO" id="xys-AF-3Mg">
+                                <rect key="frame" x="260.5" y="49" width="33" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0UP-gN-Pcu"/>
+                                    <constraint firstAttribute="width" constant="33" id="qsY-0M-6uf"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="undraw_cooking_re_g99p (2) 1" translatesAutoresizingMaskIntoConstraints="NO" id="BqN-Kz-S0o">
+                                <rect key="frame" x="83.5" y="229" width="247" height="203"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sem Favoritos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49j-gM-nlK">
+                                <rect key="frame" x="115.5" y="492" width="183" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Você não adicionou nenhum prato em seus favoritos" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4s-rS-M2W">
+                                <rect key="frame" x="20" y="553" width="374" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="IFf-MT-TLb"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.92549019607843142" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.14117647058823529" green="0.28627450980392155" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="z6P-4N-Wpx" firstAttribute="leading" secondItem="cXL-55-td5" secondAttribute="trailing" constant="5" id="5aS-Cc-Ikv"/>
+                            <constraint firstItem="IFf-MT-TLb" firstAttribute="trailing" secondItem="N4s-rS-M2W" secondAttribute="trailing" constant="20" id="6au-49-GGn"/>
+                            <constraint firstItem="49j-gM-nlK" firstAttribute="top" secondItem="BqN-Kz-S0o" secondAttribute="bottom" constant="60" id="PVW-vc-rZR"/>
+                            <constraint firstItem="49j-gM-nlK" firstAttribute="centerX" secondItem="gMm-v9-sk2" secondAttribute="centerX" id="QML-Wf-vrH"/>
+                            <constraint firstItem="z6P-4N-Wpx" firstAttribute="centerX" secondItem="gMm-v9-sk2" secondAttribute="centerX" id="Uug-91-hpq"/>
+                            <constraint firstItem="N4s-rS-M2W" firstAttribute="top" secondItem="49j-gM-nlK" secondAttribute="bottom" constant="25" id="XkX-Xn-ZHB"/>
+                            <constraint firstItem="N4s-rS-M2W" firstAttribute="leading" secondItem="IFf-MT-TLb" secondAttribute="leading" constant="20" id="ay0-qO-hzd"/>
+                            <constraint firstItem="xys-AF-3Mg" firstAttribute="leading" secondItem="z6P-4N-Wpx" secondAttribute="trailing" constant="5" id="iic-BX-u1T"/>
+                            <constraint firstItem="BqN-Kz-S0o" firstAttribute="centerX" secondItem="gMm-v9-sk2" secondAttribute="centerX" id="ke5-5Y-9X7"/>
+                            <constraint firstItem="BqN-Kz-S0o" firstAttribute="top" secondItem="xys-AF-3Mg" secondAttribute="bottom" constant="150" id="mzO-s8-3lI"/>
+                            <constraint firstItem="cXL-55-td5" firstAttribute="top" secondItem="IFf-MT-TLb" secondAttribute="top" constant="5" id="qMr-fG-xlO"/>
+                            <constraint firstItem="z6P-4N-Wpx" firstAttribute="top" secondItem="IFf-MT-TLb" secondAttribute="top" constant="5" id="rkk-DC-XSy"/>
+                            <constraint firstItem="xys-AF-3Mg" firstAttribute="top" secondItem="IFf-MT-TLb" secondAttribute="top" constant="5" id="y3X-pp-BFl"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mxl-zq-yeJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="639" y="74"/>
+            <point key="canvasLocation" x="637.68115942028987" y="73.660714285714278"/>
+        </scene>
+        <!--Favoritos Home-->
+        <scene sceneID="5cR-fW-jMU">
+            <objects>
+                <viewController id="T5C-8z-KOd" customClass="FavoritosHome" customModule="GoReceitas" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LdS-62-Vpz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hq7-wu-f2h">
+                                <rect key="frame" x="123.5" y="49" width="30" height="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                <color key="textColor" red="0.58431372550000005" green="0.0039215686269999999" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Receitas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGE-ST-8FS">
+                                <rect key="frame" x="158.5" y="49" width="97" height="29"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" red="0.58431372550000005" green="0.0039215686269999999" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chef-svgrepo-com 1" translatesAutoresizingMaskIntoConstraints="NO" id="C2c-Z9-vQU">
+                                <rect key="frame" x="260.5" y="49" width="33" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1bc-px-Osz"/>
+                                    <constraint firstAttribute="width" constant="33" id="sAl-GA-fsd"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meus favoritos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YdU-Jg-0v1">
+                                <rect key="frame" x="87" y="159" width="240" height="42"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kOl-wz-SZP">
+                                <rect key="frame" x="20" y="221" width="374" height="641"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gC1-Cl-UXw">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Qle-Ii-JSp"/>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.92549019607843142" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="YdU-Jg-0v1" firstAttribute="top" secondItem="C2c-Z9-vQU" secondAttribute="bottom" constant="80" id="0G2-Rn-k8z"/>
+                            <constraint firstItem="lGE-ST-8FS" firstAttribute="leading" secondItem="Hq7-wu-f2h" secondAttribute="trailing" constant="5" id="D6o-Rr-Lnl"/>
+                            <constraint firstItem="lGE-ST-8FS" firstAttribute="top" secondItem="Qle-Ii-JSp" secondAttribute="top" constant="5" id="K1w-if-XwG"/>
+                            <constraint firstItem="Qle-Ii-JSp" firstAttribute="trailing" secondItem="kOl-wz-SZP" secondAttribute="trailing" constant="20" id="RXy-80-MjA"/>
+                            <constraint firstItem="kOl-wz-SZP" firstAttribute="top" secondItem="YdU-Jg-0v1" secondAttribute="bottom" constant="20" id="Vpt-qv-fGv"/>
+                            <constraint firstItem="Qle-Ii-JSp" firstAttribute="bottom" secondItem="kOl-wz-SZP" secondAttribute="bottom" id="bgM-B5-j2w"/>
+                            <constraint firstItem="YdU-Jg-0v1" firstAttribute="centerX" secondItem="LdS-62-Vpz" secondAttribute="centerX" id="g42-3o-K2K"/>
+                            <constraint firstItem="lGE-ST-8FS" firstAttribute="centerX" secondItem="LdS-62-Vpz" secondAttribute="centerX" id="inL-7S-nVn"/>
+                            <constraint firstItem="C2c-Z9-vQU" firstAttribute="leading" secondItem="lGE-ST-8FS" secondAttribute="trailing" constant="5" id="j6L-Mx-Gp4"/>
+                            <constraint firstItem="kOl-wz-SZP" firstAttribute="leading" secondItem="Qle-Ii-JSp" secondAttribute="leading" constant="20" id="pXU-Kb-RqW"/>
+                            <constraint firstItem="Hq7-wu-f2h" firstAttribute="top" secondItem="Qle-Ii-JSp" secondAttribute="top" constant="5" id="qf8-DE-aXg"/>
+                            <constraint firstItem="C2c-Z9-vQU" firstAttribute="top" secondItem="Qle-Ii-JSp" secondAttribute="top" constant="5" id="ydF-nk-P1n"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="kOl-wz-SZP" id="raK-La-Bl6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NNK-Ib-Ohc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1353.6231884057972" y="73.660714285714278"/>
         </scene>
     </scenes>
     <resources>
+        <image name="chef-svgrepo-com 1" width="40" height="40"/>
+        <image name="undraw_cooking_re_g99p (2) 1" width="247" height="203"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
