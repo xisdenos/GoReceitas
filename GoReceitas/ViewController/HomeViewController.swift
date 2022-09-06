@@ -53,6 +53,22 @@ class HomeViewController: UIViewController {
                 section.supplementariesFollowContentInsets = false
                 
                 return section
+            case .popular:
+                // item
+                let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(0.4)))
+                item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)
+                // group
+                let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(0.7)), subitems: [item])
+                
+                // section
+                let section = NSCollectionLayoutSection(group: group)
+                
+                section.orthogonalScrollingBehavior = .groupPaging
+                
+                section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 20, bottom: 10, trailing: 10)
+                section.supplementariesFollowContentInsets = false
+                
+                return section
             }
         }
     }
@@ -75,6 +91,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         case .tryItOut(let item):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TryItOutCell.identifier, for: indexPath) as! TryItOutCell
+            cell.setup(item[indexPath.row])
+            return cell
+        case .popular(let item):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularViewCell.identifier, for: indexPath) as! PopularViewCell
             cell.setup(item[indexPath.row])
             return cell
         }

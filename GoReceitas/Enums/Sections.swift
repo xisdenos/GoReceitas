@@ -10,12 +10,15 @@ import Foundation
 enum Sections {
     case categories([CellsInfoSections])
     case tryItOut([CellsInfoSections])
+    case popular([CellsInfoSections])
     
     var items: [CellsInfoSections] {
         switch self {
         case .categories(let array):
             return array
         case .tryItOut(let array):
+            return array
+        case .popular(let array):
             return array
         }
     }

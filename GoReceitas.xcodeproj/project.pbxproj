@@ -21,6 +21,7 @@
 		82EBEEB528C793BA000854E7 /* CellsInfoSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EBEEB428C793BA000854E7 /* CellsInfoSections.swift */; };
 		82EBEEB728C793EE000854E7 /* TryItOutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EBEEB628C793EE000854E7 /* TryItOutCell.swift */; };
 		82EBEEB928C79556000854E7 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EBEEB828C79556000854E7 /* Sections.swift */; };
+		82EBEEBE28C79D0C000854E7 /* PopularViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EBEEBD28C79D0C000854E7 /* PopularViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		82EBEEB428C793BA000854E7 /* CellsInfoSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellsInfoSections.swift; sourceTree = "<group>"; };
 		82EBEEB628C793EE000854E7 /* TryItOutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryItOutCell.swift; sourceTree = "<group>"; };
 		82EBEEB828C79556000854E7 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
+		82EBEEBD28C79D0C000854E7 /* PopularViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			children = (
 				82EBEEA928C789E5000854E7 /* CategoryViewCell.swift */,
 				82EBEEB628C793EE000854E7 /* TryItOutCell.swift */,
+				82EBEEBD28C79D0C000854E7 /* PopularViewCell.swift */,
 			);
 			path = "Collection View Cells";
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			files = (
 				82EBEEB928C79556000854E7 /* Sections.swift in Sources */,
 				06459BB728B01A060054F510 /* HomeViewController.swift in Sources */,
+				82EBEEBE28C79D0C000854E7 /* PopularViewCell.swift in Sources */,
 				82EBEEAD28C78A46000854E7 /* CategoryModel.swift in Sources */,
 				06459BBD28B01A060054F510 /* GoReceitas.xcdatamodeld in Sources */,
 				82EBEEB528C793BA000854E7 /* CellsInfoSections.swift in Sources */,

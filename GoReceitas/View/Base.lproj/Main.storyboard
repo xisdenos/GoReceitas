@@ -94,6 +94,29 @@
                                             <outlet property="foodImg" destination="6va-LC-VNN" id="v0L-ln-kMY"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PopularViewCell" id="0HI-hZ-ZZj" userLabel="Popular View Cell" customClass="PopularViewCell" customModule="GoReceitas" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="298" width="375" height="139"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SEn-x8-8XK">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lyW-17-Aah">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="lyW-17-Aah" firstAttribute="leading" secondItem="SEn-x8-8XK" secondAttribute="leading" id="GTZ-M3-Hdr"/>
+                                                <constraint firstAttribute="trailing" secondItem="lyW-17-Aah" secondAttribute="trailing" id="PcG-nm-KtM"/>
+                                                <constraint firstAttribute="bottom" secondItem="lyW-17-Aah" secondAttribute="bottom" id="U3c-Nc-69H"/>
+                                                <constraint firstItem="lyW-17-Aah" firstAttribute="top" secondItem="SEn-x8-8XK" secondAttribute="top" id="VvH-5T-cYJ"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="375" height="139"/>
+                                        <connections>
+                                            <outlet property="foodImg" destination="lyW-17-Aah" id="E2U-HX-PGL"/>
+                                        </connections>
+                                    </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="KN8-i3-mds"/>

@@ -44,7 +44,22 @@ class MockData {
         )
     }()
     
+    private let popular: Sections = {
+        .popular(
+            [
+                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+            ]
+        )
+    }()
+    
     var data: [Sections] {
-        [categories, tryItOut]
+        [categories, tryItOut, popular]
     }
 }
