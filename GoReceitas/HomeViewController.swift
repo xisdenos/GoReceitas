@@ -7,7 +7,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.welcomeLabel.text = "Olá, usuário"
+        self.welcomeLabel.text = "Olá"
         self.homeBarButtonItem.title = "Home"
         self.homeBarButtonItem.image = UIImage(named: "home")
     }
