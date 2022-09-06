@@ -7,24 +7,24 @@
 
 import Foundation
 
-enum CategorySection {
-    case category([CategoryModel])
-    
-    var items: [CategoryModel] {
-        switch self {
-        case .category(let array):
-            return array
-        }
-    }
-    
-    var count: Int {
-        return items.count
-    }
-    
-    var title: String {
-        switch self {
-        case .category:
-            return "Categorias"
-        }
-    }
-}
+//enum CategorySection {
+//    case category([CategoryModel])
+//
+//    var items: [CategoryModel] {
+//        switch self {
+//        case .category(let array):
+//            return array
+//        }
+//    }
+//
+//    var count: Int {
+//        return items.count
+//    }
+//
+//    var title: String {
+//        switch self {
+//        case .category:
+//            return "Categorias"
+//        }
+//    }
+//}

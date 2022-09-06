@@ -10,26 +10,41 @@ import Foundation
 class MockData {
     static let shared = MockData()
     
-    private let categories: CategorySection = {
-        .category(
+    private let categories: Sections = {
+        .categories(
             [
-                CategoryModel(categoryName: "Mexicana"),
-                CategoryModel(categoryName: "Mexicana"),
-                CategoryModel(categoryName: "Mexicana"),
-                CategoryModel(categoryName: "Mexicana"),
-                CategoryModel(categoryName: "Mexicana"),
-                CategoryModel(categoryName: "Mexicana"),
-                CategoryModel(categoryName: "Mexicana"),
-                CategoryModel(categoryName: "Mexicana"),
-                CategoryModel(categoryName: "Mexicana"),
-                CategoryModel(categoryName: "Mexicana"),
-                CategoryModel(categoryName: "Mexicana"),
-                CategoryModel(categoryName: "Mexicana"),
+                CellsInfoSections(categoryName: "Mexicana"),
+                CellsInfoSections(categoryName: "Mexicana"),
+                CellsInfoSections(categoryName: "Mexicana"),
+                CellsInfoSections(categoryName: "Mexicana"),
+                CellsInfoSections(categoryName: "Mexicana"),
+                CellsInfoSections(categoryName: "Mexicana"),
+                CellsInfoSections(categoryName: "Mexicana"),
+                CellsInfoSections(categoryName: "Mexicana"),
+                CellsInfoSections(categoryName: "Mexicana"),
+                CellsInfoSections(categoryName: "Mexicana"),
+                CellsInfoSections(categoryName: "Mexicana"),
+                CellsInfoSections(categoryName: "Mexicana"),
             ]
         )
     }()
     
-    var data: [CategorySection] {
-        [categories]
+    private let tryItOut: Sections = {
+        .tryItOut(
+            [
+                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+            ]
+        )
+    }()
+    
+    var data: [Sections] {
+        [categories, tryItOut]
     }
 }

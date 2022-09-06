@@ -12,7 +12,7 @@ class CategoryViewCell: UICollectionViewCell {
     
     @IBOutlet weak var categoryButton: UIButton!
     
-    func setup(_ tagInfo: CategoryModel) {
+    func setup(_ tagInfo: CellsInfoSections) {
         self.categoryButton.setTitle(tagInfo.categoryName, for: .normal)
     }
 }

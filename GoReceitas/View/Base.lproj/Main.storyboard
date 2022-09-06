@@ -71,6 +71,29 @@
                                             <outlet property="categoryButton" destination="Lmz-bj-c2n" id="qwI-DM-RzQ"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TryItOutCell" id="I7e-SD-An9" userLabel="Try It Out View Cell" customClass="TryItOutCell" customModule="GoReceitas" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="149" width="375" height="139"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gQC-MO-hiy">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6va-LC-VNN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6va-LC-VNN" firstAttribute="leading" secondItem="gQC-MO-hiy" secondAttribute="leading" id="5DJ-DO-AI4"/>
+                                                <constraint firstAttribute="trailing" secondItem="6va-LC-VNN" secondAttribute="trailing" id="DB3-8D-6yq"/>
+                                                <constraint firstItem="6va-LC-VNN" firstAttribute="top" secondItem="gQC-MO-hiy" secondAttribute="top" id="hpn-AV-INg"/>
+                                                <constraint firstAttribute="bottom" secondItem="6va-LC-VNN" secondAttribute="bottom" id="wPP-j3-Czc"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="375" height="139"/>
+                                        <connections>
+                                            <outlet property="foodImg" destination="6va-LC-VNN" id="v0L-ln-kMY"/>
+                                        </connections>
+                                    </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="KN8-i3-mds"/>

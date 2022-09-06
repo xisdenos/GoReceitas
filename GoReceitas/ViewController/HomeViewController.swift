@@ -1,7 +1,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    private let categories = MockData.shared.data
+    private let sections = MockData.shared.data
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -20,10 +20,10 @@ class HomeViewController: UIViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout { [weak self] sectionIndex, layountEnvironment in
             guard let self = self else { return nil }
-            let section = self.categories[sectionIndex]
+            let section = self.sections[sectionIndex]
             
             switch section {
-            case .category:
+            case .categories:
                 // item
                 let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(0.3)))
                 
@@ -38,6 +38,21 @@ class HomeViewController: UIViewController {
                 section.supplementariesFollowContentInsets = false
                 
                 return section
+            case .tryItOut:
+                // item
+                let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
+                
+                // group
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(0.45)), subitems: [item])
+                
+                // section
+                let section = NSCollectionLayoutSection(group: group)
+                section.orthogonalScrollingBehavior = .groupPagingCentered
+                section.interGroupSpacing = 7
+                section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 5, bottom: 5, trailing: 5)
+                section.supplementariesFollowContentInsets = false
+                
+                return section
             }
         }
     }
@@ -45,17 +60,21 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categories[section].count
+        return sections[section].count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return categories.count
+        return sections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch categories[indexPath.section] {
-        case .category(let item):
+        switch sections[indexPath.section] {
+        case .categories(let item):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryViewCell.identifier, for: indexPath) as! CategoryViewCell
+            cell.setup(item[indexPath.row])
+            return cell
+        case .tryItOut(let item):
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TryItOutCell.identifier, for: indexPath) as! TryItOutCell
             cell.setup(item[indexPath.row])
             return cell
         }
