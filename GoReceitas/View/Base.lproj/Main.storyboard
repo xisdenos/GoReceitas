@@ -39,13 +39,13 @@
                                 <color key="backgroundColor" red="0.98039215686274506" green="0.92549019607843142" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GhD-mg-rfC">
                                     <size key="itemSize" width="375" height="139"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryViewCell" id="YTo-TB-mOD" userLabel="Category View Cell" customClass="CategoryViewCell" customModule="GoReceitas" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="139"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="v31-jy-piy">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
@@ -81,7 +81,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TryItOutCell" id="I7e-SD-An9" userLabel="Try It Out View Cell" customClass="TryItOutCell" customModule="GoReceitas" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="149" width="375" height="139"/>
+                                        <rect key="frame" x="0.0" y="199" width="375" height="139"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gQC-MO-hiy">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
@@ -207,7 +207,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PopularViewCell" id="0HI-hZ-ZZj" userLabel="Popular View Cell" customClass="PopularViewCell" customModule="GoReceitas" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="298" width="375" height="139"/>
+                                        <rect key="frame" x="0.0" y="348" width="375" height="139"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SEn-x8-8XK">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
@@ -323,6 +323,27 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderViewCell" id="iWv-1g-fwL" userLabel="Collection Reusable View (HEADER)" customClass="HeaderViewCell" customModule="GoReceitas" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Or7-7C-rie">
+                                            <rect key="frame" x="8" y="8" width="359" height="34"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Or7-7C-rie" secondAttribute="bottom" id="Mnk-T2-taS"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Or7-7C-rie" secondAttribute="trailing" id="P5Y-xH-5or"/>
+                                        <constraint firstItem="Or7-7C-rie" firstAttribute="top" secondItem="iWv-1g-fwL" secondAttribute="topMargin" id="j11-Jd-Yio"/>
+                                        <constraint firstItem="Or7-7C-rie" firstAttribute="leading" secondItem="iWv-1g-fwL" secondAttribute="leadingMargin" id="txb-c3-4YY"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="headerTitle" destination="Or7-7C-rie" id="c5c-oQ-jnp"/>
+                                    </connections>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="KN8-i3-mds"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="B1U-Tw-Tos"/>

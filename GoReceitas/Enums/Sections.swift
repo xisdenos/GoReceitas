@@ -27,12 +27,14 @@ enum Sections {
         return items.count
     }
     
-//    var title: String {
-//        switch self {
-//        case .categories:
-//            return "Categorias"
-//        case .tryItOut:
-//            return "Experimente"
-//        }
-//    }
+    var title: String {
+        switch self {
+        case .categories:
+            return "Categorias"
+        case .tryItOut:
+            return "Experimente"
+        case .popular:
+            return "Popular"
+        }
+    }
 }

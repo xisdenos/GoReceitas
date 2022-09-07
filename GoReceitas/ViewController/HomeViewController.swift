@@ -35,6 +35,7 @@ class HomeViewController: UIViewController {
                 section.orthogonalScrollingBehavior = .continuous
                 section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 20, bottom: 5, trailing: 0)
                 section.supplementariesFollowContentInsets = false
+                section.boundarySupplementaryItems = [self.addSupplementaryView()]
                 
                 return section
             case .tryItOut:
@@ -48,8 +49,9 @@ class HomeViewController: UIViewController {
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .groupPagingCentered
                 section.interGroupSpacing = 7
-                section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 5, bottom: 5, trailing: 5)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 5, bottom: 20, trailing: 5)
                 section.supplementariesFollowContentInsets = false
+                section.boundarySupplementaryItems = [self.addSupplementaryView()]
                 
                 return section
             case .popular:
@@ -64,12 +66,16 @@ class HomeViewController: UIViewController {
                 
                 section.orthogonalScrollingBehavior = .groupPaging
                 
-                section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 20, bottom: 10, trailing: 10)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 20, trailing: 10)
                 section.supplementariesFollowContentInsets = false
+                section.boundarySupplementaryItems = [self.addSupplementaryView()]
                 
                 return section
             }
         }
+    }
+    func addSupplementaryView() -> NSCollectionLayoutBoundarySupplementaryItem {
+        NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
     }
 }
 
@@ -96,6 +102,17 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularViewCell.identifier, for: indexPath) as! PopularViewCell
             cell.setup(item[indexPath.row])
             return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderViewCell.identifier, for: indexPath) as! HeaderViewCell
+            headerCell.setup(sections[indexPath.section].title)
+            return headerCell
+        default:
+            return UICollectionReusableView()
         }
     }
 }
