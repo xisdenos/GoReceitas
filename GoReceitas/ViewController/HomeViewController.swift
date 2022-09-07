@@ -28,13 +28,12 @@ class HomeViewController: UIViewController {
                 let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .fractionalHeight(0.3)))
                 
                 // group
-                let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .fractionalHeight(0.33)), subitems: [item])
+                let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.33), heightDimension: .fractionalHeight(0.33)), subitems: [item])
                 
                 // section
                 let section = NSCollectionLayoutSection(group: group)
                 section.orthogonalScrollingBehavior = .continuous
-                section.interGroupSpacing = 7
-                section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 25, bottom: 5, trailing: 20)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 20, bottom: 5, trailing: 0)
                 section.supplementariesFollowContentInsets = false
                 
                 return section

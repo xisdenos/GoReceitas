@@ -24,7 +24,6 @@ class MockData {
                 CellsInfoSections(categoryName: "Mexicana"),
                 CellsInfoSections(categoryName: "Mexicana"),
                 CellsInfoSections(categoryName: "Mexicana"),
-                CellsInfoSections(categoryName: "Mexicana"),
             ]
         )
     }()
@@ -47,15 +46,15 @@ class MockData {
     private let popular: Sections = {
         .popular(
             [
-                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
-                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
-                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
-                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
-                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
-                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
-                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
-                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+                CellsInfoSections(foodName: "Macarrão", prepTime: "40min", foodImage: "macarrao"),
+                CellsInfoSections(foodName: "Macarrão", prepTime: "40min", foodImage: "macarrao"),
+                CellsInfoSections(foodName: "Macarrão", prepTime: "40min", foodImage: "macarrao"),
+                CellsInfoSections(foodName: "Macarrão", prepTime: "40min", foodImage: "macarrao"),
+                CellsInfoSections(foodName: "Macarrão", prepTime: "40min", foodImage: "macarrao"),
+                CellsInfoSections(foodName: "Macarrão", prepTime: "40min", foodImage: "macarrao"),
+                CellsInfoSections(foodName: "Macarrão", prepTime: "40min", foodImage: "macarrao"),
             ]
+            
         )
     }()
     
