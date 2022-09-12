@@ -8,7 +8,9 @@
 import UIKit
 
 class PopularViewCell: UICollectionViewCell {
+    // cell identifier = "PopularViewCell"
     static let identifier = String(describing: PopularViewCell.self)
+    private var isActive: Bool = false
     
     @IBOutlet weak var foodImg: UIImageView!
     @IBOutlet weak var foodNameLbl: UILabel!
@@ -20,4 +22,18 @@ class PopularViewCell: UICollectionViewCell {
         self.prepTimeLbl.text = foodInfo.prepTime
     }
     
+    
+    @IBAction func heartButton(_ sender: UIButton) {
+        toggleHeartImage(for: sender)
+    }
+    
+    private func toggleHeartImage(for button: UIButton) {
+        if isActive == false {
+            button.setImage(UIImage(named: "heart-fill"), for: .normal)
+            isActive = true
+        } else if isActive == true {
+            button.setImage(UIImage(named: "heart-empty"), for: .normal)
+            isActive = false
+        }
+    }
 }

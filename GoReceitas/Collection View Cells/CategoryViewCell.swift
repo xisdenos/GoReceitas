@@ -8,6 +8,7 @@
 import UIKit
 
 class CategoryViewCell: UICollectionViewCell {
+    // cell identifier = "CategoryViewCell"
     static let identifier = String(describing: CategoryViewCell.self)
     
     @IBOutlet weak var categoryButton: UIButton!

@@ -157,12 +157,15 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
                                                             <color key="backgroundColor" red="0.98431372549999996" green="0.92156862750000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="heart-empty"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                     <real key="value" value="10"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="heartButton:" destination="I7e-SD-An9" eventType="touchUpInside" id="JHB-N1-jMd"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -273,12 +276,15 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                                             <color key="backgroundColor" red="0.98431372549019602" green="0.92156862745098034" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="heart-empty"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                     <real key="value" value="10"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="heartButton:" destination="0HI-hZ-ZZj" eventType="touchUpInside" id="UKB-fb-zsW"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -423,7 +429,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="heart-empty" width="30" height="30"/>
         <image name="home" width="30" height="30"/>
         <image name="profileImage" width="48" height="48"/>
         <systemColor name="labelColor">

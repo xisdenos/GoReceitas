@@ -10,6 +10,7 @@ import UIKit
 
 
 class HeaderViewCell: UICollectionReusableView {
+    // cell identifier = "HeaderViewCell"
     static let identifier = String(describing: HeaderViewCell.self)
     
     @IBOutlet weak var headerTitle: UILabel!
