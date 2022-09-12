@@ -17,13 +17,13 @@ class MockData {
                 CellsInfoSections(categoryName: "Chinesa"),
                 CellsInfoSections(categoryName: "Indiana"),
                 CellsInfoSections(categoryName: "Saudável"),
-                CellsInfoSections(categoryName: "Vegetariana"),
                 CellsInfoSections(categoryName: "Lanches"),
-                CellsInfoSections(categoryName: "Café da manhã"),
-                CellsInfoSections(categoryName: "Sobremesa"),
                 CellsInfoSections(categoryName: "Petisco"),
                 CellsInfoSections(categoryName: "Bebida"),
                 CellsInfoSections(categoryName: "Salada"),
+                CellsInfoSections(categoryName: "Dieta"),
+                CellsInfoSections(categoryName: "Sem açúcar"),
+                CellsInfoSections(categoryName: "Frituras"),
             ]
         )
     }()

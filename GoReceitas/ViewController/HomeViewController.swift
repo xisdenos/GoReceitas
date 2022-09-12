@@ -108,9 +108,16 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderViewCell.identifier, for: indexPath) as! HeaderViewCell
-            headerCell.setup(sections[indexPath.section].title)
-            return headerCell
+            switch sections[indexPath.section] {
+            case .categories:
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderViewCell.identifier, for: indexPath) as! HeaderViewCell
+                header.setup(sections[indexPath.section].title, isHidden: false)
+                return header
+            default:
+                let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderViewCell.identifier, for: indexPath) as! HeaderViewCell
+                header.setup(sections[indexPath.section].title)
+                return header
+            }
         default:
             return UICollectionReusableView()
         }

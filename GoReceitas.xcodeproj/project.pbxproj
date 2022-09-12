@@ -17,7 +17,6 @@
 		825D68B728C8F21800C6A54B /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D68B628C8F21800C6A54B /* HeaderViewCell.swift */; };
 		82EBEEAA28C789E5000854E7 /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EBEEA928C789E5000854E7 /* CategoryViewCell.swift */; };
 		82EBEEAD28C78A46000854E7 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EBEEAC28C78A46000854E7 /* CategoryModel.swift */; };
-		82EBEEB028C78ACB000854E7 /* CategorySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EBEEAF28C78ACB000854E7 /* CategorySection.swift */; };
 		82EBEEB328C78B24000854E7 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EBEEB228C78B24000854E7 /* MockData.swift */; };
 		82EBEEB528C793BA000854E7 /* CellsInfoSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EBEEB428C793BA000854E7 /* CellsInfoSections.swift */; };
 		82EBEEB728C793EE000854E7 /* TryItOutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EBEEB628C793EE000854E7 /* TryItOutCell.swift */; };
@@ -38,7 +37,6 @@
 		825D68B628C8F21800C6A54B /* HeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
 		82EBEEA928C789E5000854E7 /* CategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
 		82EBEEAC28C78A46000854E7 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
-		82EBEEAF28C78ACB000854E7 /* CategorySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySection.swift; sourceTree = "<group>"; };
 		82EBEEB228C78B24000854E7 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		82EBEEB428C793BA000854E7 /* CellsInfoSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellsInfoSections.swift; sourceTree = "<group>"; };
 		82EBEEB628C793EE000854E7 /* TryItOutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryItOutCell.swift; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 		82EBEEAE28C78ABE000854E7 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				82EBEEAF28C78ACB000854E7 /* CategorySection.swift */,
 				82EBEEB828C79556000854E7 /* Sections.swift */,
 			);
 			path = Enums;
@@ -235,7 +232,6 @@
 				82EBEEB728C793EE000854E7 /* TryItOutCell.swift in Sources */,
 				06459BB528B01A060054F510 /* SceneDelegate.swift in Sources */,
 				82EBEEB328C78B24000854E7 /* MockData.swift in Sources */,
-				82EBEEB028C78ACB000854E7 /* CategorySection.swift in Sources */,
 				82EBEEAA28C789E5000854E7 /* CategoryViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
