@@ -15,6 +15,7 @@
 		06459BBF28B01A080054F510 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06459BBE28B01A080054F510 /* Assets.xcassets */; };
 		06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06459BC028B01A080054F510 /* LaunchScreen.storyboard */; };
 		825D68B728C8F21800C6A54B /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D68B628C8F21800C6A54B /* HeaderViewCell.swift */; };
+		826CC5F228D2A7F600F7BFC2 /* FooterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826CC5F128D2A7F600F7BFC2 /* FooterViewCell.swift */; };
 		82EBEEAA28C789E5000854E7 /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EBEEA928C789E5000854E7 /* CategoryViewCell.swift */; };
 		82EBEEAD28C78A46000854E7 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EBEEAC28C78A46000854E7 /* CategoryModel.swift */; };
 		82EBEEB328C78B24000854E7 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EBEEB228C78B24000854E7 /* MockData.swift */; };
@@ -35,6 +36,7 @@
 		06459BC128B01A080054F510 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		06459BC328B01A080054F510 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		825D68B628C8F21800C6A54B /* HeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
+		826CC5F128D2A7F600F7BFC2 /* FooterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterViewCell.swift; sourceTree = "<group>"; };
 		82EBEEA928C789E5000854E7 /* CategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
 		82EBEEAC28C78A46000854E7 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		82EBEEB228C78B24000854E7 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				82EBEEB628C793EE000854E7 /* TryItOutCell.swift */,
 				82EBEEBD28C79D0C000854E7 /* PopularViewCell.swift */,
 				825D68B628C8F21800C6A54B /* HeaderViewCell.swift */,
+				826CC5F128D2A7F600F7BFC2 /* FooterViewCell.swift */,
 			);
 			path = "Collection View Cells";
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				82EBEEBE28C79D0C000854E7 /* PopularViewCell.swift in Sources */,
 				82EBEEAD28C78A46000854E7 /* CategoryModel.swift in Sources */,
 				06459BBD28B01A060054F510 /* GoReceitas.xcdatamodeld in Sources */,
+				826CC5F228D2A7F600F7BFC2 /* FooterViewCell.swift in Sources */,
 				82EBEEB528C793BA000854E7 /* CellsInfoSections.swift in Sources */,
 				825D68B728C8F21800C6A54B /* HeaderViewCell.swift in Sources */,
 				06459BB328B01A060054F510 /* AppDelegate.swift in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nQP-cN-Jdm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zks-tK-cNp">
-                                <rect key="frame" x="288" y="93" width="72" height="50"/>
+                                <rect key="frame" x="288" y="49" width="72" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="V0b-jJ-CFM"/>
                                     <constraint firstAttribute="height" constant="50" id="ljq-Yd-RZf"/>
@@ -29,13 +29,13 @@
                                 </buttonConfiguration>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Olá, usuário" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3k-VB-gFa">
-                                <rect key="frame" x="10" y="93.333333333333329" width="269" height="40.333333333333329"/>
+                                <rect key="frame" x="10" y="49.333333333333329" width="269" height="40.333333333333329"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="35"/>
                                 <color key="textColor" red="0.58431372549019611" green="0.0039215686274509803" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QAn-Ac-ifs">
-                                <rect key="frame" x="0.0" y="158" width="375" height="571"/>
+                                <rect key="frame" x="0.0" y="114" width="375" height="664"/>
                                 <color key="backgroundColor" red="0.98039215686274506" green="0.92549019607843142" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GhD-mg-rfC">
                                     <size key="itemSize" width="375" height="139"/>
@@ -334,7 +334,7 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderViewCell" id="iWv-1g-fwL" userLabel="Collection Reusable View (HEADER)" customClass="HeaderViewCell" customModule="GoReceitas" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderViewCell" id="iWv-1g-fwL" userLabel="Header" customClass="HeaderViewCell" customModule="GoReceitas" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
@@ -402,50 +402,12 @@
                     <navigationItem key="navigationItem" id="RK0-Pb-dT7"/>
                     <connections>
                         <outlet property="collectionView" destination="QAn-Ac-ifs" id="gEV-uW-Hnb"/>
-                        <outlet property="homeBarButtonItem" destination="9C9-lX-LGU" id="Soz-9N-UEd"/>
                         <outlet property="welcomeLabel" destination="j3k-VB-gFa" id="pWH-fh-rLb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2712.8000000000002" y="83.497536945812811"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="n1s-c9-FHb">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nQP-cN-Jdm" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ws7-GL-1zy">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="vZ4-c6-7F3" kind="relationship" relationship="rootViewController" id="53X-CK-HBR"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SdK-Hd-W7c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="892.75362318840587" y="83.705357142857139"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="qMW-p6-ucD">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="vZ4-c6-7F3" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="bwQ-9U-eXS"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6fo-Jb-Xdx">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="njt-bc-kAR"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Jus-Yb-Vhm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1802.8985507246377" y="83.705357142857139"/>
         </scene>
     </scenes>
     <resources>

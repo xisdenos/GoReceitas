@@ -37,8 +37,6 @@ class MockData {
                 CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
                 CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
                 CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
-                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
-                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
             ]
         )
     }()

@@ -4,17 +4,34 @@ class HomeViewController: UIViewController {
     private let sections = MockData.shared.data
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var welcomeLabel: UILabel!
-    @IBOutlet weak var homeBarButtonItem: UITabBarItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.welcomeLabel.text = "Olá, usuário"
-        self.homeBarButtonItem.title = "Home"
-        self.homeBarButtonItem.image = UIImage(named: "home")
-        
         collectionView.collectionViewLayout = createLayout()
+        collectionView.register(FooterViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterViewCell.identifier)
+    }
+    
+    lazy var pageControlProg: UIPageControl = {
+        let pc = UIPageControl()
+        
+        pc.numberOfPages = sections[1].count
+        pc.currentPage = 0
+        pc.pageIndicatorTintColor = .white
+        pc.currentPageIndicatorTintColor = .purple
+        pc.isUserInteractionEnabled = false
+        pc.translatesAutoresizingMaskIntoConstraints = false
+        
+        return pc
+    }()
+    
+    func setupPageControl(_ footer: UICollectionReusableView) {
+        footer.addSubview(pageControlProg)
+        
+        NSLayoutConstraint.activate([
+            pageControlProg.centerXAnchor.constraint(equalTo: footer.centerXAnchor),
+            pageControlProg.centerYAnchor.constraint(equalTo: footer.centerYAnchor),
+        ])
     }
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
@@ -47,11 +64,20 @@ class HomeViewController: UIViewController {
                 
                 // section
                 let section = NSCollectionLayoutSection(group: group)
+                
                 section.orthogonalScrollingBehavior = .groupPagingCentered
                 section.interGroupSpacing = 7
-                section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 5, bottom: 20, trailing: 5)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 0, bottom: 20, trailing: 5)
                 section.supplementariesFollowContentInsets = false
-                section.boundarySupplementaryItems = [self.addSupplementaryView()]
+                section.boundarySupplementaryItems = [self.addSupplementaryView(), self.addSupplementaryFooter()]
+                section.visibleItemsInvalidationHandler = { items, contentOffset, environment in
+                    let currentPageTryItOut = Int(round(contentOffset.x / self.collectionView.bounds.size.width))
+                    print(currentPageTryItOut)
+                    
+                    // Int(max(0, round(contentOffset.x / environment.container.contentSize.width)))
+                    self.pageControlProg.currentPage = currentPageTryItOut
+
+                }
                 
                 return section
             case .popular:
@@ -65,7 +91,6 @@ class HomeViewController: UIViewController {
                 let section = NSCollectionLayoutSection(group: group)
                 
                 section.orthogonalScrollingBehavior = .groupPaging
-                
                 section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 20, trailing: 10)
                 section.supplementariesFollowContentInsets = false
                 section.boundarySupplementaryItems = [self.addSupplementaryView()]
@@ -74,8 +99,13 @@ class HomeViewController: UIViewController {
             }
         }
     }
-    func addSupplementaryView() -> NSCollectionLayoutBoundarySupplementaryItem {
+    
+    private func addSupplementaryView() -> NSCollectionLayoutBoundarySupplementaryItem {
         NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+    }
+    
+    private func addSupplementaryFooter() -> NSCollectionLayoutBoundarySupplementaryItem {
+        NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
     }
 }
 
@@ -118,6 +148,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 header.setup(sections[indexPath.section].title)
                 return header
             }
+        case UICollectionView.elementKindSectionFooter:
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FooterViewCell.identifier, for: indexPath)
+            setupPageControl(footer)
+            return footer
         default:
             return UICollectionReusableView()
         }

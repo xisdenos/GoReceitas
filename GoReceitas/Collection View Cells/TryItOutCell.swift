@@ -1,10 +1,3 @@
-//
-//  TryItOutCell.swift
-//  GoReceitas
-//
-//  Created by Igor Fernandes on 06/09/22.
-//
-
 import UIKit
 
 class TryItOutCell: UICollectionViewCell {

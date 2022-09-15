@@ -1,11 +1,3 @@
-//
-//  HeaderViewCell.swift
-//  GoReceitas
-//
-//  Created by Igor Fernandes on 07/09/22.
-//
-
-
 import UIKit
 
 
