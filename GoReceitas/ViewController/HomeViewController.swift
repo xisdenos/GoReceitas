@@ -12,6 +12,7 @@ class HomeViewController: UIViewController {
         collectionView.register(FooterViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterViewCell.identifier)
     }
     
+    // MARK: Create and set constraints for page control
     lazy var pageControlProg: UIPageControl = {
         let pc = UIPageControl()
         
@@ -34,6 +35,8 @@ class HomeViewController: UIViewController {
         ])
     }
     
+    
+    // MARK: Create compositional layout
     private func createLayout() -> UICollectionViewCompositionalLayout {
         UICollectionViewCompositionalLayout { [weak self] sectionIndex, layountEnvironment in
             guard let self = self else { return nil }
@@ -72,11 +75,7 @@ class HomeViewController: UIViewController {
                 section.boundarySupplementaryItems = [self.addSupplementaryView(), self.addSupplementaryFooter()]
                 section.visibleItemsInvalidationHandler = { items, contentOffset, environment in
                     let currentPageTryItOut = Int(round(contentOffset.x / self.collectionView.bounds.size.width))
-                    print(currentPageTryItOut)
-                    
-                    // Int(max(0, round(contentOffset.x / environment.container.contentSize.width)))
                     self.pageControlProg.currentPage = currentPageTryItOut
-
                 }
                 
                 return section
@@ -100,6 +99,7 @@ class HomeViewController: UIViewController {
         }
     }
     
+    // MARK: Create HEADER and FOOTER
     private func addSupplementaryView() -> NSCollectionLayoutBoundarySupplementaryItem {
         NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
     }
@@ -109,6 +109,7 @@ class HomeViewController: UIViewController {
     }
 }
 
+    // MARK: Set delegates for collection view
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return sections[section].count
@@ -158,6 +159,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 
+// MARK: Extension for storyboard
 extension UIView {
     @IBInspectable var cornerRadius: CGFloat {
         get { return self.cornerRadius }
