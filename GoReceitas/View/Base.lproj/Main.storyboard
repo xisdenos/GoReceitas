@@ -51,20 +51,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lmz-bj-c2n">
+                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lmz-bj-c2n">
                                                     <rect key="frame" x="5" y="5" width="365" height="40"/>
-                                                    <color key="backgroundColor" red="0.58431372549019611" green="0.0039215686274509803" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.28627450980392155" green="0.0" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="Zvr-gN-Fvc"/>
                                                     </constraints>
-                                                    <color key="tintColor" red="0.98039215690000003" green="0.92549019610000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="Button">
                                                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="14"/>
                                                     </buttonConfiguration>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="10"/>
+                                                            <real key="value" value="20"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
@@ -350,7 +350,7 @@
                                                 <constraint firstAttribute="height" constant="35" id="N2p-xn-Xql"/>
                                                 <constraint firstAttribute="width" constant="100" id="tf1-2I-T2J"/>
                                             </constraints>
-                                            <color key="tintColor" systemColor="tintColor"/>
+                                            <color key="tintColor" red="0.58431372549019611" green="0.0039215686274509803" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" title="Button">
                                                 <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="16"/>
@@ -419,9 +419,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

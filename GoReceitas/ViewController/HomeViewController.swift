@@ -8,6 +8,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .viewBackgroundColor
+        collectionView.backgroundColor = .viewBackgroundColor
         collectionView.collectionViewLayout = createLayout()
         collectionView.register(FooterViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterViewCell.identifier)
     }
