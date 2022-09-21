@@ -19,6 +19,8 @@
 		82A403F728DA9DD300F38990 /* AllTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A403F628DA9DD200F38990 /* AllTagsViewController.swift */; };
 		82A403F928DA9DF400F38990 /* AllTagsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A403F828DA9DF400F38990 /* AllTagsModel.swift */; };
 		82A403FD28DA9EB800F38990 /* AllTagsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A403FC28DA9EB800F38990 /* AllTagsViewCell.swift */; };
+		82A4040228DAA4F700F38990 /* TagsResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A4040128DAA4F700F38990 /* TagsResultsTableViewCell.swift */; };
+		82A4040428DAA57800F38990 /* TagsResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A4040328DAA57800F38990 /* TagsResultsViewController.swift */; };
 		82C9BE3928DA85B800D890EF /* Extensions in Resources */ = {isa = PBXBuildFile; fileRef = 82C9BE3828DA85B800D890EF /* Extensions */; };
 		82C9BE4028DA883000D890EF /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE3E28DA883000D890EF /* CategoryModel.swift */; };
 		82C9BE4128DA883000D890EF /* CellsInfoSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE3F28DA883000D890EF /* CellsInfoSections.swift */; };
@@ -49,6 +51,8 @@
 		82A403F628DA9DD200F38990 /* AllTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AllTagsViewController.swift; path = ../../../../../../../Applications/AllTagsViewController.swift; sourceTree = "<group>"; };
 		82A403F828DA9DF400F38990 /* AllTagsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsModel.swift; sourceTree = "<group>"; };
 		82A403FC28DA9EB800F38990 /* AllTagsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsViewCell.swift; sourceTree = "<group>"; };
+		82A4040128DAA4F700F38990 /* TagsResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsResultsTableViewCell.swift; sourceTree = "<group>"; };
+		82A4040328DAA57800F38990 /* TagsResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsResultsViewController.swift; sourceTree = "<group>"; };
 		82C9BE3828DA85B800D890EF /* Extensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Extensions; sourceTree = "<group>"; };
 		82C9BE3E28DA883000D890EF /* CategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		82C9BE3F28DA883000D890EF /* CellsInfoSections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellsInfoSections.swift; sourceTree = "<group>"; };
@@ -94,23 +98,21 @@
 		06459BB128B01A060054F510 /* GoReceitas */ = {
 			isa = PBXGroup;
 			children = (
-				826281A128DA929F0065AA29 /* MockData */,
-				82C9BE5128DA8A4F00D890EF /* Enums */,
-				82C9BE4628DA89B000D890EF /* CollectionViewCells */,
-				82C9BE3828DA85B800D890EF /* Extensions */,
-				EB7E9FEA28BB144700F8C91B /* Login */,
-				EB7E9FED28BB171500F8C91B /* Cadastro */,
-				EB7E9FF028BBA6FC00F8C91B /* EsqueciSenha */,
-				06C01C8028B42167003ACE17 /* Model */,
-				06C01C7F28B4214C003ACE17 /* ViewController */,
 				06C01C7E28B42138003ACE17 /* Cell */,
-				06459BB228B01A060054F510 /* AppDelegate.swift */,
-				06459BB428B01A060054F510 /* SceneDelegate.swift */,
-				06459BB828B01A060054F510 /* Main.storyboard */,
-				06459BBE28B01A080054F510 /* Assets.xcassets */,
-				06459BC028B01A080054F510 /* LaunchScreen.storyboard */,
-				06459BC328B01A080054F510 /* Info.plist */,
+				82C9BE4628DA89B000D890EF /* CollectionViewCells */,
+				82C9BE5128DA8A4F00D890EF /* Enums */,
+				82C9BE3828DA85B800D890EF /* Extensions */,
+				EB7E9FF028BBA6FC00F8C91B /* Forget Password */,
 				06459BBB28B01A060054F510 /* GoReceitas.xcdatamodeld */,
+				06459BC328B01A080054F510 /* Info.plist */,
+				EB7E9FEA28BB144700F8C91B /* Login */,
+				826281A128DA929F0065AA29 /* MockData */,
+				06C01C8028B42167003ACE17 /* Model */,
+				EB7E9FED28BB171500F8C91B /* Register */,
+				82A4040528DAA8A700F38990 /* Resources */,
+				82A403FF28DAA4D500F38990 /* TableViewCells */,
+				82A4040628DAA8CF00F38990 /* View */,
+				06C01C7F28B4214C003ACE17 /* ViewController */,
 			);
 			path = GoReceitas;
 			sourceTree = "<group>";
@@ -129,6 +131,7 @@
 			children = (
 				06459BB628B01A060054F510 /* HomeViewController.swift */,
 				82A403F628DA9DD200F38990 /* AllTagsViewController.swift */,
+				82A4040328DAA57800F38990 /* TagsResultsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -171,6 +174,41 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		82A403FF28DAA4D500F38990 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				82A4040028DAA4DE00F38990 /* Tags Results */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		82A4040028DAA4DE00F38990 /* Tags Results */ = {
+			isa = PBXGroup;
+			children = (
+				82A4040128DAA4F700F38990 /* TagsResultsTableViewCell.swift */,
+			);
+			path = "Tags Results";
+			sourceTree = "<group>";
+		};
+		82A4040528DAA8A700F38990 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				06459BB228B01A060054F510 /* AppDelegate.swift */,
+				06459BBE28B01A080054F510 /* Assets.xcassets */,
+				06459BB428B01A060054F510 /* SceneDelegate.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		82A4040628DAA8CF00F38990 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				06459BB828B01A060054F510 /* Main.storyboard */,
+				06459BC028B01A080054F510 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		82C9BE4628DA89B000D890EF /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,20 +234,20 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		EB7E9FED28BB171500F8C91B /* Cadastro */ = {
+		EB7E9FED28BB171500F8C91B /* Register */ = {
 			isa = PBXGroup;
 			children = (
 				EB7E9FEE28BB173400F8C91B /* Cadastro.swift */,
 			);
-			path = Cadastro;
+			path = Register;
 			sourceTree = "<group>";
 		};
-		EB7E9FF028BBA6FC00F8C91B /* EsqueciSenha */ = {
+		EB7E9FF028BBA6FC00F8C91B /* Forget Password */ = {
 			isa = PBXGroup;
 			children = (
 				EB7E9FF128BBA73900F8C91B /* EsqueciSenha.swift */,
 			);
-			path = EsqueciSenha;
+			path = "Forget Password";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,10 +324,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB7E9FEF28BB173400F8C91B /* Cadastro.swift in Sources */,
+				82A4040228DAA4F700F38990 /* TagsResultsTableViewCell.swift in Sources */,
 				06459BB728B01A060054F510 /* HomeViewController.swift in Sources */,
 				06459BBD28B01A060054F510 /* GoReceitas.xcdatamodeld in Sources */,
 				EB7E9FF228BBA73900F8C91B /* EsqueciSenha.swift in Sources */,
 				82C9BE5328DA8A6600D890EF /* Sections.swift in Sources */,
+				82A4040428DAA57800F38990 /* TagsResultsViewController.swift in Sources */,
 				82A403F928DA9DF400F38990 /* AllTagsModel.swift in Sources */,
 				82A403F728DA9DD300F38990 /* AllTagsViewController.swift in Sources */,
 				069F5DE028B4165F00C15177 /* TagCell.swift in Sources */,
