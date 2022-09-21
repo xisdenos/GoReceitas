@@ -17,6 +17,7 @@
 		069F5DE028B4165F00C15177 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F5DDE28B4165F00C15177 /* TagCell.swift */; };
 		069F5DE128B4165F00C15177 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 069F5DDF28B4165F00C15177 /* TagCell.xib */; };
 		8259F92D28DAB14900476299 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259F92C28DAB14900476299 /* Sections.swift */; };
+		8259F93328DAB81C00476299 /* AllTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259F93228DAB81C00476299 /* AllTagsViewController.swift */; };
 		82A403F928DA9DF400F38990 /* AllTagsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A403F828DA9DF400F38990 /* AllTagsModel.swift */; };
 		82A403FD28DA9EB800F38990 /* AllTagsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A403FC28DA9EB800F38990 /* AllTagsViewCell.swift */; };
 		82A4040228DAA4F700F38990 /* TagsResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A4040128DAA4F700F38990 /* TagsResultsTableViewCell.swift */; };
@@ -48,6 +49,7 @@
 		069F5DDE28B4165F00C15177 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		069F5DDF28B4165F00C15177 /* TagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
 		8259F92C28DAB14900476299 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
+		8259F93228DAB81C00476299 /* AllTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsViewController.swift; sourceTree = "<group>"; };
 		82A403F828DA9DF400F38990 /* AllTagsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsModel.swift; sourceTree = "<group>"; };
 		82A403FC28DA9EB800F38990 /* AllTagsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsViewCell.swift; sourceTree = "<group>"; };
 		82A4040128DAA4F700F38990 /* TagsResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsResultsTableViewCell.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			children = (
 				06459BB628B01A060054F510 /* HomeViewController.swift */,
 				82A4040328DAA57800F38990 /* TagsResultsViewController.swift */,
+				8259F93228DAB81C00476299 /* AllTagsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				06459BB328B01A060054F510 /* AppDelegate.swift in Sources */,
 				82C9BE4E28DA8A0500D890EF /* HeaderViewCell.swift in Sources */,
 				82C9BE4128DA883000D890EF /* CellsInfoSections.swift in Sources */,
+				8259F93328DAB81C00476299 /* AllTagsViewController.swift in Sources */,
 				82C9BE4028DA883000D890EF /* CategoryModel.swift in Sources */,
 				82C9BE4528DA88ED00D890EF /* MockData.swift in Sources */,
 				06459BB528B01A060054F510 /* SceneDelegate.swift in Sources */,
