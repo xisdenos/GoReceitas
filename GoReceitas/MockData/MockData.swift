@@ -13,17 +13,16 @@ class MockData {
     private let categories: Sections = {
         .categories(
             [
-                CellsInfoSections(categoryName: "Mexicana"),
-                CellsInfoSections(categoryName: "Chinesa"),
-                CellsInfoSections(categoryName: "Indiana"),
-                CellsInfoSections(categoryName: "Saudável"),
-                CellsInfoSections(categoryName: "Lanches"),
-                CellsInfoSections(categoryName: "Petisco"),
-                CellsInfoSections(categoryName: "Bebida"),
-                CellsInfoSections(categoryName: "Salada"),
-                CellsInfoSections(categoryName: "Dieta"),
-                CellsInfoSections(categoryName: "Sem açúcar"),
-                CellsInfoSections(categoryName: "Frituras"),
+                CellsInfoSections(categoryName: "Japanese"),
+                CellsInfoSections(categoryName: "Healthy"),
+                CellsInfoSections(categoryName: "Snacks"),
+                CellsInfoSections(categoryName: "Indian"),
+                CellsInfoSections(categoryName: "Taiwan"),
+                CellsInfoSections(categoryName: "Italian"),
+                CellsInfoSections(categoryName: "Middle Eastern"),
+                CellsInfoSections(categoryName: "Breakfast"),
+                CellsInfoSections(categoryName: "Barbecue"),
+                CellsInfoSections(categoryName: "Vegan"),
             ]
         )
     }()
