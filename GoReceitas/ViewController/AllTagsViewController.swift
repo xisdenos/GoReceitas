@@ -16,6 +16,11 @@ class AllTagsViewController: UIViewController {
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        // mantém a cor de fundo da nav bar quando scrollada
+        let appearence = UINavigationBarAppearance()
+        appearence.backgroundColor = UIColor(red: 250 / 255, green: 236 / 255, blue: 255 / 255, alpha: 1)
+        self.navigationController?.navigationBar.standardAppearance = appearence
     }
 }
 
@@ -34,6 +39,6 @@ extension AllTagsViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (view.bounds.size.width / 2) - 20, height: 200)
+        return CGSize(width: (view.bounds.size.width) - 20, height: 70)
     }
 }
