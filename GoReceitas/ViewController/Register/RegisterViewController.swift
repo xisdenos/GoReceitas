@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Cadastro: UIViewController {
+class RegisterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
