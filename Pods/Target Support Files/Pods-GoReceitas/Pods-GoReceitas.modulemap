@@ -1,0 +1,6 @@
+framework module Pods_GoReceitas {
+  umbrella header "Pods-GoReceitas-umbrella.h"
+
+  export *
+  module * { export * }
+}

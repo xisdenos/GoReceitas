@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5uD-UI-kcO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SYS-8J-ZQu">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -99,13 +99,10 @@
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="loginTapped:" destination="SYS-8J-ZQu" eventType="touchUpInside" id="0Fp-aX-vst"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSn-M9-bDh">
                                 <rect key="frame" x="30" y="520" width="354" height="34.5"/>
-                                <color key="backgroundColor" red="0.86274516580000005" green="0.86274516580000005" blue="0.86666667460000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Entrar com o Google"/>
@@ -114,9 +111,12 @@
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="tappedGoogleSignInButton:" destination="SYS-8J-ZQu" eventType="touchUpInside" id="hzE-po-aVO"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rEo-W6-3d9">
-                                <rect key="frame" x="35" y="523" width="28" height="25"/>
+                                <rect key="frame" x="35" y="525" width="28" height="25"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoBotao" translatesAutoresizingMaskIntoConstraints="NO" id="mqR-tb-r2n">
                                         <rect key="frame" x="4" y="4" width="20" height="17"/>
@@ -126,7 +126,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.86290472750000002" green="0.86258286240000004" blue="0.86702704429999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="28" id="1u0-bF-wLj"/>
                                     <constraint firstItem="mqR-tb-r2n" firstAttribute="leading" secondItem="rEo-W6-3d9" secondAttribute="leading" constant="4" id="A4T-wH-hOJ"/>
@@ -143,9 +143,6 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Cadastra-se">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="0.0"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <segue destination="tFB-q1-3OM" kind="presentation" id="P2q-MW-dFR"/>
-                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RK6-3w-eKY">
                                 <rect key="frame" x="50" y="599.5" width="314" height="1"/>
@@ -164,9 +161,6 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Esqueceu sua senha?">
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="10"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <segue destination="Pwl-2s-NzX" kind="presentation" id="dvH-cy-Rk6"/>
-                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOn-Jf-UQE">
                                 <rect key="frame" x="260" y="464" width="134" height="1"/>
@@ -219,7 +213,7 @@
                             <constraint firstItem="SMc-g8-4ji" firstAttribute="leading" secondItem="SdJ-XZ-93n" secondAttribute="leadingMargin" id="lbl-2n-LDt"/>
                             <constraint firstItem="2aN-46-Emh" firstAttribute="top" secondItem="V34-Rp-vEF" secondAttribute="bottom" constant="10" id="mMR-c6-ba6"/>
                             <constraint firstItem="EE7-Wn-ktZ" firstAttribute="centerX" secondItem="SdJ-XZ-93n" secondAttribute="centerX" id="mlm-eZ-izm"/>
-                            <constraint firstItem="rEo-W6-3d9" firstAttribute="top" secondItem="177-gZ-uur" secondAttribute="bottom" constant="48" id="pJ5-oW-bHR"/>
+                            <constraint firstItem="rEo-W6-3d9" firstAttribute="top" secondItem="177-gZ-uur" secondAttribute="bottom" constant="50" id="pJ5-oW-bHR"/>
                             <constraint firstItem="tOn-Jf-UQE" firstAttribute="top" secondItem="l0U-st-mfQ" secondAttribute="bottom" constant="95" id="rD8-ND-YDX"/>
                             <constraint firstItem="2aN-46-Emh" firstAttribute="leading" secondItem="8WV-zi-nUG" secondAttribute="leading" constant="35" id="rF6-fA-gp9"/>
                             <constraint firstItem="tOn-Jf-UQE" firstAttribute="trailing" secondItem="SdJ-XZ-93n" secondAttribute="trailingMargin" id="ss0-O8-0tB"/>
@@ -237,7 +231,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="gpk-yF-aG2" id="7Wr-qa-R3J"/>
+                        <outlet property="googleSignInButton" destination="BSn-M9-bDh" id="ewM-7s-OIA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oic-SC-7tr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -375,9 +369,6 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Login">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="0.0"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <segue destination="SYS-8J-ZQu" kind="presentation" id="8R6-uA-E25"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xH6-gW-b4F">
                                 <rect key="frame" x="20" y="53" width="36" height="31"/>
@@ -388,9 +379,6 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title=""/>
-                                <connections>
-                                    <segue destination="SYS-8J-ZQu" kind="presentation" id="6C1-Q1-yma"/>
-                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="oas-EG-kI1">
                                 <rect key="frame" x="20" y="53" width="32" height="31"/>
@@ -520,9 +508,6 @@
                                 <color key="tintColor" red="0.91794860359999997" green="0.87319546940000003" blue="0.93777257199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title=""/>
-                                <connections>
-                                    <segue destination="SYS-8J-ZQu" kind="presentation" id="QuF-PE-88E"/>
-                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="j5B-ga-l8O">
                                 <rect key="frame" x="20" y="53" width="32" height="31"/>
@@ -1253,9 +1238,6 @@
             <point key="canvasLocation" x="8415.9420289855079" y="-164.0625"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="QuF-PE-88E"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="48" height="48"/>
         <image name="heart-empty" width="30" height="30"/>

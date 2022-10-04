@@ -16,7 +16,9 @@
 		06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06459BC028B01A080054F510 /* LaunchScreen.storyboard */; };
 		069F5DE028B4165F00C15177 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F5DDE28B4165F00C15177 /* TagCell.swift */; };
 		069F5DE128B4165F00C15177 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 069F5DDF28B4165F00C15177 /* TagCell.xib */; };
+		18FCB9DAE223436788C46F1F /* Pods_GoReceitas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F57C2E8395C6BFCC24B0FC /* Pods_GoReceitas.framework */; };
 		82025B9D28EB8F890090376F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82025B9C28EB8F890090376F /* SearchViewController.swift */; };
+		824DFEAB28ECC16300CE42FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 824DFEAA28ECC16300CE42FA /* GoogleService-Info.plist */; };
 		8259F92D28DAB14900476299 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259F92C28DAB14900476299 /* Sections.swift */; };
 		8259F93328DAB81C00476299 /* AllTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259F93228DAB81C00476299 /* AllTagsViewController.swift */; };
 		82A403F928DA9DF400F38990 /* AllTagsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A403F828DA9DF400F38990 /* AllTagsModel.swift */; };
@@ -49,7 +51,10 @@
 		06459BC328B01A080054F510 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		069F5DDE28B4165F00C15177 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		069F5DDF28B4165F00C15177 /* TagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
+		62F57C2E8395C6BFCC24B0FC /* Pods_GoReceitas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoReceitas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		703B85010EF4C9202AAC9043 /* Pods-GoReceitas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoReceitas.debug.xcconfig"; path = "Target Support Files/Pods-GoReceitas/Pods-GoReceitas.debug.xcconfig"; sourceTree = "<group>"; };
 		82025B9C28EB8F890090376F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		824DFEAA28ECC16300CE42FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8259F92C28DAB14900476299 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
 		8259F93228DAB81C00476299 /* AllTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsViewController.swift; sourceTree = "<group>"; };
 		82A403F828DA9DF400F38990 /* AllTagsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsModel.swift; sourceTree = "<group>"; };
@@ -65,6 +70,7 @@
 		82C9BE4B28DA89DE00D890EF /* TryItOutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryItOutCell.swift; sourceTree = "<group>"; };
 		82C9BE4D28DA8A0500D890EF /* HeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
 		82C9BE4F28DA8A3C00D890EF /* PopularViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewCell.swift; sourceTree = "<group>"; };
+		B16BC8E6B780E3EE8DB0882C /* Pods-GoReceitas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoReceitas.release.xcconfig"; path = "Target Support Files/Pods-GoReceitas/Pods-GoReceitas.release.xcconfig"; sourceTree = "<group>"; };
 		EB7E9FEB28BB145A00F8C91B /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		EB7E9FEE28BB173400F8C91B /* Cadastro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cadastro.swift; sourceTree = "<group>"; };
 		EB7E9FF128BBA73900F8C91B /* EsqueciSenha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EsqueciSenha.swift; sourceTree = "<group>"; };
@@ -75,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18FCB9DAE223436788C46F1F /* Pods_GoReceitas.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +93,8 @@
 			children = (
 				06459BB128B01A060054F510 /* GoReceitas */,
 				06459BB028B01A060054F510 /* Products */,
+				742E6A99FF53837E6A56E433 /* Pods */,
+				241A7D091250FCB8E87BEE6D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +109,7 @@
 		06459BB128B01A060054F510 /* GoReceitas */ = {
 			isa = PBXGroup;
 			children = (
+				824DFEAA28ECC16300CE42FA /* GoogleService-Info.plist */,
 				8259F92B28DAB12400476299 /* Enums */,
 				06C01C7E28B42138003ACE17 /* Cell */,
 				82C9BE4628DA89B000D890EF /* CollectionViewCells */,
@@ -147,6 +157,23 @@
 				82A403F828DA9DF400F38990 /* AllTagsModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		241A7D091250FCB8E87BEE6D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				62F57C2E8395C6BFCC24B0FC /* Pods_GoReceitas.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		742E6A99FF53837E6A56E433 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				703B85010EF4C9202AAC9043 /* Pods-GoReceitas.debug.xcconfig */,
+				B16BC8E6B780E3EE8DB0882C /* Pods-GoReceitas.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		8259F92B28DAB12400476299 /* Enums */ = {
@@ -260,9 +287,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 06459BC628B01A080054F510 /* Build configuration list for PBXNativeTarget "GoReceitas" */;
 			buildPhases = (
+				B0FF85EBC9D989A2FE56CA9E /* [CP] Check Pods Manifest.lock */,
 				06459BAB28B01A060054F510 /* Sources */,
 				06459BAC28B01A060054F510 /* Frameworks */,
 				06459BAD28B01A060054F510 /* Resources */,
+				9E5239FFF12989D927CE5EC9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -313,6 +342,7 @@
 			files = (
 				82C9BE3928DA85B800D890EF /* Extensions in Resources */,
 				069F5DE128B4165F00C15177 /* TagCell.xib in Resources */,
+				824DFEAB28ECC16300CE42FA /* GoogleService-Info.plist in Resources */,
 				06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */,
 				06459BBF28B01A080054F510 /* Assets.xcassets in Resources */,
 				06459BBA28B01A060054F510 /* Main.storyboard in Resources */,
@@ -320,6 +350,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9E5239FFF12989D927CE5EC9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GoReceitas/Pods-GoReceitas-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GoReceitas/Pods-GoReceitas-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GoReceitas/Pods-GoReceitas-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B0FF85EBC9D989A2FE56CA9E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GoReceitas-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		06459BAB28B01A060054F510 /* Sources */ = {
@@ -490,6 +562,7 @@
 		};
 		06459BC728B01A080054F510 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 703B85010EF4C9202AAC9043 /* Pods-GoReceitas.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -518,6 +591,7 @@
 		};
 		06459BC828B01A080054F510 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B16BC8E6B780E3EE8DB0882C /* Pods-GoReceitas.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
