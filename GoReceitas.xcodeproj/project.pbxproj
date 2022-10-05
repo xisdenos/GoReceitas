@@ -16,6 +16,8 @@
 		06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06459BC028B01A080054F510 /* LaunchScreen.storyboard */; };
 		069F5DE028B4165F00C15177 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F5DDE28B4165F00C15177 /* TagCell.swift */; };
 		069F5DE128B4165F00C15177 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 069F5DDF28B4165F00C15177 /* TagCell.xib */; };
+		1FAA32B528EDFED300AB6B9C /* FavoritosVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAA32B428EDFED300AB6B9C /* FavoritosVC.swift */; };
+		1FAA32B728EDFEF600AB6B9C /* FavoritosVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FAA32B628EDFEF600AB6B9C /* FavoritosVC.storyboard */; };
 		82025B9D28EB8F890090376F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82025B9C28EB8F890090376F /* SearchViewController.swift */; };
 		8259F92D28DAB14900476299 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259F92C28DAB14900476299 /* Sections.swift */; };
 		8259F93328DAB81C00476299 /* AllTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259F93228DAB81C00476299 /* AllTagsViewController.swift */; };
@@ -49,6 +51,8 @@
 		06459BC328B01A080054F510 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		069F5DDE28B4165F00C15177 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		069F5DDF28B4165F00C15177 /* TagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
+		1FAA32B428EDFED300AB6B9C /* FavoritosVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritosVC.swift; sourceTree = "<group>"; };
+		1FAA32B628EDFEF600AB6B9C /* FavoritosVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FavoritosVC.storyboard; sourceTree = "<group>"; };
 		82025B9C28EB8F890090376F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		8259F92C28DAB14900476299 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
 		8259F93228DAB81C00476299 /* AllTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 				82A403FF28DAA4D500F38990 /* TableViewCells */,
 				82A4040628DAA8CF00F38990 /* View */,
 				06C01C7F28B4214C003ACE17 /* ViewController */,
+				1FAA32B328EDF95800AB6B9C /* Favoritos */,
 			);
 			path = GoReceitas;
 			sourceTree = "<group>";
@@ -147,6 +152,15 @@
 				82A403F828DA9DF400F38990 /* AllTagsModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1FAA32B328EDF95800AB6B9C /* Favoritos */ = {
+			isa = PBXGroup;
+			children = (
+				1FAA32B428EDFED300AB6B9C /* FavoritosVC.swift */,
+				1FAA32B628EDFEF600AB6B9C /* FavoritosVC.storyboard */,
+			);
+			path = Favoritos;
 			sourceTree = "<group>";
 		};
 		8259F92B28DAB12400476299 /* Enums */ = {
@@ -314,6 +328,7 @@
 				82C9BE3928DA85B800D890EF /* Extensions in Resources */,
 				069F5DE128B4165F00C15177 /* TagCell.xib in Resources */,
 				06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */,
+				1FAA32B728EDFEF600AB6B9C /* FavoritosVC.storyboard in Resources */,
 				06459BBF28B01A080054F510 /* Assets.xcassets in Resources */,
 				06459BBA28B01A060054F510 /* Main.storyboard in Resources */,
 			);
@@ -344,6 +359,7 @@
 				82C9BE4128DA883000D890EF /* CellsInfoSections.swift in Sources */,
 				8259F93328DAB81C00476299 /* AllTagsViewController.swift in Sources */,
 				82C9BE4028DA883000D890EF /* CategoryModel.swift in Sources */,
+				1FAA32B528EDFED300AB6B9C /* FavoritosVC.swift in Sources */,
 				82C9BE4528DA88ED00D890EF /* MockData.swift in Sources */,
 				06459BB528B01A060054F510 /* SceneDelegate.swift in Sources */,
 				82C9BE5028DA8A3C00D890EF /* PopularViewCell.swift in Sources */,
