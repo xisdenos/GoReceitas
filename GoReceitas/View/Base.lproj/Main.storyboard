@@ -99,6 +99,9 @@
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginButton:" destination="SYS-8J-ZQu" eventType="touchUpInside" id="VDM-2t-HEe"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSn-M9-bDh">
                                 <rect key="frame" x="30" y="520" width="354" height="34.5"/>
@@ -231,7 +234,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emailTextField" destination="gpk-yF-aG2" id="Cdq-80-XVi"/>
                         <outlet property="googleSignInButton" destination="BSn-M9-bDh" id="ewM-7s-OIA"/>
+                        <outlet property="passwordTextField" destination="2aN-46-Emh" id="dPq-Va-BYO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oic-SC-7tr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -325,6 +330,9 @@
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="registerButton:" destination="tFB-q1-3OM" eventType="touchUpInside" id="SO3-LR-29t"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Digite seu nome:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ckK-tH-L04">
                                 <rect key="frame" x="35" y="235" width="344" height="34"/>
@@ -435,6 +443,12 @@
                             <constraint firstItem="NzJ-UT-D1q" firstAttribute="top" secondItem="hE4-K2-rcn" secondAttribute="bottom" constant="10" id="zfY-GG-NDO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="gdl-JO-rC1" id="uWl-NR-JPX"/>
+                        <outlet property="nameTextField" destination="ckK-tH-L04" id="tkR-94-O0d"/>
+                        <outlet property="passwordConfirmationTextField" destination="dOm-Wt-b1d" id="Nqe-Su-o9u"/>
+                        <outlet property="passwordTextField" destination="NzJ-UT-D1q" id="0EM-Ug-reQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r10-JB-kcw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
