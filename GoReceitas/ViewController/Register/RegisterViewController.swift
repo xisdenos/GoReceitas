@@ -20,17 +20,22 @@ class RegisterViewController: UIViewController {
     }
 
     @IBAction func registerButton(_ sender: UIButton) {
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
+        guard let email = emailTextField.text, !email.isEmpty, email.count > 3 else { return print("incorrect format email") }
+        guard let password = passwordTextField.text, !password.isEmpty, password.count > 3 else { return print("incorrect format password") }
+        guard let passwordConfirmation = passwordConfirmationTextField.text else { return  }
         
-        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { authDataResult, error in
-            guard error == nil, let user = authDataResult else {
-                print("something went wrong while creating a new account.")
-                return
+        if password == passwordConfirmation {
+            FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { authDataResult, error in
+                guard error == nil, let user = authDataResult else {
+                    print("something went wrong while creating a new account.")
+                    return
+                }
+                
+                let result = user.user
+                print(result)
             }
-            
-            let result = user.user
-            print(result)
+        } else {
+            print("no match")
         }
     }
 }
