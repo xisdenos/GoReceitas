@@ -21,6 +21,8 @@
 		824DFEAB28ECC16300CE42FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 824DFEAA28ECC16300CE42FA /* GoogleService-Info.plist */; };
 		8259F92D28DAB14900476299 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259F92C28DAB14900476299 /* Sections.swift */; };
 		8259F93328DAB81C00476299 /* AllTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259F93228DAB81C00476299 /* AllTagsViewController.swift */; };
+		8265E2FC28FD9B7600AF6752 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8265E2FB28FD9B7600AF6752 /* DatabaseManager.swift */; };
+		8265E2FE28FD9FA800AF6752 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8265E2FD28FD9FA800AF6752 /* User.swift */; };
 		82A403F928DA9DF400F38990 /* AllTagsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A403F828DA9DF400F38990 /* AllTagsModel.swift */; };
 		82A403FD28DA9EB800F38990 /* AllTagsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A403FC28DA9EB800F38990 /* AllTagsViewCell.swift */; };
 		82A4040228DAA4F700F38990 /* TagsResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A4040128DAA4F700F38990 /* TagsResultsTableViewCell.swift */; };
@@ -57,6 +59,8 @@
 		824DFEAA28ECC16300CE42FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8259F92C28DAB14900476299 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
 		8259F93228DAB81C00476299 /* AllTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsViewController.swift; sourceTree = "<group>"; };
+		8265E2FB28FD9B7600AF6752 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		8265E2FD28FD9FA800AF6752 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		82A403F828DA9DF400F38990 /* AllTagsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsModel.swift; sourceTree = "<group>"; };
 		82A403FC28DA9EB800F38990 /* AllTagsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsViewCell.swift; sourceTree = "<group>"; };
 		82A4040128DAA4F700F38990 /* TagsResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsResultsTableViewCell.swift; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 		06459BB128B01A060054F510 /* GoReceitas */ = {
 			isa = PBXGroup;
 			children = (
+				8265E2FA28FD9B6C00AF6752 /* Database */,
 				06C01C7E28B42138003ACE17 /* Cell */,
 				82C9BE4628DA89B000D890EF /* CollectionViewCells */,
 				8259F92B28DAB12400476299 /* Enums */,
@@ -152,9 +157,10 @@
 		06C01C8028B42167003ACE17 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				82A403F828DA9DF400F38990 /* AllTagsModel.swift */,
 				82C9BE3E28DA883000D890EF /* CategoryModel.swift */,
 				82C9BE3F28DA883000D890EF /* CellsInfoSections.swift */,
-				82A403F828DA9DF400F38990 /* AllTagsModel.swift */,
+				8265E2FD28FD9FA800AF6752 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -222,6 +228,14 @@
 				82C9BE4428DA88EC00D890EF /* MockData.swift */,
 			);
 			path = MockData;
+			sourceTree = "<group>";
+		};
+		8265E2FA28FD9B6C00AF6752 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				8265E2FB28FD9B7600AF6752 /* DatabaseManager.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		82A403FA28DA9E9500F38990 /* All Tags */ = {
@@ -433,11 +447,13 @@
 				EB7E9FEF28BB173400F8C91B /* RegisterViewController.swift in Sources */,
 				82A4040228DAA4F700F38990 /* TagsResultsTableViewCell.swift in Sources */,
 				06459BB728B01A060054F510 /* HomeViewController.swift in Sources */,
+				8265E2FE28FD9FA800AF6752 /* User.swift in Sources */,
 				06459BBD28B01A060054F510 /* GoReceitas.xcdatamodeld in Sources */,
 				EB7E9FF228BBA73900F8C91B /* EsqueciSenha.swift in Sources */,
 				82A4040428DAA57800F38990 /* TagsResultsViewController.swift in Sources */,
 				82A403F928DA9DF400F38990 /* AllTagsModel.swift in Sources */,
 				069F5DE028B4165F00C15177 /* TagCell.swift in Sources */,
+				8265E2FC28FD9B7600AF6752 /* DatabaseManager.swift in Sources */,
 				82C9BE4828DA89BE00D890EF /* FooterViewCell.swift in Sources */,
 				82C9BE4A28DA89D100D890EF /* CategoryViewCell.swift in Sources */,
 				8259F92D28DAB14900476299 /* Sections.swift in Sources */,

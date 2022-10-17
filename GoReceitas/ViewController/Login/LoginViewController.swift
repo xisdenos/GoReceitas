@@ -20,14 +20,13 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    
     @IBAction func loginButton(_ sender: UIButton) {
         guard let email = emailTextField.text, !email.isEmpty, email.count > 3 else { return }
         guard let password = passwordTextField.text, !password.isEmpty, password.count > 3 else { return }
         
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { authDataResult, error in
             guard error == nil, let user = authDataResult else {
-                return
+                return print("user doesnt exist")
             }
             let result = user.user
             print("user logged in succesfully \(result)")

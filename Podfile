@@ -8,9 +8,10 @@ target 'GoReceitas' do
   # Ignore warnings
   inhibit_all_warnings!
 
-  # Google Sign In
+  # Google Sign In & Database
   pod 'FirebaseAuth'
   pod 'GoogleSignIn'
+  pod 'FirebaseDatabase'
 
   post_install do |installer|
     installer.pods_project.targets.each do |target|
