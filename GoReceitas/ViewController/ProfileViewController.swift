@@ -29,13 +29,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tapChangePasswordScreen(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "changePassword")
         navigationController?.pushViewController(viewController, animated: true)
     }
     
     @IBAction func tapChangeEmailScreen(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "changeEmail")
         navigationController?.pushViewController(viewController, animated: true)
     }
