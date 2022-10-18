@@ -32,6 +32,12 @@
 		82C9BE4C28DA89DE00D890EF /* TryItOutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE4B28DA89DE00D890EF /* TryItOutCell.swift */; };
 		82C9BE4E28DA8A0500D890EF /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE4D28DA8A0500D890EF /* HeaderViewCell.swift */; };
 		82C9BE5028DA8A3C00D890EF /* PopularViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE4F28DA8A3C00D890EF /* PopularViewCell.swift */; };
+		EB43688C28FE15370023A2F9 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB43688B28FE15370023A2F9 /* RegisterVC.swift */; };
+		EB43688E28FE15460023A2F9 /* RegisterVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB43688D28FE15460023A2F9 /* RegisterVC.storyboard */; };
+		EB43689228FE1C9E0023A2F9 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB43689128FE1C9E0023A2F9 /* LoginVC.swift */; };
+		EB43689428FE1CAE0023A2F9 /* LoginVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB43689328FE1CAE0023A2F9 /* LoginVC.storyboard */; };
+		EB43689728FE28D60023A2F9 /* EsqueceuSenhaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB43689628FE28D60023A2F9 /* EsqueceuSenhaVC.swift */; };
+		EB43689928FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB43689828FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard */; };
 		EB7E9FEC28BB145A00F8C91B /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7E9FEB28BB145A00F8C91B /* Login.swift */; };
 		EB7E9FEF28BB173400F8C91B /* Cadastro.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7E9FEE28BB173400F8C91B /* Cadastro.swift */; };
 		EB7E9FF228BBA73900F8C91B /* EsqueciSenha.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7E9FF128BBA73900F8C91B /* EsqueciSenha.swift */; };
@@ -65,6 +71,12 @@
 		82C9BE4B28DA89DE00D890EF /* TryItOutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryItOutCell.swift; sourceTree = "<group>"; };
 		82C9BE4D28DA8A0500D890EF /* HeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
 		82C9BE4F28DA8A3C00D890EF /* PopularViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewCell.swift; sourceTree = "<group>"; };
+		EB43688B28FE15370023A2F9 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		EB43688D28FE15460023A2F9 /* RegisterVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterVC.storyboard; sourceTree = "<group>"; };
+		EB43689128FE1C9E0023A2F9 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		EB43689328FE1CAE0023A2F9 /* LoginVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginVC.storyboard; sourceTree = "<group>"; };
+		EB43689628FE28D60023A2F9 /* EsqueceuSenhaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EsqueceuSenhaVC.swift; sourceTree = "<group>"; };
+		EB43689828FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EsqueceuSenhaVC.storyboard; sourceTree = "<group>"; };
 		EB7E9FEB28BB145A00F8C91B /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		EB7E9FEE28BB173400F8C91B /* Cadastro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cadastro.swift; sourceTree = "<group>"; };
 		EB7E9FF128BBA73900F8C91B /* EsqueciSenha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EsqueciSenha.swift; sourceTree = "<group>"; };
@@ -110,6 +122,9 @@
 				EB7E9FEA28BB144700F8C91B /* Login */,
 				826281A128DA929F0065AA29 /* MockData */,
 				06C01C8028B42167003ACE17 /* Model */,
+				EB43689028FE1C820023A2F9 /* NewLogin */,
+				EB43688A28FE15060023A2F9 /* NewRegister */,
+				EB43689528FE28B00023A2F9 /* NewEsqueceuSenha */,
 				EB7E9FED28BB171500F8C91B /* Register */,
 				82A4040528DAA8A700F38990 /* Resources */,
 				82A403FF28DAA4D500F38990 /* TableViewCells */,
@@ -229,6 +244,33 @@
 			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
+		EB43688A28FE15060023A2F9 /* NewRegister */ = {
+			isa = PBXGroup;
+			children = (
+				EB43688B28FE15370023A2F9 /* RegisterVC.swift */,
+				EB43688D28FE15460023A2F9 /* RegisterVC.storyboard */,
+			);
+			path = NewRegister;
+			sourceTree = "<group>";
+		};
+		EB43689028FE1C820023A2F9 /* NewLogin */ = {
+			isa = PBXGroup;
+			children = (
+				EB43689128FE1C9E0023A2F9 /* LoginVC.swift */,
+				EB43689328FE1CAE0023A2F9 /* LoginVC.storyboard */,
+			);
+			path = NewLogin;
+			sourceTree = "<group>";
+		};
+		EB43689528FE28B00023A2F9 /* NewEsqueceuSenha */ = {
+			isa = PBXGroup;
+			children = (
+				EB43689628FE28D60023A2F9 /* EsqueceuSenhaVC.swift */,
+				EB43689828FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard */,
+			);
+			path = NewEsqueceuSenha;
+			sourceTree = "<group>";
+		};
 		EB7E9FEA28BB144700F8C91B /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,9 +353,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB43688E28FE15460023A2F9 /* RegisterVC.storyboard in Resources */,
+				EB43689928FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard in Resources */,
 				82C9BE3928DA85B800D890EF /* Extensions in Resources */,
 				069F5DE128B4165F00C15177 /* TagCell.xib in Resources */,
 				06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */,
+				EB43689428FE1CAE0023A2F9 /* LoginVC.storyboard in Resources */,
 				06459BBF28B01A080054F510 /* Assets.xcassets in Resources */,
 				06459BBA28B01A060054F510 /* Main.storyboard in Resources */,
 			);
@@ -335,6 +380,9 @@
 				82A403F928DA9DF400F38990 /* AllTagsModel.swift in Sources */,
 				069F5DE028B4165F00C15177 /* TagCell.swift in Sources */,
 				82C9BE4828DA89BE00D890EF /* FooterViewCell.swift in Sources */,
+				EB43689228FE1C9E0023A2F9 /* LoginVC.swift in Sources */,
+				EB43689728FE28D60023A2F9 /* EsqueceuSenhaVC.swift in Sources */,
+				EB43688C28FE15370023A2F9 /* RegisterVC.swift in Sources */,
 				82C9BE4A28DA89D100D890EF /* CategoryViewCell.swift in Sources */,
 				8259F92D28DAB14900476299 /* Sections.swift in Sources */,
 				EB7E9FEC28BB145A00F8C91B /* Login.swift in Sources */,

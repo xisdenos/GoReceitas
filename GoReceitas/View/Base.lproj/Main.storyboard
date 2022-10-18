@@ -105,7 +105,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSn-M9-bDh">
                                 <rect key="frame" x="30" y="520" width="354" height="34.5"/>
-                                <color key="backgroundColor" red="0.86274516580000005" green="0.86274516580000005" blue="0.86666667460000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Entrar com o Google"/>
@@ -447,6 +447,14 @@
                             <constraint firstItem="NzJ-UT-D1q" firstAttribute="top" secondItem="hE4-K2-rcn" secondAttribute="bottom" constant="10" id="zfY-GG-NDO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cadastroLabel" destination="8Vv-t0-PtC" id="NOp-ed-hPf"/>
+                        <outlet property="goLabel" destination="uS6-P1-jbH" id="zAo-kf-oj4"/>
+                        <outlet property="logoTopImage" destination="uS6-P1-jbH" id="f1g-lK-ZV7"/>
+                        <outlet property="nameLabel" destination="CPa-Fi-O9l" id="Bws-ya-gHH"/>
+                        <outlet property="receitasLabel" destination="uS6-P1-jbH" id="nPM-D3-z5Q"/>
+                        <outlet property="voltarButton" destination="oas-EG-kI1" id="bPO-17-7yv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r10-JB-kcw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1254,7 +1262,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="QuF-PE-88E"/>
+        <segue reference="8R6-uA-E25"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="48" height="48"/>
