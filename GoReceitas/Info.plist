@@ -27,7 +27,11 @@
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
+<<<<<<< HEAD
 					<string>LoginVC</string>
+=======
+					<string>Profile</string>
+>>>>>>> 469da3e205c14241301c8a5ebf653b62df10cb0c
 				</dict>
 			</array>
 		</dict>

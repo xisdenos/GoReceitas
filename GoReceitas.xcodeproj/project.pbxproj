@@ -16,6 +16,10 @@
 		06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06459BC028B01A080054F510 /* LaunchScreen.storyboard */; };
 		069F5DE028B4165F00C15177 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F5DDE28B4165F00C15177 /* TagCell.swift */; };
 		069F5DE128B4165F00C15177 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 069F5DDF28B4165F00C15177 /* TagCell.xib */; };
+		5CC71FA428FE242B00FF75ED /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CC71FA328FE242B00FF75ED /* Profile.storyboard */; };
+		5CC71FA628FE25D100FF75ED /* changePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC71FA528FE25D100FF75ED /* changePasswordViewController.swift */; };
+		5CC71FA828FE25DD00FF75ED /* changeEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC71FA728FE25DD00FF75ED /* changeEmailViewController.swift */; };
+		5CC71FAA28FE26F200FF75ED /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC71FA928FE26F200FF75ED /* ProfileViewController.swift */; };
 		82025B9D28EB8F890090376F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82025B9C28EB8F890090376F /* SearchViewController.swift */; };
 		8259F92D28DAB14900476299 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259F92C28DAB14900476299 /* Sections.swift */; };
 		8259F93328DAB81C00476299 /* AllTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259F93228DAB81C00476299 /* AllTagsViewController.swift */; };
@@ -60,6 +64,10 @@
 		06459BC328B01A080054F510 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		069F5DDE28B4165F00C15177 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		069F5DDF28B4165F00C15177 /* TagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
+		5CC71FA328FE242B00FF75ED /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		5CC71FA528FE25D100FF75ED /* changePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = changePasswordViewController.swift; sourceTree = "<group>"; };
+		5CC71FA728FE25DD00FF75ED /* changeEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = changeEmailViewController.swift; sourceTree = "<group>"; };
+		5CC71FA928FE26F200FF75ED /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		82025B9C28EB8F890090376F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		8259F92C28DAB14900476299 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
 		8259F93228DAB81C00476299 /* AllTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +170,9 @@
 				82A4040328DAA57800F38990 /* TagsResultsViewController.swift */,
 				8259F93228DAB81C00476299 /* AllTagsViewController.swift */,
 				82025B9C28EB8F890090376F /* SearchViewController.swift */,
+				5CC71FA528FE25D100FF75ED /* changePasswordViewController.swift */,
+				5CC71FA728FE25DD00FF75ED /* changeEmailViewController.swift */,
+				5CC71FA928FE26F200FF75ED /* ProfileViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -243,6 +254,7 @@
 			children = (
 				06459BB828B01A060054F510 /* Main.storyboard */,
 				06459BC028B01A080054F510 /* LaunchScreen.storyboard */,
+				5CC71FA328FE242B00FF75ED /* Profile.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -382,9 +394,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				EB43688E28FE15460023A2F9 /* RegisterVC.storyboard in Resources */,
 				EB08928B29007B8500FF33E8 /* GoogleService-Info.plist in Resources */,
 				EB43689928FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard in Resources */,
+=======
+				5CC71FA428FE242B00FF75ED /* Profile.storyboard in Resources */,
+>>>>>>> 469da3e205c14241301c8a5ebf653b62df10cb0c
 				82C9BE3928DA85B800D890EF /* Extensions in Resources */,
 				069F5DE128B4165F00C15177 /* TagCell.xib in Resources */,
 				06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */,
@@ -409,10 +425,16 @@
 				82A4040428DAA57800F38990 /* TagsResultsViewController.swift in Sources */,
 				82A403F928DA9DF400F38990 /* AllTagsModel.swift in Sources */,
 				069F5DE028B4165F00C15177 /* TagCell.swift in Sources */,
+				5CC71FA828FE25DD00FF75ED /* changeEmailViewController.swift in Sources */,
 				82C9BE4828DA89BE00D890EF /* FooterViewCell.swift in Sources */,
+<<<<<<< HEAD
 				EB43689228FE1C9E0023A2F9 /* LoginVC.swift in Sources */,
 				EB43689728FE28D60023A2F9 /* EsqueceuSenhaVC.swift in Sources */,
 				EB43688C28FE15370023A2F9 /* RegisterVC.swift in Sources */,
+=======
+				5CC71FAA28FE26F200FF75ED /* ProfileViewController.swift in Sources */,
+				5CC71FA628FE25D100FF75ED /* changePasswordViewController.swift in Sources */,
+>>>>>>> 469da3e205c14241301c8a5ebf653b62df10cb0c
 				82C9BE4A28DA89D100D890EF /* CategoryViewCell.swift in Sources */,
 				8259F92D28DAB14900476299 /* Sections.swift in Sources */,
 				EB7E9FEC28BB145A00F8C91B /* Login.swift in Sources */,
