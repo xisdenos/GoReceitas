@@ -6,41 +6,27 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
+import GoogleSignIn
 
 class RegisterVC: UIViewController {
     
     
     @IBOutlet weak var voltarButton: UIButton!
-    
     @IBOutlet weak var goLabel: UILabel!
-    
     @IBOutlet weak var receitasLabel: UILabel!
-    
     @IBOutlet weak var logoTopImage: UIImageView!
-    
     @IBOutlet weak var cadastrarLabel: UILabel!
-    
     @IBOutlet weak var nameLabel: UILabel!
-    
     @IBOutlet weak var textFieldName: UITextField!
-    
     @IBOutlet weak var emailLabel: UILabel!
-    
     @IBOutlet weak var textFieldEmail: UITextField!
-    
     @IBOutlet weak var senhaLabel: UILabel!
-    
     @IBOutlet weak var textFieldSenha: UITextField!
-    
     @IBOutlet weak var confirmarSenhaLabel: UILabel!
-    
     @IBOutlet weak var textFieldConfirmarSenha: UITextField!
-    
     @IBOutlet weak var cadastrarButton: UIButton!
-    
     @IBOutlet weak var backLoginButton: UIButton!
-    
     @IBOutlet weak var logoImage: UIImageView!
     
     
@@ -129,10 +115,9 @@ class RegisterVC: UIViewController {
         
         if !nome.isEmpty && !email.isEmpty && !senha.isEmpty && !confirmarSenha.isEmpty {
             self.configbuttonEnable(true)
-        }else{
+        } else {
             self.configbuttonEnable(false)
         }
-        
     }
     
     private func configbuttonEnable(_ enable:Bool){
@@ -147,12 +132,8 @@ class RegisterVC: UIViewController {
     
     
     @IBAction func tappedBackButton(_ sender: UIButton) {
-        
         navigationController?.popViewController(animated: true)
-        
     }
-    
-    
     
     @IBAction func tappedCadastrarButton(_ sender: UIButton) {
         
@@ -165,30 +146,21 @@ class RegisterVC: UIViewController {
                 
                 if error != nil{
                     self.alert?.alertInformation(title: "Atenção", message: "Erro ao cadastrar, verifique os dados e tente novamente")
-                }else{
+                } else {
                     self.alert?.alertInformation(title: "Parabens", message: "Usuario cadastrado com sucesso",completion: {
                         self.navigationController?.popViewController(animated: true)
                     })
-
                 }
-                
-                
             })
-            
-        }else{
-            self.alert?.alertInformation(title: "Atenção", message: "Senhas Divergentes")        }
-        
-        
-        
-        
+        } else {
+            self.alert?.alertInformation(title: "Atenção", message: "Senhas Divergentes")
+        }
     }
     
     
     @IBAction func tappedJaTemLoginButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
-    
-    
 }
 
 

@@ -6,43 +6,28 @@
 //
 
 import UIKit
-import  Firebase
-import GoogleSignIn
+import FirebaseCore
 import FirebaseAuth
+import GoogleSignIn
 
 class LoginVC: UIViewController {
     
     
     @IBOutlet weak var goLabel: UILabel!
-    
     @IBOutlet weak var receitasLabel: UILabel!
-    
     @IBOutlet weak var imageTopLogo: UIImageView!
-    
     @IBOutlet weak var emailLabel: UILabel!
-    
     @IBOutlet weak var textFieldEmail: UITextField!
-    
     @IBOutlet weak var senhaLabel: UILabel!
-    
     @IBOutlet weak var textFieldSenha: UITextField!
-    
     @IBOutlet weak var esqueceuSenhaButton: UIButton!
-    
     @IBOutlet weak var loginButton: UIButton!
-    
     @IBOutlet weak var ouLabel: UILabel!
-    
     @IBOutlet weak var loginGoogleButton: UIButton!
-    
     @IBOutlet weak var fazerCadastroButton: UIButton!
-    
     @IBOutlet weak var riscoView1: UIView!
-    
     @IBOutlet weak var riscoView2: UIView!
-    
     @IBOutlet weak var riscoView3: UIView!
-    
     @IBOutlet weak var imageLogoFundo: UIImageView!
     
     var auth:Auth?
@@ -129,7 +114,7 @@ class LoginVC: UIViewController {
     func validacaoTextField(){
         if textFieldEmail.text != "" && textFieldSenha.text != ""{
             loginButton.isEnabled = true
-        }else{
+        } else {
             loginButton.isEnabled = false
         }
     }
@@ -148,14 +133,13 @@ class LoginVC: UIViewController {
             if error != nil {
                 self.alert?.alertInformation(title: "Atenção", message: "Dados incorretos, tente novamente")
                 
-            }else{
+            } else {
                 if usuario == nil{
                     self.alert?.alertInformation(title: "Atenção", message: "Tivemos um problema inesperado")                }else{
                         self.alert?.alertInformation(title: "Login feito com sucesso", message: "")
-                }
+                    }
             }
         })
-        
     }
     
     
@@ -163,51 +147,43 @@ class LoginVC: UIViewController {
     @IBAction func tappedLoginGoogle(_ sender: UIButton) {
         
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-
+        
         // Create Google Sign In configuration object.
         let config = GIDConfiguration(clientID: clientID)
-
+        
         // Start the sign in flow!
         GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
-
-          guard error == nil else {
-              self.alert?.alertInformation(title: "Atenção", message: "Falha ao tentar realizar o login, Tente Novamente!")
-            return
-          }
-
-          guard
-            let authentication = user?.authentication,
-            let idToken = authentication.idToken
-          else {
-            return
-          }
-
-          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                         accessToken: authentication.accessToken)
-
+            
+            guard error == nil else {
+                self.alert?.alertInformation(title: "Atenção", message: "Falha ao tentar realizar o login, Tente Novamente!")
+                return
+            }
+            
+            guard
+                let authentication = user?.authentication,
+                let idToken = authentication.idToken
+            else {
+                return
+            }
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                           accessToken: authentication.accessToken)
+            
             Auth.auth().signIn(with: credential) { dataResult, error in
                 guard error == nil else {
-                    
                     self.alert?.alertInformation(title: "Atenção", message: "Falha ao tentar realizar o login, Tente Novamente!")
-                  return
-                    
+                    return
                 }
                 print("Login com sucesso")
             }
         }
-        
-        
     }
     
     
     @IBAction func tappedFazerCadastroButton(_ sender: UIButton) {
         let vc = UIStoryboard(name: "RegisterVC", bundle: nil).instantiateViewController(withIdentifier: "RegisterVC") as? RegisterVC
         navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
-        
     }
-    
-    
-    
 }
 
 extension LoginVC: UITextFieldDelegate {

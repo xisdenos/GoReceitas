@@ -9,14 +9,13 @@ import UIKit
 import CoreData
 import FirebaseCore
 import GoogleSignIn
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        
+        print("did finish launching")
         return true
     }
 
@@ -78,6 +77,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
 

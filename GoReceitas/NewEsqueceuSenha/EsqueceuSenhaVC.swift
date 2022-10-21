@@ -6,38 +6,31 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseAuth
+import GoogleSignIn
 
 class EsqueceuSenhaVC: UIViewController {
     
     
     @IBOutlet weak var voltatButton: UIButton!
-    
     @IBOutlet weak var goLabel: UILabel!
-    
     @IBOutlet weak var receitasLabel: UILabel!
-    
     @IBOutlet weak var logoTopImage: UIImageView!
-    
     @IBOutlet weak var informacaoLabel: UILabel!
-    
     @IBOutlet weak var textFieldInformarEmail: UITextField!
-    
     @IBOutlet weak var enviarButton: UIButton!
     
-    var auth:Auth?
-    var alert:AlertController?
+    var auth: Auth?
+    var alert: AlertController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         alert = AlertController(controller: self)
         self.auth = Auth.auth()
-        configCaracter()
-        
-        
+        configCharacter()
     }
     
-    func configCaracter() {
+    func configCharacter() {
         voltatButton.setImage(UIImage(named: "back11"), for: .normal)
         
         goLabel.text = "Go"
