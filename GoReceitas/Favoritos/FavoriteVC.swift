@@ -9,9 +9,10 @@ import UIKit
 
 class FavoriteVC: UIViewController {
     
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var data: [String] = ["bbq", "breakfast", "healthy", "indian", "italian"]
+    var data: [String] = ["lasanha", "macarrao"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +22,10 @@ class FavoriteVC: UIViewController {
     func configCollectionView(){
         collectionView.delegate = self
         collectionView.dataSource = self
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.scrollDirection = .horizontal
-            layout.estimatedItemSize = .zero
-        }
+        //        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+        //            layout.scrollDirection = .horizontal
+        //            layout.estimatedItemSize = .zero
+        //        }
         collectionView.register(FavoriteCollectionViewCell.nib(), forCellWithReuseIdentifier: FavoriteCollectionViewCell.identifier)
     }
     
@@ -42,7 +43,7 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 300)
+        return CGSize(width: self.view.frame.size.width / 2.3, height: 150)
     }
     
 }
