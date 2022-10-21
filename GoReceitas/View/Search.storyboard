@@ -69,7 +69,7 @@
         <!--Navigation Controller-->
         <scene sceneID="dh4-ve-vVX">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3AK-EH-0j3" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="searchNavigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3AK-EH-0j3" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="44O-h8-R14"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oxU-Be-GTN">

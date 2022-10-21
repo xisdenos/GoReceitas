@@ -23,6 +23,14 @@ class HomeViewController: UIViewController {
         collectionView.register(FooterViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterViewCell.identifier)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+    }
+    
     private func setTabBarIcons() {
         self.tabBarController?.tabBar.items?[0].image = UIImage(systemName: "house")
         self.tabBarController?.tabBar.items?[1].image = UIImage(systemName: "magnifyingglass")
@@ -124,6 +132,16 @@ class HomeViewController: UIViewController {
     private func addSupplementaryFooter() -> NSCollectionLayoutBoundarySupplementaryItem {
         NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
     }
+    
+    // MARK: Actions
+    @IBAction func seeAllTagsButton(_ sender: UIButton) {
+        // AllTagsViewController
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "AllTagsViewController") as! AllTagsViewController
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    
 }
 
     // MARK: Set delegates for collection view

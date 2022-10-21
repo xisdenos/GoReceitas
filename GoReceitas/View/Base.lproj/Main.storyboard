@@ -26,30 +26,30 @@
             </objects>
             <point key="canvasLocation" x="5941" y="-174"/>
         </scene>
-        <!--homeVC-->
+        <!--homeNavigation-->
         <scene sceneID="FVB-Ov-dlg">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="homeVC" storyboardName="Home" referencedIdentifier="homeVC" id="udS-7x-hR4" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="homeNavigation" storyboardName="Home" referencedIdentifier="homeNavigation" id="udS-7x-hR4" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="vdP-7w-Lvp"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kx4-jn-PtF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6677" y="-262"/>
         </scene>
-        <!--searchVC-->
+        <!--searchNavigation-->
         <scene sceneID="JYz-tE-Vtn">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="searchVC" storyboardName="Search" referencedIdentifier="searchVC" id="65J-ci-1CX" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="searchNavigation" storyboardName="Search" referencedIdentifier="searchNavigation" id="65J-ci-1CX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="P6i-BJ-l1X"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SB5-Em-ewY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6693" y="-162"/>
         </scene>
-        <!--profile-->
+        <!--profileNavigation-->
         <scene sceneID="CiG-0J-FKZ">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="profile" storyboardName="Profile" referencedIdentifier="profile" id="Dai-EE-9U9" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="profile" storyboardName="Profile" referencedIdentifier="profileNavigation" id="Dai-EE-9U9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="pNn-Cv-62P"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jNk-uo-lsr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

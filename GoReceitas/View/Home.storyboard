@@ -339,6 +339,9 @@
                                             <buttonConfiguration key="configuration" style="plain" title="Button">
                                                 <fontDescription key="titleFontDescription" type="system" weight="heavy" pointSize="16"/>
                                             </buttonConfiguration>
+                                            <connections>
+                                                <action selector="seeAllTagsButton:" destination="WjA-MD-pc3" eventType="touchUpInside" id="qZk-J9-1Vb"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -400,7 +403,7 @@
         <!--All Tags-->
         <scene sceneID="9kI-Xz-Y6G">
             <objects>
-                <viewController storyboardIdentifier="AllTagsViewController" id="6Lh-Vt-T1K" customClass="AllTagsViewController" customModule="GoReceitas" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AllTagsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6Lh-Vt-T1K" customClass="AllTagsViewController" customModule="GoReceitas" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3IF-lg-QJT">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -643,10 +646,10 @@
             </objects>
             <point key="canvasLocation" x="8710.7692307692305" y="558.76777251184831"/>
         </scene>
-        <!--Home-->
+        <!--Navigation Controller-->
         <scene sceneID="goc-pH-RT6">
             <objects>
-                <navigationController title="Home" automaticallyAdjustsScrollViewInsets="NO" id="9MI-E9-pKt" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="homeNavigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9MI-E9-pKt" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="nOh-X7-Z2g"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HCx-J6-Wpd">

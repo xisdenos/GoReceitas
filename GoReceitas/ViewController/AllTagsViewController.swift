@@ -22,6 +22,11 @@ class AllTagsViewController: UIViewController {
         appearence.backgroundColor = UIColor(red: 250 / 255, green: 236 / 255, blue: 255 / 255, alpha: 1)
         self.navigationController?.navigationBar.standardAppearance = appearence
     }
+    
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        navigationController?.isNavigationBarHidden = false
+//    }
 }
 
 extension AllTagsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
