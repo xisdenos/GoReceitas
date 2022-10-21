@@ -7,17 +7,13 @@
 
 import UIKit
 
-class changeEmailViewController: UIViewController {
+class ChangeEmailViewController: UIViewController {
 
     @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var newEmailText: UITextField!
     @IBOutlet weak var currentPasswordText: UITextField!
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
-    
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

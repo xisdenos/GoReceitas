@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        print("did finish launching")
+        UITabBar.appearance().tintColor = UIColor(red: 143 / 255 , green: 0 / 255, blue: 255 / 255, alpha: 1)
         return true
     }
 

@@ -11,16 +11,22 @@ class HomeViewController: UIViewController {
     private let sections = MockData.shared.data
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var welcomeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 //        self.view.backgroundColor = .viewBackgroundColor
 //        collectionView.backgroundColor = .viewBackgroundColor
-        
+        setTabBarIcons()
         collectionView.collectionViewLayout = createLayout()
         collectionView.register(FooterViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterViewCell.identifier)
+    }
+    
+    private func setTabBarIcons() {
+        self.tabBarController?.tabBar.items?[0].image = UIImage(systemName: "house")
+        self.tabBarController?.tabBar.items?[1].image = UIImage(systemName: "magnifyingglass")
+        self.tabBarController?.tabBar.items?[2].image = UIImage(systemName: "person")
     }
     
     // MARK: Create and set constraints for page control

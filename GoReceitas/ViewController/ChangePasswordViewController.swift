@@ -7,7 +7,7 @@
 
 import UIKit
 
-class changePasswordViewController: UIViewController {
+class ChangePasswordViewController: UIViewController {
 
   
     @IBOutlet weak var imageProfile: UIImageView!
