@@ -11,29 +11,49 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="FavoriteCollectionViewCell" customModule="GoReceitas" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+            <rect key="frame" x="0.0" y="0.0" width="148" height="152"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                <rect key="frame" x="0.0" y="0.0" width="148" height="152"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NNf-dR-AH4">
-                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                        <rect key="frame" x="0.0" y="0.0" width="148" height="152"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1n-0M-YDy">
+                        <rect key="frame" x="5" y="121" width="42" height="21"/>
+                        <color key="backgroundColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="0.55000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMt-Ld-txv">
+                        <rect key="frame" x="5" y="10" width="42" height="21"/>
+                        <color key="backgroundColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="0.55000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="NNf-dR-AH4" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="UVw-xP-bhe"/>
+                <constraint firstItem="G1n-0M-YDy" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="VVd-cv-QKA"/>
                 <constraint firstItem="NNf-dR-AH4" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ahM-ud-4De"/>
+                <constraint firstAttribute="bottom" secondItem="G1n-0M-YDy" secondAttribute="bottom" constant="10" id="bCX-gU-LZx"/>
+                <constraint firstItem="GMt-Ld-txv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="bOs-Ew-ivs"/>
                 <constraint firstAttribute="trailing" secondItem="NNf-dR-AH4" secondAttribute="trailing" id="ij8-a4-lVy"/>
                 <constraint firstAttribute="bottom" secondItem="NNf-dR-AH4" secondAttribute="bottom" id="nec-lG-BKn"/>
+                <constraint firstItem="GMt-Ld-txv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="tS7-Ad-1uL"/>
             </constraints>
-            <size key="customSize" width="303" height="191"/>
+            <size key="customSize" width="323" height="215"/>
             <connections>
                 <outlet property="foodImageView" destination="NNf-dR-AH4" id="o8H-8x-2mU"/>
+                <outlet property="foodLabel" destination="GMt-Ld-txv" id="rhY-aT-foV"/>
+                <outlet property="prepTimeLabel" destination="G1n-0M-YDy" id="4OB-hf-zb9"/>
             </connections>
-            <point key="canvasLocation" x="225" y="45"/>
+            <point key="canvasLocation" x="240" y="53.317535545023695"/>
         </collectionViewCell>
     </objects>
 </document>

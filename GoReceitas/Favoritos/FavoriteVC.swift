@@ -12,7 +12,7 @@ class FavoriteVC: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var data: [String] = ["lasanha", "macarrao"]
+    var data: [String] = ["lasanha", "macarrao", "lasanha", "macarrao","lasanha", "macarrao","lasanha", "macarrao","lasanha", "macarrao"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +22,13 @@ class FavoriteVC: UIViewController {
     func configCollectionView(){
         collectionView.delegate = self
         collectionView.dataSource = self
-        //        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-        //            layout.scrollDirection = .horizontal
-        //            layout.estimatedItemSize = .zero
-        //        }
+                if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+                    layout.sectionInset = .init(top: 0, left: 17, bottom: 0, right: 17)
+                    layout.estimatedItemSize = .zero
+                    layout.minimumInteritemSpacing = 0
+        
+                  
+                }
         collectionView.register(FavoriteCollectionViewCell.nib(), forCellWithReuseIdentifier: FavoriteCollectionViewCell.identifier)
     }
     
@@ -39,6 +42,7 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCollectionViewCell.identifier, for: indexPath) as? FavoriteCollectionViewCell
         cell?.setupCell(nameImage: data[indexPath.row])
+//        cell?.setup
         return cell ?? UICollectionViewCell()
     }
     
