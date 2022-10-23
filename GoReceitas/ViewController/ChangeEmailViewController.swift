@@ -19,7 +19,7 @@ class ChangeEmailViewController: UIViewController {
         super.viewDidLoad()
         imageRound()
         cornerRadiusElements()
-       
+        self.view.backgroundColor = .viewBackgroundColor
     }
     
     @IBAction func tapBackButton(_ sender: UIButton) {

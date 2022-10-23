@@ -22,6 +22,7 @@ class ProfileViewController: UIViewController {
         imageRound()
         exitButtonBorder()
         cornerRadiusElements()
+        self.view.backgroundColor = .viewBackgroundColor
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -16,8 +16,9 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.view.backgroundColor = .viewBackgroundColor
-//        collectionView.backgroundColor = .viewBackgroundColor
+        self.view.backgroundColor = .viewBackgroundColor
+        collectionView.backgroundColor = .viewBackgroundColor
+        
         setTabBarIcons()
         collectionView.collectionViewLayout = createLayout()
         collectionView.register(FooterViewCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterViewCell.identifier)
@@ -35,6 +36,10 @@ class HomeViewController: UIViewController {
         self.tabBarController?.tabBar.items?[0].image = UIImage(systemName: "house")
         self.tabBarController?.tabBar.items?[1].image = UIImage(systemName: "magnifyingglass")
         self.tabBarController?.tabBar.items?[2].image = UIImage(systemName: "person")
+        
+        self.tabBarController?.tabBar.items?[0].title = "Home"
+        self.tabBarController?.tabBar.items?[1].title = "Search"
+        self.tabBarController?.tabBar.items?[2].title = "Profile"
     }
     
     // MARK: Create and set constraints for page control
@@ -135,13 +140,17 @@ class HomeViewController: UIViewController {
     
     // MARK: Actions
     @IBAction func seeAllTagsButton(_ sender: UIButton) {
-        // AllTagsViewController
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "AllTagsViewController") as! AllTagsViewController
         navigationController?.pushViewController(viewController, animated: true)
     }
     
     
+    @IBAction func categoryButtonTapped(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "TagsResultsViewController") as! TagsResultsViewController
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }
 
     // MARK: Set delegates for collection view

@@ -21,8 +21,23 @@ class TagsResultsViewController: UIViewController {
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .viewBackgroundColor
+        
+        // mantém a cor de fundo da nav bar quando scrollada
+        let navigationBar = navigationController?.navigationBar
+        let navigationBarAppearance = UINavigationBarAppearance()
+        
+        navigationBarAppearance.shadowColor = .clear
+        navigationBar?.scrollEdgeAppearance = navigationBarAppearance
+        navigationBarAppearance.backgroundColor = .viewBackgroundColor
+        navigationController?.navigationBar.standardAppearance = navigationBarAppearance
+        
+        tableView.backgroundColor = .viewBackgroundColor
         tableView.separatorStyle = .none
-        resultsLabel.text = "Results (\(foodInformation.count))"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
 }
 

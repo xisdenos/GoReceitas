@@ -12,5 +12,6 @@ class AllTagsViewCell: UICollectionViewCell {
         self.imageCell.image = UIImage(named: tagInfo.image)
         self.titleLbl.text = tagInfo.title
         self.subtitleLbl.text = tagInfo.subtitle
+        self.titleLbl.textColor = .black
     }
 }

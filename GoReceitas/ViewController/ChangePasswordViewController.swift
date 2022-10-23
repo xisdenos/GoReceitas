@@ -22,7 +22,7 @@ class ChangePasswordViewController: UIViewController {
         super.viewDidLoad()
         imageRound()
         cornerRadiusElentes()
-        
+        self.view.backgroundColor = .viewBackgroundColor
     }
 
     @IBAction func tapBackButton(_ sender: UIButton) {
