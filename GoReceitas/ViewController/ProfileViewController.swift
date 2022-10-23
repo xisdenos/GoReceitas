@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
     @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var textUsername: UITextField!
@@ -22,6 +22,7 @@ class ViewController: UIViewController {
         imageRound()
         exitButtonBorder()
         cornerRadiusElements()
+        self.view.backgroundColor = .viewBackgroundColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,7 +31,7 @@ class ViewController: UIViewController {
     
     @IBAction func tapChangePasswordScreen(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "changePassword")
+        let viewController = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
         navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -40,12 +41,11 @@ class ViewController: UIViewController {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    
-    
     func imageRound() {
         imageProfile.layer.masksToBounds = true
         imageProfile.layer.cornerRadius =  75
     }
+    
     func cornerRadiusElements(){
         textUsername.layer.cornerRadius = 10
         textEmail.layer.cornerRadius = 10
@@ -59,55 +59,4 @@ class ViewController: UIViewController {
         buttonGoOut.layer.borderWidth = 1
         buttonGoOut.layer.borderColor = UIColor.red.cgColor
     }
-   
-   
-        
-      
-    
-    
-   
-    
 }
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

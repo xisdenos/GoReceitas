@@ -1,6 +1,9 @@
 import UIKit
 
 class AllTagsViewController: UIViewController {
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     private var tags: [AllTagsModel] = [
         .init(image: "japanese", title: "Japanese", subtitle: "Cuisine"),
         .init(image: "healthy", title: "Healthy", subtitle: "Dietary"),
@@ -16,11 +19,18 @@ class AllTagsViewController: UIViewController {
     ]
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor = .viewBackgroundColor
         // mantém a cor de fundo da nav bar quando scrollada
-        let appearence = UINavigationBarAppearance()
-        appearence.backgroundColor = UIColor(red: 250 / 255, green: 236 / 255, blue: 255 / 255, alpha: 1)
-        self.navigationController?.navigationBar.standardAppearance = appearence
+        let navigationBar = navigationController?.navigationBar
+        let navigationBarAppearance = UINavigationBarAppearance()
+        
+        navigationBarAppearance.shadowColor = .clear
+        navigationBar?.scrollEdgeAppearance = navigationBarAppearance
+        navigationBarAppearance.backgroundColor = .viewBackgroundColor
+        navigationController?.navigationBar.standardAppearance = navigationBarAppearance
+        
+        collectionView.backgroundColor = .viewBackgroundColor
     }
 }
 

@@ -17,17 +17,19 @@
 		069F5DE028B4165F00C15177 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F5DDE28B4165F00C15177 /* TagCell.swift */; };
 		069F5DE128B4165F00C15177 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 069F5DDF28B4165F00C15177 /* TagCell.xib */; };
 		5CC71FA428FE242B00FF75ED /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CC71FA328FE242B00FF75ED /* Profile.storyboard */; };
-		5CC71FA628FE25D100FF75ED /* changePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC71FA528FE25D100FF75ED /* changePasswordViewController.swift */; };
-		5CC71FA828FE25DD00FF75ED /* changeEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC71FA728FE25DD00FF75ED /* changeEmailViewController.swift */; };
+		5CC71FA628FE25D100FF75ED /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC71FA528FE25D100FF75ED /* ChangePasswordViewController.swift */; };
+		5CC71FA828FE25DD00FF75ED /* ChangeEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC71FA728FE25DD00FF75ED /* ChangeEmailViewController.swift */; };
 		5CC71FAA28FE26F200FF75ED /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC71FA928FE26F200FF75ED /* ProfileViewController.swift */; };
 		82025B9D28EB8F890090376F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82025B9C28EB8F890090376F /* SearchViewController.swift */; };
+		82064C36290344A8005DA1FF /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82064C35290344A8005DA1FF /* Home.storyboard */; };
+		82064C3829034647005DA1FF /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82064C3729034647005DA1FF /* Search.storyboard */; };
 		8259F92D28DAB14900476299 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259F92C28DAB14900476299 /* Sections.swift */; };
 		8259F93328DAB81C00476299 /* AllTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259F93228DAB81C00476299 /* AllTagsViewController.swift */; };
+		8279DC492904B71C00E526A8 /* Colors+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8279DC482904B71C00E526A8 /* Colors+.swift */; };
 		82A403F928DA9DF400F38990 /* AllTagsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A403F828DA9DF400F38990 /* AllTagsModel.swift */; };
 		82A403FD28DA9EB800F38990 /* AllTagsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A403FC28DA9EB800F38990 /* AllTagsViewCell.swift */; };
 		82A4040228DAA4F700F38990 /* TagsResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A4040128DAA4F700F38990 /* TagsResultsTableViewCell.swift */; };
 		82A4040428DAA57800F38990 /* TagsResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A4040328DAA57800F38990 /* TagsResultsViewController.swift */; };
-		82C9BE3928DA85B800D890EF /* Extensions in Resources */ = {isa = PBXBuildFile; fileRef = 82C9BE3828DA85B800D890EF /* Extensions */; };
 		82C9BE4028DA883000D890EF /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE3E28DA883000D890EF /* CategoryModel.swift */; };
 		82C9BE4128DA883000D890EF /* CellsInfoSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE3F28DA883000D890EF /* CellsInfoSections.swift */; };
 		82C9BE4528DA88ED00D890EF /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE4428DA88EC00D890EF /* MockData.swift */; };
@@ -65,17 +67,19 @@
 		25C79753A29B91777DE37111 /* Pods-GoReceitas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoReceitas.release.xcconfig"; path = "Target Support Files/Pods-GoReceitas/Pods-GoReceitas.release.xcconfig"; sourceTree = "<group>"; };
 		34A460574BD0613D7D623752 /* Pods-GoReceitas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoReceitas.debug.xcconfig"; path = "Target Support Files/Pods-GoReceitas/Pods-GoReceitas.debug.xcconfig"; sourceTree = "<group>"; };
 		5CC71FA328FE242B00FF75ED /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		5CC71FA528FE25D100FF75ED /* changePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = changePasswordViewController.swift; sourceTree = "<group>"; };
-		5CC71FA728FE25DD00FF75ED /* changeEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = changeEmailViewController.swift; sourceTree = "<group>"; };
+		5CC71FA528FE25D100FF75ED /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		5CC71FA728FE25DD00FF75ED /* ChangeEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeEmailViewController.swift; sourceTree = "<group>"; };
 		5CC71FA928FE26F200FF75ED /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		82025B9C28EB8F890090376F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		82064C35290344A8005DA1FF /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		82064C3729034647005DA1FF /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		8259F92C28DAB14900476299 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
 		8259F93228DAB81C00476299 /* AllTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsViewController.swift; sourceTree = "<group>"; };
+		8279DC482904B71C00E526A8 /* Colors+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors+.swift"; sourceTree = "<group>"; };
 		82A403F828DA9DF400F38990 /* AllTagsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsModel.swift; sourceTree = "<group>"; };
 		82A403FC28DA9EB800F38990 /* AllTagsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsViewCell.swift; sourceTree = "<group>"; };
 		82A4040128DAA4F700F38990 /* TagsResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsResultsTableViewCell.swift; sourceTree = "<group>"; };
 		82A4040328DAA57800F38990 /* TagsResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsResultsViewController.swift; sourceTree = "<group>"; };
-		82C9BE3828DA85B800D890EF /* Extensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Extensions; sourceTree = "<group>"; };
 		82C9BE3E28DA883000D890EF /* CategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		82C9BE3F28DA883000D890EF /* CellsInfoSections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellsInfoSections.swift; sourceTree = "<group>"; };
 		82C9BE4428DA88EC00D890EF /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -131,11 +135,11 @@
 		06459BB128B01A060054F510 /* GoReceitas */ = {
 			isa = PBXGroup;
 			children = (
+				8279DC472904B71100E526A8 /* Extensions */,
 				EB0892B92902F16800FF33E8 /* AlertController */,
 				8259F92B28DAB12400476299 /* Enums */,
 				06C01C7E28B42138003ACE17 /* Cell */,
 				82C9BE4628DA89B000D890EF /* CollectionViewCells */,
-				82C9BE3828DA85B800D890EF /* Extensions */,
 				EB7E9FF028BBA6FC00F8C91B /* Forget Password */,
 				06459BBB28B01A060054F510 /* GoReceitas.xcdatamodeld */,
 				EB08928A29007B8500FF33E8 /* GoogleService-Info.plist */,
@@ -171,8 +175,8 @@
 				82A4040328DAA57800F38990 /* TagsResultsViewController.swift */,
 				8259F93228DAB81C00476299 /* AllTagsViewController.swift */,
 				82025B9C28EB8F890090376F /* SearchViewController.swift */,
-				5CC71FA528FE25D100FF75ED /* changePasswordViewController.swift */,
-				5CC71FA728FE25DD00FF75ED /* changeEmailViewController.swift */,
+				5CC71FA528FE25D100FF75ED /* ChangePasswordViewController.swift */,
+				5CC71FA728FE25DD00FF75ED /* ChangeEmailViewController.swift */,
 				5CC71FA928FE26F200FF75ED /* ProfileViewController.swift */,
 			);
 			path = ViewController;
@@ -211,6 +215,14 @@
 				82C9BE4428DA88EC00D890EF /* MockData.swift */,
 			);
 			path = MockData;
+			sourceTree = "<group>";
+		};
+		8279DC472904B71100E526A8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8279DC482904B71C00E526A8 /* Colors+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		82A403FA28DA9E9500F38990 /* All Tags */ = {
@@ -252,6 +264,7 @@
 		82A4040528DAA8A700F38990 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				06459BC028B01A080054F510 /* LaunchScreen.storyboard */,
 				06459BB228B01A060054F510 /* AppDelegate.swift */,
 				06459BBE28B01A080054F510 /* Assets.xcassets */,
 				06459BB428B01A060054F510 /* SceneDelegate.swift */,
@@ -263,8 +276,9 @@
 			isa = PBXGroup;
 			children = (
 				06459BB828B01A060054F510 /* Main.storyboard */,
-				06459BC028B01A080054F510 /* LaunchScreen.storyboard */,
 				5CC71FA328FE242B00FF75ED /* Profile.storyboard */,
+				82064C35290344A8005DA1FF /* Home.storyboard */,
+				82064C3729034647005DA1FF /* Search.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -406,14 +420,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB43688E28FE15460023A2F9 /* RegisterVC.storyboard in Resources */,
+				82064C36290344A8005DA1FF /* Home.storyboard in Resources */,
 				EB08928B29007B8500FF33E8 /* GoogleService-Info.plist in Resources */,
 				EB43689928FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard in Resources */,
 				5CC71FA428FE242B00FF75ED /* Profile.storyboard in Resources */,
-				82C9BE3928DA85B800D890EF /* Extensions in Resources */,
 				069F5DE128B4165F00C15177 /* TagCell.xib in Resources */,
 				06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */,
 				EB43689428FE1CAE0023A2F9 /* LoginVC.storyboard in Resources */,
 				06459BBF28B01A080054F510 /* Assets.xcassets in Resources */,
+				82064C3829034647005DA1FF /* Search.storyboard in Resources */,
 				06459BBA28B01A060054F510 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,13 +490,13 @@
 				82A4040428DAA57800F38990 /* TagsResultsViewController.swift in Sources */,
 				82A403F928DA9DF400F38990 /* AllTagsModel.swift in Sources */,
 				069F5DE028B4165F00C15177 /* TagCell.swift in Sources */,
-				5CC71FA828FE25DD00FF75ED /* changeEmailViewController.swift in Sources */,
+				5CC71FA828FE25DD00FF75ED /* ChangeEmailViewController.swift in Sources */,
 				82C9BE4828DA89BE00D890EF /* FooterViewCell.swift in Sources */,
 				EB43689228FE1C9E0023A2F9 /* LoginVC.swift in Sources */,
 				EB43689728FE28D60023A2F9 /* EsqueceuSenhaVC.swift in Sources */,
 				EB43688C28FE15370023A2F9 /* RegisterVC.swift in Sources */,
 				5CC71FAA28FE26F200FF75ED /* ProfileViewController.swift in Sources */,
-				5CC71FA628FE25D100FF75ED /* changePasswordViewController.swift in Sources */,
+				5CC71FA628FE25D100FF75ED /* ChangePasswordViewController.swift in Sources */,
 				82C9BE4A28DA89D100D890EF /* CategoryViewCell.swift in Sources */,
 				8259F92D28DAB14900476299 /* Sections.swift in Sources */,
 				EB7E9FEC28BB145A00F8C91B /* Login.swift in Sources */,
@@ -490,6 +505,7 @@
 				82C9BE4E28DA8A0500D890EF /* HeaderViewCell.swift in Sources */,
 				82C9BE4128DA883000D890EF /* CellsInfoSections.swift in Sources */,
 				EB0892BB2902F18900FF33E8 /* AlertController.swift in Sources */,
+				8279DC492904B71C00E526A8 /* Colors+.swift in Sources */,
 				8259F93328DAB81C00476299 /* AllTagsViewController.swift in Sources */,
 				82C9BE4028DA883000D890EF /* CategoryModel.swift in Sources */,
 				82C9BE4528DA88ED00D890EF /* MockData.swift in Sources */,
@@ -649,7 +665,7 @@
 				INFOPLIST_FILE = GoReceitas/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
-				INFOPLIST_KEY_UIMainStoryboardFile = LoginVC;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -678,7 +694,7 @@
 				INFOPLIST_FILE = GoReceitas/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
-				INFOPLIST_KEY_UIMainStoryboardFile = LoginVC;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
