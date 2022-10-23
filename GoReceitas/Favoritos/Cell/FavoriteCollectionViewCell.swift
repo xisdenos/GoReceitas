@@ -16,12 +16,16 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var prepTimeLabel: UILabel!
     
     
+    @IBOutlet weak var heartButton: UIButton!
+    
     // mesmo nome do arquivo é nome da classe que é nome do identificador (o mesmo nome pros tres)
     static let identifier: String = "FavoriteCollectionViewCell"
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
+    
+    private var isActive: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,4 +49,17 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         foodImageView.image = UIImage(named: nameImage)
     }
     
+    @IBAction func toggleHeartImage(_ sender: UIButton) {
+        toggleHeartImage(for: sender)
+    }
+    
+    private func toggleHeartImage(for button: UIButton) {
+        if isActive == false {
+            button.setImage(UIImage(named: "heart-fill-fav"), for: .normal)
+            isActive = true
+        } else if isActive == true {
+            button.setImage(UIImage(named: "heart-empty-fav"), for: .normal)
+            isActive = false
+        }
+    }
 }
