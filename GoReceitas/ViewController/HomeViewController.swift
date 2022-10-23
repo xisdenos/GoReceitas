@@ -144,13 +144,6 @@ class HomeViewController: UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "AllTagsViewController") as! AllTagsViewController
         navigationController?.pushViewController(viewController, animated: true)
     }
-    
-    
-    @IBAction func categoryButtonTapped(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "TagsResultsViewController") as! TagsResultsViewController
-        navigationController?.pushViewController(viewController, animated: true)
-    }
 }
 
     // MARK: Set delegates for collection view
@@ -199,6 +192,17 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return footer
         default:
             return UICollectionReusableView()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch sections[indexPath.section] {
+        case .categories:
+            let storyboard = UIStoryboard(name: "Home", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "TagsResultsViewController") as! TagsResultsViewController
+            navigationController?.pushViewController(viewController, animated: true)
+        default:
+            break
         }
     }
 }
