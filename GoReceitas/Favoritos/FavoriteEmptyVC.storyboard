@@ -16,36 +16,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Receitas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i28-8D-MOO">
-                                <rect key="frame" x="146.66666666666666" y="52" width="97" height="29"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go Receitas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i28-8D-MOO">
+                                <rect key="frame" x="105.66666666666667" y="73" width="178.66666666666663" height="38.333333333333343"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                 <color key="textColor" red="0.39607840779999998" green="0.1294117719" blue="0.64705884459999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ao-Wa-c2z">
-                                <rect key="frame" x="111.66666666666667" y="52" width="30.000000000000014" height="29"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
-                                <color key="textColor" red="0.39607840779999998" green="0.1294117719" blue="0.64705884459999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoTop" translatesAutoresizingMaskIntoConstraints="NO" id="mSG-oE-FSH">
-                                <rect key="frame" x="248.66666666666663" y="52" width="33" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="6R0-Ds-Ctt"/>
-                                    <constraint firstAttribute="width" constant="33" id="JDQ-is-X3V"/>
-                                </constraints>
-                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="undraw_cooking_re_g99p (2) 1" translatesAutoresizingMaskIntoConstraints="NO" id="HsW-S6-QS8">
-                                <rect key="frame" x="71.666666666666686" y="232" width="247" height="203"/>
+                                <rect key="frame" x="71.666666666666686" y="228.33333333333337" width="247" height="203"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sem Favoritos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLL-3s-js2">
-                                <rect key="frame" x="103.66666666666669" y="495" width="183" height="36"/>
+                                <rect key="frame" x="103.66666666666669" y="471.33333333333331" width="183" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Você não adicionou nenhum prato em seus favoritos" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZJ-bN-B86">
-                                <rect key="frame" x="20" y="556" width="350" height="40.666666666666629"/>
+                                <rect key="frame" x="20" y="516.33333333333337" width="350" height="40.666666666666629"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -54,20 +41,16 @@
                         <viewLayoutGuide key="safeArea" id="Tbj-fB-2ed"/>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.92549019610000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ZZJ-bN-B86" firstAttribute="top" secondItem="kLL-3s-js2" secondAttribute="bottom" constant="25" id="5ef-lA-3kL"/>
+                            <constraint firstItem="ZZJ-bN-B86" firstAttribute="top" secondItem="kLL-3s-js2" secondAttribute="bottom" constant="9" id="4jD-Ym-Fur"/>
                             <constraint firstItem="HsW-S6-QS8" firstAttribute="centerX" secondItem="5Py-Z7-5Yu" secondAttribute="centerX" id="6wn-md-moC"/>
-                            <constraint firstItem="i28-8D-MOO" firstAttribute="top" secondItem="Tbj-fB-2ed" secondAttribute="top" constant="5" id="J07-rr-UQ8"/>
-                            <constraint firstItem="HsW-S6-QS8" firstAttribute="top" secondItem="mSG-oE-FSH" secondAttribute="bottom" constant="150" id="J1A-B0-LM9"/>
+                            <constraint firstItem="HsW-S6-QS8" firstAttribute="top" secondItem="i28-8D-MOO" secondAttribute="bottom" constant="117" id="Ijl-sn-pIl"/>
                             <constraint firstItem="kLL-3s-js2" firstAttribute="centerX" secondItem="5Py-Z7-5Yu" secondAttribute="centerX" id="MVo-XE-1Xy"/>
-                            <constraint firstItem="mSG-oE-FSH" firstAttribute="top" secondItem="Tbj-fB-2ed" secondAttribute="top" constant="5" id="RMC-Dv-xPn"/>
+                            <constraint firstItem="ZZJ-bN-B86" firstAttribute="centerX" secondItem="5Py-Z7-5Yu" secondAttribute="centerX" id="Syt-2G-iLk"/>
                             <constraint firstItem="ZZJ-bN-B86" firstAttribute="leading" secondItem="Tbj-fB-2ed" secondAttribute="leading" constant="20" id="c3v-oT-Fd5"/>
-                            <constraint firstItem="ZZJ-bN-B86" firstAttribute="top" secondItem="kLL-3s-js2" secondAttribute="bottom" constant="25" id="dIn-Lb-TSX"/>
+                            <constraint firstItem="i28-8D-MOO" firstAttribute="top" secondItem="Tbj-fB-2ed" secondAttribute="top" constant="26" id="gy8-kR-Cq5"/>
                             <constraint firstItem="i28-8D-MOO" firstAttribute="centerX" secondItem="5Py-Z7-5Yu" secondAttribute="centerX" id="kv3-He-OWS"/>
-                            <constraint firstItem="mSG-oE-FSH" firstAttribute="leading" secondItem="i28-8D-MOO" secondAttribute="trailing" constant="5" id="ow5-6C-fEn"/>
                             <constraint firstItem="Tbj-fB-2ed" firstAttribute="trailing" secondItem="ZZJ-bN-B86" secondAttribute="trailing" constant="20" id="pk4-fV-J5l"/>
-                            <constraint firstItem="i28-8D-MOO" firstAttribute="leading" secondItem="3Ao-Wa-c2z" secondAttribute="trailing" constant="5" id="tkG-fu-4O2"/>
-                            <constraint firstItem="3Ao-Wa-c2z" firstAttribute="top" secondItem="Tbj-fB-2ed" secondAttribute="top" constant="5" id="ve8-o6-4cA"/>
-                            <constraint firstItem="kLL-3s-js2" firstAttribute="top" secondItem="HsW-S6-QS8" secondAttribute="bottom" constant="60" id="zPr-yV-Me4"/>
+                            <constraint firstItem="kLL-3s-js2" firstAttribute="top" secondItem="HsW-S6-QS8" secondAttribute="bottom" constant="40" id="uWx-nN-sw7"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -77,7 +60,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logoTop" width="40" height="40"/>
         <image name="undraw_cooking_re_g99p (2) 1" width="247" height="203"/>
     </resources>
 </document>

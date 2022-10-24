@@ -15,7 +15,6 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var prepTimeLabel: UILabel!
     
-    
     @IBOutlet weak var heartButton: UIButton!
     
     // mesmo nome do arquivo é nome da classe que é nome do identificador (o mesmo nome pros tres)
@@ -38,15 +37,13 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         prepTimeLabel.layer.masksToBounds = true
         
     }
-    //Tentei seguir a mesma lógica da cel da home mas n deu certo
-//    func setup(_ foodInfo: CellsInfoSections) {
-//        self.foodImageView.image = UIImage(named: foodInfo.foodImage ?? "")
-//        self.foodLabel.text = foodInfo.foodName
-//        self.prepTimeLabel.text = foodInfo.prepTime
-//    }
+
     
-    func setupCell(nameImage: String){
-        foodImageView.image = UIImage(named: nameImage)
+    func setupCell(foodinfo: CellsInfoSections){
+        foodImageView.image = UIImage(named: foodinfo.foodImage ?? "")
+        prepTimeLabel.text = foodinfo.prepTime
+        foodLabel.text = foodinfo.foodName
+        
     }
     
     @IBAction func toggleHeartImage(_ sender: UIButton) {

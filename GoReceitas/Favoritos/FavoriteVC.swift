@@ -12,7 +12,11 @@ class FavoriteVC: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var data: [String] = ["lasanha", "macarrao", "lasanha", "macarrao","lasanha", "macarrao","lasanha", "macarrao","lasanha", "macarrao"]
+    var data: [CellsInfoSections] = [
+        .init(foodName: "Macarrão", prepTime: "60min", foodImage: "macarrao"),
+        .init(foodName: "Lasanha", prepTime: "40min", foodImage: "lasanha"),
+    ]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +45,7 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCollectionViewCell.identifier, for: indexPath) as? FavoriteCollectionViewCell
-        cell?.setupCell(nameImage: data[indexPath.row])
-//        cell?.setup
+        cell?.setupCell(foodinfo: data[indexPath.row])
         return cell ?? UICollectionViewCell()
     }
     
