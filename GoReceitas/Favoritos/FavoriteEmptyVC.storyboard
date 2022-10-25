@@ -37,6 +37,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOS-Er-6Tz">
+                                <rect key="frame" x="157.66666666666666" y="607" width="75" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="TappedAlertButton:" destination="UgO-6W-emh" eventType="touchUpInside" id="haE-Ow-CoU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Tbj-fB-2ed"/>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.92549019610000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -46,8 +54,10 @@
                             <constraint firstItem="HsW-S6-QS8" firstAttribute="top" secondItem="i28-8D-MOO" secondAttribute="bottom" constant="117" id="Ijl-sn-pIl"/>
                             <constraint firstItem="kLL-3s-js2" firstAttribute="centerX" secondItem="5Py-Z7-5Yu" secondAttribute="centerX" id="MVo-XE-1Xy"/>
                             <constraint firstItem="ZZJ-bN-B86" firstAttribute="centerX" secondItem="5Py-Z7-5Yu" secondAttribute="centerX" id="Syt-2G-iLk"/>
+                            <constraint firstItem="gOS-Er-6Tz" firstAttribute="centerX" secondItem="5Py-Z7-5Yu" secondAttribute="centerX" id="VY6-7H-sUP"/>
                             <constraint firstItem="ZZJ-bN-B86" firstAttribute="leading" secondItem="Tbj-fB-2ed" secondAttribute="leading" constant="20" id="c3v-oT-Fd5"/>
                             <constraint firstItem="i28-8D-MOO" firstAttribute="top" secondItem="Tbj-fB-2ed" secondAttribute="top" constant="26" id="gy8-kR-Cq5"/>
+                            <constraint firstItem="gOS-Er-6Tz" firstAttribute="top" secondItem="ZZJ-bN-B86" secondAttribute="bottom" constant="50" id="jC5-3y-Uv1"/>
                             <constraint firstItem="i28-8D-MOO" firstAttribute="centerX" secondItem="5Py-Z7-5Yu" secondAttribute="centerX" id="kv3-He-OWS"/>
                             <constraint firstItem="Tbj-fB-2ed" firstAttribute="trailing" secondItem="ZZJ-bN-B86" secondAttribute="trailing" constant="20" id="pk4-fV-J5l"/>
                             <constraint firstItem="kLL-3s-js2" firstAttribute="top" secondItem="HsW-S6-QS8" secondAttribute="bottom" constant="40" id="uWx-nN-sw7"/>

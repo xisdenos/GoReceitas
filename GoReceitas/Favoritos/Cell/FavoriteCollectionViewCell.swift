@@ -8,7 +8,7 @@
 import UIKit
 
 class FavoriteCollectionViewCell: UICollectionViewCell {
-
+    
     @IBOutlet weak var foodImageView: UIImageView!
     
     @IBOutlet weak var foodLabel: UILabel!
@@ -37,7 +37,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         prepTimeLabel.layer.masksToBounds = true
         
     }
-
+    
     
     func setupCell(foodinfo: CellsInfoSections){
         foodImageView.image = UIImage(named: foodinfo.foodImage ?? "")
@@ -50,6 +50,17 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         toggleHeartImage(for: sender)
     }
     
+    //func original
+//    private func toggleHeartImage(for button: UIButton) {
+//        if isActive == false {
+//            button.setImage(UIImage(named: "heart-fill-fav"), for: .normal)
+//            isActive = true
+//        } else if isActive == true {
+//            button.setImage(UIImage(named: "heart-empty-fav"), for: .normal)
+//            isActive = false
+//        }
+//    }
+    
     private func toggleHeartImage(for button: UIButton) {
         if isActive == false {
             button.setImage(UIImage(named: "heart-fill-fav"), for: .normal)
@@ -59,4 +70,26 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
             isActive = false
         }
     }
+
+    //modelo
+//    @IBAction func TappedAlertButton(_ sender: UIButton) {
+//        let alertController: UIAlertController = UIAlertController(title: "Atenção", message: "Tem certeza que deseja remover esse item?", preferredStyle: .alert)
+//
+//        let ok: UIAlertAction = UIAlertAction(title: "ok", style: .default) {
+//            (action) in
+//            print("Você clicou no botão ok")}
+//
+//        let cancel: UIAlertAction = UIAlertAction(title: "cancelar", style: .destructive) {
+//            (action) in
+//            print("Você clicou no botão cancelar")
+//        }
+//        alertController.addAction(cancel)
+//        alertController.addAction(ok)
+//
+//        self.present(alertController, animated: true, completion: nil)
+//
+//    }
+    
 }
+
+
