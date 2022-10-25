@@ -16,7 +16,7 @@
 					<key>UISceneConfigurationName</key>
 					<string>Default Configuraion</string>
 					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
+					<string>LoginVC</string>
 				</dict>
 			</array>
 		</dict>

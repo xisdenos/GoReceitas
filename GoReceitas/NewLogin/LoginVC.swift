@@ -126,18 +126,20 @@ class LoginVC: UIViewController {
     
     @IBAction func tappedLogin(_ sender: UIButton) {
         
-        let email:String = self.textFieldEmail.text ?? ""
-        let senha:String = self.textFieldSenha.text ?? ""
+        let email: String = self.textFieldEmail.text ?? ""
+        let password: String = self.textFieldSenha.text ?? ""
         
-        self.auth?.signIn(withEmail: email, password: senha,completion: { usuario, error in
+        self.auth?.signIn(withEmail: email, password: password, completion: { [weak self] usuario, error in
             if error != nil {
-                self.alert?.alertInformation(title: "Atenção", message: "Dados incorretos, tente novamente")
+                self?.alert?.alertInformation(title: "Atenção", message: "Dados incorretos, tente novamente")
                 
             } else {
                 if usuario == nil{
-                    self.alert?.alertInformation(title: "Atenção", message: "Tivemos um problema inesperado")                }else{
-                        self.alert?.alertInformation(title: "Login feito com sucesso", message: "")
-                    }
+                    self?.alert?.alertInformation(title: "Atenção", message: "Tivemos um problema inesperado")
+                } else {
+                    let homeVC: HomeViewController? =  UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as? HomeViewController
+                    self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
+                }
             }
         })
     }
@@ -169,11 +171,14 @@ class LoginVC: UIViewController {
             let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                            accessToken: authentication.accessToken)
             
-            Auth.auth().signIn(with: credential) { dataResult, error in
+            Auth.auth().signIn(with: credential) { [weak self] dataResult, error in
                 guard error == nil else {
-                    self.alert?.alertInformation(title: "Atenção", message: "Falha ao tentar realizar o login, Tente Novamente!")
+                    self?.alert?.alertInformation(title: "Atenção", message: "Falha ao tentar realizar o login, Tente Novamente!")
                     return
                 }
+                
+                let homeVC: HomeViewController? =  UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as? HomeViewController
+                self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
                 print("Login com sucesso")
             }
         }

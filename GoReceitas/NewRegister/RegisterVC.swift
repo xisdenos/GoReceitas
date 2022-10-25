@@ -142,13 +142,13 @@ class RegisterVC: UIViewController {
         let confirmarSenha:String = textFieldConfirmarSenha.text ?? ""
         
         if senha == confirmarSenha {
-            self.auth?.createUser(withEmail: email, password: senha, completion: { [self] result, error in
-                
+            self.auth?.createUser(withEmail: email, password: senha, completion: { [weak self] result, error in
                 if error != nil{
-                    self.alert?.alertInformation(title: "Atenção", message: "Erro ao cadastrar, verifique os dados e tente novamente")
+                    self?.alert?.alertInformation(title: "Atenção", message: "Erro ao cadastrar, verifique os dados e tente novamente")
                 } else {
-                    self.alert?.alertInformation(title: "Parabens", message: "Usuario cadastrado com sucesso",completion: {
-                        self.navigationController?.popViewController(animated: true)
+                    self?.alert?.alertInformation(title: "Parabens", message: "Usuario cadastrado com sucesso", completion: {
+                        let homeVC: HomeViewController? =  UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as? HomeViewController
+                        self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
                     })
                 }
             })
