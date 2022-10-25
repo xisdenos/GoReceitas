@@ -18,7 +18,7 @@
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
-					<string>FavoriteEmptyVC</string>
+					<string>FavoriteVC</string>
 				</dict>
 			</array>
 		</dict>

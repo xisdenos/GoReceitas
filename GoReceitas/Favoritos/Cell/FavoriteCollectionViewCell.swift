@@ -15,7 +15,8 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var prepTimeLabel: UILabel!
     
-    @IBOutlet weak var heartButton: UIButton!
+    @IBOutlet weak var heartImage: UIButton!
+    
     
     // mesmo nome do arquivo é nome da classe que é nome do identificador (o mesmo nome pros tres)
     static let identifier: String = "FavoriteCollectionViewCell"
@@ -23,6 +24,8 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
+    
+    weak var viewController: UIViewController?
     
     private var isActive: Bool = false
     
@@ -46,50 +49,46 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         
     }
     
+    
     @IBAction func toggleHeartImage(_ sender: UIButton) {
         toggleHeartImage(for: sender)
+        
     }
-    
-    //func original
-//    private func toggleHeartImage(for button: UIButton) {
-//        if isActive == false {
-//            button.setImage(UIImage(named: "heart-fill-fav"), for: .normal)
-//            isActive = true
-//        } else if isActive == true {
-//            button.setImage(UIImage(named: "heart-empty-fav"), for: .normal)
-//            isActive = false
-//        }
-//    }
-    
+
+
     private func toggleHeartImage(for button: UIButton) {
         if isActive == false {
             button.setImage(UIImage(named: "heart-fill-fav"), for: .normal)
             isActive = true
         } else if isActive == true {
-            button.setImage(UIImage(named: "heart-empty-fav"), for: .normal)
-            isActive = false
+            showAlert()
+           
         }
     }
+    
+    func showAlert () {
+        let alertController: UIAlertController = UIAlertController(title: "Atenção", message: "Tem certeza que deseja remover esse item?", preferredStyle: .alert)
 
-    //modelo
-//    @IBAction func TappedAlertButton(_ sender: UIButton) {
-//        let alertController: UIAlertController = UIAlertController(title: "Atenção", message: "Tem certeza que deseja remover esse item?", preferredStyle: .alert)
-//
-//        let ok: UIAlertAction = UIAlertAction(title: "ok", style: .default) {
-//            (action) in
-//            print("Você clicou no botão ok")}
-//
-//        let cancel: UIAlertAction = UIAlertAction(title: "cancelar", style: .destructive) {
-//            (action) in
-//            print("Você clicou no botão cancelar")
-//        }
-//        alertController.addAction(cancel)
-//        alertController.addAction(ok)
-//
-//        self.present(alertController, animated: true, completion: nil)
-//
-//    }
+        let ok: UIAlertAction = UIAlertAction(title: "ok", style: .default) {
+            (action) in
+            self.heartImage.setImage(UIImage(named: "heart-empty-fav"), for: .normal)
+            self.isActive = false
+            }
+
+        let cancel: UIAlertAction = UIAlertAction(title: "cancelar", style: .destructive) {
+            (action) in
+           
+        }
+        alertController.addAction(cancel)
+        alertController.addAction(ok)
+
+        viewController?.present(alertController, animated: true, completion: nil)
+    }
     
 }
+
+
+    
+
 
 

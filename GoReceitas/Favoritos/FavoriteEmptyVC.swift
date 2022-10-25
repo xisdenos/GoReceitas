@@ -18,23 +18,6 @@ class FavoriteEmptyVC: UIViewController {
 
     
     
-    @IBAction func TappedAlertButton(_ sender: UIButton) {
-        let alertController: UIAlertController = UIAlertController(title: "Atenção", message: "Tem certeza que deseja remover esse item?", preferredStyle: .alert)
-        
-        let ok: UIAlertAction = UIAlertAction(title: "ok", style: .default) {
-            (action) in
-            print("Você clicou no botão ok")}
-        
-        let cancel: UIAlertAction = UIAlertAction(title: "cancelar", style: .destructive) {
-            (action) in
-            print("Você clicou no botão cancelar")
-        }
-        alertController.addAction(cancel)
-        alertController.addAction(ok)
-        
-        self.present(alertController, animated: true, completion: nil)
-        
-    }
     
 
     /*

@@ -44,7 +44,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="toggleHeartImage:" destination="gTV-IL-0wX" eventType="touchUpInside" id="seU-vn-Mxi"/>
+                                    <action selector="toggleHeartImage:" destination="gTV-IL-0wX" eventType="touchUpInside" id="77J-vX-FRU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -82,13 +82,13 @@
             <connections>
                 <outlet property="foodImageView" destination="NNf-dR-AH4" id="o8H-8x-2mU"/>
                 <outlet property="foodLabel" destination="GMt-Ld-txv" id="rhY-aT-foV"/>
-                <outlet property="heartButton" destination="zbB-oz-kvq" id="BzL-au-42w"/>
+                <outlet property="heartImage" destination="zbB-oz-kvq" id="2YR-eM-Xmn"/>
                 <outlet property="prepTimeLabel" destination="G1n-0M-YDy" id="4OB-hf-zb9"/>
             </connections>
             <point key="canvasLocation" x="275.38461538461536" y="53.317535545023695"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="heart-empty-fav" width="40" height="40"/>
+        <image name="heart-empty-fav" width="20" height="20"/>
     </resources>
 </document>
