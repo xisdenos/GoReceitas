@@ -38,6 +38,8 @@
 		82C9BE4C28DA89DE00D890EF /* TryItOutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE4B28DA89DE00D890EF /* TryItOutCell.swift */; };
 		82C9BE4E28DA8A0500D890EF /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE4D28DA8A0500D890EF /* HeaderViewCell.swift */; };
 		82C9BE5028DA8A3C00D890EF /* PopularViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE4F28DA8A3C00D890EF /* PopularViewCell.swift */; };
+		82CC509F29098FB70032FC25 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CC509D29098FB70032FC25 /* ResultsTableViewCell.swift */; };
+		82CC50A029098FB70032FC25 /* ResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82CC509E29098FB70032FC25 /* ResultsTableViewCell.xib */; };
 		CAAA6035E2A6C9BF0929A7F9 /* Pods_GoReceitas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5763844C7CD7EA22F06D90F /* Pods_GoReceitas.framework */; };
 		EB08928B29007B8500FF33E8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB08928A29007B8500FF33E8 /* GoogleService-Info.plist */; };
 		EB0892BB2902F18900FF33E8 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0892BA2902F18800FF33E8 /* AlertController.swift */; };
@@ -88,6 +90,8 @@
 		82C9BE4B28DA89DE00D890EF /* TryItOutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryItOutCell.swift; sourceTree = "<group>"; };
 		82C9BE4D28DA8A0500D890EF /* HeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
 		82C9BE4F28DA8A3C00D890EF /* PopularViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewCell.swift; sourceTree = "<group>"; };
+		82CC509D29098FB70032FC25 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
+		82CC509E29098FB70032FC25 /* ResultsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultsTableViewCell.xib; sourceTree = "<group>"; };
 		D5763844C7CD7EA22F06D90F /* Pods_GoReceitas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoReceitas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB08928A29007B8500FF33E8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EB0892BA2902F18800FF33E8 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
@@ -257,6 +261,8 @@
 			isa = PBXGroup;
 			children = (
 				82A4040128DAA4F700F38990 /* TagsResultsTableViewCell.swift */,
+				82CC509D29098FB70032FC25 /* ResultsTableViewCell.swift */,
+				82CC509E29098FB70032FC25 /* ResultsTableViewCell.xib */,
 			);
 			path = "Tags Results";
 			sourceTree = "<group>";
@@ -421,6 +427,7 @@
 			files = (
 				EB43688E28FE15460023A2F9 /* RegisterVC.storyboard in Resources */,
 				82064C36290344A8005DA1FF /* Home.storyboard in Resources */,
+				82CC50A029098FB70032FC25 /* ResultsTableViewCell.xib in Resources */,
 				EB08928B29007B8500FF33E8 /* GoogleService-Info.plist in Resources */,
 				EB43689928FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard in Resources */,
 				5CC71FA428FE242B00FF75ED /* Profile.storyboard in Resources */,
@@ -492,6 +499,7 @@
 				069F5DE028B4165F00C15177 /* TagCell.swift in Sources */,
 				5CC71FA828FE25DD00FF75ED /* ChangeEmailViewController.swift in Sources */,
 				82C9BE4828DA89BE00D890EF /* FooterViewCell.swift in Sources */,
+				82CC509F29098FB70032FC25 /* ResultsTableViewCell.swift in Sources */,
 				EB43689228FE1C9E0023A2F9 /* LoginVC.swift in Sources */,
 				EB43689728FE28D60023A2F9 /* EsqueceuSenhaVC.swift in Sources */,
 				EB43688C28FE15370023A2F9 /* RegisterVC.swift in Sources */,

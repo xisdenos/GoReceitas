@@ -9,8 +9,10 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
-    public var foodData: [String] = []
-    private var currentDataSource: [String] = []
+    public var foodData: [CellsInfoSections] = [
+        .init(foodName: "Pumpkin pie", prepTime: "20 min", foodImage: "lasanha")
+    ]
+    private var currentDataSource: [CellsInfoSections] = []
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerSearchBar: UIView!
@@ -19,8 +21,8 @@ class SearchViewController: UIViewController {
         let search = UISearchController(searchResultsController: nil)
         search.searchBar.placeholder = "Food name..."
         search.searchBar.searchBarStyle = .minimal
-        search.searchResultsUpdater = self
-        search.searchBar.delegate = self
+//        search.searchResultsUpdater = self
+//        search.searchBar.delegate = self
         return search
     }()
     
@@ -30,11 +32,6 @@ class SearchViewController: UIViewController {
         self.view.backgroundColor = .viewBackgroundColor
         containerSearchBar.addSubview(searchController.searchBar)
         configTableView()
-        
-        populateArrayWith(numberOfItems: 5, nameOfTheProduct: "Macbook")
-        populateArrayWith(numberOfItems: 5, nameOfTheProduct: "iPhone")
-        populateArrayWith(numberOfItems: 5, nameOfTheProduct: "iMac")
-        
         currentDataSource = foodData
     }
     
@@ -45,23 +42,24 @@ class SearchViewController: UIViewController {
     func configTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(ResultsTableViewCell.nib(), forCellReuseIdentifier: ResultsTableViewCell.identifier)
     }
     
-    func filterResults(with term: String) {
-        if term.count > 0 && !term.isEmpty {
-            currentDataSource = foodData
-            let filteredResults = currentDataSource.filter { $0.replacingOccurrences(of: " ", with: "").lowercased().contains(term.replacingOccurrences(of: " ", with: "").lowercased()) }
-            
-            currentDataSource = filteredResults
-            tableView.reloadData()
-        }
-    }
+//    func filterResults(with term: String) {
+//        if term.count > 0 && !term.isEmpty {
+//            currentDataSource = foodData
+//            let filteredResults = currentDataSource.filter { $0.replacingOccurrences(of: " ", with: "").lowercased().contains(term.replacingOccurrences(of: " ", with: "").lowercased()) }
+//
+//            currentDataSource = filteredResults
+//            tableView.reloadData()
+//        }
+//    }
     
-    func populateArrayWith(numberOfItems: Int, nameOfTheProduct: String) {
-        for _ in 1...numberOfItems {
-            foodData.append(nameOfTheProduct)
-        }
-    }
+//    func populateArrayWith(numberOfItems: Int, nameOfTheProduct: String) {
+//        for _ in 1...numberOfItems {
+//            foodData.append(nameOfTheProduct)
+//        }
+//    }
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -70,16 +68,20 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultsCell", for: indexPath)
-        cell.textLabel?.text = currentDataSource[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: ResultsTableViewCell.identifier, for: indexPath) as! ResultsTableViewCell
+        cell.setup(foodData[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
     }
 }
 
-extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text else { return }
-        
-        filterResults(with: searchText)
-    }
-}
+//extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
+//    func updateSearchResults(for searchController: UISearchController) {
+//        guard let searchText = searchController.searchBar.text else { return }
+//
+//        filterResults(with: searchText)
+//    }
+//}
