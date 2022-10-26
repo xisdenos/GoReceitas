@@ -18,8 +18,6 @@
 					<key>UISceneConfigurationName</key>
 					<string>Default Configuraion</string>
 					<key>UISceneStoryboardFile</key>
-					<string>LoginVC</string>
-					<string>FavoriteVC</string>
 					<string>Main</string>
 				</dict>
 			</array>
