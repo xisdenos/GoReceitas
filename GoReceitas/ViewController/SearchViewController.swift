@@ -37,8 +37,9 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Search"
-        currentDataSource = foodData
+//        currentDataSource = foodData
         
+        tableView.backgroundColor = .viewBackgroundColor
         self.view.backgroundColor = .viewBackgroundColor
         
         containerSearchBar.addSubview(searchController.searchBar)
@@ -62,17 +63,6 @@ class SearchViewController: UIViewController {
             currentDataSource = filteredResults
             tableView.reloadData()
         }
-        
-//        if term.count > 0 {
-//            currentDataSource = originalDataSource
-//            let filtered = originalDataSource.filter { $0.name.lowercased().contains(term.lowercased()) ||
-//                $0.occupation.lowercased().contains(term.lowercased()) ||
-//                String($0.age).lowercased().contains(term.lowercased())
-//            }
-//
-//            currentDataSource = filtered
-//            tableView.reloadData()
-//        }
     }
 }
 
@@ -102,10 +92,10 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
 
         filterResults(with: searchText)
         
-        if searchText.count == 0 {
-            currentDataSource = foodData
-            tableView.reloadData()
-        }
+//        if searchText.count == 0 {
+//            currentDataSource = foodData
+//            tableView.reloadData()
+//        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
