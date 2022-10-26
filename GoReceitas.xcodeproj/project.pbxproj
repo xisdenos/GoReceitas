@@ -14,8 +14,6 @@
 		06459BBD28B01A060054F510 /* GoReceitas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06459BBB28B01A060054F510 /* GoReceitas.xcdatamodeld */; };
 		06459BBF28B01A080054F510 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06459BBE28B01A080054F510 /* Assets.xcassets */; };
 		06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06459BC028B01A080054F510 /* LaunchScreen.storyboard */; };
-		069F5DE028B4165F00C15177 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F5DDE28B4165F00C15177 /* TagCell.swift */; };
-		069F5DE128B4165F00C15177 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 069F5DDF28B4165F00C15177 /* TagCell.xib */; };
 		1F5585482902CB6100580185 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5585462902CB6100580185 /* FavoriteCollectionViewCell.swift */; };
 		1F5585492902CB6100580185 /* FavoriteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5585472902CB6100580185 /* FavoriteCollectionViewCell.xib */; };
 		1F55854B2902E7A100580185 /* FavoriteEmptyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55854A2902E7A100580185 /* FavoriteEmptyVC.swift */; };
@@ -55,9 +53,6 @@
 		EB43689428FE1CAE0023A2F9 /* LoginVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB43689328FE1CAE0023A2F9 /* LoginVC.storyboard */; };
 		EB43689728FE28D60023A2F9 /* EsqueceuSenhaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB43689628FE28D60023A2F9 /* EsqueceuSenhaVC.swift */; };
 		EB43689928FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB43689828FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard */; };
-		EB7E9FEC28BB145A00F8C91B /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7E9FEB28BB145A00F8C91B /* Login.swift */; };
-		EB7E9FEF28BB173400F8C91B /* Cadastro.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7E9FEE28BB173400F8C91B /* Cadastro.swift */; };
-		EB7E9FF228BBA73900F8C91B /* EsqueciSenha.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7E9FF128BBA73900F8C91B /* EsqueciSenha.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,8 +65,6 @@
 		06459BBE28B01A080054F510 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06459BC128B01A080054F510 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		06459BC328B01A080054F510 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		069F5DDE28B4165F00C15177 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
-		069F5DDF28B4165F00C15177 /* TagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
 		1F5585462902CB6100580185 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		1F5585472902CB6100580185 /* FavoriteCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteCollectionViewCell.xib; sourceTree = "<group>"; };
 		1F55854A2902E7A100580185 /* FavoriteEmptyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEmptyVC.swift; sourceTree = "<group>"; };
@@ -113,9 +106,6 @@
 		EB43689328FE1CAE0023A2F9 /* LoginVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginVC.storyboard; sourceTree = "<group>"; };
 		EB43689628FE28D60023A2F9 /* EsqueceuSenhaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EsqueceuSenhaVC.swift; sourceTree = "<group>"; };
 		EB43689828FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EsqueceuSenhaVC.storyboard; sourceTree = "<group>"; };
-		EB7E9FEB28BB145A00F8C91B /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
-		EB7E9FEE28BB173400F8C91B /* Cadastro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cadastro.swift; sourceTree = "<group>"; };
-		EB7E9FF128BBA73900F8C91B /* EsqueciSenha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EsqueciSenha.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,50 +141,33 @@
 		06459BB128B01A060054F510 /* GoReceitas */ = {
 			isa = PBXGroup;
 			children = (
-				8279DC472904B71100E526A8 /* Extensions */,
 				EB0892B92902F16800FF33E8 /* AlertController */,
-				8259F92B28DAB12400476299 /* Enums */,
-				06C01C7E28B42138003ACE17 /* Cell */,
 				82C9BE4628DA89B000D890EF /* CollectionViewCells */,
-				EB7E9FF028BBA6FC00F8C91B /* Forget Password */,
-				06459BBB28B01A060054F510 /* GoReceitas.xcdatamodeld */,
+				8259F92B28DAB12400476299 /* Enums */,
+				8279DC472904B71100E526A8 /* Extensions */,
 				EB08928A29007B8500FF33E8 /* GoogleService-Info.plist */,
+				06459BBB28B01A060054F510 /* GoReceitas.xcdatamodeld */,
 				06459BC328B01A080054F510 /* Info.plist */,
-				EB7E9FEA28BB144700F8C91B /* Login */,
 				826281A128DA929F0065AA29 /* MockData */,
 				06C01C8028B42167003ACE17 /* Model */,
-				EB43689028FE1C820023A2F9 /* NewLogin */,
-				EB43688A28FE15060023A2F9 /* NewRegister */,
-				EB43689528FE28B00023A2F9 /* NewEsqueceuSenha */,
-				EB7E9FED28BB171500F8C91B /* Register */,
 				82A4040528DAA8A700F38990 /* Resources */,
 				82A403FF28DAA4D500F38990 /* TableViewCells */,
 				82A4040628DAA8CF00F38990 /* View */,
 				06C01C7F28B4214C003ACE17 /* ViewController */,
-				1FAA32B328EDF95800AB6B9C /* Favoritos */,
 			);
 			path = GoReceitas;
-			sourceTree = "<group>";
-		};
-		06C01C7E28B42138003ACE17 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				069F5DDF28B4165F00C15177 /* TagCell.xib */,
-				069F5DDE28B4165F00C15177 /* TagCell.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		06C01C7F28B4214C003ACE17 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				06459BB628B01A060054F510 /* HomeViewController.swift */,
-				82A4040328DAA57800F38990 /* TagsResultsViewController.swift */,
-				8259F93228DAB81C00476299 /* AllTagsViewController.swift */,
-				82025B9C28EB8F890090376F /* SearchViewController.swift */,
-				5CC71FA528FE25D100FF75ED /* ChangePasswordViewController.swift */,
-				5CC71FA728FE25DD00FF75ED /* ChangeEmailViewController.swift */,
-				5CC71FA928FE26F200FF75ED /* ProfileViewController.swift */,
+				1FAA32B328EDF95800AB6B9C /* Favoritos */,
+				EB43689528FE28B00023A2F9 /* Forget Password */,
+				8247B9002909EC9000437F1E /* Home */,
+				EB43689028FE1C820023A2F9 /* Login */,
+				8247B8FF2909EC8B00437F1E /* Profile */,
+				EB43688A28FE15060023A2F9 /* Register */,
+				8247B9012909EC9400437F1E /* Search */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -237,6 +210,37 @@
 				25C79753A29B91777DE37111 /* Pods-GoReceitas.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		8247B8FF2909EC8B00437F1E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5CC71FA728FE25DD00FF75ED /* ChangeEmailViewController.swift */,
+				5CC71FA528FE25D100FF75ED /* ChangePasswordViewController.swift */,
+				5CC71FA328FE242B00FF75ED /* Profile.storyboard */,
+				5CC71FA928FE26F200FF75ED /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		8247B9002909EC9000437F1E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				8259F93228DAB81C00476299 /* AllTagsViewController.swift */,
+				82064C35290344A8005DA1FF /* Home.storyboard */,
+				06459BB628B01A060054F510 /* HomeViewController.swift */,
+				82A4040328DAA57800F38990 /* TagsResultsViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		8247B9012909EC9400437F1E /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				82025B9C28EB8F890090376F /* SearchViewController.swift */,
+				82064C3729034647005DA1FF /* Search.storyboard */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		8259F92B28DAB12400476299 /* Enums */ = {
@@ -316,9 +320,6 @@
 			isa = PBXGroup;
 			children = (
 				06459BB828B01A060054F510 /* Main.storyboard */,
-				5CC71FA328FE242B00FF75ED /* Profile.storyboard */,
-				82064C35290344A8005DA1FF /* Home.storyboard */,
-				82064C3729034647005DA1FF /* Search.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -348,53 +349,29 @@
 			path = AlertController;
 			sourceTree = "<group>";
 		};
-		EB43688A28FE15060023A2F9 /* NewRegister */ = {
+		EB43688A28FE15060023A2F9 /* Register */ = {
 			isa = PBXGroup;
 			children = (
 				EB43688B28FE15370023A2F9 /* RegisterVC.swift */,
 				EB43688D28FE15460023A2F9 /* RegisterVC.storyboard */,
 			);
-			path = NewRegister;
+			path = Register;
 			sourceTree = "<group>";
 		};
-		EB43689028FE1C820023A2F9 /* NewLogin */ = {
+		EB43689028FE1C820023A2F9 /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				EB43689128FE1C9E0023A2F9 /* LoginVC.swift */,
 				EB43689328FE1CAE0023A2F9 /* LoginVC.storyboard */,
 			);
-			path = NewLogin;
+			path = Login;
 			sourceTree = "<group>";
 		};
-		EB43689528FE28B00023A2F9 /* NewEsqueceuSenha */ = {
+		EB43689528FE28B00023A2F9 /* Forget Password */ = {
 			isa = PBXGroup;
 			children = (
 				EB43689628FE28D60023A2F9 /* EsqueceuSenhaVC.swift */,
 				EB43689828FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard */,
-			);
-			path = NewEsqueceuSenha;
-			sourceTree = "<group>";
-		};
-		EB7E9FEA28BB144700F8C91B /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				EB7E9FEB28BB145A00F8C91B /* Login.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		EB7E9FED28BB171500F8C91B /* Register */ = {
-			isa = PBXGroup;
-			children = (
-				EB7E9FEE28BB173400F8C91B /* Cadastro.swift */,
-			);
-			path = Register;
-			sourceTree = "<group>";
-		};
-		EB7E9FF028BBA6FC00F8C91B /* Forget Password */ = {
-			isa = PBXGroup;
-			children = (
-				EB7E9FF128BBA73900F8C91B /* EsqueciSenha.swift */,
 			);
 			path = "Forget Password";
 			sourceTree = "<group>";
@@ -429,7 +406,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					06459BAE28B01A060054F510 = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -465,16 +442,12 @@
 				EB08928B29007B8500FF33E8 /* GoogleService-Info.plist in Resources */,
 				EB43689928FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard in Resources */,
 				5CC71FA428FE242B00FF75ED /* Profile.storyboard in Resources */,
-				069F5DE128B4165F00C15177 /* TagCell.xib in Resources */,
 				06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */,
 				EB43689428FE1CAE0023A2F9 /* LoginVC.storyboard in Resources */,
 				06459BBF28B01A080054F510 /* Assets.xcassets in Resources */,
 				82064C3829034647005DA1FF /* Search.storyboard in Resources */,
 				1F55854D2902E7FD00580185 /* FavoriteEmptyVC.storyboard in Resources */,
-				069F5DE128B4165F00C15177 /* TagCell.xib in Resources */,
-				06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */,
 				1FAA32B728EDFEF600AB6B9C /* FavoriteVC.storyboard in Resources */,
-				06459BBF28B01A080054F510 /* Assets.xcassets in Resources */,
 				1F5585492902CB6100580185 /* FavoriteCollectionViewCell.xib in Resources */,
 				06459BBA28B01A060054F510 /* Main.storyboard in Resources */,
 			);
@@ -529,14 +502,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB7E9FEF28BB173400F8C91B /* Cadastro.swift in Sources */,
 				82A4040228DAA4F700F38990 /* TagsResultsTableViewCell.swift in Sources */,
 				06459BB728B01A060054F510 /* HomeViewController.swift in Sources */,
 				06459BBD28B01A060054F510 /* GoReceitas.xcdatamodeld in Sources */,
-				EB7E9FF228BBA73900F8C91B /* EsqueciSenha.swift in Sources */,
 				82A4040428DAA57800F38990 /* TagsResultsViewController.swift in Sources */,
 				82A403F928DA9DF400F38990 /* AllTagsModel.swift in Sources */,
-				069F5DE028B4165F00C15177 /* TagCell.swift in Sources */,
 				5CC71FA828FE25DD00FF75ED /* ChangeEmailViewController.swift in Sources */,
 				82C9BE4828DA89BE00D890EF /* FooterViewCell.swift in Sources */,
 				82CC509F29098FB70032FC25 /* ResultsTableViewCell.swift in Sources */,
@@ -547,7 +517,6 @@
 				5CC71FA628FE25D100FF75ED /* ChangePasswordViewController.swift in Sources */,
 				82C9BE4A28DA89D100D890EF /* CategoryViewCell.swift in Sources */,
 				8259F92D28DAB14900476299 /* Sections.swift in Sources */,
-				EB7E9FEC28BB145A00F8C91B /* Login.swift in Sources */,
 				06459BB328B01A060054F510 /* AppDelegate.swift in Sources */,
 				82025B9D28EB8F890090376F /* SearchViewController.swift in Sources */,
 				1F5585482902CB6100580185 /* FavoriteCollectionViewCell.swift in Sources */,
