@@ -212,6 +212,8 @@
 				25C79753A29B91777DE37111 /* Pods-GoReceitas.release.xcconfig */,
 			);
 			path = Pods;
+            sourceTree = "<group>";
+        };
 		1F5585452902CB3D00580185 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
