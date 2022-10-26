@@ -20,6 +20,7 @@
                         <segue destination="udS-7x-hR4" kind="relationship" relationship="viewControllers" id="bbI-tr-s0G"/>
                         <segue destination="65J-ci-1CX" kind="relationship" relationship="viewControllers" id="KV9-PS-5Ih"/>
                         <segue destination="Dai-EE-9U9" kind="relationship" relationship="viewControllers" id="S4I-q5-j90"/>
+                        <segue destination="Gvu-O9-IIZ" kind="relationship" relationship="viewControllers" id="xns-hL-xTB"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lBi-fX-BEG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -46,15 +47,25 @@
             </objects>
             <point key="canvasLocation" x="6693" y="-162"/>
         </scene>
-        <!--profileNavigation-->
+        <!--favoritesNavigation-->
         <scene sceneID="CiG-0J-FKZ">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="profile" storyboardName="Profile" referencedIdentifier="profileNavigation" id="Dai-EE-9U9" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="favoritesNavigation" storyboardName="FavoriteVC" referencedIdentifier="favoritesNavigation" id="Dai-EE-9U9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="pNn-Cv-62P"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jNk-uo-lsr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6680" y="-53"/>
+        </scene>
+        <!--profileNavigation-->
+        <scene sceneID="j34-jN-1JC">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="profileNavigation" storyboardName="Profile" referencedIdentifier="profileNavigation" id="Gvu-O9-IIZ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Gmd-JZ-mWv"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Led-Gg-H9t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6651" y="43"/>
         </scene>
     </scenes>
 </document>

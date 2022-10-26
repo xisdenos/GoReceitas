@@ -35,11 +35,13 @@ class HomeViewController: UIViewController {
     private func setTabBarIcons() {
         self.tabBarController?.tabBar.items?[0].image = UIImage(systemName: "house")
         self.tabBarController?.tabBar.items?[1].image = UIImage(systemName: "magnifyingglass")
-        self.tabBarController?.tabBar.items?[2].image = UIImage(systemName: "person")
+        self.tabBarController?.tabBar.items?[2].image = UIImage(systemName: "heart")
+        self.tabBarController?.tabBar.items?[3].image = UIImage(systemName: "person")
         
         self.tabBarController?.tabBar.items?[0].title = "Home"
         self.tabBarController?.tabBar.items?[1].title = "Search"
-        self.tabBarController?.tabBar.items?[2].title = "Profile"
+        self.tabBarController?.tabBar.items?[2].title = "Favorites"
+        self.tabBarController?.tabBar.items?[3].title = "Profile"
     }
     
     // MARK: Create and set constraints for page control
