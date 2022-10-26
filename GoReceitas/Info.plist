@@ -18,11 +18,9 @@
 					<key>UISceneConfigurationName</key>
 					<string>Default Configuraion</string>
 					<key>UISceneStoryboardFile</key>
-<<<<<<< HEAD
 					<string>LoginVC</string>
-=======
 					<string>FavoriteVC</string>
->>>>>>> Feature-Favoritos
+					<string>Main</string>
 				</dict>
 			</array>
 		</dict>

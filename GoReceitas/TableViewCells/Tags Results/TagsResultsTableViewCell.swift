@@ -5,8 +5,6 @@ class TagsResultsTableViewCell: UITableViewCell {
     static let identifier = String(describing: TagsResultsTableViewCell.self)
     private var isActive: Bool = false
     
-    
-    
     @IBOutlet weak var imageFood: UIImageView!
     @IBOutlet weak var foodNameLbl: UILabel!
     @IBOutlet weak var prepTimeLbl: UILabel!
