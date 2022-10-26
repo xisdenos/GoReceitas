@@ -16,16 +16,16 @@
 		06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06459BC028B01A080054F510 /* LaunchScreen.storyboard */; };
 		069F5DE028B4165F00C15177 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F5DDE28B4165F00C15177 /* TagCell.swift */; };
 		069F5DE128B4165F00C15177 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 069F5DDF28B4165F00C15177 /* TagCell.xib */; };
-		5CC71FA428FE242B00FF75ED /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CC71FA328FE242B00FF75ED /* Profile.storyboard */; };
-		5CC71FA628FE25D100FF75ED /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC71FA528FE25D100FF75ED /* ChangePasswordViewController.swift */; };
-		5CC71FA828FE25DD00FF75ED /* ChangeEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC71FA728FE25DD00FF75ED /* ChangeEmailViewController.swift */; };
-		5CC71FAA28FE26F200FF75ED /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC71FA928FE26F200FF75ED /* ProfileViewController.swift */; };
 		1F5585482902CB6100580185 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5585462902CB6100580185 /* FavoriteCollectionViewCell.swift */; };
 		1F5585492902CB6100580185 /* FavoriteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5585472902CB6100580185 /* FavoriteCollectionViewCell.xib */; };
 		1F55854B2902E7A100580185 /* FavoriteEmptyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55854A2902E7A100580185 /* FavoriteEmptyVC.swift */; };
 		1F55854D2902E7FD00580185 /* FavoriteEmptyVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F55854C2902E7FD00580185 /* FavoriteEmptyVC.storyboard */; };
 		1FAA32B528EDFED300AB6B9C /* FavoriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FAA32B428EDFED300AB6B9C /* FavoriteVC.swift */; };
 		1FAA32B728EDFEF600AB6B9C /* FavoriteVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FAA32B628EDFEF600AB6B9C /* FavoriteVC.storyboard */; };
+		5CC71FA428FE242B00FF75ED /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CC71FA328FE242B00FF75ED /* Profile.storyboard */; };
+		5CC71FA628FE25D100FF75ED /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC71FA528FE25D100FF75ED /* ChangePasswordViewController.swift */; };
+		5CC71FA828FE25DD00FF75ED /* ChangeEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC71FA728FE25DD00FF75ED /* ChangeEmailViewController.swift */; };
+		5CC71FAA28FE26F200FF75ED /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC71FA928FE26F200FF75ED /* ProfileViewController.swift */; };
 		82025B9D28EB8F890090376F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82025B9C28EB8F890090376F /* SearchViewController.swift */; };
 		82064C36290344A8005DA1FF /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82064C35290344A8005DA1FF /* Home.storyboard */; };
 		82064C3829034647005DA1FF /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82064C3729034647005DA1FF /* Search.storyboard */; };
@@ -72,18 +72,18 @@
 		06459BC328B01A080054F510 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		069F5DDE28B4165F00C15177 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		069F5DDF28B4165F00C15177 /* TagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
-		25C79753A29B91777DE37111 /* Pods-GoReceitas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoReceitas.release.xcconfig"; path = "Target Support Files/Pods-GoReceitas/Pods-GoReceitas.release.xcconfig"; sourceTree = "<group>"; };
-		34A460574BD0613D7D623752 /* Pods-GoReceitas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoReceitas.debug.xcconfig"; path = "Target Support Files/Pods-GoReceitas/Pods-GoReceitas.debug.xcconfig"; sourceTree = "<group>"; };
-		5CC71FA328FE242B00FF75ED /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		5CC71FA528FE25D100FF75ED /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
-		5CC71FA728FE25DD00FF75ED /* ChangeEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeEmailViewController.swift; sourceTree = "<group>"; };
-		5CC71FA928FE26F200FF75ED /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1F5585462902CB6100580185 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		1F5585472902CB6100580185 /* FavoriteCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteCollectionViewCell.xib; sourceTree = "<group>"; };
 		1F55854A2902E7A100580185 /* FavoriteEmptyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEmptyVC.swift; sourceTree = "<group>"; };
 		1F55854C2902E7FD00580185 /* FavoriteEmptyVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FavoriteEmptyVC.storyboard; sourceTree = "<group>"; };
 		1FAA32B428EDFED300AB6B9C /* FavoriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVC.swift; sourceTree = "<group>"; };
 		1FAA32B628EDFEF600AB6B9C /* FavoriteVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FavoriteVC.storyboard; sourceTree = "<group>"; };
+		25C79753A29B91777DE37111 /* Pods-GoReceitas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoReceitas.release.xcconfig"; path = "Target Support Files/Pods-GoReceitas/Pods-GoReceitas.release.xcconfig"; sourceTree = "<group>"; };
+		34A460574BD0613D7D623752 /* Pods-GoReceitas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoReceitas.debug.xcconfig"; path = "Target Support Files/Pods-GoReceitas/Pods-GoReceitas.debug.xcconfig"; sourceTree = "<group>"; };
+		5CC71FA328FE242B00FF75ED /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		5CC71FA528FE25D100FF75ED /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		5CC71FA728FE25DD00FF75ED /* ChangeEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeEmailViewController.swift; sourceTree = "<group>"; };
+		5CC71FA928FE26F200FF75ED /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		82025B9C28EB8F890090376F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		82064C35290344A8005DA1FF /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		82064C3729034647005DA1FF /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
@@ -209,15 +209,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		5388B7A800C400F83F5FF5DA /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				34A460574BD0613D7D623752 /* Pods-GoReceitas.debug.xcconfig */,
-				25C79753A29B91777DE37111 /* Pods-GoReceitas.release.xcconfig */,
-			);
-			path = Pods;
-            sourceTree = "<group>";
-        };
 		1F5585452902CB3D00580185 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +228,15 @@
 				1F5585452902CB3D00580185 /* Cell */,
 			);
 			path = Favoritos;
+			sourceTree = "<group>";
+		};
+		5388B7A800C400F83F5FF5DA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				34A460574BD0613D7D623752 /* Pods-GoReceitas.debug.xcconfig */,
+				25C79753A29B91777DE37111 /* Pods-GoReceitas.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		8259F92B28DAB12400476299 /* Enums */ = {
@@ -470,7 +470,6 @@
 				EB43689428FE1CAE0023A2F9 /* LoginVC.storyboard in Resources */,
 				06459BBF28B01A080054F510 /* Assets.xcassets in Resources */,
 				82064C3829034647005DA1FF /* Search.storyboard in Resources */,
-				82C9BE3928DA85B800D890EF /* Extensions in Resources */,
 				1F55854D2902E7FD00580185 /* FavoriteEmptyVC.storyboard in Resources */,
 				069F5DE128B4165F00C15177 /* TagCell.xib in Resources */,
 				06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */,
