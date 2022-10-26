@@ -10,7 +10,15 @@ import UIKit
 class SearchViewController: UIViewController {
 
     public var foodData: [CellsInfoSections] = [
-        .init(foodName: "Pumpkin pie", prepTime: "20 min", foodImage: "lasanha")
+        .init(foodName: "Pumpkin pie", prepTime: "20 min", foodImage: "lasanha"),
+        .init(foodName: "Lasagna", prepTime: "20 min", foodImage: "lasanha"),
+        .init(foodName: "X-Burguer", prepTime: "20 min", foodImage: "lasanha"),
+        .init(foodName: "Cake", prepTime: "20 min", foodImage: "lasanha"),
+        .init(foodName: "Tomato", prepTime: "20 min", foodImage: "lasanha"),
+        .init(foodName: "Scrambled eggs", prepTime: "20 min", foodImage: "lasanha"),
+        .init(foodName: "Parmegiana", prepTime: "20 min", foodImage: "lasanha"),
+        .init(foodName: "Spaghetti", prepTime: "20 min", foodImage: "lasanha"),
+        .init(foodName: "Spaghetti", prepTime: "20 min", foodImage: "lasanha"),
     ]
     private var currentDataSource: [CellsInfoSections] = []
     
@@ -21,18 +29,20 @@ class SearchViewController: UIViewController {
         let search = UISearchController(searchResultsController: nil)
         search.searchBar.placeholder = "Food name..."
         search.searchBar.searchBarStyle = .minimal
-//        search.searchResultsUpdater = self
-//        search.searchBar.delegate = self
+        search.searchResultsUpdater = self
+        search.searchBar.delegate = self
         return search
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Search"
+        currentDataSource = foodData
+        
         self.view.backgroundColor = .viewBackgroundColor
+        
         containerSearchBar.addSubview(searchController.searchBar)
         configTableView()
-        currentDataSource = foodData
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,21 +55,25 @@ class SearchViewController: UIViewController {
         tableView.register(ResultsTableViewCell.nib(), forCellReuseIdentifier: ResultsTableViewCell.identifier)
     }
     
-//    func filterResults(with term: String) {
-//        if term.count > 0 && !term.isEmpty {
-//            currentDataSource = foodData
-//            let filteredResults = currentDataSource.filter { $0.replacingOccurrences(of: " ", with: "").lowercased().contains(term.replacingOccurrences(of: " ", with: "").lowercased()) }
+    func filterResults(with term: String) {
+        if term.count > 0 {
+            currentDataSource = foodData
+            let filteredResults = foodData.filter { $0.foodName?.lowercased().contains(term.lowercased()) ?? false }
+            currentDataSource = filteredResults
+            tableView.reloadData()
+        }
+        
+//        if term.count > 0 {
+//            currentDataSource = originalDataSource
+//            let filtered = originalDataSource.filter { $0.name.lowercased().contains(term.lowercased()) ||
+//                $0.occupation.lowercased().contains(term.lowercased()) ||
+//                String($0.age).lowercased().contains(term.lowercased())
+//            }
 //
-//            currentDataSource = filteredResults
+//            currentDataSource = filtered
 //            tableView.reloadData()
 //        }
-//    }
-    
-//    func populateArrayWith(numberOfItems: Int, nameOfTheProduct: String) {
-//        for _ in 1...numberOfItems {
-//            foodData.append(nameOfTheProduct)
-//        }
-//    }
+    }
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -69,19 +83,33 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ResultsTableViewCell.identifier, for: indexPath) as! ResultsTableViewCell
-        cell.setup(foodData[indexPath.row])
+        cell.setup(currentDataSource[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 155
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
-//extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
-//    func updateSearchResults(for searchController: UISearchController) {
-//        guard let searchText = searchController.searchBar.text else { return }
-//
-//        filterResults(with: searchText)
-//    }
-//}
+extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else { return }
+
+        filterResults(with: searchText)
+        
+        if searchText.count == 0 {
+            currentDataSource = foodData
+            tableView.reloadData()
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        currentDataSource = foodData
+        tableView.reloadData()
+    }
+}
