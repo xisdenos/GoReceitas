@@ -10,15 +10,15 @@ import UIKit
 class SearchViewController: UIViewController {
 
     public var foodData: [CellsInfoSections] = [
-        .init(foodName: "Pumpkin pie", prepTime: "20 min", foodImage: "lasanha"),
-        .init(foodName: "Lasagna", prepTime: "20 min", foodImage: "lasanha"),
-        .init(foodName: "X-Burguer", prepTime: "20 min", foodImage: "lasanha"),
-        .init(foodName: "Cake", prepTime: "20 min", foodImage: "lasanha"),
-        .init(foodName: "Tomato", prepTime: "20 min", foodImage: "lasanha"),
-        .init(foodName: "Scrambled eggs", prepTime: "20 min", foodImage: "lasanha"),
-        .init(foodName: "Parmegiana", prepTime: "20 min", foodImage: "lasanha"),
-        .init(foodName: "Spaghetti", prepTime: "20 min", foodImage: "lasanha"),
-        .init(foodName: "Spaghetti", prepTime: "20 min", foodImage: "lasanha"),
+        .init(foodName: "Birria tacos", prepTime: "35 min", foodImage: "birria-tacos"),
+        .init(foodName: "Potato tacos", prepTime: "20 min", foodImage: "potato-tacos"),
+        .init(foodName: "Salad", prepTime: "15 min", foodImage: "salad"),
+        .init(foodName: "Pumpkin pie", prepTime: "10 min", foodImage: "pumpkin-pie"),
+        .init(foodName: "Tomato", prepTime: "10 min", foodImage: "tomato"),
+        .init(foodName: "Pumpkin", prepTime: "50 min", foodImage: "pumpkin"),
+        .init(foodName: "Rice", prepTime: "20 min", foodImage: "rice"),
+        .init(foodName: "Mac-and-cheese", prepTime: "15 min", foodImage: "mac-and-cheese"),
+        .init(foodName: "Grilled tacos", prepTime: "30 min", foodImage: "grilled-tacos"),
     ]
     private var currentDataSource: [CellsInfoSections] = []
     
@@ -37,7 +37,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Search"
-//        currentDataSource = foodData
+        currentDataSource = foodData
         
         tableView.backgroundColor = .viewBackgroundColor
         self.view.backgroundColor = .viewBackgroundColor
@@ -92,10 +92,10 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
 
         filterResults(with: searchText)
         
-//        if searchText.count == 0 {
-//            currentDataSource = foodData
-//            tableView.reloadData()
-//        }
+        if searchText.count == 0 {
+            currentDataSource = foodData
+            tableView.reloadData()
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

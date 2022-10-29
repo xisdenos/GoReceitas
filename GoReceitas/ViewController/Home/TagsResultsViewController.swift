@@ -5,18 +5,18 @@ class TagsResultsViewController: UIViewController {
     @IBOutlet weak var resultsLabel: UILabel!
     
     private var foodInformation: [CellsInfoSections] = [
-        .init(foodName: "Lasagna", prepTime: "60min", foodImage: "lasanha"),
-        .init(foodName: "Spaghetti", prepTime: "30min", foodImage: "macarrao"),
-        .init(foodName: "Lasagna", prepTime: "60min", foodImage: "lasanha"),
-        .init(foodName: "Spaghetti", prepTime: "30min", foodImage: "macarrao"),
-        .init(foodName: "Lasagna", prepTime: "60min", foodImage: "lasanha"),
-        .init(foodName: "Spaghetti", prepTime: "30min", foodImage: "macarrao"),
-        .init(foodName: "Lasagna", prepTime: "60min", foodImage: "lasanha"),
-        .init(foodName: "Spaghetti", prepTime: "30min", foodImage: "macarrao"),
-        .init(foodName: "Lasagna", prepTime: "60min", foodImage: "lasanha"),
-        .init(foodName: "Spaghetti", prepTime: "30min", foodImage: "macarrao"),
-        .init(foodName: "Lasagna", prepTime: "60min", foodImage: "lasanha"),
-        .init(foodName: "Spaghetti", prepTime: "30min", foodImage: "macarrao"),
+        .init(foodName: "Salad", prepTime: "60min", foodImage: "salad"),
+        .init(foodName: "Shrimp", prepTime: "30min", foodImage: "shrimp"),
+        .init(foodName: "Potato tacos", prepTime: "60min", foodImage: "potato-tacos"),
+        .init(foodName: "Pizza chicago", prepTime: "30min", foodImage: "pizza-chicago"),
+        .init(foodName: "Grilled tacos", prepTime: "60min", foodImage: "grilled-tacos"),
+        .init(foodName: "Lasagna", prepTime: "30min", foodImage: "lasanha"),
+        .init(foodName: "Tomato", prepTime: "60min", foodImage: "tomato"),
+        .init(foodName: "Shrimp", prepTime: "30min", foodImage: "shrimp"),
+        .init(foodName: "Rice", prepTime: "60min", foodImage: "rice"),
+        .init(foodName: "Pumpkin rice", prepTime: "30min", foodImage: "pumpkin-pie"),
+        .init(foodName: "Mac and cheese", prepTime: "60min", foodImage: "mac-and-cheese"),
+        .init(foodName: "Chicken", prepTime: "30min", foodImage: "chicken"),
         
     ]
     override func viewDidLoad() {

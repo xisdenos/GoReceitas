@@ -51,4 +51,9 @@ extension AllTagsViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (view.bounds.size.width) - 20, height: 70)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let tagsResultsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "TagsResultsViewController") as! TagsResultsViewController
+        navigationController?.pushViewController(tagsResultsVC, animated: true)
+    }
 }
