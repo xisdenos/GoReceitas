@@ -11,7 +11,7 @@ class HeaderViewCell: UICollectionReusableView {
     
     func setup(_ title: String, isHidden: Bool = true) {
         self.headerTitle.text = title
-        self.seeAllTags.setTitle("VER TUDO", for: .normal)
+        self.seeAllTags.setTitle("ALL TAGS", for: .normal)
         self.seeAllTags.isHidden = isHidden
         self.seeAllTags.titleLabel?.textAlignment = .center
     }

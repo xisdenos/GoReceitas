@@ -30,9 +30,9 @@ enum Sections {
     var title: String {
         switch self {
         case .categories:
-            return "Categorias"
+            return "Categories"
         case .tryItOut:
-            return "Experimente"
+            return "Try it out"
         case .popular:
             return "Popular"
         }

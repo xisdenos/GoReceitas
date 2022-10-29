@@ -22,7 +22,7 @@ class TagsResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .viewBackgroundColor
-        
+        title = "Tags Results"
         // mantém a cor de fundo da nav bar quando scrollada
         let navigationBar = navigationController?.navigationBar
         let navigationBarAppearance = UINavigationBarAppearance()
@@ -37,7 +37,7 @@ class TagsResultsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
 
