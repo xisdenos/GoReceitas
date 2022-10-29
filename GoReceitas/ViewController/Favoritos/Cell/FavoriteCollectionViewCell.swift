@@ -43,7 +43,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     
     
     func setupCell(foodinfo: CellsInfoSections){
-        foodImageView.image = UIImage(named: foodinfo.foodImage ?? "")
+        foodImageView.image = UIImage(named: foodinfo.foodImage)
         prepTimeLabel.text = foodinfo.prepTime
         foodLabel.text = foodinfo.foodName
         

@@ -27,7 +27,7 @@ class ResultsTableViewCell: UITableViewCell {
     func setup(_ cellInfo: CellsInfoSections) {
         foodName.text = cellInfo.foodName
         prepTime.text = cellInfo.prepTime
-        foodImage.image = UIImage(named: cellInfo.foodImage ?? "")
+        foodImage.image = UIImage(named: cellInfo.foodImage)
         foodImage.contentMode = .scaleAspectFill
         foodImage.layer.cornerRadius = 10
         foodImage.layer.masksToBounds = true

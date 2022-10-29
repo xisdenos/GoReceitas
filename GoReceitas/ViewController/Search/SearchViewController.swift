@@ -59,7 +59,7 @@ class SearchViewController: UIViewController {
     func filterResults(with term: String) {
         if term.count > 0 {
             currentDataSource = foodData
-            let filteredResults = foodData.filter { $0.foodName?.lowercased().contains(term.lowercased()) ?? false }
+            let filteredResults = foodData.filter { $0.foodName.lowercased().contains(term.lowercased()) }
             currentDataSource = filteredResults
             tableView.reloadData()
         }

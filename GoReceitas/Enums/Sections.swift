@@ -8,11 +8,11 @@
 import Foundation
 
 enum Sections {
-    case categories([CellsInfoSections])
+    case categories([CategoryModel])
     case tryItOut([CellsInfoSections])
     case popular([CellsInfoSections])
     
-        var items: [CellsInfoSections] {
+        var items: [Any] {
             switch self {
             case .categories(let array):
                 return array

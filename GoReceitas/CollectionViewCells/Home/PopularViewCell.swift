@@ -10,7 +10,7 @@ class PopularViewCell: UICollectionViewCell {
     @IBOutlet weak var prepTimeLbl: UILabel!
     
     func setup(_ foodInfo: CellsInfoSections) {
-        self.foodImg.image = UIImage(named: foodInfo.foodImage ?? "")
+        self.foodImg.image = UIImage(named: foodInfo.foodImage)
         self.foodNameLbl.text = foodInfo.foodName
         self.prepTimeLbl.text = foodInfo.prepTime
     }

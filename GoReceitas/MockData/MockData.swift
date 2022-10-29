@@ -13,16 +13,16 @@ class MockData {
     private let categories: Sections = {
         .categories(
             [
-                CellsInfoSections(categoryName: "Japanese"),
-                CellsInfoSections(categoryName: "Healthy"),
-                CellsInfoSections(categoryName: "Snacks"),
-                CellsInfoSections(categoryName: "Indian"),
-                CellsInfoSections(categoryName: "Taiwan"),
-                CellsInfoSections(categoryName: "Italian"),
-                CellsInfoSections(categoryName: "Middle Eastern"),
-                CellsInfoSections(categoryName: "Breakfast"),
-                CellsInfoSections(categoryName: "Barbecue"),
-                CellsInfoSections(categoryName: "Vegan"),
+                CategoryModel(categoryName: "Japanese"),
+                CategoryModel(categoryName: "Healthy"),
+                CategoryModel(categoryName: "Snacks"),
+                CategoryModel(categoryName: "Indian"),
+                CategoryModel(categoryName: "Taiwan"),
+                CategoryModel(categoryName: "Italian"),
+                CategoryModel(categoryName: "Middle Eastern"),
+                CategoryModel(categoryName: "Breakfast"),
+                CategoryModel(categoryName: "Barbecue"),
+                CategoryModel(categoryName: "Vegan"),
             ]
         )
     }()
