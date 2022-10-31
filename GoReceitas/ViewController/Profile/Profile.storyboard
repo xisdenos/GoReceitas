@@ -36,7 +36,7 @@
                                     <constraint firstAttribute="height" constant="150" id="iBK-QF-erg"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Usuário" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Hjd-h3-ndB">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Hjd-h3-ndB">
                                 <rect key="frame" x="30" y="401" width="330" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="GI1-bB-l3M"/>
@@ -44,7 +44,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="emailatual@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qAY-jr-Q5s">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="currentemail@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qAY-jr-Q5s">
                                 <rect key="frame" x="30" y="453" width="330" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="W3V-N3-oji"/>
@@ -60,7 +60,7 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Mudar e-mail">
+                                <buttonConfiguration key="configuration" style="plain" title="Change e-mail">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="12"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -75,7 +75,7 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Mudar senha">
+                                <buttonConfiguration key="configuration" style="plain" title="Change password">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="12"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -88,7 +88,7 @@
                                     <constraint firstAttribute="height" constant="37" id="BN0-eu-b1Z"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Sair">
+                                <buttonConfiguration key="configuration" style="plain" title="Exit">
                                     <color key="baseForegroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
                             </button>
@@ -166,7 +166,7 @@
                                     <constraint firstAttribute="height" constant="150" id="EyT-sy-wei"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Senha atual" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Is7-rM-i9O">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Current password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Is7-rM-i9O">
                                 <rect key="frame" x="30" y="357" width="330" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="KFF-jf-TvC"/>
@@ -174,7 +174,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nova senha" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8JC-pr-eKH">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8JC-pr-eKH">
                                 <rect key="frame" x="30" y="409" width="330" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="UaV-NU-FQA"/>
@@ -182,7 +182,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirmar nova senha" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evW-Yo-02F">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm new password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="evW-Yo-02F">
                                 <rect key="frame" x="30" y="461" width="330" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="K4y-ca-jdF"/>
@@ -198,7 +198,7 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Salvar Alterações">
+                                <buttonConfiguration key="configuration" style="plain" title="Save editions">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="12"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -213,7 +213,7 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Cancelar">
+                                <buttonConfiguration key="configuration" style="plain" title="Cancel">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="12"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -310,7 +310,7 @@
                                     <constraint firstAttribute="height" constant="150" id="ahX-xb-nHC"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Novo e-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YHT-TX-RBJ">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New e-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YHT-TX-RBJ">
                                 <rect key="frame" x="30" y="357" width="330" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="FFL-hR-U5u"/>
@@ -318,7 +318,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Senha atual" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pIx-L8-18o">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Current password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pIx-L8-18o">
                                 <rect key="frame" x="30" y="409" width="330" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="8J5-qB-TqE"/>
@@ -334,7 +334,7 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Confirmar">
+                                <buttonConfiguration key="configuration" style="plain" title="Confirm">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="12"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -349,7 +349,7 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Cancelar">
+                                <buttonConfiguration key="configuration" style="plain" title="Cancel">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="12"/>
                                 </buttonConfiguration>
                                 <connections>
