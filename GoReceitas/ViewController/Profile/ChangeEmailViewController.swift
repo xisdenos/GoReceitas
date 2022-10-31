@@ -18,7 +18,7 @@ class ChangeEmailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imageRound()
-        cornerRadiusElements()
+        configFontAndColors()
         self.view.backgroundColor = .viewBackgroundColor
     }
     
@@ -39,11 +39,17 @@ class ChangeEmailViewController: UIViewController {
         imageProfile.layer.cornerRadius =  75
     }
     
-    func cornerRadiusElements(){
+    func configFontAndColors(){
+        confirmButton.isEnabled = false
+        
         newEmailText.layer.cornerRadius = 10
         currentPasswordText.layer.cornerRadius = 10
         confirmButton.layer.cornerRadius = 10
         cancelButton.layer.cornerRadius = 10
+        
+        newEmailText.delegate = self
+        currentPasswordText.delegate = self
+        
     }
     
     func alertVerification(){
@@ -58,4 +64,25 @@ class ChangeEmailViewController: UIViewController {
         }
     }
 
+}
+
+extension ChangeEmailViewController: UITextFieldDelegate {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if newEmailText.text == "" || currentPasswordText.text == "" {
+            confirmButton.isEnabled = false
+        }else{
+            confirmButton.isEnabled = true
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.isEqual(self.newEmailText){
+            self.newEmailText.becomeFirstResponder()
+            self.currentPasswordText.becomeFirstResponder()
+        }else{
+            self.currentPasswordText.resignFirstResponder()
+        }
+        return true
+    }
 }
