@@ -16,6 +16,10 @@
 		06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06459BC028B01A080054F510 /* LaunchScreen.storyboard */; };
 		069F5DE028B4165F00C15177 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069F5DDE28B4165F00C15177 /* TagCell.swift */; };
 		069F5DE128B4165F00C15177 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 069F5DDF28B4165F00C15177 /* TagCell.xib */; };
+		5CC71FA428FE242B00FF75ED /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CC71FA328FE242B00FF75ED /* Profile.storyboard */; };
+		5CC71FA628FE25D100FF75ED /* changePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC71FA528FE25D100FF75ED /* changePasswordViewController.swift */; };
+		5CC71FA828FE25DD00FF75ED /* changeEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC71FA728FE25DD00FF75ED /* changeEmailViewController.swift */; };
+		5CC71FAA28FE26F200FF75ED /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC71FA928FE26F200FF75ED /* ProfileViewController.swift */; };
 		82025B9D28EB8F890090376F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82025B9C28EB8F890090376F /* SearchViewController.swift */; };
 		8259F92D28DAB14900476299 /* Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259F92C28DAB14900476299 /* Sections.swift */; };
 		8259F93328DAB81C00476299 /* AllTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8259F93228DAB81C00476299 /* AllTagsViewController.swift */; };
@@ -32,12 +36,7 @@
 		82C9BE4C28DA89DE00D890EF /* TryItOutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE4B28DA89DE00D890EF /* TryItOutCell.swift */; };
 		82C9BE4E28DA8A0500D890EF /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE4D28DA8A0500D890EF /* HeaderViewCell.swift */; };
 		82C9BE5028DA8A3C00D890EF /* PopularViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE4F28DA8A3C00D890EF /* PopularViewCell.swift */; };
-		EB43688C28FE15370023A2F9 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB43688B28FE15370023A2F9 /* RegisterVC.swift */; };
-		EB43688E28FE15460023A2F9 /* RegisterVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB43688D28FE15460023A2F9 /* RegisterVC.storyboard */; };
-		EB43689228FE1C9E0023A2F9 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB43689128FE1C9E0023A2F9 /* LoginVC.swift */; };
-		EB43689428FE1CAE0023A2F9 /* LoginVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB43689328FE1CAE0023A2F9 /* LoginVC.storyboard */; };
-		EB43689728FE28D60023A2F9 /* EsqueceuSenhaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB43689628FE28D60023A2F9 /* EsqueceuSenhaVC.swift */; };
-		EB43689928FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB43689828FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard */; };
+		83BA587B70FD88BB36FD8B78 /* Pods_GoReceitas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF9409CCC4CF059075F0E05E /* Pods_GoReceitas.framework */; };
 		EB7E9FEC28BB145A00F8C91B /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7E9FEB28BB145A00F8C91B /* Login.swift */; };
 		EB7E9FEF28BB173400F8C91B /* Cadastro.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7E9FEE28BB173400F8C91B /* Cadastro.swift */; };
 		EB7E9FF228BBA73900F8C91B /* EsqueciSenha.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7E9FF128BBA73900F8C91B /* EsqueciSenha.swift */; };
@@ -55,6 +54,11 @@
 		06459BC328B01A080054F510 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		069F5DDE28B4165F00C15177 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		069F5DDF28B4165F00C15177 /* TagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
+		5CC71FA328FE242B00FF75ED /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		5CC71FA528FE25D100FF75ED /* changePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = changePasswordViewController.swift; sourceTree = "<group>"; };
+		5CC71FA728FE25DD00FF75ED /* changeEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = changeEmailViewController.swift; sourceTree = "<group>"; };
+		5CC71FA928FE26F200FF75ED /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		7FBF1889A184E7E874085434 /* Pods-GoReceitas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoReceitas.release.xcconfig"; path = "Target Support Files/Pods-GoReceitas/Pods-GoReceitas.release.xcconfig"; sourceTree = "<group>"; };
 		82025B9C28EB8F890090376F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		8259F92C28DAB14900476299 /* Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sections.swift; sourceTree = "<group>"; };
 		8259F93228DAB81C00476299 /* AllTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsViewController.swift; sourceTree = "<group>"; };
@@ -71,12 +75,8 @@
 		82C9BE4B28DA89DE00D890EF /* TryItOutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryItOutCell.swift; sourceTree = "<group>"; };
 		82C9BE4D28DA8A0500D890EF /* HeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
 		82C9BE4F28DA8A3C00D890EF /* PopularViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewCell.swift; sourceTree = "<group>"; };
-		EB43688B28FE15370023A2F9 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
-		EB43688D28FE15460023A2F9 /* RegisterVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterVC.storyboard; sourceTree = "<group>"; };
-		EB43689128FE1C9E0023A2F9 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		EB43689328FE1CAE0023A2F9 /* LoginVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginVC.storyboard; sourceTree = "<group>"; };
-		EB43689628FE28D60023A2F9 /* EsqueceuSenhaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EsqueceuSenhaVC.swift; sourceTree = "<group>"; };
-		EB43689828FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EsqueceuSenhaVC.storyboard; sourceTree = "<group>"; };
+		B28F77A924ABA42FFBE3984B /* Pods-GoReceitas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoReceitas.debug.xcconfig"; path = "Target Support Files/Pods-GoReceitas/Pods-GoReceitas.debug.xcconfig"; sourceTree = "<group>"; };
+		DF9409CCC4CF059075F0E05E /* Pods_GoReceitas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoReceitas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB7E9FEB28BB145A00F8C91B /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		EB7E9FEE28BB173400F8C91B /* Cadastro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cadastro.swift; sourceTree = "<group>"; };
 		EB7E9FF128BBA73900F8C91B /* EsqueciSenha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EsqueciSenha.swift; sourceTree = "<group>"; };
@@ -87,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83BA587B70FD88BB36FD8B78 /* Pods_GoReceitas.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +99,8 @@
 			children = (
 				06459BB128B01A060054F510 /* GoReceitas */,
 				06459BB028B01A060054F510 /* Products */,
+				7527BED10A1A1D9BA7DAE570 /* Pods */,
+				E26041B4B912C37D0E9E4F9E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,9 +125,6 @@
 				EB7E9FEA28BB144700F8C91B /* Login */,
 				826281A128DA929F0065AA29 /* MockData */,
 				06C01C8028B42167003ACE17 /* Model */,
-				EB43689028FE1C820023A2F9 /* NewLogin */,
-				EB43688A28FE15060023A2F9 /* NewRegister */,
-				EB43689528FE28B00023A2F9 /* NewEsqueceuSenha */,
 				EB7E9FED28BB171500F8C91B /* Register */,
 				82A4040528DAA8A700F38990 /* Resources */,
 				82A403FF28DAA4D500F38990 /* TableViewCells */,
@@ -150,6 +150,9 @@
 				82A4040328DAA57800F38990 /* TagsResultsViewController.swift */,
 				8259F93228DAB81C00476299 /* AllTagsViewController.swift */,
 				82025B9C28EB8F890090376F /* SearchViewController.swift */,
+				5CC71FA528FE25D100FF75ED /* changePasswordViewController.swift */,
+				5CC71FA728FE25DD00FF75ED /* changeEmailViewController.swift */,
+				5CC71FA928FE26F200FF75ED /* ProfileViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -162,6 +165,16 @@
 				82A403F828DA9DF400F38990 /* AllTagsModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7527BED10A1A1D9BA7DAE570 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B28F77A924ABA42FFBE3984B /* Pods-GoReceitas.debug.xcconfig */,
+				7FBF1889A184E7E874085434 /* Pods-GoReceitas.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		8259F92B28DAB12400476299 /* Enums */ = {
@@ -231,6 +244,7 @@
 			children = (
 				06459BB828B01A060054F510 /* Main.storyboard */,
 				06459BC028B01A080054F510 /* LaunchScreen.storyboard */,
+				5CC71FA328FE242B00FF75ED /* Profile.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -244,31 +258,12 @@
 			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
-		EB43688A28FE15060023A2F9 /* NewRegister */ = {
+		E26041B4B912C37D0E9E4F9E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EB43688B28FE15370023A2F9 /* RegisterVC.swift */,
-				EB43688D28FE15460023A2F9 /* RegisterVC.storyboard */,
+				DF9409CCC4CF059075F0E05E /* Pods_GoReceitas.framework */,
 			);
-			path = NewRegister;
-			sourceTree = "<group>";
-		};
-		EB43689028FE1C820023A2F9 /* NewLogin */ = {
-			isa = PBXGroup;
-			children = (
-				EB43689128FE1C9E0023A2F9 /* LoginVC.swift */,
-				EB43689328FE1CAE0023A2F9 /* LoginVC.storyboard */,
-			);
-			path = NewLogin;
-			sourceTree = "<group>";
-		};
-		EB43689528FE28B00023A2F9 /* NewEsqueceuSenha */ = {
-			isa = PBXGroup;
-			children = (
-				EB43689628FE28D60023A2F9 /* EsqueceuSenhaVC.swift */,
-				EB43689828FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard */,
-			);
-			path = NewEsqueceuSenha;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EB7E9FEA28BB144700F8C91B /* Login */ = {
@@ -302,6 +297,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 06459BC628B01A080054F510 /* Build configuration list for PBXNativeTarget "GoReceitas" */;
 			buildPhases = (
+				ECFC3274AFAA0AC56D324D0B /* [CP] Check Pods Manifest.lock */,
 				06459BAB28B01A060054F510 /* Sources */,
 				06459BAC28B01A060054F510 /* Frameworks */,
 				06459BAD28B01A060054F510 /* Resources */,
@@ -353,18 +349,41 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB43688E28FE15460023A2F9 /* RegisterVC.storyboard in Resources */,
-				EB43689928FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard in Resources */,
+				5CC71FA428FE242B00FF75ED /* Profile.storyboard in Resources */,
 				82C9BE3928DA85B800D890EF /* Extensions in Resources */,
 				069F5DE128B4165F00C15177 /* TagCell.xib in Resources */,
 				06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */,
-				EB43689428FE1CAE0023A2F9 /* LoginVC.storyboard in Resources */,
 				06459BBF28B01A080054F510 /* Assets.xcassets in Resources */,
 				06459BBA28B01A060054F510 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		ECFC3274AFAA0AC56D324D0B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GoReceitas-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		06459BAB28B01A060054F510 /* Sources */ = {
@@ -379,10 +398,10 @@
 				82A4040428DAA57800F38990 /* TagsResultsViewController.swift in Sources */,
 				82A403F928DA9DF400F38990 /* AllTagsModel.swift in Sources */,
 				069F5DE028B4165F00C15177 /* TagCell.swift in Sources */,
+				5CC71FA828FE25DD00FF75ED /* changeEmailViewController.swift in Sources */,
 				82C9BE4828DA89BE00D890EF /* FooterViewCell.swift in Sources */,
-				EB43689228FE1C9E0023A2F9 /* LoginVC.swift in Sources */,
-				EB43689728FE28D60023A2F9 /* EsqueceuSenhaVC.swift in Sources */,
-				EB43688C28FE15370023A2F9 /* RegisterVC.swift in Sources */,
+				5CC71FAA28FE26F200FF75ED /* ProfileViewController.swift in Sources */,
+				5CC71FA628FE25D100FF75ED /* changePasswordViewController.swift in Sources */,
 				82C9BE4A28DA89D100D890EF /* CategoryViewCell.swift in Sources */,
 				8259F92D28DAB14900476299 /* Sections.swift in Sources */,
 				EB7E9FEC28BB145A00F8C91B /* Login.swift in Sources */,
@@ -538,6 +557,7 @@
 		};
 		06459BC728B01A080054F510 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B28F77A924ABA42FFBE3984B /* Pods-GoReceitas.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -566,6 +586,7 @@
 		};
 		06459BC828B01A080054F510 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FBF1889A184E7E874085434 /* Pods-GoReceitas.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
