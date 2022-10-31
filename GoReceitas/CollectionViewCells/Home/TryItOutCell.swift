@@ -10,7 +10,7 @@ class TryItOutCell: UICollectionViewCell {
     @IBOutlet weak var prepTimeLbl: UILabel!
     
     func setup(_ foodInfo: CellsInfoSections) {
-        self.foogImg.image = UIImage(named: foodInfo.foodImage ?? "")
+        self.foogImg.image = UIImage(named: foodInfo.foodImage)
         self.foodNameLbl.text = foodInfo.foodName
         self.prepTimeLbl.text = foodInfo.prepTime
     }

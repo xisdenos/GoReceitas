@@ -13,16 +13,16 @@ class MockData {
     private let categories: Sections = {
         .categories(
             [
-                CellsInfoSections(categoryName: "Japanese"),
-                CellsInfoSections(categoryName: "Healthy"),
-                CellsInfoSections(categoryName: "Snacks"),
-                CellsInfoSections(categoryName: "Indian"),
-                CellsInfoSections(categoryName: "Taiwan"),
-                CellsInfoSections(categoryName: "Italian"),
-                CellsInfoSections(categoryName: "Middle Eastern"),
-                CellsInfoSections(categoryName: "Breakfast"),
-                CellsInfoSections(categoryName: "Barbecue"),
-                CellsInfoSections(categoryName: "Vegan"),
+                CategoryModel(categoryName: "Japanese"),
+                CategoryModel(categoryName: "Healthy"),
+                CategoryModel(categoryName: "Snacks"),
+                CategoryModel(categoryName: "Indian"),
+                CategoryModel(categoryName: "Taiwan"),
+                CategoryModel(categoryName: "Italian"),
+                CategoryModel(categoryName: "Middle Eastern"),
+                CategoryModel(categoryName: "Breakfast"),
+                CategoryModel(categoryName: "Barbecue"),
+                CategoryModel(categoryName: "Vegan"),
             ]
         )
     }()
@@ -30,12 +30,12 @@ class MockData {
     private let tryItOut: Sections = {
         .tryItOut(
             [
-                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
-                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
-                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
-                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
-                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
-                CellsInfoSections(foodName: "Lasanha", prepTime: "60min", foodImage: "lasanha"),
+                CellsInfoSections(foodName: "Pizza chicago", prepTime: "35 min", foodImage: "pizza-chicago"),
+                CellsInfoSections(foodName: "Mac-and-cheese", prepTime: "40 min", foodImage: "mac-and-cheese"),
+                CellsInfoSections(foodName: "Oats", prepTime: "10 min", foodImage: "oats"),
+                CellsInfoSections(foodName: "Pumpkin-pie", prepTime: "60min", foodImage: "pumpkin-pie"),
+                CellsInfoSections(foodName: "Croissant", prepTime: "60 min", foodImage: "croissant-breakfast-pizza"),
+                CellsInfoSections(foodName: "Rice", prepTime: "20 min", foodImage: "rice"),
             ]
         )
     }()
@@ -43,13 +43,13 @@ class MockData {
     private let popular: Sections = {
         .popular(
             [
-                CellsInfoSections(foodName: "Macarrão", prepTime: "40min", foodImage: "macarrao"),
-                CellsInfoSections(foodName: "Macarrão", prepTime: "40min", foodImage: "macarrao"),
-                CellsInfoSections(foodName: "Macarrão", prepTime: "40min", foodImage: "macarrao"),
-                CellsInfoSections(foodName: "Macarrão", prepTime: "40min", foodImage: "macarrao"),
-                CellsInfoSections(foodName: "Macarrão", prepTime: "40min", foodImage: "macarrao"),
-                CellsInfoSections(foodName: "Macarrão", prepTime: "40min", foodImage: "macarrao"),
-                CellsInfoSections(foodName: "Macarrão", prepTime: "40min", foodImage: "macarrao"),
+                CellsInfoSections(foodName: "Shrimp", prepTime: "30 min", foodImage: "shrimp"),
+                CellsInfoSections(foodName: "Tomato", prepTime: "10 min", foodImage: "tomato"),
+                CellsInfoSections(foodName: "Birria tacos", prepTime: "25 min", foodImage: "birria-tacos"),
+                CellsInfoSections(foodName: "Croissant", prepTime: "45 min", foodImage: "croissant-breakfast-pizza"),
+                CellsInfoSections(foodName: "Grilled tacos", prepTime: "20 min", foodImage: "grilled-tacos"),
+                CellsInfoSections(foodName: "Lasagna", prepTime: "60 min", foodImage: "lasanha"),
+                CellsInfoSections(foodName: "Spaghetti", prepTime: "20 min", foodImage: "macarrao"),
             ]
             
         )

@@ -8,20 +8,20 @@
 import Foundation
 
 enum Sections {
-    case categories([CellsInfoSections])
+    case categories([CategoryModel])
     case tryItOut([CellsInfoSections])
     case popular([CellsInfoSections])
     
-    var items: [CellsInfoSections] {
-        switch self {
-        case .categories(let array):
-            return array
-        case .tryItOut(let array):
-            return array
-        case .popular(let array):
-            return array
+        var items: [Any] {
+            switch self {
+            case .categories(let array):
+                return array
+            case .tryItOut(let array):
+                return array
+            case .popular(let array):
+                return array
+            }
         }
-    }
     
     var count: Int {
         return items.count
@@ -30,9 +30,9 @@ enum Sections {
     var title: String {
         switch self {
         case .categories:
-            return "Categorias"
+            return "Categories"
         case .tryItOut:
-            return "Experimente"
+            return "Try it out"
         case .popular:
             return "Popular"
         }

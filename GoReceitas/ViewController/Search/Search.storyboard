@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3AK-EH-0j3">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search-->
+        <scene sceneID="7jg-jj-vyn">
+            <objects>
+                <viewController storyboardIdentifier="searchVC" title="Search" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wz5-7x-MbB" customClass="SearchViewController" customModule="GoReceitas" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tPa-Lf-Hz1">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xIZ-Lx-iFS">
+                                <rect key="frame" x="0.0" y="91" width="390" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="k78-qF-Phh"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sKd-mZ-gPv">
+                                <rect key="frame" x="0.0" y="151" width="390" height="659"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6hC-Qa-mUB"/>
+                        <color key="backgroundColor" red="0.99215686270000003" green="0.96078431369999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="sKd-mZ-gPv" firstAttribute="leading" secondItem="6hC-Qa-mUB" secondAttribute="leading" id="2Qw-y1-2gE"/>
+                            <constraint firstItem="xIZ-Lx-iFS" firstAttribute="leading" secondItem="6hC-Qa-mUB" secondAttribute="leading" id="3DA-k5-ppY"/>
+                            <constraint firstItem="6hC-Qa-mUB" firstAttribute="trailing" secondItem="sKd-mZ-gPv" secondAttribute="trailing" id="E2H-9P-Zxx"/>
+                            <constraint firstItem="sKd-mZ-gPv" firstAttribute="top" secondItem="xIZ-Lx-iFS" secondAttribute="bottom" id="EOt-0q-tre"/>
+                            <constraint firstItem="6hC-Qa-mUB" firstAttribute="trailing" secondItem="xIZ-Lx-iFS" secondAttribute="trailing" id="JC2-ev-9Fv"/>
+                            <constraint firstItem="6hC-Qa-mUB" firstAttribute="bottom" secondItem="sKd-mZ-gPv" secondAttribute="bottom" id="SpW-ly-T7f"/>
+                            <constraint firstItem="xIZ-Lx-iFS" firstAttribute="top" secondItem="6hC-Qa-mUB" secondAttribute="top" id="Uqd-mF-b8h"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search" id="Pk2-n2-xL6"/>
+                    <connections>
+                        <outlet property="containerSearchBar" destination="xIZ-Lx-iFS" id="n1V-sO-bNK"/>
+                        <outlet property="tableView" destination="sKd-mZ-gPv" id="vuW-zT-PaV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W2l-xb-QRH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8023.0769230769229" y="558.76777251184831"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="dh4-ve-vVX">
+            <objects>
+                <navigationController storyboardIdentifier="searchNavigation" title="Search" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3AK-EH-0j3" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" id="44O-h8-R14"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oxU-Be-GTN">
+                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Wz5-7x-MbB" kind="relationship" relationship="rootViewController" id="VQc-Qd-3ZG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="25d-IY-hFv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7093.8461538461534" y="558.76777251184831"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

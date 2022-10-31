@@ -8,9 +8,9 @@
 import Foundation
 
 struct CellsInfoSections {
-    var foodName: String?
-    var prepTime: String?
-    var foodImage: String?
+    var foodName: String
+    var prepTime: String
+    var foodImage: String
     
-    var categoryName: String?
+//    var categoryName: String?
 }
