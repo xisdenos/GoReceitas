@@ -8,37 +8,9 @@
 import UIKit
 
 class FoodDetailsView: UIView {
-    var data: [CellsInfoSections] = [
-        .init(foodName: "Spaghetti", prepTime: "20 min", foodImage: "lasanha"),
-        .init(foodName: "Spaghetti", prepTime: "20 min", foodImage: "lasanha"),
-        .init(foodName: "Spaghetti", prepTime: "20 min", foodImage: "lasanha"),
-        .init(foodName: "Spaghetti", prepTime: "20 min", foodImage: "lasanha"),
-    ]
     
     lazy var scrollView = UIScrollView()
     lazy var contentView = UIView()
-    
-    lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = .init(width: 100, height: 200)
-        layout.sectionInset = .init(top: 0, left: 5, bottom: 0, right: 5)
-        
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.decelerationRate = .fast
-        collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.isPagingEnabled = true
-        
-        return collection
-    }()
-    
-    lazy var youMayLikeLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "You may also like"
-        label.font = UIFont.boldSystemFont(ofSize: 22)
-        return label
-    }()
     
     lazy var foodImageView: UIImageView = {
         let imageView = UIImageView()
@@ -147,19 +119,8 @@ class FoodDetailsView: UIView {
         contentView.addSubview(forthPurpleContainer)
         contentView.addSubview(prepareLabel)
         contentView.addSubview(instructionsLabel)
-        contentView.addSubview(youMayLikeLabel)
-        contentView.addSubview(collectionView)
-        setupCollectionView()
         configConstraints()
-        
         self.backgroundColor = .viewBackgroundColor
-        
-    }
-    
-    func setupCollectionView() {
-        collectionView.register(FoodDetailsCollectionViewCell.nib(), forCellWithReuseIdentifier: FoodDetailsCollectionViewCell.identifier)
-        collectionView.delegate = self
-        collectionView.dataSource = self
     }
     
     required init?(coder: NSCoder) {
@@ -216,16 +177,16 @@ class FoodDetailsView: UIView {
             detailLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             
             firstPurpleContainer.topAnchor.constraint(equalTo: pinkView.topAnchor, constant: 60),
-            firstPurpleContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            firstPurpleContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             
             secondPurpleContainer.topAnchor.constraint(equalTo: pinkView.topAnchor, constant: 60),
-            secondPurpleContainer.leadingAnchor.constraint(equalTo: firstPurpleContainer.trailingAnchor, constant: 5),
+            secondPurpleContainer.leadingAnchor.constraint(equalTo: firstPurpleContainer.trailingAnchor, constant: 15),
             
             thirdPurpleContainer.topAnchor.constraint(equalTo: firstPurpleContainer.bottomAnchor, constant: 10),
-            thirdPurpleContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            thirdPurpleContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             
             forthPurpleContainer.topAnchor.constraint(equalTo: secondPurpleContainer.bottomAnchor, constant: 10),
-            forthPurpleContainer.leadingAnchor.constraint(equalTo: thirdPurpleContainer.trailingAnchor, constant: 5),
+            forthPurpleContainer.leadingAnchor.constraint(equalTo: thirdPurpleContainer.trailingAnchor, constant: 15),
             
             prepareLabel.topAnchor.constraint(equalTo: thirdPurpleContainer.bottomAnchor, constant: 25),
             prepareLabel.leadingAnchor.constraint(equalTo: firstPurpleContainer.leadingAnchor),
@@ -233,28 +194,7 @@ class FoodDetailsView: UIView {
             instructionsLabel.topAnchor.constraint(equalTo: prepareLabel.bottomAnchor,constant: 8),
             instructionsLabel.leadingAnchor.constraint(equalTo: prepareLabel.leadingAnchor),
             instructionsLabel.trailingAnchor.constraint(equalTo: secondPurpleContainer.trailingAnchor),
-
-            // todo: add bottom
-            youMayLikeLabel.topAnchor.constraint(equalTo: instructionsLabel.bottomAnchor,constant: 12),
-            youMayLikeLabel.leadingAnchor.constraint(equalTo: instructionsLabel.leadingAnchor),
-            youMayLikeLabel.trailingAnchor.constraint(equalTo: instructionsLabel.trailingAnchor),
-            
-            collectionView.topAnchor.constraint(equalTo: youMayLikeLabel.bottomAnchor,constant: 8),
-            collectionView.leadingAnchor.constraint(equalTo: youMayLikeLabel.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: youMayLikeLabel.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            instructionsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
-    }
-}
-
-extension FoodDetailsView: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodDetailsCollectionViewCell.identifier, for: indexPath) as! FoodDetailsCollectionViewCell
-        cell.setup(data[indexPath.row])
-        return cell
     }
 }
