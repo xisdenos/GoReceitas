@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		060DDF16291142F800D9A884 /* purpleHearthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060DDF15291142F800D9A884 /* purpleHearthView.swift */; };
 		06459BB328B01A060054F510 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06459BB228B01A060054F510 /* AppDelegate.swift */; };
 		06459BB528B01A060054F510 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06459BB428B01A060054F510 /* SceneDelegate.swift */; };
 		06459BB728B01A060054F510 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06459BB628B01A060054F510 /* HomeViewController.swift */; };
@@ -14,6 +15,12 @@
 		06459BBD28B01A060054F510 /* GoReceitas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 06459BBB28B01A060054F510 /* GoReceitas.xcdatamodeld */; };
 		06459BBF28B01A080054F510 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06459BBE28B01A080054F510 /* Assets.xcassets */; };
 		06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06459BC028B01A080054F510 /* LaunchScreen.storyboard */; };
+		06AC22CA2910A6E3008E4D0B /* FoodDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AC22C92910A6E3008E4D0B /* FoodDetailsViewController.swift */; };
+		06AC22CC2910A6F4008E4D0B /* FoodDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AC22CB2910A6F4008E4D0B /* FoodDetailsView.swift */; };
+		06AC22D32910AEA7008E4D0B /* FadedViewWithLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AC22D22910AEA7008E4D0B /* FadedViewWithLabel.swift */; };
+		06DB88FA291170D0004489BC /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DB88F9291170D0004489BC /* TimeView.swift */; };
+		06DB88FC29117724004489BC /* purpleFadedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DB88FB29117724004489BC /* purpleFadedContainer.swift */; };
+		06DB88FE29119217004489BC /* PurpleInsideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DB88FD29119217004489BC /* PurpleInsideView.swift */; };
 		1F5585482902CB6100580185 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5585462902CB6100580185 /* FavoriteCollectionViewCell.swift */; };
 		1F5585492902CB6100580185 /* FavoriteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5585472902CB6100580185 /* FavoriteCollectionViewCell.xib */; };
 		1F55854B2902E7A100580185 /* FavoriteEmptyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F55854A2902E7A100580185 /* FavoriteEmptyVC.swift */; };
@@ -57,6 +64,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		060DDF15291142F800D9A884 /* purpleHearthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = purpleHearthView.swift; sourceTree = "<group>"; };
 		06459BAF28B01A060054F510 /* GoReceitas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoReceitas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06459BB228B01A060054F510 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06459BB428B01A060054F510 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +74,12 @@
 		06459BBE28B01A080054F510 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06459BC128B01A080054F510 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		06459BC328B01A080054F510 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06AC22C92910A6E3008E4D0B /* FoodDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailsViewController.swift; sourceTree = "<group>"; };
+		06AC22CB2910A6F4008E4D0B /* FoodDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailsView.swift; sourceTree = "<group>"; };
+		06AC22D22910AEA7008E4D0B /* FadedViewWithLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadedViewWithLabel.swift; sourceTree = "<group>"; };
+		06DB88F9291170D0004489BC /* TimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
+		06DB88FB29117724004489BC /* purpleFadedContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = purpleFadedContainer.swift; sourceTree = "<group>"; };
+		06DB88FD29119217004489BC /* PurpleInsideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurpleInsideView.swift; sourceTree = "<group>"; };
 		1F5585462902CB6100580185 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		1F5585472902CB6100580185 /* FavoriteCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteCollectionViewCell.xib; sourceTree = "<group>"; };
 		1F55854A2902E7A100580185 /* FavoriteEmptyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteEmptyVC.swift; sourceTree = "<group>"; };
@@ -160,9 +174,32 @@
 			path = GoReceitas;
 			sourceTree = "<group>";
 		};
+		06AC22C82910A6D1008E4D0B /* FoodDetails */ = {
+			isa = PBXGroup;
+			children = (
+				06AC22CF2910ADE4008E4D0B /* Components */,
+				06AC22C92910A6E3008E4D0B /* FoodDetailsViewController.swift */,
+				06AC22CB2910A6F4008E4D0B /* FoodDetailsView.swift */,
+			);
+			path = FoodDetails;
+			sourceTree = "<group>";
+		};
+		06AC22CF2910ADE4008E4D0B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				06AC22D22910AEA7008E4D0B /* FadedViewWithLabel.swift */,
+				060DDF15291142F800D9A884 /* purpleHearthView.swift */,
+				06DB88F9291170D0004489BC /* TimeView.swift */,
+				06DB88FB29117724004489BC /* purpleFadedContainer.swift */,
+				06DB88FD29119217004489BC /* PurpleInsideView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		06C01C7F28B4214C003ACE17 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				06AC22C82910A6D1008E4D0B /* FoodDetails */,
 				1FAA32B328EDF95800AB6B9C /* Favoritos */,
 				EB43689528FE28B00023A2F9 /* Forget Password */,
 				8247B9002909EC9000437F1E /* Home */,
@@ -507,18 +544,24 @@
 			files = (
 				82A4040228DAA4F700F38990 /* TagsResultsTableViewCell.swift in Sources */,
 				06459BB728B01A060054F510 /* HomeViewController.swift in Sources */,
+				06AC22D32910AEA7008E4D0B /* FadedViewWithLabel.swift in Sources */,
+				060DDF16291142F800D9A884 /* purpleHearthView.swift in Sources */,
 				06459BBD28B01A060054F510 /* GoReceitas.xcdatamodeld in Sources */,
 				82A4040428DAA57800F38990 /* TagsResultsViewController.swift in Sources */,
 				82A403F928DA9DF400F38990 /* AllTagsModel.swift in Sources */,
 				5CC71FA828FE25DD00FF75ED /* ChangeEmailViewController.swift in Sources */,
 				82C9BE4828DA89BE00D890EF /* FooterViewCell.swift in Sources */,
 				82CC509F29098FB70032FC25 /* ResultsTableViewCell.swift in Sources */,
+				06DB88FC29117724004489BC /* purpleFadedContainer.swift in Sources */,
+				06DB88FE29119217004489BC /* PurpleInsideView.swift in Sources */,
 				EB43689228FE1C9E0023A2F9 /* LoginVC.swift in Sources */,
 				EB43689728FE28D60023A2F9 /* EsqueceuSenhaVC.swift in Sources */,
 				EBCBA2652910873B0073AE60 /* MainTabBarController.swift in Sources */,
 				EB43688C28FE15370023A2F9 /* RegisterVC.swift in Sources */,
+				06DB88FA291170D0004489BC /* TimeView.swift in Sources */,
 				5CC71FAA28FE26F200FF75ED /* ProfileViewController.swift in Sources */,
 				5CC71FA628FE25D100FF75ED /* ChangePasswordViewController.swift in Sources */,
+				06AC22CA2910A6E3008E4D0B /* FoodDetailsViewController.swift in Sources */,
 				82C9BE4A28DA89D100D890EF /* CategoryViewCell.swift in Sources */,
 				8259F92D28DAB14900476299 /* Sections.swift in Sources */,
 				06459BB328B01A060054F510 /* AppDelegate.swift in Sources */,
@@ -537,6 +580,7 @@
 				82C9BE4C28DA89DE00D890EF /* TryItOutCell.swift in Sources */,
 				1F55854B2902E7A100580185 /* FavoriteEmptyVC.swift in Sources */,
 				82A403FD28DA9EB800F38990 /* AllTagsViewCell.swift in Sources */,
+				06AC22CC2910A6F4008E4D0B /* FoodDetailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
