@@ -62,6 +62,11 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         CGSize(width: self.view.frame.size.width / 2.3, height: 150) :
         CGSize(width: 230, height: 280)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let viewController = FoodDetailsViewController()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }
 
 extension FavoriteVC: FavoriteCollectionViewCellDelegate {
