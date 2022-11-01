@@ -64,7 +64,7 @@ class ProfileViewController: UIViewController {
             let defauts = UserDefaults.standard
             defauts.set(false, forKey: "isUserSignedIn ")
             self.dismiss(animated: true,completion: nil)
-        } catch let singOutError {
+        } catch {
             self.alert?.alertInformation(title: "Atenção", message: "Erro ao Sair")
         }
         

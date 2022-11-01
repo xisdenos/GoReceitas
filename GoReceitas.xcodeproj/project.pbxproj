@@ -41,6 +41,8 @@
 		82A403FD28DA9EB800F38990 /* AllTagsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A403FC28DA9EB800F38990 /* AllTagsViewCell.swift */; };
 		82A4040228DAA4F700F38990 /* TagsResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A4040128DAA4F700F38990 /* TagsResultsTableViewCell.swift */; };
 		82A4040428DAA57800F38990 /* TagsResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A4040328DAA57800F38990 /* TagsResultsViewController.swift */; };
+		82C05CE52911C5A000960D03 /* FoodDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C05CE32911C5A000960D03 /* FoodDetailsCollectionViewCell.swift */; };
+		82C05CE62911C5A000960D03 /* FoodDetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82C05CE42911C5A000960D03 /* FoodDetailsCollectionViewCell.xib */; };
 		82C9BE4028DA883000D890EF /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE3E28DA883000D890EF /* CategoryModel.swift */; };
 		82C9BE4128DA883000D890EF /* CellsInfoSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE3F28DA883000D890EF /* CellsInfoSections.swift */; };
 		82C9BE4528DA88ED00D890EF /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE4428DA88EC00D890EF /* MockData.swift */; };
@@ -102,6 +104,8 @@
 		82A403FC28DA9EB800F38990 /* AllTagsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTagsViewCell.swift; sourceTree = "<group>"; };
 		82A4040128DAA4F700F38990 /* TagsResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsResultsTableViewCell.swift; sourceTree = "<group>"; };
 		82A4040328DAA57800F38990 /* TagsResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsResultsViewController.swift; sourceTree = "<group>"; };
+		82C05CE32911C5A000960D03 /* FoodDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
+		82C05CE42911C5A000960D03 /* FoodDetailsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodDetailsCollectionViewCell.xib; sourceTree = "<group>"; };
 		82C9BE3E28DA883000D890EF /* CategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		82C9BE3F28DA883000D890EF /* CellsInfoSections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellsInfoSections.swift; sourceTree = "<group>"; };
 		82C9BE4428DA88EC00D890EF /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 				06AC22CF2910ADE4008E4D0B /* Components */,
 				06AC22C92910A6E3008E4D0B /* FoodDetailsViewController.swift */,
 				06AC22CB2910A6F4008E4D0B /* FoodDetailsView.swift */,
+				82C05CE32911C5A000960D03 /* FoodDetailsCollectionViewCell.swift */,
+				82C05CE42911C5A000960D03 /* FoodDetailsCollectionViewCell.xib */,
 			);
 			path = FoodDetails;
 			sourceTree = "<group>";
@@ -487,6 +493,7 @@
 				06459BBF28B01A080054F510 /* Assets.xcassets in Resources */,
 				82064C3829034647005DA1FF /* Search.storyboard in Resources */,
 				1F55854D2902E7FD00580185 /* FavoriteEmptyVC.storyboard in Resources */,
+				82C05CE62911C5A000960D03 /* FoodDetailsCollectionViewCell.xib in Resources */,
 				1FAA32B728EDFEF600AB6B9C /* FavoriteVC.storyboard in Resources */,
 				1F5585492902CB6100580185 /* FavoriteCollectionViewCell.xib in Resources */,
 				06459BBA28B01A060054F510 /* Main.storyboard in Resources */,
@@ -569,6 +576,7 @@
 				1F5585482902CB6100580185 /* FavoriteCollectionViewCell.swift in Sources */,
 				82C9BE4E28DA8A0500D890EF /* HeaderViewCell.swift in Sources */,
 				82C9BE4128DA883000D890EF /* CellsInfoSections.swift in Sources */,
+				82C05CE52911C5A000960D03 /* FoodDetailsCollectionViewCell.swift in Sources */,
 				EB0892BB2902F18900FF33E8 /* AlertController.swift in Sources */,
 				8279DC492904B71C00E526A8 /* Colors+.swift in Sources */,
 				8259F93328DAB81C00476299 /* AllTagsViewController.swift in Sources */,
