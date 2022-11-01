@@ -11,6 +11,7 @@ class FoodDetailsViewController: UIViewController {
     
     var foodDetailsView: FoodDetailsView = FoodDetailsView()
     
+    
     override func loadView() {
         super.loadView()
         view = foodDetailsView
@@ -21,6 +22,7 @@ class FoodDetailsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        self.tabBarController?.tabBar.isHidden = true
+//        self.navigationController?.isNavigationBarHidden = true
     }
 }
