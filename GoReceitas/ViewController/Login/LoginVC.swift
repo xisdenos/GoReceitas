@@ -49,33 +49,33 @@ class LoginVC: UIViewController {
     
     func configCaracteristicas(){
         
-        goLabel.text = "Go"
+        goLabel.text = LoginRegisterDescriptions.goLabel.rawValue
         goLabel.font = UIFont.systemFont(ofSize: 20, weight: .light)
         goLabel.textColor = UIColor(red: 149/255, green: 1/255, blue: 239/255, alpha: 1)
         
-        receitasLabel.text = "Receitas"
+        receitasLabel.text = LoginRegisterDescriptions.topLabel.rawValue
         receitasLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         receitasLabel.textColor = UIColor(red: 149/255, green: 1/255, blue: 239/255, alpha: 1)
         
         
         imageTopLogo.image = UIImage(named: "topLogo")
         
-        emailLabel.text = "E-mail"
+        emailLabel.text = LoginRegisterDescriptions.emailLabel.rawValue
         emailLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         
-        textFieldEmail.placeholder = "Digite seu E-mail:"
+        textFieldEmail.placeholder = LoginRegisterDescriptions.emailTextField.rawValue
         textFieldEmail.keyboardType = .emailAddress
         textFieldEmail.delegate = self
         
-        senhaLabel.text = "Senha"
+        senhaLabel.text = LoginRegisterDescriptions.passwordLabel.rawValue
         senhaLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         
-        textFieldSenha.placeholder = "Digite sua Senha"
+        textFieldSenha.placeholder = LoginRegisterDescriptions.passwordTextField.rawValue
         textFieldSenha.isSecureTextEntry = true
         textFieldSenha.delegate = self
         
         
-        loginButton.setTitle("Login", for: .normal)
+        loginButton.setTitle(LoginRegisterDescriptions.signInLabel.rawValue, for: .normal)
         loginButton.backgroundColor = UIColor(red: 149/255, green: 1/255, blue: 239/255, alpha: 1)
         loginButton.setTitleColor(.white.withAlphaComponent(0.4), for: .disabled)
         loginButton.setTitleColor(.white, for: .normal)
@@ -84,31 +84,26 @@ class LoginVC: UIViewController {
         loginButton.isEnabled = false
         
         
-        ouLabel.text = "OU"
+        ouLabel.text = LoginRegisterDescriptions.orLabel.rawValue
         
         riscoView1.backgroundColor = UIColor(red: 149/255, green: 1/255, blue: 239/255, alpha: 1)
-        
         riscoView2.backgroundColor = UIColor(red: 149/255, green: 1/255, blue: 239/255, alpha: 1)
-        
         riscoView3.backgroundColor = UIColor(red: 149/255, green: 1/255, blue: 239/255, alpha: 1)
         
-        
-        
-        loginGoogleButton.setTitle("Entrar com o Google", for: .normal)
+        loginGoogleButton.setTitle(LoginRegisterDescriptions.signInWithGoogel.rawValue, for: .normal)
         loginGoogleButton.setTitleColor(.black, for: .normal)
         loginGoogleButton.backgroundColor = UIColor(red: 220/255, green: 220/255, blue: 221/255, alpha: 1)
         loginGoogleButton.layer.cornerRadius = 10
         loginGoogleButton.clipsToBounds = true
         
         imageLogoFundo.image = UIImage(named: "logoFundo")
-        
     }
     
     func JaTemCadastro(){
         let atts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(ciColor: .black), .font: UIFont.systemFont(ofSize: 15, weight: .semibold)]
-        let attributedTitle = NSMutableAttributedString(string: "Não tem uma conta? ", attributes: atts)
+        let attributedTitle = NSMutableAttributedString(string: LoginRegisterDescriptions.noAccountLabel.rawValue, attributes: atts)
         let boldAtts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(red: 101/255, green: 33/255, blue: 165/255, alpha: 1), .font: UIFont.systemFont(ofSize: 15, weight: .semibold)]
-        attributedTitle.append(NSAttributedString(string: "Cadastre-se", attributes: boldAtts))
+        attributedTitle.append(NSAttributedString(string: LoginRegisterDescriptions.signUpLabel.rawValue, attributes: boldAtts))
         fazerCadastroButton.setAttributedTitle(attributedTitle, for: .normal)
         fazerCadastroButton.setTitleColor(UIColor(red: 101/255, green: 33/255, blue: 165/255, alpha: 1), for: .normal)    }
     

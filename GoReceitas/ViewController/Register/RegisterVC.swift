@@ -9,8 +9,17 @@ import UIKit
 import FirebaseAuth
 import GoogleSignIn
 
+enum RegisterDescriptions: String {
+    case goLabel = "Go"
+    case topLabel = "Receitas"
+    case registerLabel = "Register"
+    case nameLabel = "Name"
+    case nameTextField = "Your name..."
+    case emailLabel = "E-mail"
+    case emailTextField = "Your email..."
+}
+
 class RegisterVC: UIViewController {
-    
     
     @IBOutlet weak var voltarButton: UIButton!
     @IBOutlet weak var goLabel: UILabel!
@@ -46,47 +55,47 @@ class RegisterVC: UIViewController {
         
         voltarButton.setImage(UIImage(named: "back11"), for: .normal)
         
-        goLabel.text = "Go"
+        goLabel.text = LoginRegisterDescriptions.goLabel.rawValue
         goLabel.textColor = UIColor(red: 149/255, green: 1/255, blue: 239/255, alpha: 1)
         goLabel.font = UIFont.systemFont(ofSize: 20, weight: .light)
         
-        receitasLabel.text = "Receitas"
+        receitasLabel.text = LoginRegisterDescriptions.topLabel.rawValue
         receitasLabel.textColor = UIColor(red: 149/255, green: 1/255, blue: 239/255, alpha: 1)
         receitasLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         
         logoTopImage.image = UIImage(named: "logoTop")
         
-        cadastrarLabel.text = "Cadastrar"
+        cadastrarLabel.text = LoginRegisterDescriptions.registerLabel.rawValue
         cadastrarLabel.font = UIFont.systemFont(ofSize: 28, weight: .semibold)
         
-        nameLabel.text = "Nome"
+        nameLabel.text = RegisterDescriptions.nameLabel.rawValue
         nameLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         
-        textFieldName.placeholder = "Digite seu Nome:"
+        textFieldName.placeholder = LoginRegisterDescriptions.nameLabel.rawValue
         textFieldName.delegate = self
         
-        emailLabel.text = "Email"
+        emailLabel.text = LoginRegisterDescriptions.emailLabel.rawValue
         emailLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         
-        textFieldEmail.placeholder = "Digite seu Email:"
+        textFieldEmail.placeholder = LoginRegisterDescriptions.emailTextField.rawValue
         textFieldEmail.keyboardType = .emailAddress
         textFieldEmail.delegate = self
         
-        senhaLabel.text = "Senha"
+        senhaLabel.text = LoginRegisterDescriptions.passwordLabel.rawValue
         senhaLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         
-        textFieldSenha.placeholder = "Digite sua Senha:"
+        textFieldSenha.placeholder = LoginRegisterDescriptions.passwordTextField.rawValue
         textFieldSenha.isSecureTextEntry = true
         textFieldSenha.delegate = self
         
-        confirmarSenhaLabel.text = "Confirmar a sua senha"
+        confirmarSenhaLabel.text = LoginRegisterDescriptions.confirmPasswordLabel.rawValue
         confirmarSenhaLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         
-        textFieldConfirmarSenha.placeholder = "Digite sua Senha Novamente:"
+        textFieldConfirmarSenha.placeholder = LoginRegisterDescriptions.confirmPasswordTextField.rawValue
         textFieldConfirmarSenha.isSecureTextEntry = true
         textFieldConfirmarSenha.delegate = self
         
-        cadastrarButton.setTitle("Cadastrar", for: .normal)
+        cadastrarButton.setTitle(LoginRegisterDescriptions.registerLabel.rawValue, for: .normal)
         cadastrarButton.backgroundColor = UIColor(red: 149/255, green: 1/255, blue: 239/255, alpha: 1)
         cadastrarButton.setTitleColor(.white.withAlphaComponent(0.4), for: .disabled)
         cadastrarButton.setTitleColor(.white, for: .normal)
@@ -100,9 +109,9 @@ class RegisterVC: UIViewController {
     }
     func backLogin(){
         let atts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(ciColor: .black), .font: UIFont.systemFont(ofSize: 15, weight: .semibold)]
-        let attributedTitle = NSMutableAttributedString(string: "Já tem conta? ", attributes: atts)
+        let attributedTitle = NSMutableAttributedString(string: LoginRegisterDescriptions.alreadyHaveAccount.rawValue, attributes: atts)
         let boldAtts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(red: 101/255, green: 33/255, blue: 165/255, alpha: 1), .font: UIFont.systemFont(ofSize: 15, weight: .semibold)]
-        attributedTitle.append(NSAttributedString(string: "Login", attributes: boldAtts))
+        attributedTitle.append(NSAttributedString(string: LoginRegisterDescriptions.signInLabel.rawValue, attributes: boldAtts))
         backLoginButton.setAttributedTitle(attributedTitle, for: .normal)
         backLoginButton.setTitleColor(UIColor(red: 101/255, green: 33/255, blue: 165/255, alpha: 1), for: .normal)    }
     

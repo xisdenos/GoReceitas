@@ -36,26 +36,38 @@ class FavoriteVC: UIViewController {
                   
                 }
         collectionView.register(FavoriteCollectionViewCell.nib(), forCellWithReuseIdentifier: FavoriteCollectionViewCell.identifier)
+        collectionView.register(NoFavoritesCollectionViewCell.nib(), forCellWithReuseIdentifier: NoFavoritesCollectionViewCell.identifier)
     }
-    
-    
-    
 }
 
 extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+        return !data.isEmpty ? data.count : 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if data.isEmpty {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoFavoritesCollectionViewCell.identifier, for: indexPath) as? NoFavoritesCollectionViewCell
+            return cell ?? UICollectionViewCell()
+        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCollectionViewCell.identifier, for: indexPath) as? FavoriteCollectionViewCell
         cell?.setupCell(foodinfo: data[indexPath.row])
         cell?.viewController = self
+        cell?.delegate = self
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.size.width / 2.3, height: 150)
+        return !data.isEmpty ?
+        CGSize(width: self.view.frame.size.width / 2.3, height: 150) :
+        CGSize(width: 230, height: 280)
     }
-    
+}
+
+extension FavoriteVC: FavoriteCollectionViewCellDelegate {
+    func didTapHeartButton(cell: UICollectionViewCell) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        data.remove(at: indexPath.row)
+        collectionView.reloadData()
+    }
 }

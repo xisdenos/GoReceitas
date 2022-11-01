@@ -13,6 +13,10 @@ class ResultsTableViewCell: UITableViewCell {
     @IBOutlet weak var foodImage: UIImageView!
     @IBOutlet weak var prepTime: UILabel!
     
+    @IBOutlet weak var heartButton: UIButton!
+    
+    private var isActive: Bool = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -31,5 +35,19 @@ class ResultsTableViewCell: UITableViewCell {
         foodImage.contentMode = .scaleAspectFill
         foodImage.layer.cornerRadius = 10
         foodImage.layer.masksToBounds = true
+    }
+    
+    @IBAction func heartTapped(_ sender: UIButton) {
+        toggleHeartImage(for: sender)
+    }
+    
+    private func toggleHeartImage(for button: UIButton) {
+        if isActive == false {
+            button.setImage(UIImage(named: "heart-fill"), for: .normal)
+            isActive = true
+        } else if isActive == true {
+            button.setImage(UIImage(named: "heart-empty"), for: .normal)
+            isActive = false
+        }
     }
 }

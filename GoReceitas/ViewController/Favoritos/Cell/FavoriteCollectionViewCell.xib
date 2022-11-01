@@ -40,8 +40,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbB-oz-kvq">
                                 <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="heart-empty-fav">
+                                <buttonConfiguration key="configuration" style="plain" image="heart-fill">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
+                                    <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="toggleHeartImage:" destination="gTV-IL-0wX" eventType="touchUpInside" id="77J-vX-FRU"/>
@@ -89,6 +90,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="heart-empty-fav" width="20" height="20"/>
+        <image name="heart-fill" width="28" height="25"/>
     </resources>
 </document>
