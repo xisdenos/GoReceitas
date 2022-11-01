@@ -41,6 +41,10 @@ class LoginVC: UIViewController {
         JaTemCadastro()
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+        
+    }
     
     
     func configCaracteristicas(){
@@ -137,7 +141,7 @@ class LoginVC: UIViewController {
                 if usuario == nil{
                     self?.alert?.alertInformation(title: "Atenção", message: "Tivemos um problema inesperado")
                 } else {
-                    let homeVC: HomeViewController? =  UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as? HomeViewController
+                    let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
                     self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
                 }
             }
@@ -177,9 +181,8 @@ class LoginVC: UIViewController {
                     return
                 }
                 
-                let homeVC: HomeViewController? =  UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as? HomeViewController
+                let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
                 self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
-                print("Login com sucesso")
             }
         }
     }

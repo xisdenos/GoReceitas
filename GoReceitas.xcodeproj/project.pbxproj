@@ -53,6 +53,7 @@
 		EB43689428FE1CAE0023A2F9 /* LoginVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB43689328FE1CAE0023A2F9 /* LoginVC.storyboard */; };
 		EB43689728FE28D60023A2F9 /* EsqueceuSenhaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB43689628FE28D60023A2F9 /* EsqueceuSenhaVC.swift */; };
 		EB43689928FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB43689828FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard */; };
+		EBCBA2652910873B0073AE60 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCBA2642910873B0073AE60 /* MainTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +107,7 @@
 		EB43689328FE1CAE0023A2F9 /* LoginVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginVC.storyboard; sourceTree = "<group>"; };
 		EB43689628FE28D60023A2F9 /* EsqueceuSenhaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EsqueceuSenhaVC.swift; sourceTree = "<group>"; };
 		EB43689828FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EsqueceuSenhaVC.storyboard; sourceTree = "<group>"; };
+		EBCBA2642910873B0073AE60 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				06459BB828B01A060054F510 /* Main.storyboard */,
+				EBCBA2642910873B0073AE60 /* MainTabBarController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				82CC509F29098FB70032FC25 /* ResultsTableViewCell.swift in Sources */,
 				EB43689228FE1C9E0023A2F9 /* LoginVC.swift in Sources */,
 				EB43689728FE28D60023A2F9 /* EsqueceuSenhaVC.swift in Sources */,
+				EBCBA2652910873B0073AE60 /* MainTabBarController.swift in Sources */,
 				EB43688C28FE15370023A2F9 /* RegisterVC.swift in Sources */,
 				5CC71FAA28FE26F200FF75ED /* ProfileViewController.swift in Sources */,
 				5CC71FA628FE25D100FF75ED /* ChangePasswordViewController.swift in Sources */,
