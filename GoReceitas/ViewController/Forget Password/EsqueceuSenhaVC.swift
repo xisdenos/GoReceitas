@@ -43,13 +43,13 @@ class EsqueceuSenhaVC: UIViewController {
         
         logoTopImage.image = UIImage(named: "logoTop")
         
-        informacaoLabel.text = "Informe o seu E-mail de Cadastro"
+        informacaoLabel.text = ForgetPasswordsDescriptions.infoEmailLabel.rawValue
         informacaoLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         
-        textFieldInformarEmail.placeholder = "Digite seu Email"
+        textFieldInformarEmail.placeholder = ForgetPasswordsDescriptions.emailPlaceholder.rawValue
         textFieldInformarEmail.delegate = self
         
-        enviarButton.setTitle("Enviar", for: .normal)
+        enviarButton.setTitle(ForgetPasswordsDescriptions.sendEmailLabel.rawValue, for: .normal)
         enviarButton.backgroundColor = UIColor(red: 149/255, green: 1/255, blue: 239/255, alpha: 1)
         enviarButton.setTitleColor(.white, for: .normal)
         enviarButton.setTitleColor(.white.withAlphaComponent(0.40), for: .disabled)
