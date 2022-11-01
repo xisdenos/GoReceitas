@@ -33,6 +33,7 @@ class RegisterVC: UIViewController {
     var auth:Auth?
     var alert: AlertController?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         alert = AlertController(controller: self)
@@ -147,7 +148,7 @@ class RegisterVC: UIViewController {
                     self?.alert?.alertInformation(title: "Atenção", message: "Erro ao cadastrar, verifique os dados e tente novamente")
                 } else {
                     self?.alert?.alertInformation(title: "Parabens", message: "Usuario cadastrado com sucesso", completion: {
-                        let homeVC: HomeViewController? =  UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "homeVC") as? HomeViewController
+                        let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
                         self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
                     })
                 }

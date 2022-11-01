@@ -203,6 +203,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let storyboard = UIStoryboard(name: "Home", bundle: nil)
             let viewController = storyboard.instantiateViewController(withIdentifier: "TagsResultsViewController") as! TagsResultsViewController
             navigationController?.pushViewController(viewController, animated: true)
+            
+        case .tryItOut:
+            let viewController = FoodDetailsViewController()
+            navigationController?.pushViewController(viewController, animated: true)
         default:
             break
         }
