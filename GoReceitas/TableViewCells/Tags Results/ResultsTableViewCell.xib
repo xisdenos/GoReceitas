@@ -25,7 +25,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbQ-Ys-FPK">
                                 <rect key="frame" x="0.0" y="0.0" width="110" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -42,10 +42,22 @@
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="alz-Mw-VB2">
                         <rect key="frame" x="255" y="10" width="55" height="55"/>
-                        <color key="backgroundColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="0.55000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I4X-Z1-OMH">
+                                <rect key="frame" x="0.66666666666665719" y="5.6666666666666643" width="54" height="44"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="heart-empty"/>
+                                <connections>
+                                    <action selector="heartTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="TJ0-MO-mUC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98431372549019602" green="0.92156862745098034" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="55" id="8Cv-EM-NHB"/>
                             <constraint firstAttribute="width" constant="55" id="98P-av-bXA"/>
+                            <constraint firstItem="I4X-Z1-OMH" firstAttribute="centerX" secondItem="alz-Mw-VB2" secondAttribute="centerX" id="GWN-M7-D0S"/>
+                            <constraint firstItem="I4X-Z1-OMH" firstAttribute="centerY" secondItem="alz-Mw-VB2" secondAttribute="centerY" id="ROS-6A-t8L"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UGr-aQ-jYN">
@@ -85,9 +97,13 @@
             <connections>
                 <outlet property="foodImage" destination="QND-62-3Lx" id="qoe-VU-0aX"/>
                 <outlet property="foodName" destination="1lA-aQ-OlA" id="mzJ-jM-f8G"/>
+                <outlet property="heartButton" destination="I4X-Z1-OMH" id="ZvI-xl-xsB"/>
                 <outlet property="prepTime" destination="qbQ-Ys-FPK" id="UKe-r5-8Jh"/>
             </connections>
             <point key="canvasLocation" x="60" y="51.895734597156398"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="heart-empty" width="30" height="30"/>
+    </resources>
 </document>
