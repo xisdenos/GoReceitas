@@ -58,7 +58,7 @@ class LoginVC: UIViewController {
         receitasLabel.textColor = UIColor(red: 149/255, green: 1/255, blue: 239/255, alpha: 1)
         
         
-        imageTopLogo.image = UIImage(named: "topLogo")
+        imageTopLogo.image = UIImage(named: "logoTop")
         
         emailLabel.text = LoginRegisterDescriptions.emailLabel.rawValue
         emailLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
