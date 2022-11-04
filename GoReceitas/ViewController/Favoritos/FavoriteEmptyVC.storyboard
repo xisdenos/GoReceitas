@@ -16,39 +16,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go Receitas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i28-8D-MOO">
-                                <rect key="frame" x="105.66666666666667" y="52" width="178.66666666666663" height="38.333333333333343"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
-                                <color key="textColor" red="0.58556997779999997" green="0.0043014450930000002" blue="0.93849521879999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="undraw_cooking_re_g99p (2) 1" translatesAutoresizingMaskIntoConstraints="NO" id="HsW-S6-QS8">
-                                <rect key="frame" x="133.33333333333334" y="207.33333333333334" width="123.33333333333334" height="101.66666666666666"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="undraw_cooking_re_g99p (2) 1" translatesAutoresizingMaskIntoConstraints="NO" id="HsW-S6-QS8">
+                                <rect key="frame" x="133.33333333333334" y="207.33333333333337" width="123.33333333333334" height="101.66666666666663"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sem Favoritos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLL-3s-js2">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Sem Favoritos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLL-3s-js2">
                                 <rect key="frame" x="103.66666666666669" y="349" width="183" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Você não adicionou nenhum prato em seus favoritos" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZJ-bN-B86">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Você não adicionou nenhum prato em seus favoritos" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZJ-bN-B86">
                                 <rect key="frame" x="20" y="394" width="350" height="40.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Receitas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMI-XH-ufm">
+                                <rect key="frame" x="154.33333333333334" y="52" width="81.333333333333343" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.53333336109999996" green="0.1019607931" blue="0.90196073060000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoTop" translatesAutoresizingMaskIntoConstraints="NO" id="9sn-gA-bLC">
+                                <rect key="frame" x="240.66666666666666" y="52" width="19.999999999999972" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="M3W-ll-wjh"/>
+                                    <constraint firstAttribute="width" constant="20" id="oU1-2W-rjm"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BnD-Sh-paw">
+                                <rect key="frame" x="128.66666666666666" y="52" width="25.666666666666657" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.53333336109999996" green="0.1019607931" blue="0.90196073060000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Tbj-fB-2ed"/>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.92549019610000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="9sn-gA-bLC" firstAttribute="top" secondItem="Tbj-fB-2ed" secondAttribute="top" constant="5" id="3bB-FL-CrB"/>
                             <constraint firstItem="ZZJ-bN-B86" firstAttribute="top" secondItem="kLL-3s-js2" secondAttribute="bottom" constant="9" id="4jD-Ym-Fur"/>
                             <constraint firstItem="HsW-S6-QS8" firstAttribute="centerX" secondItem="5Py-Z7-5Yu" secondAttribute="centerX" id="6wn-md-moC"/>
-                            <constraint firstItem="HsW-S6-QS8" firstAttribute="top" secondItem="i28-8D-MOO" secondAttribute="bottom" constant="117" id="Ijl-sn-pIl"/>
+                            <constraint firstItem="qMI-XH-ufm" firstAttribute="leading" secondItem="BnD-Sh-paw" secondAttribute="trailing" id="BFb-sK-L66"/>
                             <constraint firstItem="kLL-3s-js2" firstAttribute="centerX" secondItem="5Py-Z7-5Yu" secondAttribute="centerX" id="MVo-XE-1Xy"/>
                             <constraint firstItem="ZZJ-bN-B86" firstAttribute="centerX" secondItem="5Py-Z7-5Yu" secondAttribute="centerX" id="Syt-2G-iLk"/>
+                            <constraint firstItem="qMI-XH-ufm" firstAttribute="top" secondItem="Tbj-fB-2ed" secondAttribute="top" constant="5" id="V6a-6S-fhd"/>
+                            <constraint firstItem="BnD-Sh-paw" firstAttribute="top" secondItem="Tbj-fB-2ed" secondAttribute="top" constant="5" id="X2l-bS-dng"/>
+                            <constraint firstItem="qMI-XH-ufm" firstAttribute="centerX" secondItem="5Py-Z7-5Yu" secondAttribute="centerX" id="YPS-9y-Jv3"/>
+                            <constraint firstItem="9sn-gA-bLC" firstAttribute="leading" secondItem="qMI-XH-ufm" secondAttribute="trailing" constant="5" id="YQF-JY-uMR"/>
                             <constraint firstItem="ZZJ-bN-B86" firstAttribute="leading" secondItem="Tbj-fB-2ed" secondAttribute="leading" constant="20" id="c3v-oT-Fd5"/>
-                            <constraint firstItem="i28-8D-MOO" firstAttribute="top" secondItem="Tbj-fB-2ed" secondAttribute="top" constant="5" id="gy8-kR-Cq5"/>
-                            <constraint firstItem="i28-8D-MOO" firstAttribute="centerX" secondItem="5Py-Z7-5Yu" secondAttribute="centerX" id="kv3-He-OWS"/>
                             <constraint firstItem="Tbj-fB-2ed" firstAttribute="trailing" secondItem="ZZJ-bN-B86" secondAttribute="trailing" constant="20" id="pk4-fV-J5l"/>
                             <constraint firstItem="kLL-3s-js2" firstAttribute="top" secondItem="HsW-S6-QS8" secondAttribute="bottom" constant="40" id="uWx-nN-sw7"/>
                         </constraints>
@@ -60,6 +81,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="logoTop" width="40" height="40"/>
         <image name="undraw_cooking_re_g99p (2) 1" width="123.5" height="101.5"/>
     </resources>
 </document>
