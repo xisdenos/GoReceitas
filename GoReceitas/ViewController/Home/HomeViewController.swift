@@ -13,6 +13,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var welcomeLabel: UILabel!
     
+    
+    // MARK: Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +28,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
