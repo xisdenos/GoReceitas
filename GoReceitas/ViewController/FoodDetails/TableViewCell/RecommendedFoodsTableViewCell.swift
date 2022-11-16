@@ -18,6 +18,7 @@ class RecommendedFoodsTableViewCell: UITableViewCell {
         
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.backgroundColor = .viewBackgroundColor
         collection.register(FoodCollectionViewCell.self, forCellWithReuseIdentifier: FoodCollectionViewCell.identifier)
         
         return collection

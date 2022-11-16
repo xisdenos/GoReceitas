@@ -8,8 +8,9 @@
 import UIKit
 
 enum DetailsSections: Int {
-    case description = 0
-    case recommended = 1
+    case details = 0
+    case description = 1
+    case recommended = 2
 }
 
 class FoodDetailsViewController: UIViewController {
@@ -47,21 +48,23 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionTableViewCell.identifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: DetailsTableViewCell.identifier, for: indexPath)
             return cell
         case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionTableViewCell.identifier, for: indexPath)
+            return cell
+        case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: RecommendedFoodsTableViewCell.identifier, for: indexPath)
             return cell
         default:
             return UITableViewCell()
         }
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -69,11 +72,18 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250
+        switch indexPath.section {
+        case DetailsSections.details.rawValue:
+            return 100
+        default:
+            return 250
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
+        case DetailsSections.details.rawValue:
+            return "Details"
         case DetailsSections.description.rawValue:
             return "Instructions"
         case DetailsSections.recommended.rawValue:
@@ -84,10 +94,19 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.textLabel?.textColor = UIColor.black
-        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-        header.textLabel?.frame = header.bounds
-        header.textLabel?.textAlignment = .left
+        switch section {
+        case DetailsSections.details.rawValue:
+            guard let header = view as? UITableViewHeaderFooterView else { return }
+            header.textLabel?.textColor = UIColor.black
+            header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+            header.textLabel?.frame = header.bounds
+            header.textLabel?.textAlignment = .center
+        default:
+            guard let header = view as? UITableViewHeaderFooterView else { return }
+            header.textLabel?.textColor = UIColor.black
+            header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+            header.textLabel?.frame = header.bounds
+            header.textLabel?.textAlignment = .left
+        }
     }
 }

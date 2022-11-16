@@ -17,6 +17,7 @@ class FoodDetailsView: UIView {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.separatorStyle = .none
         table.backgroundColor = .viewBackgroundColor
+        table.register(DetailsTableViewCell.self, forCellReuseIdentifier: DetailsTableViewCell.identifier)
         table.register(DescriptionTableViewCell.self, forCellReuseIdentifier: DescriptionTableViewCell.identifier)
         table.register(RecommendedFoodsTableViewCell.self, forCellReuseIdentifier: RecommendedFoodsTableViewCell.identifier)
         return table
@@ -40,12 +41,6 @@ class FoodDetailsView: UIView {
         foodImageView.addSubview(purpheHearthView)
         foodImageView.addSubview(timeView)
 
-        self.addSubview(detailLabel)
-        self.addSubview(firstPurpleContainer)
-        self.addSubview(secondPurpleContainer)
-        self.addSubview(thirdPurpleContainer)
-        self.addSubview(forthPurpleContainer)
-        
         self.addSubview(tableView)
 
         configConstraints()
@@ -74,45 +69,6 @@ class FoodDetailsView: UIView {
         return timer
     }()
     
-    lazy var detailLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Detalhes"
-        label.font = UIFont.boldSystemFont(ofSize: 22)
-        return label
-    }()
-    
-    lazy var firstPurpleContainer: purpleFadedView = {
-        let view = purpleFadedView(labelText: "Proteins", numberText: "25")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    lazy var secondPurpleContainer: purpleFadedView = {
-        let view = purpleFadedView(labelText: "Fat", numberText: "81")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    lazy var thirdPurpleContainer: purpleFadedView = {
-        let view = purpleFadedView(labelText: "Calories", numberText: "105")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    lazy var forthPurpleContainer: purpleFadedView = {
-        let view = purpleFadedView(labelText: "Carb", numberText: "53")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    lazy var prepareLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Ingredients:"
-        label.font = UIFont.boldSystemFont(ofSize: 24)
-        return label
-    }()
     
     //MARK: Constraints
     
@@ -135,22 +91,7 @@ class FoodDetailsView: UIView {
             timeView.bottomAnchor.constraint(equalTo: foodImageView.bottomAnchor, constant: -20),
             timeView.leadingAnchor.constraint(equalTo: foodImageView.leadingAnchor, constant: 10),
             
-            detailLabel.topAnchor.constraint(equalTo: foodImageView.bottomAnchor, constant: 5),
-            detailLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            
-            firstPurpleContainer.topAnchor.constraint(equalTo: detailLabel.bottomAnchor, constant: 20),
-            firstPurpleContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-
-            secondPurpleContainer.topAnchor.constraint(equalTo: detailLabel.bottomAnchor, constant: 20),
-            secondPurpleContainer.leadingAnchor.constraint(equalTo: firstPurpleContainer.trailingAnchor, constant: 10),
-
-            thirdPurpleContainer.topAnchor.constraint(equalTo: firstPurpleContainer.bottomAnchor, constant: 10),
-            thirdPurpleContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-
-            forthPurpleContainer.topAnchor.constraint(equalTo: secondPurpleContainer.bottomAnchor, constant: 10),
-            forthPurpleContainer.leadingAnchor.constraint(equalTo: thirdPurpleContainer.trailingAnchor, constant: 10),
-            
-            tableView.topAnchor.constraint(equalTo: forthPurpleContainer.bottomAnchor, constant: 5),
+            tableView.topAnchor.constraint(equalTo: foodImageView.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: foodImageView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: foodImageView.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor),

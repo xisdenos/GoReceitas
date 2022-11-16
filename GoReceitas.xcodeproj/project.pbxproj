@@ -59,6 +59,7 @@
 		82FD41D42925144D00C49B37 /* FoodCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FD41D32925144D00C49B37 /* FoodCollectionViewCell.swift */; };
 		82FD41DA2925365B00C49B37 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FD41D92925365B00C49B37 /* DescriptionTableViewCell.swift */; };
 		82FD41DC29253AD100C49B37 /* RecommendedFoodsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FD41DB29253AD100C49B37 /* RecommendedFoodsTableViewCell.swift */; };
+		82FD41DE292542E800C49B37 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FD41DD292542E800C49B37 /* DetailsTableViewCell.swift */; };
 		CAAA6035E2A6C9BF0929A7F9 /* Pods_GoReceitas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5763844C7CD7EA22F06D90F /* Pods_GoReceitas.framework */; };
 		EB08928B29007B8500FF33E8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB08928A29007B8500FF33E8 /* GoogleService-Info.plist */; };
 		EB0892BB2902F18900FF33E8 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0892BA2902F18800FF33E8 /* AlertController.swift */; };
@@ -128,6 +129,7 @@
 		82FD41D32925144D00C49B37 /* FoodCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCollectionViewCell.swift; sourceTree = "<group>"; };
 		82FD41D92925365B00C49B37 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		82FD41DB29253AD100C49B37 /* RecommendedFoodsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedFoodsTableViewCell.swift; sourceTree = "<group>"; };
+		82FD41DD292542E800C49B37 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
 		D5763844C7CD7EA22F06D90F /* Pods_GoReceitas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoReceitas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB08928A29007B8500FF33E8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EB0892BA2902F18800FF33E8 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 			children = (
 				82FD41D92925365B00C49B37 /* DescriptionTableViewCell.swift */,
 				82FD41DB29253AD100C49B37 /* RecommendedFoodsTableViewCell.swift */,
+				82FD41DD292542E800C49B37 /* DetailsTableViewCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				EB43689728FE28D60023A2F9 /* EsqueceuSenhaVC.swift in Sources */,
 				EBCBA2652910873B0073AE60 /* MainTabBarController.swift in Sources */,
 				82FD41DA2925365B00C49B37 /* DescriptionTableViewCell.swift in Sources */,
+				82FD41DE292542E800C49B37 /* DetailsTableViewCell.swift in Sources */,
 				821BCA4129117A5400D9BDB3 /* NoFavoritesCollectionViewCell.swift in Sources */,
 				EB43688C28FE15370023A2F9 /* RegisterVC.swift in Sources */,
 				06DB88FA291170D0004489BC /* TimeView.swift in Sources */,

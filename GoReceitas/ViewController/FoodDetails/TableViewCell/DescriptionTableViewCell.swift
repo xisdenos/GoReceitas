@@ -34,15 +34,21 @@ class DescriptionTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(instructionsLabel)
         self.backgroundColor = .viewBackgroundColor
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        instructionsLabel.frame = bounds
+    func setupConstraints() {
+        contentView.addSubview(instructionsLabel)
+        
+        NSLayoutConstraint.activate([
+            instructionsLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            instructionsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            instructionsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            instructionsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+        ])
     }
 }
