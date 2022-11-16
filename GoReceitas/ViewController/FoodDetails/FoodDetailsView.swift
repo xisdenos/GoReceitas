@@ -35,9 +35,9 @@ class FoodDetailsView: UIView {
         super.init(frame: frame)
         self.addSubview(foodImageView)
         self.addSubview(tableView)
-//        self.addSubview(topFadedLabel)
-//        self.addSubview(purpheHearthView)
-//        self.addSubview(timeView)
+        foodImageView.addSubview(topFadedLabel)
+        foodImageView.addSubview(purpheHearthView)
+        foodImageView.addSubview(timeView)
 //        self.addSubview(pinkView)
 //        self.addSubview(detailLabel)
 //        self.addSubview(firstPurpleContainer)
@@ -55,11 +55,11 @@ class FoodDetailsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    lazy var topFadedLabel: UIButton = {
-//        let view = NextScreenGreenButton()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
+    lazy var topFadedLabel: UIButton = {
+        let view = NextScreenGreenButton()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     lazy var purpheHearthView: purpleHearth = {
         let view = purpleHearth()
@@ -67,11 +67,11 @@ class FoodDetailsView: UIView {
         return view
     }()
     
-//    lazy var timeView: TimerView = {
-//        let timer = TimerView()
-//        timer.translatesAutoresizingMaskIntoConstraints = false
-//        return timer
-//    }()
+    lazy var timeView: TimerView = {
+        let timer = TimerView(height: 35, width: 100)
+        timer.translatesAutoresizingMaskIntoConstraints = false
+        return timer
+    }()
     
     lazy var pinkView: UIView = {
         let view = UIView()
@@ -132,24 +132,19 @@ class FoodDetailsView: UIView {
             tableView.topAnchor.constraint(equalTo: foodImageView.bottomAnchor, constant: 5),
             tableView.leadingAnchor.constraint(equalTo: foodImageView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: foodImageView.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
-//            collectionView.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10),
-//            collectionView.leadingAnchor.constraint(equalTo: tableView.leadingAnchor),
-//            collectionView.trailingAnchor.constraint(equalTo: tableView.trailingAnchor),
-//            collectionView.heightAnchor.constraint(equalToConstant: 200),
-            
-//            topFadedLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 40),
-//            topFadedLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-//
-//            purpheHearthView.topAnchor.constraint(equalTo: self.topAnchor, constant: 40),
-//            purpheHearthView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-//            purpheHearthView.widthAnchor.constraint(equalToConstant: 50),
-//            purpheHearthView.heightAnchor.constraint(equalToConstant: 50),
-//
-//            timeView.topAnchor.constraint(equalTo: self.topAnchor, constant: 290),
-//            timeView.leadingAnchor.constraint(equalTo: topFadedLabel.leadingAnchor),
-//            timeView.bottomAnchor.constraint(equalTo: foodImageView.bottomAnchor, constant: -20),
+            topFadedLabel.topAnchor.constraint(equalTo: foodImageView.topAnchor, constant: 60),
+            topFadedLabel.leadingAnchor.constraint(equalTo: foodImageView.leadingAnchor, constant: 20),
+            topFadedLabel.trailingAnchor.constraint(equalTo: purpheHearthView.leadingAnchor, constant: -15),
+
+            purpheHearthView.topAnchor.constraint(equalTo: foodImageView.topAnchor, constant: 50),
+            purpheHearthView.trailingAnchor.constraint(equalTo: foodImageView.trailingAnchor, constant: -20),
+            purpheHearthView.widthAnchor.constraint(equalToConstant: 50),
+            purpheHearthView.heightAnchor.constraint(equalToConstant: 50),
+
+            timeView.bottomAnchor.constraint(equalTo: foodImageView.bottomAnchor, constant: -20),
+            timeView.leadingAnchor.constraint(equalTo: foodImageView.leadingAnchor, constant: 10),
 //
 //            pinkView.topAnchor.constraint(equalTo: foodImageView.bottomAnchor, constant: 1),
 //            pinkView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
