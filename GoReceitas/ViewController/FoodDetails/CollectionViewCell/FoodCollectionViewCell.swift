@@ -33,9 +33,16 @@ class FoodCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
+    lazy var timerView: TimerView = {
+        let timer = TimerView(height: 30, width: 160)
+        timer.translatesAutoresizingMaskIntoConstraints = false
+        return timer
+    }()
+    
     func setConstraints() {
         contentView.addSubview(purpheHearthView)
         contentView.addSubview(topFadedLabel)
+        contentView.addSubview(timerView)
         
         NSLayoutConstraint.activate([
             
@@ -47,11 +54,12 @@ class FoodCollectionViewCell: UICollectionViewCell {
             topFadedLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             topFadedLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             topFadedLabel.trailingAnchor.constraint(equalTo: purpheHearthView.leadingAnchor, constant:  -5),
-            topFadedLabel.heightAnchor.constraint(equalToConstant: 40)
+            topFadedLabel.heightAnchor.constraint(equalToConstant: 40),
+            
+//            timerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+//            timerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            timerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             
         ])
     }
-    
-    
-    
 }

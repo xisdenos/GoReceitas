@@ -71,11 +71,11 @@ class FoodDetailsView: UIView {
         return view
     }()
     
-    lazy var timeView: TimerView = {
-        let timer = TimerView()
-        timer.translatesAutoresizingMaskIntoConstraints = false
-        return timer
-    }()
+//    lazy var timeView: TimerView = {
+//        let timer = TimerView()
+//        timer.translatesAutoresizingMaskIntoConstraints = false
+//        return timer
+//    }()
     
     lazy var pinkView: UIView = {
         let view = UIView()
