@@ -24,10 +24,12 @@ class FoodDetailsView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.estimatedItemSize = .zero
+        layout.sectionInset = .init(top: 0, left: 5, bottom: 0, right: 5)
         
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = .cyan
+        collection.register(FoodCollectionViewCell.self, forCellWithReuseIdentifier: FoodCollectionViewCell.identifier)
         
         return collection
     }()
@@ -37,17 +39,17 @@ class FoodDetailsView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(foodImageView)
-        self.addSubview(topFadedLabel)
-        self.addSubview(purpheHearthView)
-        self.addSubview(timeView)
-        self.addSubview(pinkView)
-        self.addSubview(detailLabel)
-        self.addSubview(firstPurpleContainer)
-        self.addSubview(secondPurpleContainer)
-        self.addSubview(thirdPurpleContainer)
-        self.addSubview(forthPurpleContainer)
-        self.addSubview(prepareLabel)
-        self.addSubview(instructionsLabel)
+//        self.addSubview(topFadedLabel)
+//        self.addSubview(purpheHearthView)
+//        self.addSubview(timeView)
+//        self.addSubview(pinkView)
+//        self.addSubview(detailLabel)
+//        self.addSubview(firstPurpleContainer)
+//        self.addSubview(secondPurpleContainer)
+//        self.addSubview(thirdPurpleContainer)
+//        self.addSubview(forthPurpleContainer)
+//        self.addSubview(prepareLabel)
+//        self.addSubview(instructionsLabel)
         self.addSubview(collectionView)
         configConstraints()
         self.backgroundColor = .viewBackgroundColor
@@ -150,49 +152,51 @@ class FoodDetailsView: UIView {
             foodImageView.topAnchor.constraint(equalTo: self.topAnchor),
             foodImageView.heightAnchor.constraint(equalToConstant: 350),
             
-            topFadedLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 40),
-            topFadedLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-
-            purpheHearthView.topAnchor.constraint(equalTo: self.topAnchor, constant: 40),
-            purpheHearthView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            purpheHearthView.widthAnchor.constraint(equalToConstant: 50),
-            purpheHearthView.heightAnchor.constraint(equalToConstant: 50),
+            collectionView.topAnchor.constraint(equalTo: foodImageView.bottomAnchor, constant: 10),
+            collectionView.leadingAnchor.constraint(equalTo: foodImageView.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: foodImageView.trailingAnchor),
+            collectionView.heightAnchor.constraint(equalToConstant: 200),
             
-            timeView.topAnchor.constraint(equalTo: self.topAnchor, constant: 290),
-            timeView.leadingAnchor.constraint(equalTo: topFadedLabel.leadingAnchor),
-            timeView.bottomAnchor.constraint(equalTo: foodImageView.bottomAnchor, constant: -20),
+//            topFadedLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 40),
+//            topFadedLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+//
+//            purpheHearthView.topAnchor.constraint(equalTo: self.topAnchor, constant: 40),
+//            purpheHearthView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+//            purpheHearthView.widthAnchor.constraint(equalToConstant: 50),
+//            purpheHearthView.heightAnchor.constraint(equalToConstant: 50),
+//
+//            timeView.topAnchor.constraint(equalTo: self.topAnchor, constant: 290),
+//            timeView.leadingAnchor.constraint(equalTo: topFadedLabel.leadingAnchor),
+//            timeView.bottomAnchor.constraint(equalTo: foodImageView.bottomAnchor, constant: -20),
+//
+//            pinkView.topAnchor.constraint(equalTo: foodImageView.bottomAnchor, constant: 1),
+//            pinkView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+//            pinkView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+//            pinkView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+//
+//            detailLabel.topAnchor.constraint(equalTo: pinkView.topAnchor, constant: 5),
+//            detailLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+//
+//            firstPurpleContainer.topAnchor.constraint(equalTo: pinkView.topAnchor, constant: 60),
+//            firstPurpleContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+//
+//            secondPurpleContainer.topAnchor.constraint(equalTo: pinkView.topAnchor, constant: 60),
+//            secondPurpleContainer.leadingAnchor.constraint(equalTo: firstPurpleContainer.trailingAnchor, constant: 15),
+//
+//            thirdPurpleContainer.topAnchor.constraint(equalTo: firstPurpleContainer.bottomAnchor, constant: 10),
+//            thirdPurpleContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+//
+//            forthPurpleContainer.topAnchor.constraint(equalTo: secondPurpleContainer.bottomAnchor, constant: 10),
+//            forthPurpleContainer.leadingAnchor.constraint(equalTo: thirdPurpleContainer.trailingAnchor, constant: 15),
+//
+//            prepareLabel.topAnchor.constraint(equalTo: thirdPurpleContainer.bottomAnchor, constant: 25),
+//            prepareLabel.leadingAnchor.constraint(equalTo: firstPurpleContainer.leadingAnchor),
+//
+//            instructionsLabel.topAnchor.constraint(equalTo: prepareLabel.bottomAnchor,constant: 8),
+//            instructionsLabel.leadingAnchor.constraint(equalTo: prepareLabel.leadingAnchor),
+//            instructionsLabel.trailingAnchor.constraint(equalTo: secondPurpleContainer.trailingAnchor),
             
-            pinkView.topAnchor.constraint(equalTo: foodImageView.bottomAnchor, constant: 1),
-            pinkView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            pinkView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            pinkView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
-            detailLabel.topAnchor.constraint(equalTo: pinkView.topAnchor, constant: 5),
-            detailLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            
-            firstPurpleContainer.topAnchor.constraint(equalTo: pinkView.topAnchor, constant: 60),
-            firstPurpleContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
-            
-            secondPurpleContainer.topAnchor.constraint(equalTo: pinkView.topAnchor, constant: 60),
-            secondPurpleContainer.leadingAnchor.constraint(equalTo: firstPurpleContainer.trailingAnchor, constant: 15),
-            
-            thirdPurpleContainer.topAnchor.constraint(equalTo: firstPurpleContainer.bottomAnchor, constant: 10),
-            thirdPurpleContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
-            
-            forthPurpleContainer.topAnchor.constraint(equalTo: secondPurpleContainer.bottomAnchor, constant: 10),
-            forthPurpleContainer.leadingAnchor.constraint(equalTo: thirdPurpleContainer.trailingAnchor, constant: 15),
-            
-            prepareLabel.topAnchor.constraint(equalTo: thirdPurpleContainer.bottomAnchor, constant: 25),
-            prepareLabel.leadingAnchor.constraint(equalTo: firstPurpleContainer.leadingAnchor),
-            
-            instructionsLabel.topAnchor.constraint(equalTo: prepareLabel.bottomAnchor,constant: 8),
-            instructionsLabel.leadingAnchor.constraint(equalTo: prepareLabel.leadingAnchor),
-            instructionsLabel.trailingAnchor.constraint(equalTo: secondPurpleContainer.trailingAnchor),
-            
-//            collectionView.topAnchor.constraint(equalTo: instructionsLabel.bottomAnchor, constant: 10),
-//            collectionView.leadingAnchor.constraint(equalTo: instructionsLabel.leadingAnchor),
-//            collectionView.trailingAnchor.constraint(equalTo: instructionsLabel.trailingAnchor),
-//            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
     }
 }
