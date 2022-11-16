@@ -31,11 +31,11 @@ class MockData {
         .tryItOut(
             [
                 CellsInfoSections(foodName: "Pizza chicago", prepTime: "35 min", foodImage: "pizza-chicago"),
-                CellsInfoSections(foodName: "Mac-and-cheese", prepTime: "40 min", foodImage: "mac-and-cheese"),
-                CellsInfoSections(foodName: "Oats", prepTime: "10 min", foodImage: "oats"),
-                CellsInfoSections(foodName: "Pumpkin-pie", prepTime: "60min", foodImage: "pumpkin-pie"),
-                CellsInfoSections(foodName: "Croissant", prepTime: "60 min", foodImage: "croissant-breakfast-pizza"),
-                CellsInfoSections(foodName: "Rice", prepTime: "20 min", foodImage: "rice"),
+                CellsInfoSections(foodName: "Mac-and-cheese", prepTime: "40 min", foodImage: "pizza-chicago"),
+                CellsInfoSections(foodName: "Oats", prepTime: "10 min", foodImage: "pizza-chicago"),
+                CellsInfoSections(foodName: "Pumpkin-pie", prepTime: "60min", foodImage: "pizza-chicago"),
+                CellsInfoSections(foodName: "Croissant", prepTime: "60 min", foodImage: "pizza-chicago"),
+                CellsInfoSections(foodName: "Rice", prepTime: "20 min", foodImage: "pizza-chicago"),
             ]
         )
     }()

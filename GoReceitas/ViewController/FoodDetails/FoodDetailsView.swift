@@ -20,6 +20,43 @@ class FoodDetailsView: UIView {
         return imageView
     }()
     
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.estimatedItemSize = .zero
+        
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.backgroundColor = .cyan
+        
+        return collection
+    }()
+    
+    // MARK: Inits
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.addSubview(foodImageView)
+        self.addSubview(topFadedLabel)
+        self.addSubview(purpheHearthView)
+        self.addSubview(timeView)
+        self.addSubview(pinkView)
+        self.addSubview(detailLabel)
+        self.addSubview(firstPurpleContainer)
+        self.addSubview(secondPurpleContainer)
+        self.addSubview(thirdPurpleContainer)
+        self.addSubview(forthPurpleContainer)
+        self.addSubview(prepareLabel)
+        self.addSubview(instructionsLabel)
+        self.addSubview(collectionView)
+        configConstraints()
+        self.backgroundColor = .viewBackgroundColor
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     lazy var topFadedLabel: UIButton = {
         let view = NextScreenGreenButton()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -104,86 +141,43 @@ class FoodDetailsView: UIView {
         return label
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupScrollView()
-        contentView.addSubview(foodImageView)
-        contentView.addSubview(topFadedLabel)
-        contentView.addSubview(purpheHearthView)
-        contentView.addSubview(timeView)
-        contentView.addSubview(pinkView)
-        contentView.addSubview(detailLabel)
-        contentView.addSubview(firstPurpleContainer)
-        contentView.addSubview(secondPurpleContainer)
-        contentView.addSubview(thirdPurpleContainer)
-        contentView.addSubview(forthPurpleContainer)
-        contentView.addSubview(prepareLabel)
-        contentView.addSubview(instructionsLabel)
-        configConstraints()
-        self.backgroundColor = .viewBackgroundColor
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
     //MARK: Constraints
-    
-    func setupScrollView(){
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-
-        scrollView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        scrollView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        
-        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        contentView.leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
-        contentView.rightAnchor.constraint(equalTo: scrollView.rightAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-    }
     
     private func configConstraints() {
         NSLayoutConstraint.activate([
-            foodImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            foodImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            foodImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            foodImageView.heightAnchor.constraint(equalToConstant: 320),
+            foodImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            foodImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            foodImageView.topAnchor.constraint(equalTo: self.topAnchor),
+            foodImageView.heightAnchor.constraint(equalToConstant: 350),
             
-            topFadedLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
-            topFadedLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            topFadedLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 40),
+            topFadedLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
 
-            purpheHearthView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40),
-            purpheHearthView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            purpheHearthView.topAnchor.constraint(equalTo: self.topAnchor, constant: 40),
+            purpheHearthView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             purpheHearthView.widthAnchor.constraint(equalToConstant: 50),
             purpheHearthView.heightAnchor.constraint(equalToConstant: 50),
             
-            timeView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 290),
+            timeView.topAnchor.constraint(equalTo: self.topAnchor, constant: 290),
             timeView.leadingAnchor.constraint(equalTo: topFadedLabel.leadingAnchor),
             timeView.bottomAnchor.constraint(equalTo: foodImageView.bottomAnchor, constant: -20),
             
             pinkView.topAnchor.constraint(equalTo: foodImageView.bottomAnchor, constant: 1),
-            pinkView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            pinkView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            pinkView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            pinkView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            pinkView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            pinkView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
             detailLabel.topAnchor.constraint(equalTo: pinkView.topAnchor, constant: 5),
-            detailLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            detailLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
             firstPurpleContainer.topAnchor.constraint(equalTo: pinkView.topAnchor, constant: 60),
-            firstPurpleContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            firstPurpleContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
             
             secondPurpleContainer.topAnchor.constraint(equalTo: pinkView.topAnchor, constant: 60),
             secondPurpleContainer.leadingAnchor.constraint(equalTo: firstPurpleContainer.trailingAnchor, constant: 15),
             
             thirdPurpleContainer.topAnchor.constraint(equalTo: firstPurpleContainer.bottomAnchor, constant: 10),
-            thirdPurpleContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            thirdPurpleContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
             
             forthPurpleContainer.topAnchor.constraint(equalTo: secondPurpleContainer.bottomAnchor, constant: 10),
             forthPurpleContainer.leadingAnchor.constraint(equalTo: thirdPurpleContainer.trailingAnchor, constant: 15),
@@ -194,7 +188,11 @@ class FoodDetailsView: UIView {
             instructionsLabel.topAnchor.constraint(equalTo: prepareLabel.bottomAnchor,constant: 8),
             instructionsLabel.leadingAnchor.constraint(equalTo: prepareLabel.leadingAnchor),
             instructionsLabel.trailingAnchor.constraint(equalTo: secondPurpleContainer.trailingAnchor),
-            instructionsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            
+//            collectionView.topAnchor.constraint(equalTo: instructionsLabel.bottomAnchor, constant: 10),
+//            collectionView.leadingAnchor.constraint(equalTo: instructionsLabel.leadingAnchor),
+//            collectionView.trailingAnchor.constraint(equalTo: instructionsLabel.trailingAnchor),
+//            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
     }
 }
