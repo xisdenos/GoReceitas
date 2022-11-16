@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum DetailsSections: Int {
+    case description = 0
+    case recommended = 1
+}
+
 class FoodDetailsViewController: UIViewController {
     
     lazy var foodDetailsView: FoodDetailsView = {
@@ -64,5 +69,24 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 250
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case DetailsSections.description.rawValue:
+            return "Instructions"
+        case DetailsSections.recommended.rawValue:
+            return "You may also like"
+        default:
+            return nil
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.textColor = UIColor.black
+        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        header.textLabel?.frame = header.bounds
+        header.textLabel?.textAlignment = .left
     }
 }
