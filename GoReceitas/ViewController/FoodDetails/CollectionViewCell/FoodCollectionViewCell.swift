@@ -27,8 +27,15 @@ class FoodCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
+    lazy var topFadedLabel: UIButton = {
+        let view = NextScreenGreenButton()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     func setConstraints() {
         contentView.addSubview(purpheHearthView)
+        contentView.addSubview(topFadedLabel)
         
         NSLayoutConstraint.activate([
             
@@ -36,7 +43,15 @@ class FoodCollectionViewCell: UICollectionViewCell {
             purpheHearthView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
             purpheHearthView.heightAnchor.constraint(equalToConstant: 40),
             purpheHearthView.widthAnchor.constraint(equalToConstant: 40),
+            
+            topFadedLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            topFadedLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            topFadedLabel.trailingAnchor.constraint(equalTo: purpheHearthView.leadingAnchor, constant:  -5),
+            topFadedLabel.heightAnchor.constraint(equalToConstant: 40)
+            
         ])
     }
+    
+    
     
 }

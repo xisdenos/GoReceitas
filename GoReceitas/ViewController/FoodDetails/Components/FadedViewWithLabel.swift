@@ -7,15 +7,12 @@
 
 import UIKit
 
-import Foundation
-import UIKit
-
 class NextScreenGreenButton: UIButton {
     
     //MARK: - Initializer
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init() {
+        super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = UIColor(red: 161/255, green: 156/255, blue: 163/255, alpha: 0.7)
         setTitle("Mac-And-Cheese", for: .normal)
@@ -28,8 +25,8 @@ class NextScreenGreenButton: UIButton {
         self.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         self.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         self.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        self.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        self.widthAnchor.constraint(equalToConstant: 210).isActive = true
+//        self.heightAnchor.constraint(equalToConstant: height).isActive = true
+//        self.widthAnchor.constraint(equalToConstant: width).isActive = true
     }
     
     required init?(coder: NSCoder) {

@@ -59,11 +59,11 @@ class FoodDetailsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var topFadedLabel: UIButton = {
-        let view = NextScreenGreenButton()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+//    lazy var topFadedLabel: UIButton = {
+//        let view = NextScreenGreenButton()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
     
     lazy var purpheHearthView: purpleHearth = {
         let view = purpleHearth()
