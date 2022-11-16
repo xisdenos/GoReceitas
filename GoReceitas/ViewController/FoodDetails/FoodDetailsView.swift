@@ -12,6 +12,15 @@ class FoodDetailsView: UIView {
     lazy var scrollView = UIScrollView()
     lazy var contentView = UIView()
     
+    lazy var tableView: UITableView = {
+        let table = UITableView()
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.separatorStyle = .none
+        table.register(DescriptionTableViewCell.self, forCellReuseIdentifier: DescriptionTableViewCell.identifier)
+        table.register(RecommendedFoodsTableViewCell.self, forCellReuseIdentifier: RecommendedFoodsTableViewCell.identifier)
+        return table
+    }()
+    
     lazy var foodImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -20,25 +29,12 @@ class FoodDetailsView: UIView {
         return imageView
     }()
     
-    lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.estimatedItemSize = .zero
-        layout.sectionInset = .init(top: 0, left: 5, bottom: 0, right: 5)
-        
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.backgroundColor = .cyan
-        collection.register(FoodCollectionViewCell.self, forCellWithReuseIdentifier: FoodCollectionViewCell.identifier)
-        
-        return collection
-    }()
-    
     // MARK: Inits
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(foodImageView)
+        self.addSubview(tableView)
 //        self.addSubview(topFadedLabel)
 //        self.addSubview(purpheHearthView)
 //        self.addSubview(timeView)
@@ -50,7 +46,7 @@ class FoodDetailsView: UIView {
 //        self.addSubview(forthPurpleContainer)
 //        self.addSubview(prepareLabel)
 //        self.addSubview(instructionsLabel)
-        self.addSubview(collectionView)
+//        self.addSubview(collectionView)
         configConstraints()
         self.backgroundColor = .viewBackgroundColor
     }
@@ -124,25 +120,6 @@ class FoodDetailsView: UIView {
         return label
     }()
     
-    lazy var instructionsLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = """
-        • Pasta
-        1 cup of wheat flour
-        1 beaten yolk
-        100 grams of unsalted butter
-        2 tablespoons of sugar
-        1 tablespoon of baking powder
-
-        • Filling
-        700 milliliters of milk
-        """
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.numberOfLines = 0
-        return label
-    }()
-    
     //MARK: Constraints
     
     private func configConstraints() {
@@ -152,10 +129,15 @@ class FoodDetailsView: UIView {
             foodImageView.topAnchor.constraint(equalTo: self.topAnchor),
             foodImageView.heightAnchor.constraint(equalToConstant: 350),
             
-            collectionView.topAnchor.constraint(equalTo: foodImageView.bottomAnchor, constant: 10),
-            collectionView.leadingAnchor.constraint(equalTo: foodImageView.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: foodImageView.trailingAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 200),
+            tableView.topAnchor.constraint(equalTo: foodImageView.bottomAnchor, constant: 5),
+            tableView.leadingAnchor.constraint(equalTo: foodImageView.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: foodImageView.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            
+//            collectionView.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 10),
+//            collectionView.leadingAnchor.constraint(equalTo: tableView.leadingAnchor),
+//            collectionView.trailingAnchor.constraint(equalTo: tableView.trailingAnchor),
+//            collectionView.heightAnchor.constraint(equalToConstant: 200),
             
 //            topFadedLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 40),
 //            topFadedLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
