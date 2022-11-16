@@ -35,11 +35,6 @@ class HomeViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        navigationController?.navigationBar.prefersLargeTitles = true
-//        title = "Welcome"
-//    }
-    
     private func setTabBarIcons() {
         self.tabBarController?.tabBar.items?[0].image = UIImage(systemName: "house")
         self.tabBarController?.tabBar.items?[1].image = UIImage(systemName: "magnifyingglass")

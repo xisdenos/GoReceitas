@@ -33,7 +33,7 @@ class DescriptionTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(instructionsLabel)
-        
+        self.backgroundColor = .viewBackgroundColor
     }
     
     required init?(coder: NSCoder) {

@@ -28,6 +28,8 @@ class RecommendedFoodsTableViewCell: UITableViewCell {
         contentView.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        self.backgroundColor = .viewBackgroundColor
     }
     
     required init?(coder: NSCoder) {
