@@ -39,27 +39,38 @@ class FoodCollectionViewCell: UICollectionViewCell {
         return timer
     }()
     
+    lazy var foodImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "mac-and-cheese")
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
     func setConstraints() {
-        contentView.addSubview(purpheHearthView)
-        contentView.addSubview(topFadedLabel)
-        contentView.addSubview(timerView)
+        contentView.addSubview(foodImageView)
+        foodImageView.addSubview(purpheHearthView)
+        foodImageView.addSubview(topFadedLabel)
+        foodImageView.addSubview(timerView)
+        
         
         NSLayoutConstraint.activate([
+            foodImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            foodImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            foodImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            foodImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            purpheHearthView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            purpheHearthView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            purpheHearthView.topAnchor.constraint(equalTo: foodImageView.topAnchor, constant: 5),
+            purpheHearthView.trailingAnchor.constraint(equalTo: foodImageView.trailingAnchor, constant: -5),
             purpheHearthView.heightAnchor.constraint(equalToConstant: 40),
             purpheHearthView.widthAnchor.constraint(equalToConstant: 40),
             
-            topFadedLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            topFadedLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            topFadedLabel.topAnchor.constraint(equalTo: foodImageView.topAnchor, constant: 5),
+            topFadedLabel.leadingAnchor.constraint(equalTo: foodImageView.leadingAnchor, constant: 5),
             topFadedLabel.trailingAnchor.constraint(equalTo: purpheHearthView.leadingAnchor, constant:  -5),
             topFadedLabel.heightAnchor.constraint(equalToConstant: 40),
             
-//            timerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-//            timerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-            timerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
-            
+            timerView.bottomAnchor.constraint(equalTo: foodImageView.bottomAnchor, constant: -5),
         ])
     }
 }
