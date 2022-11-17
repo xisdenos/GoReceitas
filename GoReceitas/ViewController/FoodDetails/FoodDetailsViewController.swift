@@ -34,7 +34,7 @@ class FoodDetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = true
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.tintColor = .textColorDefault
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
@@ -98,13 +98,13 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
         switch section {
         case DetailsSections.details.rawValue:
             guard let header = view as? UITableViewHeaderFooterView else { return }
-            header.textLabel?.textColor = UIColor.black
+            header.textLabel?.textColor = .textColorDefault
             header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
             header.textLabel?.frame = header.bounds
             header.textLabel?.textAlignment = .center
         default:
             guard let header = view as? UITableViewHeaderFooterView else { return }
-            header.textLabel?.textColor = UIColor.black
+            header.textLabel?.textColor = .textColorDefault
             header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
             header.textLabel?.frame = header.bounds
             header.textLabel?.textAlignment = .left
