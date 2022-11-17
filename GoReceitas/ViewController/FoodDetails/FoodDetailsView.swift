@@ -76,10 +76,10 @@ class FoodDetailsView: UIView {
         NSLayoutConstraint.activate([
             foodImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             foodImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            foodImageView.topAnchor.constraint(equalTo: self.topAnchor),
-            foodImageView.heightAnchor.constraint(equalToConstant: 350),
+            foodImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            foodImageView.heightAnchor.constraint(equalToConstant: 300),
             
-            topFadedLabel.topAnchor.constraint(equalTo: foodImageView.topAnchor, constant: 60),
+            topFadedLabel.topAnchor.constraint(equalTo: foodImageView.topAnchor, constant: 30),
             topFadedLabel.leadingAnchor.constraint(equalTo: foodImageView.leadingAnchor, constant: 20),
             topFadedLabel.trailingAnchor.constraint(equalTo: purpheHearthView.leadingAnchor, constant: -15),
 

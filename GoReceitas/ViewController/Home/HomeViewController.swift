@@ -33,6 +33,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
+//        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private func setTabBarIcons() {

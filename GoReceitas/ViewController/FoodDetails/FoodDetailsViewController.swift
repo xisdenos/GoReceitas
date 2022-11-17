@@ -33,8 +33,9 @@ class FoodDetailsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true
-        self.navigationController?.navigationBar.tintColor = .white
+        tabBarController?.tabBar.isHidden = true
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {

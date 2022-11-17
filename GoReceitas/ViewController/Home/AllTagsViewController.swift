@@ -32,6 +32,11 @@ class AllTagsViewController: UIViewController {
         
         collectionView.backgroundColor = .viewBackgroundColor
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+//        navigationController?.navigationBar.prefersLargeTitles = false
+    }
 }
 
 extension AllTagsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
