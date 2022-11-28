@@ -43,6 +43,8 @@
 		820FC390293555FD00247C6F /* TryItOutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820FC38E293555FD00247C6F /* TryItOutTableViewCell.xib */; };
 		820FC3942935575400247C6F /* DefaultFoodCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820FC3922935575400247C6F /* DefaultFoodCollectionViewCell.swift */; };
 		820FC3952935575400247C6F /* DefaultFoodCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820FC3932935575400247C6F /* DefaultFoodCollectionViewCell.xib */; };
+		820FC39929355E0600247C6F /* PopularFoodsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820FC39729355E0600247C6F /* PopularFoodsTableViewCell.swift */; };
+		820FC39A29355E0600247C6F /* PopularFoodsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820FC39829355E0600247C6F /* PopularFoodsTableViewCell.xib */; };
 		821BCA4129117A5400D9BDB3 /* NoFavoritesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821BCA3F29117A5400D9BDB3 /* NoFavoritesCollectionViewCell.swift */; };
 		821BCA4229117A5400D9BDB3 /* NoFavoritesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821BCA4029117A5400D9BDB3 /* NoFavoritesCollectionViewCell.xib */; };
 		821BCA442911859100D9BDB3 /* LoginRegisterDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821BCA432911859100D9BDB3 /* LoginRegisterDescriptions.swift */; };
@@ -122,6 +124,8 @@
 		820FC38E293555FD00247C6F /* TryItOutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TryItOutTableViewCell.xib; sourceTree = "<group>"; };
 		820FC3922935575400247C6F /* DefaultFoodCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultFoodCollectionViewCell.swift; sourceTree = "<group>"; };
 		820FC3932935575400247C6F /* DefaultFoodCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultFoodCollectionViewCell.xib; sourceTree = "<group>"; };
+		820FC39729355E0600247C6F /* PopularFoodsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularFoodsTableViewCell.swift; sourceTree = "<group>"; };
+		820FC39829355E0600247C6F /* PopularFoodsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularFoodsTableViewCell.xib; sourceTree = "<group>"; };
 		821BCA3F29117A5400D9BDB3 /* NoFavoritesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFavoritesCollectionViewCell.swift; sourceTree = "<group>"; };
 		821BCA4029117A5400D9BDB3 /* NoFavoritesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoFavoritesCollectionViewCell.xib; sourceTree = "<group>"; };
 		821BCA432911859100D9BDB3 /* LoginRegisterDescriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterDescriptions.swift; sourceTree = "<group>"; };
@@ -304,8 +308,9 @@
 		820FC380293550B800247C6F /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				820FC38C293555EA00247C6F /* TryItOut */,
 				820FC38B293553AA00247C6F /* Category */,
+				820FC39629355DF400247C6F /* Popular */,
+				820FC38C293555EA00247C6F /* TryItOut */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -353,6 +358,15 @@
 				820FC3932935575400247C6F /* DefaultFoodCollectionViewCell.xib */,
 			);
 			path = Default;
+			sourceTree = "<group>";
+		};
+		820FC39629355DF400247C6F /* Popular */ = {
+			isa = PBXGroup;
+			children = (
+				820FC39729355E0600247C6F /* PopularFoodsTableViewCell.swift */,
+				820FC39829355E0600247C6F /* PopularFoodsTableViewCell.xib */,
+			);
+			path = Popular;
 			sourceTree = "<group>";
 		};
 		8247B8FF2909EC8B00437F1E /* Profile */ = {
@@ -605,6 +619,7 @@
 				EB43688E28FE15460023A2F9 /* RegisterVC.storyboard in Resources */,
 				82064C36290344A8005DA1FF /* Home.storyboard in Resources */,
 				82CC50A029098FB70032FC25 /* ResultsTableViewCell.xib in Resources */,
+				820FC39A29355E0600247C6F /* PopularFoodsTableViewCell.xib in Resources */,
 				EB08928B29007B8500FF33E8 /* GoogleService-Info.plist in Resources */,
 				EB43689928FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard in Resources */,
 				5CC71FA428FE242B00FF75ED /* Profile.storyboard in Resources */,
@@ -721,6 +736,7 @@
 				06459BB528B01A060054F510 /* SceneDelegate.swift in Sources */,
 				82C9BE5028DA8A3C00D890EF /* PopularViewCell.swift in Sources */,
 				82C9BE4C28DA89DE00D890EF /* TryItOutCell.swift in Sources */,
+				820FC39929355E0600247C6F /* PopularFoodsTableViewCell.swift in Sources */,
 				1F55854B2902E7A100580185 /* FavoriteEmptyVC.swift in Sources */,
 				82A403FD28DA9EB800F38990 /* AllTagsViewCell.swift in Sources */,
 				06AC22CC2910A6F4008E4D0B /* FoodDetailsView.swift in Sources */,

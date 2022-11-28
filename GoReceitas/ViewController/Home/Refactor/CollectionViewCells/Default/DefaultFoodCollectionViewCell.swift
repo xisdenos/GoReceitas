@@ -19,7 +19,6 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var foodImageView: UIImageView!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var foodName: UILabel!
-    @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var additionalInfoLabel: UILabel!
     
     static let identifier: String = String(describing: DefaultFoodCollectionViewCell.self)
@@ -44,9 +43,6 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
         foodName.textColor = .white
         additionalInfoLabel.textColor = .white
         foodName.textAlignment = .center
-        
-        pageControl.currentPageIndicatorTintColor = .systemPurple
-        pageControl.pageIndicatorTintColor = .lightGray
     }
     
     func mockInfo() {
