@@ -20,6 +20,7 @@ class CategoryTagsCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         tagButton.layer.borderWidth = 1
+        tagButton.layer.cornerRadius = 5
         tagButton.layer.borderColor = UIColor.systemPurple.cgColor
     }
 }

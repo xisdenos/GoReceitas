@@ -1,5 +1,5 @@
 //
-//  CategoryTagsTableViewCell.swift
+//  TryItOutTableViewCell.swift
 //  GoReceitas
 //
 //  Created by Igor Fernandes on 28/11/22.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-class CategoryTagsTableViewCell: UITableViewCell {
-    static let identifier: String = String(describing: CategoryTagsTableViewCell.self)
+class TryItOutTableViewCell: UITableViewCell {
+    static let identifier: String = String(describing: TryItOutTableViewCell.self)
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
@@ -24,17 +24,17 @@ class CategoryTagsTableViewCell: UITableViewCell {
     func configCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(CategoryTagsCollectionViewCell.nib(), forCellWithReuseIdentifier: CategoryTagsCollectionViewCell.identifier)
+        collectionView.register(DefaultFoodCollectionViewCell.nib(), forCellWithReuseIdentifier: DefaultFoodCollectionViewCell.identifier)
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
-            layout.sectionInset = .init(top: 5, left: 10, bottom: 5, right: 10)
+            layout.sectionInset = .init(top: 10, left: 5, bottom: 0, right: 5)
         }
     }
 }
 
-extension CategoryTagsTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension TryItOutTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryTagsCollectionViewCell.identifier, for: indexPath) as? CategoryTagsCollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell {
             return cell
         }
         return UICollectionViewCell()
@@ -45,6 +45,6 @@ extension CategoryTagsTableViewCell: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 30)
+        return CGSize(width: collectionView.frame.width - 5, height: collectionView.frame.height)
     }
 }
