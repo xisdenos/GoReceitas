@@ -25,6 +25,10 @@ class NewHomeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    @objc func allTagsTapped() {
+        print(#function)
+    }
 }
 
 extension NewHomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -58,10 +62,25 @@ extension NewHomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if section == 0 {
+            guard let header = view as? UITableViewHeaderFooterView else { return }
+            let allTagsButton: UIButton = UIButton(frame: CGRect(x: header.frame.midX + 100, y: 0, width: 100, height: 30))
+            allTagsButton.setTitle("All Tags", for: .normal)
+            allTagsButton.setTitleColor(.systemPurple, for: .normal)
+            allTagsButton.addTarget(self, action: #selector(allTagsTapped), for: .touchUpInside)
+            
+            header.addSubview(allTagsButton)
+            
+            header.textLabel?.textColor = UIColor.systemPurple
+            header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+            header.textLabel?.frame = header.bounds
+        }
+        
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.textLabel?.textColor = UIColor.systemPurple
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
         header.textLabel?.frame = header.bounds
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
