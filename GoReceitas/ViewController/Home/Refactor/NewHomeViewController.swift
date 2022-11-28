@@ -24,6 +24,7 @@ class NewHomeViewController: UIViewController {
     func configTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(CategoryTagsTableViewCell.nib(), forCellReuseIdentifier: CategoryTagsTableViewCell.identifier)
     }
     
     @objc func allTagsTapped() {
@@ -33,6 +34,10 @@ class NewHomeViewController: UIViewController {
 
 extension NewHomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTagsTableViewCell.identifier) as? CategoryTagsTableViewCell else { return UITableViewCell() }
+            return cell
+        }
         return UITableViewCell()
     }
     
@@ -58,6 +63,9 @@ extension NewHomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 130
+        }
         return 200
     }
     
