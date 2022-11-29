@@ -643,10 +643,10 @@
             </objects>
             <point key="canvasLocation" x="9189" y="559"/>
         </scene>
-        <!--New Home View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="ECB-fV-13x">
             <objects>
-                <viewController storyboardIdentifier="newHome" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hJQ-ue-sko" customClass="NewHomeViewController" customModule="GoReceitas" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="newHome" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hJQ-ue-sko" customClass="HomeViewController" customModule="GoReceitas" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D83-z1-IJG">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

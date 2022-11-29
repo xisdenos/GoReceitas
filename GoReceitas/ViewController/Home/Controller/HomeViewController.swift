@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewHomeViewController: UIViewController {
+class HomeViewController: UIViewController {
     
     @IBOutlet weak var userProfilePictureImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
@@ -61,7 +61,7 @@ class NewHomeViewController: UIViewController {
     }
 }
 
-extension NewHomeViewController: UITableViewDelegate, UITableViewDataSource {
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTagsTableViewCell.identifier) as? CategoryTagsTableViewCell else { return UITableViewCell() }
@@ -140,7 +140,7 @@ extension NewHomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension NewHomeViewController: CategoryTagsTableViewCellDelegate {
+extension HomeViewController: CategoryTagsTableViewCellDelegate {
     func categoryChosed() {
         print("category chosed")
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
@@ -149,7 +149,7 @@ extension NewHomeViewController: CategoryTagsTableViewCellDelegate {
     }
 }
 
-extension NewHomeViewController: DefaultCellsDelegate {
+extension HomeViewController: DefaultCellsDelegate {
     func didTapFoodCell() {
         let viewController = FoodDetailsViewController()
         navigationController?.pushViewController(viewController, animated: true)

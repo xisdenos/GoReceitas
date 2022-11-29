@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class OldHomeViewController: UIViewController {
     private let sections = MockData.shared.data
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -151,7 +151,7 @@ class HomeViewController: UIViewController {
 }
 
     // MARK: Set delegates for collection view
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension OldHomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return sections[section].count
     }
