@@ -7,16 +7,12 @@
 
 import UIKit
 
-protocol TryItOutTableViewCellDelegate: AnyObject {
-    func didTapFoodCell()
-}
-
 class TryItOutTableViewCell: UITableViewCell {
     
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    weak var delegate: TryItOutTableViewCellDelegate?
+    weak var delegate: DefaultCellsDelegate?
     
     static let identifier: String = String(describing: TryItOutTableViewCell.self)
     

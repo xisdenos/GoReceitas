@@ -11,6 +11,8 @@ class PopularFoodsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    weak var delegate: DefaultCellsDelegate?
+    
     static let identifier: String = String(describing: PopularFoodsTableViewCell.self)
     
     static func nib() -> UINib {
@@ -42,6 +44,10 @@ extension PopularFoodsTableViewCell: UICollectionViewDelegate, UICollectionViewD
             return cell
         }
         return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didTapFoodCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

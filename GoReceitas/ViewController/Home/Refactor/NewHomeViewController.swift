@@ -7,11 +7,11 @@
 
 import UIKit
 
-class NewHomeViewController: UIViewController {    
+class NewHomeViewController: UIViewController {
+    
     @IBOutlet weak var userProfilePictureImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var welcomeLabel: UILabel!
-    
     
     // MARK: Life cycles
     override func viewDidLoad() {
@@ -73,6 +73,7 @@ extension NewHomeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
+            cell.delegate = self
             return cell
         }
         return UITableViewCell()
@@ -138,7 +139,6 @@ extension NewHomeViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: Did Select Row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
 }
 
@@ -151,7 +151,7 @@ extension NewHomeViewController: CategoryTagsTableViewCellDelegate {
     }
 }
 
-extension NewHomeViewController: TryItOutTableViewCellDelegate {
+extension NewHomeViewController: DefaultCellsDelegate {
     func didTapFoodCell() {
         let viewController = FoodDetailsViewController()
         navigationController?.pushViewController(viewController, animated: true)

@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol CategoryTagsTableViewCellDelegate: AnyObject {
-    func categoryChosed()
-}
-
 class CategoryTagsTableViewCell: UITableViewCell {
     static let identifier: String = String(describing: CategoryTagsTableViewCell.self)
     
