@@ -22,29 +22,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="317" height="218"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ptb-u6-f3C">
-                        <rect key="frame" x="262" y="5" width="50" height="50"/>
+                        <rect key="frame" x="272" y="5" width="40" height="40"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2I-Bf-8nE">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="heart-empty"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="Cfu-Qj-0lc"/>
+                            <constraint firstAttribute="width" constant="40" id="Cfu-Qj-0lc"/>
                             <constraint firstAttribute="bottom" secondItem="L2I-Bf-8nE" secondAttribute="bottom" id="LQP-x6-THd"/>
                             <constraint firstItem="L2I-Bf-8nE" firstAttribute="leading" secondItem="Ptb-u6-f3C" secondAttribute="leading" id="Mi1-lb-zf2"/>
                             <constraint firstAttribute="trailing" secondItem="L2I-Bf-8nE" secondAttribute="trailing" id="RGj-gj-dqJ"/>
                             <constraint firstItem="L2I-Bf-8nE" firstAttribute="top" secondItem="Ptb-u6-f3C" secondAttribute="top" id="SKK-Rl-5v1"/>
-                            <constraint firstAttribute="height" constant="50" id="Vvc-1m-6Wj"/>
+                            <constraint firstAttribute="height" constant="40" id="Vvc-1m-6Wj"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aVr-qa-ddO">
-                        <rect key="frame" x="10" y="10" width="247" height="40"/>
+                        <rect key="frame" x="10" y="10" width="257" height="30"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cd-0Z-AYD">
-                                <rect key="frame" x="0.0" y="0.0" width="247" height="40"/>
+                                <rect key="frame" x="0.0" y="0.0" width="257" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

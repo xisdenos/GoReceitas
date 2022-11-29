@@ -123,14 +123,12 @@ extension NewHomeViewController: UITableViewDelegate, UITableViewDataSource {
             
             header.addSubview(allTagsButton)
             
-            header.backgroundColor = .viewBackgroundColor
             header.textLabel?.textColor = UIColor.systemPurple
             header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
             header.textLabel?.frame = header.bounds
         }
         
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.backgroundColor = .viewBackgroundColor
         header.textLabel?.textColor = UIColor.systemPurple
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
         header.textLabel?.frame = header.bounds
