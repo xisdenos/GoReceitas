@@ -7,12 +7,11 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class OldHomeViewController: UIViewController {
     private let sections = MockData.shared.data
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var welcomeLabel: UILabel!
-    
     
     // MARK: Life cycles
     override func viewDidLoad() {
@@ -33,7 +32,6 @@ class HomeViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
-//        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private func setTabBarIcons() {
@@ -153,7 +151,7 @@ class HomeViewController: UIViewController {
 }
 
     // MARK: Set delegates for collection view
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension OldHomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return sections[section].count
     }
