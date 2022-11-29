@@ -21,21 +21,12 @@ class AllTagsViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .viewBackgroundColor
-        // mantém a cor de fundo da nav bar quando scrollada
-        let navigationBar = navigationController?.navigationBar
-        let navigationBarAppearance = UINavigationBarAppearance()
-        
-        navigationBarAppearance.shadowColor = .clear
-        navigationBar?.scrollEdgeAppearance = navigationBarAppearance
-        navigationBarAppearance.backgroundColor = .viewBackgroundColor
-        navigationController?.navigationBar.standardAppearance = navigationBarAppearance
         
         collectionView.backgroundColor = .viewBackgroundColor
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
-//        navigationController?.navigationBar.prefersLargeTitles = false
     }
 }
 

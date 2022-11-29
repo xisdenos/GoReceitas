@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol CategoryTagsCollectionViewCellDelegate: AnyObject {
+    func didTapCategoryButton(cell: UICollectionViewCell)
+}
+
 class CategoryTagsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var tagButton: UIButton!
+    
+    weak var delegate: CategoryTagsCollectionViewCellDelegate?
     
     static let identifier: String = String(describing: CategoryTagsCollectionViewCell.self)
     
@@ -27,8 +33,11 @@ class CategoryTagsCollectionViewCell: UICollectionViewCell {
         tagButton.layer.borderWidth = 1
         tagButton.layer.cornerRadius = 10
         tagButton.tintColor = .white
-//        tagButton.setTitleColor(.white, for: .normal)
         tagButton.backgroundColor = UIColor(red: 73 / 255, green: 0 / 255, blue: 119 / 255, alpha: 1)
         tagButton.layer.borderColor = UIColor.systemPurple.cgColor
+    }
+    
+    @IBAction func categoryTapped(_ sender: Any) {
+        delegate?.didTapCategoryButton(cell: self)
     }
 }

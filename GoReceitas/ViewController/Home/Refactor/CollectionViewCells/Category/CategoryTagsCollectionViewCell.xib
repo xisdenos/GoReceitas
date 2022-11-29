@@ -21,6 +21,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="165" height="49"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                        <connections>
+                            <action selector="categoryTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ICZ-gq-Ftk"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>

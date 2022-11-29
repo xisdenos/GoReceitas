@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol CategoryTagsTableViewCellDelegate: AnyObject {
+    func categoryChosed()
+}
+
 class CategoryTagsTableViewCell: UITableViewCell {
     static let identifier: String = String(describing: CategoryTagsTableViewCell.self)
     
@@ -14,6 +18,8 @@ class CategoryTagsTableViewCell: UITableViewCell {
         return UINib(nibName: identifier, bundle: nil)
     }
 
+    weak var delegate: CategoryTagsTableViewCellDelegate?
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func awakeFromNib() {
@@ -37,6 +43,7 @@ class CategoryTagsTableViewCell: UITableViewCell {
 extension CategoryTagsTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryTagsCollectionViewCell.identifier, for: indexPath) as? CategoryTagsCollectionViewCell {
+            cell.delegate = self
             return cell
         }
         return UICollectionViewCell()
@@ -48,5 +55,13 @@ extension CategoryTagsTableViewCell: UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 30)
+    }
+}
+
+extension CategoryTagsTableViewCell: CategoryTagsCollectionViewCellDelegate {
+    func didTapCategoryButton(cell: UICollectionViewCell) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        print(indexPath.row)
+        delegate?.categoryChosed()
     }
 }

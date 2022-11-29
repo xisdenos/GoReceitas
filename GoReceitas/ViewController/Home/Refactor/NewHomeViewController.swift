@@ -12,12 +12,23 @@ class NewHomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var welcomeLabel: UILabel!
     
+    
+    // MARK: Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .viewBackgroundColor
         userProfilePictureImageView.image = UIImage(systemName: "person")
         configTableView()
         setTabBarIcons()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
     }
     
     func configTableView() {
@@ -44,6 +55,9 @@ class NewHomeViewController: UIViewController {
     
     @objc func allTagsTapped() {
         print(#function)
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "AllTagsViewController") as! AllTagsViewController
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
@@ -51,9 +65,11 @@ extension NewHomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTagsTableViewCell.identifier) as? CategoryTagsTableViewCell else { return UITableViewCell() }
+            cell.delegate = self
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TryItOutTableViewCell.identifier) as? TryItOutTableViewCell else { return UITableViewCell() }
+            cell.delegate = self
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
@@ -73,9 +89,9 @@ extension NewHomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Categorias"
+            return "Categories"
         case 1:
-            return "Experimente"
+            return "Try it out"
         case 2:
             return "Popular"
         default:
@@ -119,7 +135,25 @@ extension NewHomeViewController: UITableViewDelegate, UITableViewDataSource {
         header.textLabel?.frame = header.bounds
     }
     
+    // MARK: Did Select Row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+    }
+}
+
+extension NewHomeViewController: CategoryTagsTableViewCellDelegate {
+    func categoryChosed() {
+        print("category chosed")
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "TagsResultsViewController") as! TagsResultsViewController
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+extension NewHomeViewController: TryItOutTableViewCellDelegate {
+    func didTapFoodCell() {
+        let viewController = FoodDetailsViewController()
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }

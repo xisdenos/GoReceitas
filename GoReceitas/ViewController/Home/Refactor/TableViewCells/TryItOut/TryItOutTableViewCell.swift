@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol TryItOutTableViewCellDelegate: AnyObject {
+    func didTapFoodCell()
+}
+
 class TryItOutTableViewCell: UITableViewCell {
     
     @IBOutlet weak var pageControl: UIPageControl!
-    
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    weak var delegate: TryItOutTableViewCellDelegate?
+    
     static let identifier: String = String(describing: TryItOutTableViewCell.self)
     
     static func nib() -> UINib {
@@ -43,6 +49,10 @@ extension TryItOutTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
             return cell
         }
         return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didTapFoodCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
