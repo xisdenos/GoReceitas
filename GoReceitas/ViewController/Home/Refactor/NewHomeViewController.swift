@@ -9,10 +9,20 @@ import UIKit
 
 class NewHomeViewController: UIViewController {
     
+    lazy var pageControlProg: UIPageControl = {
+        let pc = UIPageControl()
+        pc.currentPage = 0
+        pc.pageIndicatorTintColor = .white
+        pc.currentPageIndicatorTintColor = .purple
+        pc.isUserInteractionEnabled = false
+        pc.translatesAutoresizingMaskIntoConstraints = false
+        
+        return pc
+    }()
+    
     @IBOutlet weak var userProfilePictureImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var welcomeLabel: UILabel!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +89,6 @@ extension NewHomeViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             return 300
         }
-        
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -101,10 +110,17 @@ extension NewHomeViewController: UITableViewDelegate, UITableViewDataSource {
         header.textLabel?.textColor = UIColor.systemPurple
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
         header.textLabel?.frame = header.bounds
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
+//        view.addSubview(pageControlProg)
+//        view.backgroundColor = .green
+//        pageControlProg.backgroundColor = .red
+//        return view
+//    }
 }

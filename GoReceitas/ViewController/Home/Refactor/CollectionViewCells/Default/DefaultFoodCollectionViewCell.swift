@@ -8,12 +8,10 @@
 import UIKit
 
 class DefaultFoodCollectionViewCell: UICollectionViewCell {
-    
     // containers
     @IBOutlet weak var favoriteButtonContainer: UIView!
     @IBOutlet weak var foodNameContainer: UIView!
     @IBOutlet weak var additionalInfoContainer: UIView!
-    
     
     // elements
     @IBOutlet weak var foodImageView: UIImageView!
@@ -43,6 +41,7 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
         foodName.textColor = .white
         additionalInfoLabel.textColor = .white
         foodName.textAlignment = .center
+        
     }
     
     func mockInfo() {

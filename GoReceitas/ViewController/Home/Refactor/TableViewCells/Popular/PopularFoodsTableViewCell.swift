@@ -46,7 +46,6 @@ extension PopularFoodsTableViewCell: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: collectionView.frame.width - 5, height: collectionView.frame.height)
         return CGSize(width: collectionView.frame.width / 2.2, height: 140)
     }
 }

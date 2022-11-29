@@ -13,7 +13,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var welcomeLabel: UILabel!
     
-    
     // MARK: Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +32,6 @@ class HomeViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
-//        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private func setTabBarIcons() {
