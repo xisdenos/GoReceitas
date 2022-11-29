@@ -45,8 +45,6 @@
 		820FC3952935575400247C6F /* DefaultFoodCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820FC3932935575400247C6F /* DefaultFoodCollectionViewCell.xib */; };
 		820FC39929355E0600247C6F /* PopularFoodsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820FC39729355E0600247C6F /* PopularFoodsTableViewCell.swift */; };
 		820FC39A29355E0600247C6F /* PopularFoodsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820FC39829355E0600247C6F /* PopularFoodsTableViewCell.xib */; };
-		820FC39E29356AC400247C6F /* PageControlCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820FC39C29356AC400247C6F /* PageControlCollectionReusableView.swift */; };
-		820FC39F29356AC400247C6F /* PageControlCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820FC39D29356AC400247C6F /* PageControlCollectionReusableView.xib */; };
 		821BCA4129117A5400D9BDB3 /* NoFavoritesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821BCA3F29117A5400D9BDB3 /* NoFavoritesCollectionViewCell.swift */; };
 		821BCA4229117A5400D9BDB3 /* NoFavoritesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821BCA4029117A5400D9BDB3 /* NoFavoritesCollectionViewCell.xib */; };
 		821BCA442911859100D9BDB3 /* LoginRegisterDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821BCA432911859100D9BDB3 /* LoginRegisterDescriptions.swift */; };
@@ -128,8 +126,6 @@
 		820FC3932935575400247C6F /* DefaultFoodCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultFoodCollectionViewCell.xib; sourceTree = "<group>"; };
 		820FC39729355E0600247C6F /* PopularFoodsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularFoodsTableViewCell.swift; sourceTree = "<group>"; };
 		820FC39829355E0600247C6F /* PopularFoodsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularFoodsTableViewCell.xib; sourceTree = "<group>"; };
-		820FC39C29356AC400247C6F /* PageControlCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControlCollectionReusableView.swift; sourceTree = "<group>"; };
-		820FC39D29356AC400247C6F /* PageControlCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageControlCollectionReusableView.xib; sourceTree = "<group>"; };
 		821BCA3F29117A5400D9BDB3 /* NoFavoritesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFavoritesCollectionViewCell.swift; sourceTree = "<group>"; };
 		821BCA4029117A5400D9BDB3 /* NoFavoritesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoFavoritesCollectionViewCell.xib; sourceTree = "<group>"; };
 		821BCA432911859100D9BDB3 /* LoginRegisterDescriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterDescriptions.swift; sourceTree = "<group>"; };
@@ -322,7 +318,6 @@
 		820FC3852935524700247C6F /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				820FC39B29356AAA00247C6F /* Footer */,
 				820FC3912935573900247C6F /* Default */,
 				820FC38A293553A700247C6F /* Category */,
 			);
@@ -372,15 +367,6 @@
 				820FC39829355E0600247C6F /* PopularFoodsTableViewCell.xib */,
 			);
 			path = Popular;
-			sourceTree = "<group>";
-		};
-		820FC39B29356AAA00247C6F /* Footer */ = {
-			isa = PBXGroup;
-			children = (
-				820FC39C29356AC400247C6F /* PageControlCollectionReusableView.swift */,
-				820FC39D29356AC400247C6F /* PageControlCollectionReusableView.xib */,
-			);
-			path = Footer;
 			sourceTree = "<group>";
 		};
 		8247B8FF2909EC8B00437F1E /* Profile */ = {
@@ -646,7 +632,6 @@
 				821BCA4229117A5400D9BDB3 /* NoFavoritesCollectionViewCell.xib in Resources */,
 				1F55854D2902E7FD00580185 /* FavoriteEmptyVC.storyboard in Resources */,
 				1FAA32B728EDFEF600AB6B9C /* FavoriteVC.storyboard in Resources */,
-				820FC39F29356AC400247C6F /* PageControlCollectionReusableView.xib in Resources */,
 				1F5585492902CB6100580185 /* FavoriteCollectionViewCell.xib in Resources */,
 				820FC384293550CE00247C6F /* CategoryTagsTableViewCell.xib in Resources */,
 				06459BBA28B01A060054F510 /* Main.storyboard in Resources */,
@@ -733,7 +718,6 @@
 				82FD41D42925144D00C49B37 /* FoodCollectionViewCell.swift in Sources */,
 				82C9BE4A28DA89D100D890EF /* CategoryViewCell.swift in Sources */,
 				8259F92D28DAB14900476299 /* Sections.swift in Sources */,
-				820FC39E29356AC400247C6F /* PageControlCollectionReusableView.swift in Sources */,
 				06459BB328B01A060054F510 /* AppDelegate.swift in Sources */,
 				82025B9D28EB8F890090376F /* SearchViewController.swift in Sources */,
 				1F5585482902CB6100580185 /* FavoriteCollectionViewCell.swift in Sources */,

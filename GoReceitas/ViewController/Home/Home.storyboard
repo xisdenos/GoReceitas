@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hJQ-ue-sko">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9MI-E9-pKt">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qbm-mP-BuX">
-                                <rect key="frame" x="0.0" y="211" width="390" height="599"/>
+                                <rect key="frame" x="0.0" y="167" width="390" height="643"/>
                                 <color key="backgroundColor" red="0.98039215690000003" green="0.92549019610000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="grz-EO-kyW">
                                     <size key="itemSize" width="375" height="139"/>
@@ -363,13 +363,13 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ItK-dL-JIG">
-                                <rect key="frame" x="20" y="131" width="270" height="46"/>
+                                <rect key="frame" x="20" y="87" width="270" height="46"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                 <color key="textColor" red="0.58431372550000005" green="0.0039215686269999999" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImage" translatesAutoresizingMaskIntoConstraints="NO" id="knU-tH-ZUR" userLabel="Profile Image">
-                                <rect key="frame" x="310" y="121" width="60" height="60"/>
+                                <rect key="frame" x="310" y="77" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="B6c-7X-fOH"/>
                                     <constraint firstAttribute="height" constant="60" id="MTR-Ly-3DO"/>
@@ -398,7 +398,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ABC-k4-2O6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7729" y="559"/>
+            <point key="canvasLocation" x="4997" y="559"/>
         </scene>
         <!--All Tags-->
         <scene sceneID="9kI-Xz-Y6G">
@@ -650,20 +650,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQk-lT-cBF">
-                                <rect key="frame" x="15" y="62" width="280" height="70"/>
+                                <rect key="frame" x="15" y="106" width="280" height="70"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jAB-ph-ogC">
-                                <rect key="frame" x="305" y="62" width="70" height="70"/>
+                                <rect key="frame" x="305" y="106" width="70" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="8c6-oe-Tat"/>
                                     <constraint firstAttribute="width" constant="70" id="uEK-6k-MCw"/>
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="7sF-8p-Xnw">
-                                <rect key="frame" x="0.0" y="142" width="390" height="668"/>
+                                <rect key="frame" x="0.0" y="186" width="390" height="624"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -682,6 +682,7 @@
                             <constraint firstItem="7sF-8p-Xnw" firstAttribute="top" secondItem="HQk-lT-cBF" secondAttribute="bottom" constant="10" id="r22-cG-Xv3"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Jfl-32-fXX"/>
                     <connections>
                         <outlet property="tableView" destination="7sF-8p-Xnw" id="jhB-RA-bVj"/>
                         <outlet property="userProfilePictureImageView" destination="jAB-ph-ogC" id="TGa-QZ-Dyo"/>
@@ -690,7 +691,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xy0-cG-D87" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6024.6153846153848" y="570.85308056872032"/>
+            <point key="canvasLocation" x="7700" y="559"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="goc-pH-RT6">
@@ -704,12 +705,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="WjA-MD-pc3" kind="relationship" relationship="rootViewController" id="Xxt-hA-0kL"/>
+                        <segue destination="hJQ-ue-sko" kind="relationship" relationship="rootViewController" id="bBo-oA-Ez6"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9at-Gg-HA6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6929" y="559"/>
+            <point key="canvasLocation" x="6794" y="559"/>
         </scene>
     </scenes>
     <resources>

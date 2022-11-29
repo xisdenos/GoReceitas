@@ -27,13 +27,13 @@
             </objects>
             <point key="canvasLocation" x="5941" y="-174"/>
         </scene>
-        <!--newHome-->
+        <!--homeNavigation-->
         <scene sceneID="FVB-Ov-dlg">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="newHome" storyboardName="Home" referencedIdentifier="newHome" id="udS-7x-hR4" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kx4-jn-PtF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardIdentifier="homeNavigation" storyboardName="Home" referencedIdentifier="homeNavigation" id="udS-7x-hR4" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="vdP-7w-Lvp"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kx4-jn-PtF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6677" y="-262"/>
         </scene>

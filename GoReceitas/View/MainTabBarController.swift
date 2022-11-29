@@ -11,13 +11,11 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        
         setTabBarViewControllers()
     }
     
    
-    let homeVC = UINavigationController(rootViewController: UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "homeVC"))
+    let homeVC = UINavigationController(rootViewController: UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "newHome"))
         let searchVC = UINavigationController(rootViewController: UIStoryboard(name: "Search", bundle: nil).instantiateViewController(withIdentifier: "searchVC"))
         let favoritesVC = UINavigationController(rootViewController: UIStoryboard(name: "FavoriteVC", bundle: nil).instantiateViewController(withIdentifier: "FavoriteHomeVC"))
         let profileVC = UINavigationController(rootViewController: UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "profile"))
@@ -25,9 +23,6 @@ class MainTabBarController: UITabBarController {
          private func setTabBarViewControllers() {
          setViewControllers([homeVC, searchVC, favoritesVC, profileVC], animated: true)
          }
-         
-        
-        
     }
 
 

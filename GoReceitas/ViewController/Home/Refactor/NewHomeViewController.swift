@@ -7,26 +7,13 @@
 
 import UIKit
 
-class NewHomeViewController: UIViewController {
-    
-    lazy var pageControlProg: UIPageControl = {
-        let pc = UIPageControl()
-        pc.currentPage = 0
-        pc.pageIndicatorTintColor = .white
-        pc.currentPageIndicatorTintColor = .purple
-        pc.isUserInteractionEnabled = false
-        pc.translatesAutoresizingMaskIntoConstraints = false
-        
-        return pc
-    }()
-    
+class NewHomeViewController: UIViewController {    
     @IBOutlet weak var userProfilePictureImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var welcomeLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .cyan
         userProfilePictureImageView.image = UIImage(systemName: "person")
         configTableView()
     }

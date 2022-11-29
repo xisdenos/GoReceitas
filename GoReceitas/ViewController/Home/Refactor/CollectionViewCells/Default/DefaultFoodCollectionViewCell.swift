@@ -46,7 +46,7 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
     
     func mockInfo() {
         additionalInfoLabel.text = "Yields 5 portions"
-        foodName.text = "Lasanha"
-        foodImageView.image = UIImage(named: "lasanha")
+        foodName.text = "Croissant Breakfast"
+        foodImageView.image = UIImage(named: "croissant-breakfast-pizza")
     }
 }
