@@ -14,17 +14,32 @@ class NewHomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .viewBackgroundColor
         userProfilePictureImageView.image = UIImage(systemName: "person")
         configTableView()
+        setTabBarIcons()
     }
     
     func configTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = .viewBackgroundColor
         tableView.separatorStyle = .none
         tableView.register(CategoryTagsTableViewCell.nib(), forCellReuseIdentifier: CategoryTagsTableViewCell.identifier)
         tableView.register(TryItOutTableViewCell.nib(), forCellReuseIdentifier: TryItOutTableViewCell.identifier)
         tableView.register(PopularFoodsTableViewCell.nib(), forCellReuseIdentifier: PopularFoodsTableViewCell.identifier)
+    }
+    
+    private func setTabBarIcons() {
+        self.tabBarController?.tabBar.items?[0].image = UIImage(systemName: "house")
+        self.tabBarController?.tabBar.items?[1].image = UIImage(systemName: "magnifyingglass")
+        self.tabBarController?.tabBar.items?[2].image = UIImage(systemName: "heart")
+        self.tabBarController?.tabBar.items?[3].image = UIImage(systemName: "person")
+        
+        self.tabBarController?.tabBar.items?[0].title = "Home"
+        self.tabBarController?.tabBar.items?[1].title = "Search"
+        self.tabBarController?.tabBar.items?[2].title = "Favorites"
+        self.tabBarController?.tabBar.items?[3].title = "Profile"
     }
     
     @objc func allTagsTapped() {
@@ -81,19 +96,24 @@ extension NewHomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if section == 0 {
             guard let header = view as? UITableViewHeaderFooterView else { return }
-            let allTagsButton: UIButton = UIButton(frame: CGRect(x: header.frame.midX + 100, y: 0, width: 100, height: 30))
+            let allTagsButton: UIButton = UIButton(frame: CGRect(x: header.frame.midX + 120, y: 0, width: 50, height: 30))
             allTagsButton.setTitle("All Tags", for: .normal)
             allTagsButton.setTitleColor(.systemPurple, for: .normal)
             allTagsButton.addTarget(self, action: #selector(allTagsTapped), for: .touchUpInside)
+            allTagsButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+            allTagsButton.titleLabel?.textAlignment = .center
+            allTagsButton.titleLabel?.numberOfLines = 0
             
             header.addSubview(allTagsButton)
             
+            header.backgroundColor = .viewBackgroundColor
             header.textLabel?.textColor = UIColor.systemPurple
             header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
             header.textLabel?.frame = header.bounds
         }
         
         guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.backgroundColor = .viewBackgroundColor
         header.textLabel?.textColor = UIColor.systemPurple
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
         header.textLabel?.frame = header.bounds
@@ -102,12 +122,4 @@ extension NewHomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
-//        view.addSubview(pageControlProg)
-//        view.backgroundColor = .green
-//        pageControlProg.backgroundColor = .red
-//        return view
-//    }
 }

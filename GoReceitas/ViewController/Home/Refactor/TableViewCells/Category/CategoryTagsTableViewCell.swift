@@ -18,16 +18,18 @@ class CategoryTagsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.backgroundColor = .viewBackgroundColor
         configCollectionView()
     }
     
     func configCollectionView() {
+        collectionView.backgroundColor = .viewBackgroundColor
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(CategoryTagsCollectionViewCell.nib(), forCellWithReuseIdentifier: CategoryTagsCollectionViewCell.identifier)
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
-            layout.sectionInset = .init(top: 5, left: 10, bottom: 5, right: 10)
+            layout.sectionInset = .init(top: 10, left: 10, bottom: 5, right: 10)
         }
     }
 }

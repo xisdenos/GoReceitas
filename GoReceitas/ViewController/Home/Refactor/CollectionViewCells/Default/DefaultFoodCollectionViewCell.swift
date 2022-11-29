@@ -27,6 +27,7 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.backgroundColor = .viewBackgroundColor
         configVisualElements()
         mockInfo()
     }
@@ -41,12 +42,16 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
         foodName.textColor = .white
         additionalInfoLabel.textColor = .white
         foodName.textAlignment = .center
-        
     }
     
     func mockInfo() {
         additionalInfoLabel.text = "Yields 5 portions"
         foodName.text = "Croissant Breakfast"
         foodImageView.image = UIImage(named: "croissant-breakfast-pizza")
+//        UIFont.systemFont(ofSize: <#T##CGFloat#>, weight: <#T##UIFont.Weight#>)
+    }
+    
+    func setup(font size: CGFloat, weight: UIFont.Weight) {
+        foodName.font = .systemFont(ofSize: size, weight: weight)
     }
 }

@@ -99,11 +99,13 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
         case DetailsSections.details.rawValue:
             guard let header = view as? UITableViewHeaderFooterView else { return }
             header.textLabel?.textColor = .textColorDefault
+            header.backgroundColor = .viewBackgroundColor
             header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
             header.textLabel?.frame = header.bounds
             header.textLabel?.textAlignment = .center
         default:
             guard let header = view as? UITableViewHeaderFooterView else { return }
+            header.backgroundColor = .viewBackgroundColor
             header.textLabel?.textColor = .textColorDefault
             header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
             header.textLabel?.frame = header.bounds

@@ -20,13 +20,14 @@ class TryItOutTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.backgroundColor = .viewBackgroundColor
         configCollectionView()
     }
     
     func configCollectionView() {
+        collectionView.backgroundColor = .viewBackgroundColor
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         collectionView.register(DefaultFoodCollectionViewCell.nib(), forCellWithReuseIdentifier: DefaultFoodCollectionViewCell.identifier)
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
@@ -38,6 +39,7 @@ class TryItOutTableViewCell: UITableViewCell {
 extension TryItOutTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell {
+            cell.setup(font: 22, weight: .bold)
             return cell
         }
         return UICollectionViewCell()

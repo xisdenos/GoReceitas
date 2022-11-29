@@ -19,8 +19,16 @@ class CategoryTagsCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.backgroundColor = .viewBackgroundColor
+        configTagsButtons()
+    }
+    
+    func configTagsButtons() {
         tagButton.layer.borderWidth = 1
-        tagButton.layer.cornerRadius = 5
+        tagButton.layer.cornerRadius = 10
+        tagButton.tintColor = .white
+//        tagButton.setTitleColor(.white, for: .normal)
+        tagButton.backgroundColor = UIColor(red: 73 / 255, green: 0 / 255, blue: 119 / 255, alpha: 1)
         tagButton.layer.borderColor = UIColor.systemPurple.cgColor
     }
 }

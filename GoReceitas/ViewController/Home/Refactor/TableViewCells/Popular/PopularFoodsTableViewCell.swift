@@ -19,10 +19,13 @@ class PopularFoodsTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
+        self.backgroundColor = .viewBackgroundColor
         configCollectionView()
     }
     
     func configCollectionView() {
+        collectionView.backgroundColor = .viewBackgroundColor
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(DefaultFoodCollectionViewCell.nib(), forCellWithReuseIdentifier: DefaultFoodCollectionViewCell.identifier)
