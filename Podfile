@@ -12,6 +12,7 @@ target 'GoReceitas' do
   pod 'FirebaseAuth'
   pod 'GoogleSignIn'
   pod 'FirebaseDatabase'
+  pod 'Firebase/Storage'
 
   post_install do |installer|
     installer.pods_project.targets.each do |target|

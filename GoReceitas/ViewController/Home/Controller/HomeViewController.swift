@@ -20,6 +20,7 @@ class HomeViewController: UIViewController {
         userProfilePictureImageView.image = UIImage(systemName: "person")
         configTableView()
         setTabBarIcons()
+        configObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,6 +30,14 @@ class HomeViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
+    }
+    
+    func configObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(updateImage), name: .updateImage, object: nil)
+    }
+    
+    @objc func updateImage(){
+        userProfilePictureImageView.image = UIImage(named: "heart-fill")
     }
     
     func configTableView() {

@@ -185,17 +185,8 @@ NS_ASSUME_NONNULL_BEGIN
     return nil;
   }
 
-  NSSet<Class> *allowedClasses = [NSSet setWithArray:@[[OIDServiceDiscovery class],
-                                                       // The following classes are required in
-                                                       // order to support secure decoding of the
-                                                       // old OIDServiceDiscovery encoding.
-                                                       [NSDictionary class],
-                                                       [NSArray class],
-                                                       [NSString class],
-                                                       [NSNumber class],
-                                                       [NSNull class]]];
-  OIDServiceDiscovery *discoveryDocument = [aDecoder decodeObjectOfClasses:allowedClasses
-                                                                    forKey:kDiscoveryDocumentKey];
+  OIDServiceDiscovery *discoveryDocument = [aDecoder decodeObjectOfClass:[OIDServiceDiscovery class]
+                                                                  forKey:kDiscoveryDocumentKey];
 
   return [self initWithAuthorizationEndpoint:authorizationEndpoint
                                tokenEndpoint:tokenEndpoint

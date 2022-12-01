@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageProfileLorena" translatesAutoresizingMaskIntoConstraints="NO" id="6bG-Du-dvP">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageProfileLorena" translatesAutoresizingMaskIntoConstraints="NO" id="6bG-Du-dvP">
                                 <rect key="frame" x="120" y="167" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="E7e-df-EvZ"/>
@@ -106,16 +106,28 @@
                                 <color key="textColor" red="0.53333336109999996" green="0.1019607931" blue="0.90196073060000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3gj-k1-MyG">
+                                <rect key="frame" x="231" y="287" width="49" height="34.333333333333314"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="pencil.line" catalog="system">
+                                    <color key="baseForegroundColor" red="0.53333336109999996" green="0.1019607931" blue="0.90196073060000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="tappedEditPhoto:" destination="ZYk-VY-Za2" eventType="touchUpInside" id="2rf-Ha-lLc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PGG-rX-VIA"/>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.92549019610000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="qAY-jr-Q5s" firstAttribute="leading" secondItem="Hjd-h3-ndB" secondAttribute="leading" id="3IC-Fz-dxe"/>
                             <constraint firstItem="PGG-rX-VIA" firstAttribute="trailing" secondItem="XxZ-3u-LGk" secondAttribute="trailing" constant="30" id="3aB-3c-bHO"/>
+                            <constraint firstItem="PGG-rX-VIA" firstAttribute="trailing" secondItem="3gj-k1-MyG" secondAttribute="trailing" constant="110" id="3ye-jS-BX1"/>
                             <constraint firstItem="Hjd-h3-ndB" firstAttribute="top" secondItem="6bG-Du-dvP" secondAttribute="bottom" constant="40" id="3z0-2W-TdD"/>
                             <constraint firstItem="PGG-rX-VIA" firstAttribute="trailing" secondItem="Hjd-h3-ndB" secondAttribute="trailing" constant="30" id="6C0-xr-Yh4"/>
                             <constraint firstItem="Hjd-h3-ndB" firstAttribute="leading" secondItem="PGG-rX-VIA" secondAttribute="leading" constant="30" id="FB8-5I-GHW"/>
                             <constraint firstItem="AyQ-xV-zw3" firstAttribute="leading" secondItem="vRY-BH-A0L" secondAttribute="trailing" id="HPF-xQ-IA7"/>
+                            <constraint firstItem="3gj-k1-MyG" firstAttribute="top" secondItem="6bG-Du-dvP" secondAttribute="bottom" constant="-30" id="HfA-ge-xld"/>
                             <constraint firstItem="6CM-R8-dVF" firstAttribute="top" secondItem="PGG-rX-VIA" secondAttribute="top" constant="5" id="Krt-GD-Khk"/>
                             <constraint firstItem="6CM-R8-dVF" firstAttribute="leading" secondItem="AyQ-xV-zw3" secondAttribute="trailing" constant="5" id="Lpb-wH-bSz"/>
                             <constraint firstItem="XxZ-3u-LGk" firstAttribute="leading" secondItem="PGG-rX-VIA" secondAttribute="leading" constant="30" id="N9q-mz-a97"/>
@@ -133,11 +145,13 @@
                             <constraint firstItem="PGG-rX-VIA" firstAttribute="bottom" secondItem="TA8-HC-h7m" secondAttribute="bottom" constant="20" id="r5y-Of-HgC"/>
                             <constraint firstItem="AyQ-xV-zw3" firstAttribute="top" secondItem="PGG-rX-VIA" secondAttribute="top" constant="5" id="wEZ-xi-oDV"/>
                             <constraint firstItem="eDC-an-dBt" firstAttribute="top" secondItem="XxZ-3u-LGk" secondAttribute="bottom" constant="15" id="x7e-1M-XhW"/>
+                            <constraint firstItem="PGG-rX-VIA" firstAttribute="trailing" secondItem="6bG-Du-dvP" secondAttribute="trailing" constant="120" id="zrc-n8-3Md"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iNz-2y-N6w"/>
                     <connections>
                         <outlet property="buttonChangePassword" destination="eDC-an-dBt" id="fji-v9-Ud8"/>
+                        <outlet property="buttonEditPhoto" destination="3gj-k1-MyG" id="QuX-Ib-BFY"/>
                         <outlet property="buttonGoOut" destination="TA8-HC-h7m" id="jj7-HX-Rng"/>
                         <outlet property="changeEmailButton" destination="XxZ-3u-LGk" id="vwg-7R-cdu"/>
                         <outlet property="imageProfile" destination="6bG-Du-dvP" id="8hs-eh-iAu"/>
@@ -157,7 +171,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageProfileLorena" translatesAutoresizingMaskIntoConstraints="NO" id="0fZ-Gg-2P1">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageProfileLorena" translatesAutoresizingMaskIntoConstraints="NO" id="0fZ-Gg-2P1">
                                 <rect key="frame" x="120" y="167" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="9Hf-d0-GuQ"/>
@@ -309,7 +323,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageProfileLorena" translatesAutoresizingMaskIntoConstraints="NO" id="SvL-U2-xMy">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageProfileLorena" translatesAutoresizingMaskIntoConstraints="NO" id="SvL-U2-xMy">
                                 <rect key="frame" x="120" y="167" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="Zlh-nb-WYu"/>
@@ -463,6 +477,7 @@
         <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <image name="imageProfileLorena" width="500" height="500"/>
         <image name="logoTop" width="40" height="40"/>
+        <image name="pencil.line" catalog="system" width="128" height="98"/>
         <image name="person" catalog="system" width="128" height="121"/>
     </resources>
 </document>
