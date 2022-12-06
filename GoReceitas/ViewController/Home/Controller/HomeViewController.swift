@@ -21,6 +21,10 @@ class HomeViewController: UIViewController {
         configTableView()
         setTabBarIcons()
         configObserver()
+        
+        Service.getFoodList { _ in
+            
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
