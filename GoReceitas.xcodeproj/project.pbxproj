@@ -60,6 +60,7 @@
 		82A4040428DAA57800F38990 /* TagsResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A4040328DAA57800F38990 /* TagsResultsViewController.swift */; };
 		82A68AEE293FD9AE0039D74D /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A68AED293FD9AE0039D74D /* Service.swift */; };
 		82A68AF0293FD9D00039D74D /* Foods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A68AEF293FD9D00039D74D /* Foods.swift */; };
+		82A68AF2293FDDEC0039D74D /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A68AF1293FDDEC0039D74D /* Tags.swift */; };
 		82C05CE82911DB3B00960D03 /* ForgetPasswordsDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C05CE72911DB3B00960D03 /* ForgetPasswordsDescriptions.swift */; };
 		82C9BE4028DA883000D890EF /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE3E28DA883000D890EF /* CategoryModel.swift */; };
 		82C9BE4128DA883000D890EF /* CellsInfoSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C9BE3F28DA883000D890EF /* CellsInfoSections.swift */; };
@@ -145,6 +146,7 @@
 		82A4040328DAA57800F38990 /* TagsResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsResultsViewController.swift; sourceTree = "<group>"; };
 		82A68AED293FD9AE0039D74D /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		82A68AEF293FD9D00039D74D /* Foods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foods.swift; sourceTree = "<group>"; };
+		82A68AF1293FDDEC0039D74D /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
 		82C05CE72911DB3B00960D03 /* ForgetPasswordsDescriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordsDescriptions.swift; sourceTree = "<group>"; };
 		82C9BE3E28DA883000D890EF /* CategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		82C9BE3F28DA883000D890EF /* CellsInfoSections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellsInfoSections.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				82C9BE3F28DA883000D890EF /* CellsInfoSections.swift */,
 				82A403F828DA9DF400F38990 /* AllTagsModel.swift */,
 				82A68AEF293FD9D00039D74D /* Foods.swift */,
+				82A68AF1293FDDEC0039D74D /* Tags.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -780,6 +783,7 @@
 				06DB88FC29117724004489BC /* purpleFadedContainer.swift in Sources */,
 				06DB88FE29119217004489BC /* PurpleInsideView.swift in Sources */,
 				EB43689228FE1C9E0023A2F9 /* LoginVC.swift in Sources */,
+				82A68AF2293FDDEC0039D74D /* Tags.swift in Sources */,
 				82C05CE82911DB3B00960D03 /* ForgetPasswordsDescriptions.swift in Sources */,
 				EB43689728FE28D60023A2F9 /* EsqueceuSenhaVC.swift in Sources */,
 				EBCBA2652910873B0073AE60 /* MainTabBarController.swift in Sources */,

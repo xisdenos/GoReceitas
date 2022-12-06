@@ -22,7 +22,7 @@ class HomeViewController: UIViewController {
         setTabBarIcons()
         configObserver()
         
-        Service.getFoodList { _ in
+        Service.getTagsList { _ in
             
         }
     }
