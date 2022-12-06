@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6AE4A3D573DED275B034E20506596C62"
-               BuildableName = "FirebaseAuth.framework"
-               BlueprintName = "FirebaseAuth"
+               BlueprintIdentifier = "FE1DE31D91C32501251AE9687CDC2E0F"
+               BuildableName = "FirebaseCoreExtension.framework"
+               BlueprintName = "FirebaseCoreExtension"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

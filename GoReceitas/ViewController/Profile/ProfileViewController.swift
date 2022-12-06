@@ -7,7 +7,7 @@
 
 import UIKit
 import FirebaseAuth
-import firebase
+import Firebase
 
 class ProfileViewController: UIViewController {
     
@@ -127,7 +127,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         picker.dismiss(animated: true)
     }
     func saveImage(image: String){
-        guard let image = imageProfile.image.jpg
+//        let image = imageProfile.image.jpg
     }
     
 }
