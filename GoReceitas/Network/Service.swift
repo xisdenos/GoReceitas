@@ -29,6 +29,7 @@ class Service {
             
             do {
                 let json = try JSONDecoder().decode(Foods.self, from: data)
+                // MARK: implement completion
 //                let json = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
                 print(json)
             } catch {
@@ -48,10 +49,9 @@ class Service {
             
             do {
                 let json = try JSONDecoder().decode(Tags.self, from: data)
-//                let json = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-                print(json)
+                completion(.success(json))
             } catch {
-                print(error)
+                completion(.failure(error))
             }
         }.resume()
     }

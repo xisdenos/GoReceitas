@@ -32,9 +32,14 @@ class CategoryTagsCollectionViewCell: UICollectionViewCell {
     func configTagsButtons() {
         tagButton.layer.borderWidth = 1
         tagButton.layer.cornerRadius = 10
+        tagButton.titleLabel?.numberOfLines = 1
         tagButton.tintColor = .white
         tagButton.backgroundColor = UIColor(red: 73 / 255, green: 0 / 255, blue: 119 / 255, alpha: 1)
         tagButton.layer.borderColor = UIColor.systemPurple.cgColor
+    }
+    
+    func setupTagsButtons(model: TagsResponse) {
+        tagButton.setTitle(model.display_name, for: .normal)
     }
     
     @IBAction func categoryTapped(_ sender: Any) {

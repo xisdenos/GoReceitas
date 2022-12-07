@@ -8,6 +8,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    private var tagsList: [TagsResponse] = [TagsResponse]()
     
     @IBOutlet weak var userProfilePictureImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
@@ -22,9 +23,14 @@ class HomeViewController: UIViewController {
         setTabBarIcons()
         configObserver()
         
-        Service.getTagsList { _ in
-            
-        }
+//        Service.getTagsList { tags in
+//            switch tags {
+//            case .success(let tags):
+//                self.tagsList = tags.results
+//            case .failure(let failure):
+//                print(failure)
+//            }
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,6 +84,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTagsTableViewCell.identifier) as? CategoryTagsTableViewCell else { return UITableViewCell() }
+            Service.getTagsList { tags in
+                switch tags {
+                case .success(let tags):
+                    cell.configureTags(with: tags.results)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
             cell.delegate = self
             return cell
         } else if indexPath.section == 1 {
