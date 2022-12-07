@@ -48,10 +48,9 @@ class CategoryTagsTableViewCell: UITableViewCell {
 extension CategoryTagsTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryTagsCollectionViewCell.identifier, for: indexPath) as? CategoryTagsCollectionViewCell {
-//            if !tagsList.isEmpty {
-//                cell.setupTagsButtons(model: tagsList[indexPath.row])
-//            }
-            
+            if !tagsList.isEmpty {
+                cell.setupTagsButtons(model: tagsList[indexPath.row])
+            }
             cell.delegate = self
             return cell
         }
@@ -70,7 +69,7 @@ extension CategoryTagsTableViewCell: UICollectionViewDataSource, UICollectionVie
 extension CategoryTagsTableViewCell: CategoryTagsCollectionViewCellDelegate {
     func didTapCategoryButton(cell: UICollectionViewCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
-        print(indexPath.row)
-        delegate?.categoryChosed()
+        print(tagsList[indexPath.row])
+        delegate?.categoryChosed(categoryInfo: tagsList[indexPath.row])
     }
 }

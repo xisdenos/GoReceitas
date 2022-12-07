@@ -36,11 +36,35 @@ class Service {
         }.resume()
     }
     
-    static func getTagSelected(with query: String, completion: @escaping (Result<Foods, Error>) -> Void) {
-        guard let queryFormatted = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+//    static func getTagSelected(with query: String, completion: @escaping (Result<Foods, Error>) -> Void) {
+//        guard let queryFormatted = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+//        
+//        guard let url = URL(string: APIConstants.base_url + APIEndpoints.foodList + "?q=\(queryFormatted)") else { return }
+//        var request = URLRequest(url: url)
+//        request.setValue(APIConstants.api_key, forHTTPHeaderField: "X-RapidAPI-Key")
+//        
+//        URLSession.shared.dataTask(with: request) { data, _, error in
+//            // no data, error occurred!
+//            guard let data = data, error == nil else { return }
+//            
+//            do {
+//                let json = try JSONDecoder().decode(Foods.self, from: data)
+//                completion(.success(json))
+//            } catch {
+//                completion(.failure(error))
+//            }
+//        }.resume()
+//    }
+    
+    static func getTagSelectedWith(tagName: String, completion: @escaping (Result<Foods, Error>) -> Void) {
+        // another way of using query instead of hardcoded
+        guard var urlComp = URLComponents(string: APIConstants.base_url + APIEndpoints.foodList) else { return }
+        urlComp.queryItems = [
+            URLQueryItem(name: "tags", value: tagName)
+        ]
         
-        guard let url = URL(string: APIConstants.base_url + APIEndpoints.foodList + "?q=\(queryFormatted)") else { return }
-        var request = URLRequest(url: url)
+        guard let urlCompUrl = urlComp.url else { return }
+        var request = URLRequest(url: urlCompUrl)
         request.setValue(APIConstants.api_key, forHTTPHeaderField: "X-RapidAPI-Key")
         
         URLSession.shared.dataTask(with: request) { data, _, error in
@@ -48,14 +72,10 @@ class Service {
             guard let data = data, error == nil else { return }
             
             do {
-//                let json = try JSONDecoder().decode(Foods.self, from: data)
-//                let json = try JSONSerialization.data(withJSONObject: data, options: .fragmentsAllowed)
-                let json = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-                print(json)
-//                completion(.success(json))
+                let json = try JSONDecoder().decode(Foods.self, from: data)
+                completion(.success(json))
             } catch {
-                print(error)
-//                completion(.failure(error))
+                completion(.failure(error))
             }
         }.resume()
     }

@@ -22,10 +22,6 @@ class HomeViewController: UIViewController {
         configTableView()
         setTabBarIcons()
         configObserver()
-        
-        Service.getTagSelected(with: "Middle Eastern") { _ in
-            
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,11 +33,11 @@ class HomeViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
-    func configObserver(){
+    func configObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateImage), name: .updateImage, object: nil)
     }
     
-    @objc func updateImage(){
+    @objc func updateImage() {
         userProfilePictureImageView.image = UIImage(named: "heart-fill")
     }
     
@@ -79,14 +75,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTagsTableViewCell.identifier) as? CategoryTagsTableViewCell else { return UITableViewCell() }
-//            Service.getTagsList { tags in
-//                switch tags {
-//                case .success(let tags):
-//                    cell.configureTags(with: tags.results)
-//                case .failure(let failure):
-//                    print(failure)
-//                }
-//            }
+            Service.getTagsList { tags in
+                switch tags {
+                case .success(let tags):
+                    cell.configureTags(with: tags.results)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
             cell.delegate = self
             return cell
         } else if indexPath.section == 1 {
@@ -163,11 +159,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension HomeViewController: CategoryTagsTableViewCellDelegate {
-    func categoryChosed() {
-        print("category chosed")
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "TagsResultsViewController") as! TagsResultsViewController
-        navigationController?.pushViewController(viewController, animated: true)
+    func categoryChosed(categoryInfo: TagsResponse) {
+        
+        Service.getTagSelectedWith(tagName: categoryInfo.name) { tagResult in
+            switch tagResult {
+            case .success(let success):
+                print(success)
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+        
+        
+//        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+//        let viewController = storyboard.instantiateViewController(withIdentifier: "TagsResultsViewController") as! TagsResultsViewController
+//        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
