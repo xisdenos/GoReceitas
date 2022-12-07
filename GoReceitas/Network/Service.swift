@@ -29,11 +29,33 @@ class Service {
             
             do {
                 let json = try JSONDecoder().decode(Foods.self, from: data)
-                // MARK: implement completion
-//                let json = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                completion(.success(json))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    static func getTagSelected(with query: String, completion: @escaping (Result<Foods, Error>) -> Void) {
+        guard let queryFormatted = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+        
+        guard let url = URL(string: APIConstants.base_url + APIEndpoints.foodList + "?q=\(queryFormatted)") else { return }
+        var request = URLRequest(url: url)
+        request.setValue(APIConstants.api_key, forHTTPHeaderField: "X-RapidAPI-Key")
+        
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            // no data, error occurred!
+            guard let data = data, error == nil else { return }
+            
+            do {
+//                let json = try JSONDecoder().decode(Foods.self, from: data)
+//                let json = try JSONSerialization.data(withJSONObject: data, options: .fragmentsAllowed)
+                let json = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
                 print(json)
+//                completion(.success(json))
             } catch {
                 print(error)
+//                completion(.failure(error))
             }
         }.resume()
     }
