@@ -1,10 +1,21 @@
 import UIKit
 
+protocol TagsResultsViewControllerProtocol: AnyObject {
+    func startLoading()
+    func stopLoading()
+}
+
 class TagsResultsViewController: UIViewController {
+    static let identifier = String(describing: TagsResultsViewController.self)
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var resultsLabel: UILabel!
     
     private var foodInformation: [FoodResponse] = []
+    
+    weak var delegate: TagsResultsViewControllerProtocol?
+    
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +32,23 @@ class TagsResultsViewController: UIViewController {
         
         tableView.backgroundColor = .viewBackgroundColor
         tableView.separatorStyle = .none
+        
+        setActivityIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    func setActivityIndicator() {
+        self.view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+        ])
     }
     
     public func configureFoodInformation(foodsInfo: [FoodResponse]) {
@@ -43,6 +66,7 @@ extension TagsResultsViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let foodInfoCell = tableView.dequeueReusableCell(withIdentifier: TagsResultsTableViewCell.identifier, for: indexPath) as! TagsResultsTableViewCell
+        
         if !foodInformation.isEmpty {
             foodInfoCell.setup(foodInfo: foodInformation[indexPath.row])
         }
