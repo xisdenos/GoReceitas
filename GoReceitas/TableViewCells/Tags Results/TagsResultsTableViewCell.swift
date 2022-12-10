@@ -13,7 +13,6 @@ class TagsResultsTableViewCell: UITableViewCell {
     func setup(foodInfo: FoodResponse) {
         // set image configs
         imageFood.loadImageUsingCache(withUrl: foodInfo.thumbnail_url)
-//        imageFood.downloaded(from: foodInfo.thumbnail_url)
         imageFood.contentMode = .scaleAspectFill
         imageFood.layer.cornerRadius = 10
         imageFood.layer.masksToBounds = true

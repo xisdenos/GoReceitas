@@ -13,7 +13,7 @@ class TagsResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .viewBackgroundColor
-        title = "Tags Results"
+//        title = "Tags Results"
         // mantém a cor de fundo da nav bar quando scrollada
         let navigationBar = navigationController?.navigationBar
         let navigationBarAppearance = UINavigationBarAppearance()
@@ -32,6 +32,12 @@ class TagsResultsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .viewBackgroundColor
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
     func setActivityIndicator() {
@@ -68,8 +74,9 @@ extension TagsResultsViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let viewController = FoodDetailsViewController()
-        navigationController?.pushViewController(viewController, animated: true)
+        print(foodInformation[indexPath.row])
+//        let viewController = FoodDetailsViewController()
+//        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -25,6 +25,10 @@ class HomeViewController: UIViewController {
         configTableView()
         setTabBarIcons()
         configObserver()
+        
+        service.getMoreInfo(id: 8176) { _ in
+            
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,14 +82,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTagsTableViewCell.identifier) as? CategoryTagsTableViewCell else { return UITableViewCell() }
-            service.getTagsList { tags in
-                switch tags {
-                case .success(let tags):
-                    cell.configureTags(with: tags.results)
-                case .failure(let failure):
-                    print(failure)
-                }
-            }
+//            service.getTagsList { tags in
+//                switch tags {
+//                case .success(let tags):
+//                    cell.configureTags(with: tags.results)
+//                case .failure(let failure):
+//                    print(failure)
+//                }
+//            }
             cell.delegate = self
             return cell
         } else if indexPath.section == 1 {
@@ -174,6 +178,7 @@ extension HomeViewController: CategoryTagsTableViewCellDelegate {
             switch tagResult {
             case .success(let tags):
                 DispatchQueue.main.async {
+                    viewController.title = categoryInfo.display_name
                     viewController.configureFoodInformation(foodsInfo: tags.results)
                     viewController.activityIndicator.stopAnimating()
                 }

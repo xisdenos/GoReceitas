@@ -10,6 +10,7 @@ import Foundation
 struct APIEndpoints {
     static let foodList = "/recipes/list"
     static let tags = "/tags/list"
+    static let getMoreInfo = "/recipes/get-more-info"
 }
 
 struct APIConstants {
@@ -71,6 +72,30 @@ class Service {
             
             do {
                 let json = try JSONDecoder().decode(Tags.self, from: data)
+                completion(.success(json))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    func getMoreInfo(id: Int, completion: @escaping (Result<FoodDetailsInfo, Error>) -> Void) {
+        // another way of using query instead of hardcoded
+        guard var urlComp = URLComponents(string: APIConstants.base_url + APIEndpoints.getMoreInfo) else { return }
+        urlComp.queryItems = [
+            URLQueryItem(name: "id", value: String(id))
+        ]
+        
+        guard let urlCompUrl = urlComp.url else { return }
+        var request = URLRequest(url: urlCompUrl)
+        request.setValue(APIConstants.api_key, forHTTPHeaderField: "X-RapidAPI-Key")
+        
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            // no data, error occurred!
+            guard let data = data, error == nil else { return }
+            
+            do {
+                let json = try JSONDecoder().decode(FoodDetailsInfo.self, from: data)
                 completion(.success(json))
             } catch {
                 completion(.failure(error))

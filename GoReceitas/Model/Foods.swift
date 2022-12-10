@@ -12,6 +12,7 @@ struct Foods: Codable {
 }
 
 struct FoodResponse: Codable {
+    let id: Int
     let name: String
     let thumbnail_url: String
     let cook_time_minutes, prep_time_minutes: Int?
