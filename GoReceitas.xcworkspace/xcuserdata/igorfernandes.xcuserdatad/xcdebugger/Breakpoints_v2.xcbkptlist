@@ -87,16 +87,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "70EABBBB-B1E6-483F-AB92-EEB16D8DAF4A"
+            uuid = "907AC5FA-DEBF-4320-91B8-E26C5CC30501"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GoReceitas/ViewController/FoodDetails/FoodDetailsView.swift"
+            filePath = "GoReceitas/ViewController/FoodDetails/Components/PurpleInsideView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "configure(prepTimeText:)"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "setNumber(of:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

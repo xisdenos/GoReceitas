@@ -10,38 +10,50 @@ import UIKit
 class DetailsTableViewCell: UITableViewCell {
     static let identifier = "DetailsTableViewCell"
     
-    lazy var firstPurpleContainer: purpleFadedView = {
-        let view = purpleFadedView(labelText: "Proteins", numberText: "25")
+    lazy var proteinsContainer: PurpleFadedView = {
+        let view = PurpleFadedView(labelText: "Proteins")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    lazy var secondPurpleContainer: purpleFadedView = {
-        let view = purpleFadedView(labelText: "Fat", numberText: "81")
+    lazy var fatContainer: PurpleFadedView = {
+        let view = PurpleFadedView(labelText: "Fat")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    lazy var thirdPurpleContainer: purpleFadedView = {
-        let view = purpleFadedView(labelText: "Calories", numberText: "105")
+    lazy var caloriesContainer: PurpleFadedView = {
+        let view = PurpleFadedView(labelText: "Calories")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    lazy var forthPurpleContainer: purpleFadedView = {
-        let view = purpleFadedView(labelText: "Carb", numberText: "53")
+    lazy var carbContainer: PurpleFadedView = {
+        let view = PurpleFadedView(labelText: "Carb")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    func configure(nutritions: Nutrition) {
+        if let proteins = nutritions.protein,
+           let fat = nutritions.fat,
+           let calories = nutritions.calories,
+           let carb = nutritions.carbohydrates {
+            proteinsContainer.setNumber(of: String(proteins))
+            fatContainer.setNumber(of: String(fat))
+            caloriesContainer.setNumber(of: String(calories))
+            carbContainer.setNumber(of: String(carb))
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = .viewBackgroundColor
         
-        contentView.addSubview(firstPurpleContainer)
-        contentView.addSubview(secondPurpleContainer)
-        contentView.addSubview(thirdPurpleContainer)
-        contentView.addSubview(forthPurpleContainer)
+        contentView.addSubview(proteinsContainer)
+        contentView.addSubview(fatContainer)
+        contentView.addSubview(caloriesContainer)
+        contentView.addSubview(carbContainer)
         
         setupConstraints()
     }
@@ -53,17 +65,17 @@ class DetailsTableViewCell: UITableViewCell {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             
-            firstPurpleContainer.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            firstPurpleContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
+            proteinsContainer.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            proteinsContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             
-            secondPurpleContainer.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            secondPurpleContainer.leadingAnchor.constraint(equalTo: firstPurpleContainer.trailingAnchor, constant: 10),
+            fatContainer.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            fatContainer.leadingAnchor.constraint(equalTo: proteinsContainer.trailingAnchor, constant: 10),
             
-            thirdPurpleContainer.topAnchor.constraint(equalTo: firstPurpleContainer.bottomAnchor, constant: 10),
-            thirdPurpleContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            caloriesContainer.topAnchor.constraint(equalTo: proteinsContainer.bottomAnchor, constant: 10),
+            caloriesContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             
-            forthPurpleContainer.topAnchor.constraint(equalTo: secondPurpleContainer.bottomAnchor, constant: 10),
-            forthPurpleContainer.leadingAnchor.constraint(equalTo: thirdPurpleContainer.trailingAnchor, constant: 10),
+            carbContainer.topAnchor.constraint(equalTo: fatContainer.bottomAnchor, constant: 10),
+            carbContainer.leadingAnchor.constraint(equalTo: caloriesContainer.trailingAnchor, constant: 10),
         ])
     }
 }

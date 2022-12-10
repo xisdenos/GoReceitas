@@ -66,9 +66,12 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: DetailsTableViewCell.identifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: DetailsTableViewCell.identifier, for: indexPath) as! DetailsTableViewCell
             if foodDetails != nil {
-                print(foodDetails)
+                if let nutrition = foodDetails?.nutrition {
+                    cell.configure(nutritions: nutrition)
+                    print(nutrition)
+                }
             }
             return cell
         case 1:
