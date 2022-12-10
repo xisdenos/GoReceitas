@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     private var tagsList: [TagsResponse] = [TagsResponse]()
+    private var service: Service = Service()
     
     @IBOutlet weak var userProfilePictureImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
@@ -75,7 +76,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTagsTableViewCell.identifier) as? CategoryTagsTableViewCell else { return UITableViewCell() }
-            Service.getTagsList { tags in
+            service.getTagsList { tags in
                 switch tags {
                 case .success(let tags):
                     cell.configureTags(with: tags.results)
@@ -160,20 +161,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeViewController: CategoryTagsTableViewCellDelegate {
     func categoryChosed(categoryInfo: TagsResponse) {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "TagsResultsViewController") as! TagsResultsViewController
+        self.navigationController?.pushViewController(viewController, animated: true)
         
-        Service.getTagSelectedWith(tagName: categoryInfo.name) { tagResult in
+        service.getTagSelectedWith(tagName: categoryInfo.name) { tagResult in
             switch tagResult {
-            case .success(let success):
-                print(success)
+            case .success(let tags):
+                print(tags)
+                DispatchQueue.main.async {
+                    viewController.configureFoodInformation(foodsInfo: tags.results)
+                }
             case .failure(let failure):
                 print(failure)
             }
         }
-        
-        
-//        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-//        let viewController = storyboard.instantiateViewController(withIdentifier: "TagsResultsViewController") as! TagsResultsViewController
-//        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

@@ -4,21 +4,8 @@ class TagsResultsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var resultsLabel: UILabel!
     
-    private var foodInformation: [CellsInfoSections] = [
-        .init(foodName: "Salad", prepTime: "60min", foodImage: "salad"),
-        .init(foodName: "Shrimp", prepTime: "30min", foodImage: "salad"),
-        .init(foodName: "Potato tacos", prepTime: "60min", foodImage: "salad"),
-        .init(foodName: "Pizza chicago", prepTime: "30min", foodImage: "salad"),
-        .init(foodName: "Grilled tacos", prepTime: "60min", foodImage: "salad"),
-        .init(foodName: "Lasagna", prepTime: "30min", foodImage: "salad"),
-        .init(foodName: "Tomato", prepTime: "60min", foodImage: "salad"),
-        .init(foodName: "Shrimp", prepTime: "30min", foodImage: "salad"),
-        .init(foodName: "Rice", prepTime: "60min", foodImage: "salad"),
-        .init(foodName: "Pumpkin rice", prepTime: "30min", foodImage: "salad"),
-        .init(foodName: "Mac and cheese", prepTime: "60min", foodImage: "salad"),
-        .init(foodName: "Chicken", prepTime: "30min", foodImage: "salad"),
-        
-    ]
+    private var foodInformation: [FoodResponse] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .viewBackgroundColor
@@ -40,6 +27,13 @@ class TagsResultsViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
+    public func configureFoodInformation(foodsInfo: [FoodResponse]) {
+        self.foodInformation = foodsInfo
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
 }
 
 extension TagsResultsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -49,7 +43,9 @@ extension TagsResultsViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let foodInfoCell = tableView.dequeueReusableCell(withIdentifier: TagsResultsTableViewCell.identifier, for: indexPath) as! TagsResultsTableViewCell
-        foodInfoCell.setup(foodInfo: foodInformation[indexPath.row])
+        if !foodInformation.isEmpty {
+            foodInfoCell.setup(foodInfo: foodInformation[indexPath.row])
+        }
         return foodInfoCell
     }
     

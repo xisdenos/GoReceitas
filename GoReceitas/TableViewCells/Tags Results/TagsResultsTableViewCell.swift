@@ -10,15 +10,19 @@ class TagsResultsTableViewCell: UITableViewCell {
     @IBOutlet weak var prepTimeLbl: UILabel!
     @IBOutlet weak var heartButton: UIButton!
     
-    func setup(foodInfo: CellsInfoSections) {
+    func setup(foodInfo: FoodResponse) {
         // set image configs
-        self.imageFood.image = UIImage(named: foodInfo.foodImage)
-        self.imageFood.contentMode = .scaleAspectFill
-        self.imageFood.layer.cornerRadius = 10
-        self.imageFood.layer.masksToBounds = true
+        imageFood.loadImageUsingCache(withUrl: foodInfo.thumbnail_url)
+//        imageFood.downloaded(from: foodInfo.thumbnail_url)
+        imageFood.contentMode = .scaleAspectFill
+        imageFood.layer.cornerRadius = 10
+        imageFood.layer.masksToBounds = true
+        
         // set food name and prepTime lbl configs
-        self.foodNameLbl.text = foodInfo.foodName
-        self.prepTimeLbl.text = foodInfo.prepTime
+        foodNameLbl.text = foodInfo.name
+        if let cookTime = foodInfo.cook_time_minutes ?? foodInfo.prep_time_minutes {
+            prepTimeLbl.text = "\(cookTime) minutes"   
+        }
     }
     
     @IBAction func favoriteButton(_ sender: UIButton) {
