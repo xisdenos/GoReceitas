@@ -21,8 +21,8 @@ struct Instruction: Codable {
 }
 
 struct Nutrition: Codable {
-    let calories: Int
-    let carbohydrates: Int
-    let fat: Int
-    let protein: Int
+    let calories: Int?
+    let carbohydrates: Int?
+    let fat: Int?
+    let protein: Int?
 }

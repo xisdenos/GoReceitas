@@ -19,9 +19,7 @@ class TagsResultsTableViewCell: UITableViewCell {
         
         // set food name and prepTime lbl configs
         foodNameLbl.text = foodInfo.name
-        if let cookTime = foodInfo.cook_time_minutes ?? foodInfo.prep_time_minutes {
-            prepTimeLbl.text = "\(cookTime) minutes"   
-        }
+        prepTimeLbl.text = foodInfo.yields ?? "N/A"
     }
     
     @IBAction func favoriteButton(_ sender: UIButton) {

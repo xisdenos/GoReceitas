@@ -14,7 +14,6 @@ enum DetailsSections: Int {
 }
 
 class FoodDetailsViewController: UIViewController {
-    
     lazy var foodDetailsView: FoodDetailsView = {
         let foodview = FoodDetailsView()
 
@@ -23,13 +22,25 @@ class FoodDetailsViewController: UIViewController {
         return foodview
     }()
     
-    override func loadView() {
-        super.loadView()
-        view = foodDetailsView
+    private var foodDetails: FoodDetailsInfo?
+    
+    public func configureFoodInformation(foodDetails: FoodDetailsInfo) {
+        self.foodDetails = foodDetails
+        DispatchQueue.main.async { [weak self] in
+            self?.foodDetailsView.foodImageView.loadImageUsingCache(withUrl: foodDetails.thumbnail_url)
+            self?.foodDetailsView.topFadedLabel.setTitle(foodDetails.name, for: .normal)
+            self?.foodDetailsView.configure(prepTimeText: String(foodDetails.yields ?? "N/A"))
+            self?.foodDetailsView.tableView.reloadData()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func loadView() {
+        super.loadView()
+        view = foodDetailsView
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,6 +67,9 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: DetailsTableViewCell.identifier, for: indexPath)
+            if foodDetails != nil {
+                print(foodDetails)
+            }
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionTableViewCell.identifier, for: indexPath)

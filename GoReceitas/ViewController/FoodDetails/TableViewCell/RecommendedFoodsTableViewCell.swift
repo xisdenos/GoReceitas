@@ -43,7 +43,6 @@ class RecommendedFoodsTableViewCell: UITableViewCell {
     }
 }
 
-
 extension RecommendedFoodsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10

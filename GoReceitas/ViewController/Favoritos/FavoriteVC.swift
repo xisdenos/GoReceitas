@@ -64,8 +64,8 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let viewController = FoodDetailsViewController()
-        navigationController?.pushViewController(viewController, animated: true)
+//        let viewController = FoodDetailsViewController()
+//        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
