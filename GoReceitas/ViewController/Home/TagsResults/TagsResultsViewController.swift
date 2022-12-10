@@ -1,10 +1,5 @@
 import UIKit
 
-protocol TagsResultsViewControllerProtocol: AnyObject {
-    func startLoading()
-    func stopLoading()
-}
-
 class TagsResultsViewController: UIViewController {
     static let identifier = String(describing: TagsResultsViewController.self)
     
@@ -12,8 +7,6 @@ class TagsResultsViewController: UIViewController {
     @IBOutlet weak var resultsLabel: UILabel!
     
     private var foodInformation: [FoodResponse] = []
-    
-    weak var delegate: TagsResultsViewControllerProtocol?
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     

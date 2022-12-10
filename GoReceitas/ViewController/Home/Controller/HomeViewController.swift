@@ -165,10 +165,9 @@ extension HomeViewController: CategoryTagsTableViewCellDelegate {
     func categoryChosed(categoryInfo: TagsResponse) {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: TagsResultsViewController.identifier) as! TagsResultsViewController
-        viewController.delegate = self
-        self.navigationController?.pushViewController(viewController, animated: true)
         
-//        print("LOADING COMEÇA")
+        self.navigationController?.pushViewController(viewController, animated: true)
+
         viewController.activityIndicator.startAnimating()
         service.getTagSelectedWith(tagName: categoryInfo.name) { tagResult in
             
@@ -176,23 +175,12 @@ extension HomeViewController: CategoryTagsTableViewCellDelegate {
             case .success(let tags):
                 DispatchQueue.main.async {
                     viewController.configureFoodInformation(foodsInfo: tags.results)
-//                    print("LOADING TERMINA")
                     viewController.activityIndicator.stopAnimating()
                 }
             case .failure(let failure):
                 print(failure)
             }
         }
-    }
-}
-
-extension HomeViewController: TagsResultsViewControllerProtocol {
-    func startLoading() {
-//        print("LOADING COMEÇA")
-    }
-    
-    func stopLoading() {
-//        print("LOADING TERMINA")
     }
 }
 
