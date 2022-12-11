@@ -85,7 +85,7 @@ class FoodDetailsView: UIView {
             topFadedLabel.leadingAnchor.constraint(equalTo: foodImageView.leadingAnchor, constant: 20),
             topFadedLabel.trailingAnchor.constraint(equalTo: purpheHearthView.leadingAnchor, constant: -15),
 
-            purpheHearthView.topAnchor.constraint(equalTo: foodImageView.topAnchor, constant: 50),
+            purpheHearthView.topAnchor.constraint(equalTo: foodImageView.topAnchor, constant: 30),
             purpheHearthView.trailingAnchor.constraint(equalTo: foodImageView.trailingAnchor, constant: -20),
             purpheHearthView.widthAnchor.constraint(equalToConstant: 50),
             purpheHearthView.heightAnchor.constraint(equalToConstant: 50),

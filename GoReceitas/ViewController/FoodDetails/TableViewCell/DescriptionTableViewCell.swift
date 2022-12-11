@@ -39,8 +39,8 @@ class DescriptionTableViewCell: UITableViewCell {
         return label
     }()
     
-    public func configure(description: Instruction) {
-        instructionsLabel.text = description.display_text
+    public func configure(description: String) {
+        instructionsLabel.text = description
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
