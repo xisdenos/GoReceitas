@@ -47,6 +47,10 @@ class FoodDetailsViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
         navigationController?.navigationBar.tintColor = .textColorDefault
         navigationController?.navigationBar.prefersLargeTitles = false
+        
+        
+//        foodDetailsView.tableView.rowHeight = UITableView.automaticDimension
+//        foodDetailsView.tableView.estimatedRowHeight = 100
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -75,7 +79,14 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
             }
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionTableViewCell.identifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: DescriptionTableViewCell.identifier, for: indexPath) as! DescriptionTableViewCell
+            if foodDetails != nil {
+                if let description = foodDetails?.instructions {
+                    cell.configure(description: description[indexPath.row])
+                    print(description[indexPath.row])
+                    print(description)
+                }
+            }
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: RecommendedFoodsTableViewCell.identifier, for: indexPath)
@@ -93,10 +104,23 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
         switch indexPath.section {
         case DetailsSections.details.rawValue:
             return 100
-        default:
+        case DetailsSections.recommended.rawValue:
             return 250
+        default:
+            return UITableView.automaticDimension
         }
     }
+    
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        switch indexPath.section {
+//        case DetailsSections.details.rawValue:
+//            return 100
+//        case DetailsSections.recommended.rawValue:
+//            return 250
+//        default:
+//            return UITableView.automaticDimension
+//        }
+//    }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
@@ -112,19 +136,19 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        switch section {
-        case DetailsSections.details.rawValue:
-            guard let header = view as? UITableViewHeaderFooterView else { return }
-            header.textLabel?.textColor = .textColorDefault
-            header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-            header.textLabel?.frame = header.bounds
-            header.textLabel?.textAlignment = .center
-        default:
+//        switch section {
+//        case DetailsSections.details.rawValue:
+//            guard let header = view as? UITableViewHeaderFooterView else { return }
+//            header.textLabel?.textColor = .textColorDefault
+//            header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+//            header.textLabel?.frame = header.bounds
+//            header.textLabel?.textAlignment = .center
+//        default:
             guard let header = view as? UITableViewHeaderFooterView else { return }
             header.textLabel?.textColor = .textColorDefault
             header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
             header.textLabel?.frame = header.bounds
             header.textLabel?.textAlignment = .left
-        }
+//        }
     }
 }
