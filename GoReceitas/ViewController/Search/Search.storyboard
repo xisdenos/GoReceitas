@@ -12,7 +12,7 @@
         <!--Search-->
         <scene sceneID="7jg-jj-vyn">
             <objects>
-                <viewController storyboardIdentifier="searchVC" title="Search" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wz5-7x-MbB" customClass="SearchViewController" customModule="GoReceitas" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="searchVC" title="Search" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wz5-7x-MbB" customClass="SearchViewController" customModule="GoReceitas" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tPa-Lf-Hz1">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

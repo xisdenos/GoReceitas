@@ -23,6 +23,8 @@ class SearchViewController: UIViewController {
         search.searchBar.searchBarStyle = .minimal
         search.searchResultsUpdater = self
         search.searchBar.delegate = self
+        search.hidesNavigationBarDuringPresentation = true
+        self.definesPresentationContext = true
         return search
     }()
     
