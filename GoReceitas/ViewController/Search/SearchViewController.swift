@@ -8,19 +8,11 @@
 import UIKit
 
 class SearchViewController: UIViewController {
+    private var service: Service = Service()
 
-    public var foodData: [CellsInfoSections] = [
-        .init(foodName: "Birria tacos", prepTime: "35 min", foodImage: "birria-tacos"),
-        .init(foodName: "Potato tacos", prepTime: "20 min", foodImage: "potato-tacos"),
-        .init(foodName: "Salad", prepTime: "15 min", foodImage: "salad"),
-        .init(foodName: "Pumpkin pie", prepTime: "10 min", foodImage: "pumpkin-pie"),
-        .init(foodName: "Tomato", prepTime: "10 min", foodImage: "tomato"),
-        .init(foodName: "Pumpkin", prepTime: "50 min", foodImage: "pumpkin"),
-        .init(foodName: "Rice", prepTime: "20 min", foodImage: "rice"),
-        .init(foodName: "Mac-and-cheese", prepTime: "15 min", foodImage: "mac-and-cheese"),
-        .init(foodName: "Grilled tacos", prepTime: "30 min", foodImage: "grilled-tacos"),
-    ]
-    private var currentDataSource: [CellsInfoSections] = []
+    public var foodData: [FoodResponse] = []
+    
+    private var currentDataSource: [FoodResponse] = []
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerSearchBar: UIView!
@@ -55,15 +47,6 @@ class SearchViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(ResultsTableViewCell.nib(), forCellReuseIdentifier: ResultsTableViewCell.identifier)
     }
-    
-    func filterResults(with term: String) {
-        if term.count > 0 {
-            currentDataSource = foodData
-            let filteredResults = foodData.filter { $0.foodName.lowercased().contains(term.lowercased()) }
-            currentDataSource = filteredResults
-            tableView.reloadData()
-        }
-    }
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -83,8 +66,23 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        let viewController = FoodDetailsViewController()
-//        navigationController?.pushViewController(viewController, animated: true)
+        
+        let food = currentDataSource[indexPath.row]
+        
+        print(food)
+        let viewController = FoodDetailsViewController()
+        navigationController?.pushViewController(viewController, animated: true)
+        
+        service.getMoreInfo(id: food.id) { details in
+            switch details {
+            case .success(let success):
+                DispatchQueue.main.async {
+                    viewController.configureFoodInformation(foodDetails: success)
+                }
+            case .failure(let failure):
+                print(failure)
+            }
+        }
     }
 }
 
@@ -92,7 +90,19 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }
 
-        filterResults(with: searchText)
+        if searchText.count >= 3 {
+            service.searchFoodWith(term: searchText) { [weak self] foodsResult in
+                switch foodsResult {
+                case .success(let foods):
+                    self?.currentDataSource = foods.results
+                    DispatchQueue.main.async {
+                        self?.tableView.reloadData()
+                    }
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+        }
         
         if searchText.count == 0 {
             currentDataSource = foodData

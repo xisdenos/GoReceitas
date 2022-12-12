@@ -37,6 +37,33 @@ class Service {
         }.resume()
     }
     
+    // search
+    func searchFoodWith(term: String, completion: @escaping (Result<Foods, Error>) -> Void) {
+        guard var urlComp = URLComponents(string: APIConstants.base_url + APIEndpoints.foodList) else { return }
+        urlComp.queryItems = [
+            URLQueryItem(name: "q", value: term)
+        ]
+        
+        guard let urlCompUrl = urlComp.url else { return }
+        var request = URLRequest(url: urlCompUrl)
+        request.setValue(APIConstants.api_key, forHTTPHeaderField: "X-RapidAPI-Key")
+        
+        
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            // no data, error occurred!
+            guard let data = data, error == nil else { return }
+            
+            do {
+//                let json = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+//                print(json)
+                let json = try JSONDecoder().decode(Foods.self, from: data)
+                completion(.success(json))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
     func getTagSelectedWith(tagName: String, completion: @escaping (Result<Foods, Error>) -> Void) {
         // another way of using query instead of hardcoded
         guard var urlComp = URLComponents(string: APIConstants.base_url + APIEndpoints.foodList) else { return }
