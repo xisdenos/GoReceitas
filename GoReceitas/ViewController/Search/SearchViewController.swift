@@ -7,12 +7,21 @@
 
 import UIKit
 
+protocol SearchViewControllerProtocol: AnyObject {
+    func startLoading()
+    func stopLoading()
+}
+
 class SearchViewController: UIViewController {
     private var service: Service = Service()
 
     public var foodData: [FoodResponse] = []
     
     private var currentDataSource: [FoodResponse] = []
+    
+    private var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
+    
+    weak var delegate: SearchViewControllerProtocol?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerSearchBar: UIView!
@@ -23,6 +32,8 @@ class SearchViewController: UIViewController {
         search.searchBar.searchBarStyle = .minimal
         search.searchResultsUpdater = self
         search.searchBar.delegate = self
+        // corrige search bar sobrepondo a navigation da proxima tela quando disparada
+        // https://stackoverflow.com/a/42392069
         search.hidesNavigationBarDuringPresentation = true
         self.definesPresentationContext = true
         return search
@@ -32,12 +43,14 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         title = "Search"
         currentDataSource = foodData
+        delegate = self
         
         tableView.backgroundColor = .viewBackgroundColor
         self.view.backgroundColor = .viewBackgroundColor
         
         containerSearchBar.addSubview(searchController.searchBar)
         configTableView()
+        setActivityIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +62,16 @@ class SearchViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(ResultsTableViewCell.nib(), forCellReuseIdentifier: ResultsTableViewCell.identifier)
     }
+    
+    func setActivityIndicator() {
+        self.view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+        ])
+    }
 }
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -58,7 +81,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ResultsTableViewCell.identifier, for: indexPath) as! ResultsTableViewCell
-        cell.setup(currentDataSource[indexPath.row])
+        if !currentDataSource.isEmpty {
+            cell.setup(currentDataSource[indexPath.row])
+        }
         return cell
     }
     
@@ -93,12 +118,14 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
         guard let searchText = searchController.searchBar.text else { return }
 
         if searchText.count >= 3 {
+            self.delegate?.startLoading()
             service.searchFoodWith(term: searchText) { [weak self] foodsResult in
                 switch foodsResult {
                 case .success(let foods):
                     self?.currentDataSource = foods.results
                     DispatchQueue.main.async {
                         self?.tableView.reloadData()
+                        self?.delegate?.stopLoading()
                     }
                 case .failure(let failure):
                     print(failure)
@@ -115,5 +142,21 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         currentDataSource = foodData
         tableView.reloadData()
+    }
+}
+
+extension SearchViewController: SearchViewControllerProtocol {
+    func startLoading() {
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.isHidden = true
+            self?.activityIndicator.startAnimating()
+        }
+    }
+    
+    func stopLoading() {
+        DispatchQueue.main.async { [weak self] in
+            self?.activityIndicator.stopAnimating()
+            self?.tableView.isHidden = false
+        }
     }
 }

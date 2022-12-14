@@ -117,7 +117,7 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
         case DetailsSections.description.rawValue:
             return "Instructions"
         case DetailsSections.recommended.rawValue:
-            return "You may also like"
+            return "You might also like"
         default:
             return nil
         }

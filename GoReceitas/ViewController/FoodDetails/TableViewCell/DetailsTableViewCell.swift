@@ -44,6 +44,17 @@ class DetailsTableViewCell: UITableViewCell {
             caloriesContainer.setNumber(of: String(calories))
             carbContainer.setNumber(of: String(carb))
         }
+        
+        if nutritions.calories == nil ||
+            nutritions.fat == nil ||
+            nutritions.carbohydrates == nil ||
+            nutritions.protein == nil {
+            proteinsContainer.setNumber(of: "N/A")
+            fatContainer.setNumber(of: "N/A")
+            caloriesContainer.setNumber(of: "N/A")
+            carbContainer.setNumber(of: "N/A")
+        }
+            
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

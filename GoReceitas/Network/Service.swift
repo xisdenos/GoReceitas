@@ -54,8 +54,6 @@ class Service {
             guard let data = data, error == nil else { return }
             
             do {
-//                let json = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-//                print(json)
                 let json = try JSONDecoder().decode(Foods.self, from: data)
                 completion(.success(json))
             } catch {
