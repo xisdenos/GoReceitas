@@ -129,7 +129,7 @@ class Service {
         }.resume()
     }
     
-    func getSimilarFoods(id: Int, completion: @escaping (Result<FoodDetailsInfo, Error>) -> Void) {
+    func getSimilarFoods(id: Int, completion: @escaping (Result<Foods, Error>) -> Void) {
         // another way of using query instead of hardcoded
         guard var urlComp = URLComponents(string: APIConstants.base_url + APIEndpoints.similarFoods) else { return }
         urlComp.queryItems = [
@@ -145,10 +145,8 @@ class Service {
             guard let data = data, error == nil else { return }
             
             do {
-//                let json = try JSONDecoder().decode(FoodDetailsInfo.self, from: data)
-                let json = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-                print(json)
-//                completion(.success(json))
+                let json = try JSONDecoder().decode(Foods.self, from: data)
+                completion(.success(json))
             } catch {
                 completion(.failure(error))
             }

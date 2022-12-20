@@ -23,10 +23,6 @@ class HomeViewController: UIViewController {
         configTableView()
         setTabBarIcons()
         configObserver()
-        
-        service.getSimilarFoods(id: 8138) { _ in
-            
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
