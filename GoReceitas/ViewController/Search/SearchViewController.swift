@@ -133,6 +133,7 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
             }
         }
         
+        
         if searchText.count == 0 {
             currentDataSource = foodData
             tableView.reloadData()

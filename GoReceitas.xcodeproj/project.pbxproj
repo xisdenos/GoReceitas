@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		060DDF16291142F800D9A884 /* purpleHearthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060DDF15291142F800D9A884 /* purpleHearthView.swift */; };
+		060DDF16291142F800D9A884 /* PurpleHearthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060DDF15291142F800D9A884 /* PurpleHearthView.swift */; };
 		06459BB328B01A060054F510 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06459BB228B01A060054F510 /* AppDelegate.swift */; };
 		06459BB528B01A060054F510 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06459BB428B01A060054F510 /* SceneDelegate.swift */; };
 		06459BB728B01A060054F510 /* OldHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06459BB628B01A060054F510 /* OldHomeViewController.swift */; };
@@ -19,7 +19,7 @@
 		06AC22CC2910A6F4008E4D0B /* FoodDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AC22CB2910A6F4008E4D0B /* FoodDetailsView.swift */; };
 		06AC22D32910AEA7008E4D0B /* FadedViewWithLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AC22D22910AEA7008E4D0B /* FadedViewWithLabel.swift */; };
 		06DB88FA291170D0004489BC /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DB88F9291170D0004489BC /* TimeView.swift */; };
-		06DB88FC29117724004489BC /* purpleFadedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DB88FB29117724004489BC /* purpleFadedContainer.swift */; };
+		06DB88FC29117724004489BC /* PurpleFadedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DB88FB29117724004489BC /* PurpleFadedContainer.swift */; };
 		06DB88FE29119217004489BC /* PurpleInsideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DB88FD29119217004489BC /* PurpleInsideView.swift */; };
 		1F5585482902CB6100580185 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5585462902CB6100580185 /* FavoriteCollectionViewCell.swift */; };
 		1F5585492902CB6100580185 /* FavoriteCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F5585472902CB6100580185 /* FavoriteCollectionViewCell.xib */; };
@@ -91,7 +91,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		060DDF15291142F800D9A884 /* purpleHearthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = purpleHearthView.swift; sourceTree = "<group>"; };
+		060DDF15291142F800D9A884 /* PurpleHearthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurpleHearthView.swift; sourceTree = "<group>"; };
 		06459BAF28B01A060054F510 /* GoReceitas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoReceitas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06459BB228B01A060054F510 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06459BB428B01A060054F510 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		06AC22CB2910A6F4008E4D0B /* FoodDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailsView.swift; sourceTree = "<group>"; };
 		06AC22D22910AEA7008E4D0B /* FadedViewWithLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadedViewWithLabel.swift; sourceTree = "<group>"; };
 		06DB88F9291170D0004489BC /* TimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
-		06DB88FB29117724004489BC /* purpleFadedContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = purpleFadedContainer.swift; sourceTree = "<group>"; };
+		06DB88FB29117724004489BC /* PurpleFadedContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurpleFadedContainer.swift; sourceTree = "<group>"; };
 		06DB88FD29119217004489BC /* PurpleInsideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurpleInsideView.swift; sourceTree = "<group>"; };
 		1F5585462902CB6100580185 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		1F5585472902CB6100580185 /* FavoriteCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -245,9 +245,9 @@
 			isa = PBXGroup;
 			children = (
 				06AC22D22910AEA7008E4D0B /* FadedViewWithLabel.swift */,
-				060DDF15291142F800D9A884 /* purpleHearthView.swift */,
+				060DDF15291142F800D9A884 /* PurpleHearthView.swift */,
 				06DB88F9291170D0004489BC /* TimeView.swift */,
-				06DB88FB29117724004489BC /* purpleFadedContainer.swift */,
+				06DB88FB29117724004489BC /* PurpleFadedContainer.swift */,
 				06DB88FD29119217004489BC /* PurpleInsideView.swift */,
 			);
 			path = Components;
@@ -778,7 +778,7 @@
 				06459BB728B01A060054F510 /* OldHomeViewController.swift in Sources */,
 				82A68AF0293FD9D00039D74D /* Foods.swift in Sources */,
 				06AC22D32910AEA7008E4D0B /* FadedViewWithLabel.swift in Sources */,
-				060DDF16291142F800D9A884 /* purpleHearthView.swift in Sources */,
+				060DDF16291142F800D9A884 /* PurpleHearthView.swift in Sources */,
 				8269F344294134F9000C226F /* UIImageView+.swift in Sources */,
 				06459BBD28B01A060054F510 /* GoReceitas.xcdatamodeld in Sources */,
 				82A4040428DAA57800F38990 /* TagsResultsViewController.swift in Sources */,
@@ -787,7 +787,7 @@
 				82C9BE4828DA89BE00D890EF /* FooterViewCell.swift in Sources */,
 				827E2AA92936925D009F3C43 /* CategoryTagsTableViewCellDelegate.swift in Sources */,
 				82CC509F29098FB70032FC25 /* ResultsTableViewCell.swift in Sources */,
-				06DB88FC29117724004489BC /* purpleFadedContainer.swift in Sources */,
+				06DB88FC29117724004489BC /* PurpleFadedContainer.swift in Sources */,
 				06DB88FE29119217004489BC /* PurpleInsideView.swift in Sources */,
 				EB43689228FE1C9E0023A2F9 /* LoginVC.swift in Sources */,
 				82A68AF2293FDDEC0039D74D /* Tags.swift in Sources */,

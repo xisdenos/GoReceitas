@@ -15,8 +15,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var welcomeLabel: UILabel!
     
-    
-    
     // MARK: Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +23,10 @@ class HomeViewController: UIViewController {
         configTableView()
         setTabBarIcons()
         configObserver()
+        
+        service.getSimilarFoods(id: 8138) { _ in
+            
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
