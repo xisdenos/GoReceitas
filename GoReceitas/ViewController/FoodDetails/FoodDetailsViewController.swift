@@ -14,6 +14,9 @@ enum DetailsSections: Int {
 }
 
 class FoodDetailsViewController: UIViewController {
+    private var foodDetails: FoodDetailsInfo?
+    private var recommendedFoods: [FoodResponse] = [FoodResponse]()
+    
     lazy var foodDetailsView: FoodDetailsView = {
         let foodview = FoodDetailsView()
 
@@ -22,14 +25,19 @@ class FoodDetailsViewController: UIViewController {
         return foodview
     }()
     
-    private var foodDetails: FoodDetailsInfo?
-    
     public func configureFoodInformation(foodDetails: FoodDetailsInfo) {
         self.foodDetails = foodDetails
         DispatchQueue.main.async { [weak self] in
             self?.foodDetailsView.foodImageView.loadImageUsingCache(withUrl: foodDetails.thumbnail_url)
             self?.foodDetailsView.topFadedLabel.setTitle(foodDetails.name, for: .normal)
             self?.foodDetailsView.configure(prepTimeText: String(foodDetails.yields ?? "N/A"))
+            self?.foodDetailsView.tableView.reloadData()
+        }
+    }
+    
+    public func configureRecommendedFoods(foods: [FoodResponse]) {
+        self.recommendedFoods = foods
+        DispatchQueue.main.async { [weak self] in
             self?.foodDetailsView.tableView.reloadData()
         }
     }
@@ -80,7 +88,7 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
                 if let recipeInstructions = foodDetails?.instructions {
                     // A api nos retorna um array de instruções separadas.
                     // Para poder junta-las, é preciso mapear o array e usar o
-                    // metódo joined para transformar em uma só string
+                    // método joined para transformar em uma só string
                     let newArray = recipeInstructions.map({ $0.display_text })
                     let instruction = newArray.joined(separator: "\n\n")
                     cell.configure(description: instruction)
@@ -88,7 +96,8 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
             }
             return cell
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: RecommendedFoodsTableViewCell.identifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: RecommendedFoodsTableViewCell.identifier, for: indexPath) as! RecommendedFoodsTableViewCell
+            cell.setup(foods: recommendedFoods)
             return cell
         default:
             return UITableViewCell()

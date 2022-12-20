@@ -29,6 +29,10 @@ class NextScreenGreenButton: UIButton {
 //        self.widthAnchor.constraint(equalToConstant: width).isActive = true
     }
     
+//    func setTitle(with text: String) {
+//        self.setTitle(with: text)
+//    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

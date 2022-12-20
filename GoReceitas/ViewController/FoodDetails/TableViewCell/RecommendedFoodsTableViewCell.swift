@@ -9,6 +9,7 @@ import UIKit
 
 class RecommendedFoodsTableViewCell: UITableViewCell {
     static let identifier: String = "RecommendedFoodsTableViewCell"
+    private var recommendedFoods: [FoodResponse] = [FoodResponse]()
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -41,6 +42,10 @@ class RecommendedFoodsTableViewCell: UITableViewCell {
         super.layoutSubviews()
         collectionView.frame = bounds
     }
+    
+    func setup(foods: [FoodResponse]) {
+        self.recommendedFoods = foods
+    }
 }
 
 extension RecommendedFoodsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -50,6 +55,7 @@ extension RecommendedFoodsTableViewCell: UICollectionViewDelegate, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodCollectionViewCell.identifier, for: indexPath) as? FoodCollectionViewCell
+        cell?.configure(food: recommendedFoods[indexPath.row])
         return cell ?? UICollectionViewCell()
     }
     

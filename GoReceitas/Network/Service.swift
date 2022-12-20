@@ -16,7 +16,7 @@ struct APIEndpoints {
 
 struct APIConstants {
     static let base_url = "https://tasty.p.rapidapi.com"
-    static let api_key = "670a8a751emsh93bbc953839869ep1ec5efjsn4076d2edbe1a"
+    static let api_key = "e920523487msh477e5e672017785p109515jsn8a5893396a20"
 }
 
 class Service {

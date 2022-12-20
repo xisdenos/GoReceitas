@@ -100,16 +100,36 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let viewController = FoodDetailsViewController()
         navigationController?.pushViewController(viewController, animated: true)
         
-        service.getMoreInfo(id: food.id) { details in
-            switch details {
-            case .success(let success):
-                DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            self?.service.getMoreInfo(id: food.id) { details in
+                switch details {
+                case .success(let success):
                     viewController.configureFoodInformation(foodDetails: success)
+                case .failure(let failure):
+                    print(failure)
                 }
-            case .failure(let failure):
-                print(failure)
             }
+            
+            self?.service.getSimilarFoods(id: food.id, completion: { result in
+                switch result {
+                case .success(let success):
+                    viewController.configureRecommendedFoods(foods: success.results)
+                    print(success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            })
         }
+//        service.getMoreInfo(id: food.id) { details in
+//            switch details {
+//            case .success(let success):
+//                DispatchQueue.main.async {
+//                    viewController.configureFoodInformation(foodDetails: success)
+//                }
+//            case .failure(let failure):
+//                print(failure)
+//            }
+//        }
     }
 }
 
