@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol DefaultFoodCollectionViewCellDelegate: AnyObject {
+    func didTapHeartButton(cell: UICollectionViewCell)
+}
+
 class DefaultFoodCollectionViewCell: UICollectionViewCell {
     // containers
     @IBOutlet weak var favoriteButtonContainer: UIView!
@@ -18,6 +22,8 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var foodName: UILabel!
     @IBOutlet weak var additionalInfoLabel: UILabel!
+    
+    weak var delegate: DefaultFoodCollectionViewCellDelegate?
     
     static let identifier: String = String(describing: DefaultFoodCollectionViewCell.self)
     
@@ -48,10 +54,15 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
         additionalInfoLabel.text = "Yields 5 portions"
         foodName.text = "Croissant Breakfast"
         foodImageView.image = UIImage(named: "croissant-breakfast-pizza")
-//        UIFont.systemFont(ofSize: <#T##CGFloat#>, weight: <#T##UIFont.Weight#>)
     }
     
     func setup(font size: CGFloat, weight: UIFont.Weight) {
         foodName.font = .systemFont(ofSize: size, weight: weight)
+    }
+    
+    
+    @IBAction func heartFavoriteTapped(_ sender: Any) {
+        delegate?.didTapHeartButton(cell: self)
+        print("heart tapped default", #function)
     }
 }

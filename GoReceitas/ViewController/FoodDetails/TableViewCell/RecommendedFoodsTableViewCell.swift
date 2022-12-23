@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol RecommendedFoodsTableViewCellDelegate: AnyObject {
+    func didTapRecommendedFoodCell(details: FoodResponse)
+}
+
 class RecommendedFoodsTableViewCell: UITableViewCell {
     static let identifier: String = "RecommendedFoodsTableViewCell"
     private var recommendedFoods: [FoodResponse] = [FoodResponse]()
+    
+    weak var delegate: RecommendedFoodsTableViewCellDelegate?
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -61,5 +67,9 @@ extension RecommendedFoodsTableViewCell: UICollectionViewDelegate, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 160, height: 210)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didTapRecommendedFoodCell(details: recommendedFoods[indexPath.row])
     }
 }

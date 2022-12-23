@@ -14,8 +14,10 @@ enum DetailsSections: Int {
 }
 
 class FoodDetailsViewController: UIViewController {
+    private var service: Service = Service()
     private var foodDetails: FoodDetailsInfo?
     private var recommendedFoods: [FoodResponse] = [FoodResponse]()
+    public var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     
     lazy var foodDetailsView: FoodDetailsView = {
         let foodview = FoodDetailsView()
@@ -97,15 +99,12 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: RecommendedFoodsTableViewCell.identifier, for: indexPath) as! RecommendedFoodsTableViewCell
+            cell.delegate = self
             cell.setup(foods: recommendedFoods)
             return cell
         default:
             return UITableViewCell()
         }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -137,5 +136,34 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
             header.textLabel?.textColor = .textColorDefault
             header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
             header.textLabel?.frame = header.bounds
+    }
+}
+
+extension FoodDetailsViewController: RecommendedFoodsTableViewCellDelegate {
+    func didTapRecommendedFoodCell(details: FoodResponse) {
+
+        let controller = FoodDetailsViewController()
+        navigationController?.pushViewController(controller, animated: true)
+
+        DispatchQueue.main.async { [weak self] in
+            self?.service.getMoreInfo(id: details.id) { details in
+                switch details {
+                case .success(let success):
+                    controller.configureFoodInformation(foodDetails: success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+
+            self?.service.getSimilarFoods(id: details.id, completion: { result in
+                switch result {
+                case .success(let success):
+                    controller.configureRecommendedFoods(foods: success.results)
+                    print(success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            })
+        }
     }
 }

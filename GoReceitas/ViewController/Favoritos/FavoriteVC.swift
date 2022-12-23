@@ -12,7 +12,7 @@ class FavoriteVC: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var data: [CellsInfoSections] = [
+    var favorites: [CellsInfoSections] = [
         .init(foodName: "Macarrão", prepTime: "60min", foodImage: "macarrao"),
         .init(foodName: "Lasanha", prepTime: "40min", foodImage: "lasanha"),
     ]
@@ -35,30 +35,29 @@ class FavoriteVC: UIViewController {
         
                   
                 }
-        collectionView.register(FavoriteCollectionViewCell.nib(), forCellWithReuseIdentifier: FavoriteCollectionViewCell.identifier)
+        collectionView.register(DefaultFoodCollectionViewCell.nib(), forCellWithReuseIdentifier: DefaultFoodCollectionViewCell.identifier)
         collectionView.register(NoFavoritesCollectionViewCell.nib(), forCellWithReuseIdentifier: NoFavoritesCollectionViewCell.identifier)
     }
 }
 
 extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return !data.isEmpty ? data.count : 1
+        return !favorites.isEmpty ? favorites.count : 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if data.isEmpty {
+        if favorites.isEmpty {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoFavoritesCollectionViewCell.identifier, for: indexPath) as? NoFavoritesCollectionViewCell
             return cell ?? UICollectionViewCell()
         }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCollectionViewCell.identifier, for: indexPath) as? FavoriteCollectionViewCell
-        cell?.setupCell(foodinfo: data[indexPath.row])
-        cell?.viewController = self
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell
+        cell?.setup(font: 15, weight: .bold)
         cell?.delegate = self
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return !data.isEmpty ?
+        return !favorites.isEmpty ?
         CGSize(width: self.view.frame.size.width / 2.3, height: 150) :
         CGSize(width: 230, height: 280)
     }
@@ -69,10 +68,9 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
 }
 
-extension FavoriteVC: FavoriteCollectionViewCellDelegate {
+extension FavoriteVC: DefaultFoodCollectionViewCellDelegate {
     func didTapHeartButton(cell: UICollectionViewCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
-        data.remove(at: indexPath.row)
-        collectionView.reloadData()
+        print("index", indexPath.row, #function)
     }
 }

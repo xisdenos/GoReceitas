@@ -41,6 +41,7 @@ class PopularFoodsTableViewCell: UITableViewCell {
 extension PopularFoodsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell {
+            cell.delegate = self
             return cell
         }
         return UICollectionViewCell()
@@ -56,5 +57,12 @@ extension PopularFoodsTableViewCell: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width / 2.2, height: 140)
+    }
+}
+
+extension PopularFoodsTableViewCell: DefaultFoodCollectionViewCellDelegate {
+    func didTapHeartButton(cell: UICollectionViewCell) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        print("index", indexPath.row, #function)
     }
 }

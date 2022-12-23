@@ -42,6 +42,7 @@ extension TryItOutTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell {
             cell.setup(font: 22, weight: .bold)
+            cell.delegate = self
             return cell
         }
         return UICollectionViewCell()
@@ -64,5 +65,12 @@ extension TryItOutTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
         let visibleIndexPath = collectionView.indexPathForItem(at: visiblePoint)
         pageControl.currentPage = visibleIndexPath?.row ?? 1
+    }
+}
+
+extension TryItOutTableViewCell: DefaultFoodCollectionViewCellDelegate {
+    func didTapHeartButton(cell: UICollectionViewCell) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        print("index", indexPath.row, #function)
     }
 }

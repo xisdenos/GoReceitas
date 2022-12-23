@@ -13,12 +13,11 @@ protocol SearchViewControllerProtocol: AnyObject {
 }
 
 class SearchViewController: UIViewController {
-    private var service: Service = Service()
-
+    
     public var foodData: [FoodResponse] = []
     
+    private var service: Service = Service()
     private var currentDataSource: [FoodResponse] = []
-    
     private var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     
     weak var delegate: SearchViewControllerProtocol?
@@ -101,6 +100,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         navigationController?.pushViewController(viewController, animated: true)
         
         DispatchQueue.main.async { [weak self] in
+            
             self?.service.getMoreInfo(id: food.id) { details in
                 switch details {
                 case .success(let success):
@@ -114,22 +114,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 switch result {
                 case .success(let success):
                     viewController.configureRecommendedFoods(foods: success.results)
+                    
                     print(success)
                 case .failure(let failure):
                     print(failure)
                 }
             })
         }
-//        service.getMoreInfo(id: food.id) { details in
-//            switch details {
-//            case .success(let success):
-//                DispatchQueue.main.async {
-//                    viewController.configureFoodInformation(foodDetails: success)
-//                }
-//            case .failure(let failure):
-//                print(failure)
-//            }
-//        }
     }
 }
 
