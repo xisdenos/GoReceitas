@@ -22,6 +22,7 @@ class HomeViewController: UIViewController {
         setTabBarIcons()
         configObserver()
         configHome()
+        print("home", #function)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,11 +36,10 @@ class HomeViewController: UIViewController {
     
     func configObserver(){
         NotificationCenter.default.addObserver(self, selector: #selector(updateImage), name: .updateImage, object: nil)
-        
     }
     
     @objc func updateImage(notification: NSNotification){
-        userProfilePictureImageView.image = notification.object as? UIImage;()
+        userProfilePictureImageView.image = notification.object as? UIImage
     }
     
     func configHome(){

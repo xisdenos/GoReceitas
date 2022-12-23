@@ -36,6 +36,8 @@ class ProfileViewController: UIViewController {
         self.view.backgroundColor = .viewBackgroundColor
         configImagePicker()
         imageProfile.image = imageProfile.image
+        textUsername.isUserInteractionEnabled = false
+        textEmail.isUserInteractionEnabled = false
     }
     
     
@@ -72,6 +74,7 @@ class ProfileViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
         navigationController?.pushViewController(viewController, animated: true)
+        
     }
     
     @IBAction func tapChangeEmailScreen(_ sender: UIButton) {
@@ -121,6 +124,10 @@ class ProfileViewController: UIViewController {
     func configImagePicker(){
         imagePicker.delegate = self
     }
+    
+    
+    
+    
 }
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -137,4 +144,6 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 }
 extension NSNotification.Name {
     static let updateImage = Notification.Name("updateImage")
+    static let updateImageEmail = Notification.Name("updateImageEmail")
+    static let updateImageSenha = Notification.Name("updateImageSenha")
 }
