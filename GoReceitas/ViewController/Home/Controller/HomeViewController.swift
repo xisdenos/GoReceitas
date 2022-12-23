@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
         configTableView()
         setTabBarIcons()
         configObserver()
+        configHome()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,11 +35,21 @@ class HomeViewController: UIViewController {
     
     func configObserver(){
         NotificationCenter.default.addObserver(self, selector: #selector(updateImage), name: .updateImage, object: nil)
+        
     }
     
-    @objc func updateImage(){
-        userProfilePictureImageView.image = UIImage(named: "heart-fill")
+    @objc func updateImage(notification: NSNotification){
+        userProfilePictureImageView.image = notification.object as? UIImage;()
     }
+    
+    func configHome(){
+        userProfilePictureImageView.clipsToBounds = true
+        userProfilePictureImageView.layer.cornerRadius = 20
+        userProfilePictureImageView.layer.masksToBounds = true
+        userProfilePictureImageView.contentMode = .scaleAspectFill
+    }
+    
+  
     
     func configTableView() {
         tableView.delegate = self

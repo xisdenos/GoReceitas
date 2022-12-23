@@ -7,7 +7,8 @@
 
 import UIKit
 import FirebaseAuth
-import firebase
+import FirebaseStorage
+import FirebaseFirestore
 
 class ProfileViewController: UIViewController {
     
@@ -22,6 +23,8 @@ class ProfileViewController: UIViewController {
     var auth:Auth?
     var alert: AlertController?
     let imagePicker: UIImagePickerController = UIImagePickerController()
+    let storage = Storage.storage().reference()
+    let firestore = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +35,7 @@ class ProfileViewController: UIViewController {
         cornerRadiusElements()
         self.view.backgroundColor = .viewBackgroundColor
         configImagePicker()
+        imageProfile.image = imageProfile.image
     }
     
     
@@ -44,7 +48,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func tappedEditPhoto(_ sender: UIButton) {
-        NotificationCenter.default.post(name: .updateImage, object: nil)
+    
         
         
         self.alert?.alertEditPhoto(completion: { option in
@@ -61,6 +65,7 @@ class ProfileViewController: UIViewController {
                 break
             }
         })
+        
     }
 
     @IBAction func tapChangePasswordScreen(_ sender: UIButton) {
@@ -73,6 +78,7 @@ class ProfileViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "changeEmail")
         navigationController?.pushViewController(viewController, animated: true)
+        
     }
     
     
@@ -122,14 +128,12 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.imageProfile.image = image
+            NotificationCenter.default.post(name: .updateImage, object: imageProfile.image)
+            
         }
-        
         picker.dismiss(animated: true)
+
     }
-    func saveImage(image: String){
-        guard let image = imageProfile.image.jpg
-    }
-    
 }
 extension NSNotification.Name {
     static let updateImage = Notification.Name("updateImage")

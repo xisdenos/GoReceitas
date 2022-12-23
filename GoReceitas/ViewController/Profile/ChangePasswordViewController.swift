@@ -23,6 +23,7 @@ class ChangePasswordViewController: UIViewController {
         imageRound()
         configFontAndColors()
         self.view.backgroundColor = .viewBackgroundColor
+        configObserver()
     }
 
     @IBAction func tapBackButton(_ sender: UIButton) {
@@ -41,6 +42,15 @@ class ChangePasswordViewController: UIViewController {
     func imageRound() {
         imageProfile.layer.masksToBounds = true
         imageProfile.layer.cornerRadius =  75
+    }
+    
+    func configObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(updateImage), name: .updateImage, object: nil)
+        
+    }
+    
+    @objc func updateImage(notification: NSNotification){
+        imageProfile.image = notification.object as? UIImage;()
     }
     
     func configFontAndColors(){
