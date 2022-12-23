@@ -63,13 +63,6 @@ class HomeViewController: UIViewController {
         self.tabBarController?.tabBar.items?[2].title = "Favorites"
         self.tabBarController?.tabBar.items?[3].title = "Profile"
     }
-    
-    @objc func allTagsTapped() {
-        print(#function)
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "AllTagsViewController") as! AllTagsViewController
-        navigationController?.pushViewController(viewController, animated: true)
-    }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -129,24 +122,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if section == 0 {
-            guard let header = view as? UITableViewHeaderFooterView else { return }
-            let allTagsButton: UIButton = UIButton(frame: CGRect(x: header.frame.midX + 120, y: 0, width: 50, height: 30))
-            allTagsButton.setTitle("All Tags", for: .normal)
-            allTagsButton.setTitleColor(.systemPurple, for: .normal)
-            allTagsButton.addTarget(self, action: #selector(allTagsTapped), for: .touchUpInside)
-            allTagsButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
-            allTagsButton.titleLabel?.textAlignment = .center
-            allTagsButton.titleLabel?.numberOfLines = 0
-            
-            header.addSubview(allTagsButton)
-            
-            header.textLabel?.textColor = UIColor.systemPurple
-            header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-            header.textLabel?.frame = header.bounds
-        }
-        
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {        
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.textLabel?.textColor = UIColor.systemPurple
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)

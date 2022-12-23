@@ -38,14 +38,6 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         prepTimeLabel.layer.masksToBounds = true
     }
     
-    
-    func setupCell(foodinfo: CellsInfoSections){
-        foodImageView.image = UIImage(named: foodinfo.foodImage)
-        prepTimeLabel.text = foodinfo.prepTime
-        foodLabel.text = foodinfo.foodName
-    }
-    
-    
     @IBAction func toggleHeartImage(_ sender: UIButton) {
         toggleHeartImage(for: sender)
     }

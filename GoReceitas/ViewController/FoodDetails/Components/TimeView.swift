@@ -23,7 +23,7 @@ class TimerView: UIView {
         self.backgroundColor = UIColor(red: 161/255, green: 156/255, blue: 163/255, alpha: 0.7)
         self.heightAnchor.constraint(equalToConstant: height).isActive = true
         self.widthAnchor.constraint(equalToConstant: width).isActive = true
-        self.cornerRadius = 10
+//        self.cornerRadius = 10
         
         setPrepTimeLabel()
     }
