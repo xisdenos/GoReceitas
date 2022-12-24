@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol HomeViewControllerDelegate: AnyObject {
+    func startLoading()
+    func stopLoading()
+}
+
 class HomeViewController: UIViewController {
     private var tagsList: [TagsResponse] = [TagsResponse]()
     private var service: Service = Service()
@@ -15,11 +20,17 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var welcomeLabel: UILabel!
     
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(style: .large)
+    
+    weak var delegate: HomeViewControllerDelegate?
+    
     // MARK: Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .viewBackgroundColor
+        delegate = self
         userProfilePictureImageView.image = UIImage(systemName: "person")
+        setActivityIndicator()
         configTableView()
         setTabBarIcons()
         configObserver()
@@ -40,6 +51,16 @@ class HomeViewController: UIViewController {
     
     @objc func updateImage() {
         userProfilePictureImageView.image = UIImage(named: "heart-fill")
+    }
+    
+    func setActivityIndicator() {
+        self.view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+        ])
     }
     
     func configTableView() {
@@ -81,12 +102,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TryItOutTableViewCell.identifier) as? TryItOutTableViewCell else { return UITableViewCell() }
-            service.getFoodList { result in
+            delegate?.startLoading()
+            service.getFoodList { [weak self] result in
+//                self?.delegate?.startLoading()
                 switch result {
                 case .success(let success):
                     cell.configure(with: success.results)
-                    print(success.results)
+                    self?.delegate?.stopLoading()
                 case .failure(let failure):
+                    self?.delegate?.stopLoading()
                     print(failure.localizedDescription)
                 }
             }
@@ -94,7 +118,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
-            cell.delegate = self
+//            cell.delegate = self
             return cell
         }
         return UITableViewCell()
@@ -140,7 +164,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     // MARK: Did Select Row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }
 
@@ -168,9 +192,55 @@ extension HomeViewController: CategoryTagsTableViewCellDelegate {
     }
 }
 
+extension HomeViewController: HomeViewControllerDelegate {
+    func startLoading() {
+        print("start loading")
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.isHidden = true
+            self?.activityIndicator.startAnimating()
+        }
+    }
+    
+    func stopLoading() {
+        print("stop loading")
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.isHidden = false
+            self?.activityIndicator.stopAnimating()
+        }
+    }
+}
+
 extension HomeViewController: DefaultCellsDelegate {
-    func didTapFoodCell() {
-//        let viewController = FoodDetailsViewController()
-//        navigationController?.pushViewController(viewController, animated: true)
+    func didTapFoodCell(food: FoodResponse) {
+        print(food)
+        
+        let controller = FoodDetailsViewController()
+        navigationController?.pushViewController(controller, animated: true)
+
+        DispatchQueue.main.async { [weak self] in
+            controller.activityIndicator.startAnimating()
+            controller.foodDetailsView.tableView.isHidden = true
+            controller.foodDetailsView.topFadedLabel.isHidden = true
+            controller.foodDetailsView.purpheHearthView.isHidden = true
+            controller.foodDetailsView.timeView.isHidden = true
+            self?.service.getMoreInfo(id: food.id) { details in
+                switch details {
+                case .success(let success):
+                    controller.configureFoodInformation(foodDetails: success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+
+            self?.service.getSimilarFoods(id: food.id, completion: { result in
+                switch result {
+                case .success(let success):
+                    controller.configureRecommendedFoods(foods: success.results)
+                    print(success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            })
+        }
     }
 }
