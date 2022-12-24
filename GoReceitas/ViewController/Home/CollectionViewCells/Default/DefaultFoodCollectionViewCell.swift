@@ -37,7 +37,7 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         self.backgroundColor = .viewBackgroundColor
         configVisualElements()
-        mockInfo()
+//        mockInfo()
     }
     
     func configVisualElements() {
@@ -52,14 +52,17 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
         foodName.textAlignment = .center
     }
     
-    func mockInfo() {
-        additionalInfoLabel.text = "Yields 5 portions"
-        foodName.text = "Croissant Breakfast"
-        foodImageView.image = UIImage(named: "croissant-breakfast-pizza")
-    }
+//    func mockInfo() {
+//        additionalInfoLabel.text = "Yields 5 portions"
+//        foodName.text = "Croissant Breakfast"
+//        foodImageView.image = UIImage(named: "croissant-breakfast-pizza")
+//    }
     
-    func setup(font size: CGFloat, weight: UIFont.Weight) {
-        foodName.font = .systemFont(ofSize: size, weight: weight)
+    func setup(model: FoodResponse) {
+        foodName.text = model.name
+        additionalInfoLabel.text = model.yields ?? ""
+        foodImageView.loadImageUsingCache(withUrl: model.thumbnail_url)
+        foodName.font = .systemFont(ofSize: 22, weight: .bold)
     }
     
     

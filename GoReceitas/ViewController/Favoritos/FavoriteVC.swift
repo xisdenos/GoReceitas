@@ -52,7 +52,7 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
 //            return cell ?? UICollectionViewCell()
 //        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell
-        cell?.setup(font: 15, weight: .bold)
+//        cell?.setup(font: 15, weight: .bold)
         cell?.delegate = self
         return cell ?? UICollectionViewCell()
     }

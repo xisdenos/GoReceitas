@@ -8,6 +8,7 @@
 import UIKit
 
 class TryItOutTableViewCell: UITableViewCell {
+    private var foodList: [FoodResponse] = [FoodResponse]()
     
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -36,12 +37,22 @@ class TryItOutTableViewCell: UITableViewCell {
             layout.sectionInset = .init(top: 10, left: 5, bottom: 0, right: 5)
         }
     }
+    
+    public func configure(with model: [FoodResponse]) {
+        self.foodList = model.shuffled()
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+        }
+    }
 }
 
 extension TryItOutTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell {
-            cell.setup(font: 22, weight: .bold)
+            // está mockado!
+            if !foodList.isEmpty {
+                cell.setup(model: foodList[indexPath.row])
+            }
             cell.delegate = self
             return cell
         }
