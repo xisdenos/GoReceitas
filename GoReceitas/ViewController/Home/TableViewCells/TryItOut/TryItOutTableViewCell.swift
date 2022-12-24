@@ -23,7 +23,8 @@ class TryItOutTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = .viewBackgroundColor
+        backgroundColor = .viewBackgroundColor
+        selectionStyle = .none
         configCollectionView()
     }
     

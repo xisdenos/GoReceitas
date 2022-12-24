@@ -12,6 +12,7 @@ struct APIEndpoints {
     static let tags = "/tags/list"
     static let getMoreInfo = "/recipes/get-more-info"
     static let similarFoods = "/recipes/list-similarities"
+    static let popular = "/feeds/list"
 }
 
 struct APIConstants {
@@ -33,6 +34,25 @@ class Service {
                 let json = try JSONDecoder().decode(Foods.self, from: data)
                 completion(.success(json))
             } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+    
+    func getPopularList(completion: @escaping (Result<Popular, Error>) -> Void) {
+        guard let url = URL(string: APIConstants.base_url + APIEndpoints.popular) else { return }
+        var request = URLRequest(url: url)
+        request.setValue(APIConstants.api_key, forHTTPHeaderField: "X-RapidAPI-Key")
+        
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            // no data, error occurred!
+            guard let data = data, error == nil else { return }
+            
+            do {
+                let json = try JSONDecoder().decode(Popular.self, from: data)
+                completion(.success(json))
+            } catch {
+                print(error)
                 completion(.failure(error))
             }
         }.resume()
