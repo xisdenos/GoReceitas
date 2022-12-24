@@ -34,15 +34,6 @@ class HomeViewController: UIViewController {
         configTableView()
         setTabBarIcons()
         configObserver()
-        
-        service.getPopularList { result in
-            switch result {
-            case .success(let success):
-                print(success)
-            case .failure(let failure):
-                print(failure)
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,34 +90,43 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTagsTableViewCell.identifier) as? CategoryTagsTableViewCell else { return UITableViewCell() }
-//            service.getTagsList { tags in
-//                switch tags {
-//                case .success(let tags):
-//                    cell.configureTags(with: tags.results)
-//                case .failure(let failure):
-//                    print(failure)
-//                }
-//            }
+            service.getTagsList { tags in
+                switch tags {
+                case .success(let tags):
+                    cell.configureTags(with: tags.results)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
             cell.delegate = self
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TryItOutTableViewCell.identifier) as? TryItOutTableViewCell else { return UITableViewCell() }
-//            delegate?.startLoading()
-//            service.getFoodList { [weak self] result in
-//                switch result {
-//                case .success(let success):
-//                    cell.configure(with: success.results)
-//                    self?.delegate?.stopLoading()
-//                case .failure(let failure):
-//                    self?.delegate?.stopLoading()
-//                    print(failure.localizedDescription)
-//                }
-//            }
+            delegate?.startLoading()
+            service.getFoodList { [weak self] result in
+                switch result {
+                case .success(let success):
+                    cell.configure(with: success.results)
+                    self?.delegate?.stopLoading()
+                case .failure(let failure):
+                    self?.delegate?.stopLoading()
+                    print(failure.localizedDescription)
+                }
+            }
             cell.delegate = self
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
-//            cell.delegate = self
+            service.getPopularList { result in
+                switch result {
+                case .success(let success):
+                    guard let popularRecipes = success.results?.first?.item?.recipes else { return }
+                    cell.configure(with: popularRecipes)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+            cell.delegate = self
             return cell
         }
         return UITableViewCell()
