@@ -117,11 +117,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
+            cell.activityIndicator.startAnimating()
             service.getPopularList { result in
                 switch result {
                 case .success(let success):
+                    print(success)
                     guard let popularRecipes = success.results?.first?.item?.recipes else { return }
                     cell.configure(with: popularRecipes)
+                    cell.activityIndicator.stopAnimating()
                 case .failure(let failure):
                     print(failure)
                 }

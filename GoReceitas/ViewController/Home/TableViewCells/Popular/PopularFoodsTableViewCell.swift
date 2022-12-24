@@ -12,6 +12,7 @@ class PopularFoodsTableViewCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var popularList: [FoodResponse] = [FoodResponse]()
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(style: .large)
     
     weak var delegate: DefaultCellsDelegate?
     
@@ -26,6 +27,17 @@ class PopularFoodsTableViewCell: UITableViewCell {
         selectionStyle = .none
         self.backgroundColor = .viewBackgroundColor
         configCollectionView()
+        setActivityIndicator()
+    }
+    
+    func setActivityIndicator() {
+        self.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+        ])
     }
     
     func configCollectionView() {

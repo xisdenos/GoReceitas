@@ -48,13 +48,16 @@ class Service {
             // no data, error occurred!
             guard let data = data, error == nil else { return }
             
-            do {
-                let json = try JSONDecoder().decode(Popular.self, from: data)
-                completion(.success(json))
-            } catch {
-                print(error)
-                completion(.failure(error))
+            DispatchQueue.main.async {
+                do {
+                    let json = try JSONDecoder().decode(Popular.self, from: data)
+                    completion(.success(json))
+                } catch {
+                    print(error)
+                    completion(.failure(error))
+                }
             }
+            
         }.resume()
     }
     

@@ -52,12 +52,6 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
         foodName.textAlignment = .center
     }
     
-//    func mockInfo() {
-//        additionalInfoLabel.text = "Yields 5 portions"
-//        foodName.text = "Croissant Breakfast"
-//        foodImageView.image = UIImage(named: "croissant-breakfast-pizza")
-//    }
-    
     func setup(model: FoodResponse) {
         foodName.text = model.name
         additionalInfoLabel.text = model.yields ?? ""
