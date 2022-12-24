@@ -46,6 +46,7 @@ class FoodDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setActivityIndicator()
     }
     
     override func loadView() {
@@ -61,6 +62,16 @@ class FoodDetailsViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    func setActivityIndicator() {
+        self.view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+        ])
     }
 }
 
@@ -81,6 +92,13 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
                 if let nutrition = foodDetails?.nutrition {
                     cell.configure(nutritions: nutrition)
                     print(nutrition)
+                    DispatchQueue.main.async { [weak self] in
+                        self?.activityIndicator.stopAnimating()
+                        self?.foodDetailsView.tableView.isHidden = false
+                        self?.foodDetailsView.topFadedLabel.isHidden = false
+                        self?.foodDetailsView.purpheHearthView.isHidden = false
+                        self?.foodDetailsView.timeView.isHidden = false
+                    }
                 }
             }
             return cell
@@ -146,6 +164,11 @@ extension FoodDetailsViewController: RecommendedFoodsTableViewCellDelegate {
         navigationController?.pushViewController(controller, animated: true)
 
         DispatchQueue.main.async { [weak self] in
+            controller.activityIndicator.startAnimating()
+            controller.foodDetailsView.tableView.isHidden = true
+            controller.foodDetailsView.topFadedLabel.isHidden = true
+            controller.foodDetailsView.purpheHearthView.isHidden = true
+            controller.foodDetailsView.timeView.isHidden = true
             self?.service.getMoreInfo(id: details.id) { details in
                 switch details {
                 case .success(let success):

@@ -72,8 +72,8 @@ extension CategoryTagsTableViewCell: UICollectionViewDataSource, UICollectionVie
 
 extension CategoryTagsTableViewCell: CategoryTagsCollectionViewCellDelegate {
     func didTapCategoryButton(cell: UICollectionViewCell) {
-//        guard let indexPath = collectionView.indexPath(for: cell) else { return }
-//        print(tagsList[indexPath.row])
-//        delegate?.categoryChosed(categoryInfo: tagsList[indexPath.row])
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        print(tagsList[indexPath.row])
+        delegate?.categoryChosed(categoryInfo: tagsList[indexPath.row])
     }
 }

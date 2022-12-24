@@ -100,7 +100,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         navigationController?.pushViewController(viewController, animated: true)
         
         DispatchQueue.main.async { [weak self] in
-            
+            viewController.activityIndicator.startAnimating()
+            viewController.foodDetailsView.tableView.isHidden = true
+            viewController.foodDetailsView.topFadedLabel.isHidden = true
+            viewController.foodDetailsView.purpheHearthView.isHidden = true
+            viewController.foodDetailsView.timeView.isHidden = true
             self?.service.getMoreInfo(id: food.id) { details in
                 switch details {
                 case .success(let success):
@@ -134,16 +138,13 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
                 switch foodsResult {
                 case .success(let foods):
                     self?.currentDataSource = foods.results
-                    DispatchQueue.main.async {
-                        self?.tableView.reloadData()
-                        self?.delegate?.stopLoading()
-                    }
+                    self?.delegate?.stopLoading()
                 case .failure(let failure):
+                    self?.delegate?.stopLoading()
                     print(failure)
                 }
             }
         }
-        
         
         if searchText.count == 0 {
             currentDataSource = foodData
@@ -168,6 +169,7 @@ extension SearchViewController: SearchViewControllerProtocol {
     func stopLoading() {
         DispatchQueue.main.async { [weak self] in
             self?.activityIndicator.stopAnimating()
+            self?.tableView.reloadData()
             self?.tableView.isHidden = false
         }
     }
