@@ -52,7 +52,7 @@ extension TryItOutTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell {
             // está mockado!
             if !foodList.isEmpty {
-                cell.setup(model: foodList[indexPath.row])
+                cell.setupTryItOut(model: foodList[indexPath.row])
             }
             cell.delegate = self
             return cell

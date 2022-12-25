@@ -121,10 +121,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             service.getPopularList { result in
                 switch result {
                 case .success(let success):
-                    print(success)
-                    guard let popularRecipes = success.results?.first?.item?.recipes else { return }
-                    cell.configure(with: popularRecipes)
-                    cell.activityIndicator.stopAnimating()
+                    let popularRecipes = success.results?.compactMap({ $0.item }).filter({ $0.recipes != nil })
+
+                    if let popularRecipes {
+                        cell.configure(with: popularRecipes)
+                        cell.activityIndicator.stopAnimating()
+                    }
+
                 case .failure(let failure):
                     print(failure)
                 }
@@ -224,6 +227,42 @@ extension HomeViewController: HomeViewControllerDelegate {
 extension HomeViewController: DefaultCellsDelegate {
     func didTapFoodCell(food: FoodResponse) {
         print(food)
+        
+        let controller = FoodDetailsViewController()
+        navigationController?.pushViewController(controller, animated: true)
+
+        DispatchQueue.main.async { [weak self] in
+            controller.activityIndicator.startAnimating()
+            controller.foodDetailsView.tableView.isHidden = true
+            controller.foodDetailsView.topFadedLabel.isHidden = true
+            controller.foodDetailsView.purpheHearthView.isHidden = true
+            controller.foodDetailsView.timeView.isHidden = true
+            self?.service.getMoreInfo(id: food.id) { details in
+                switch details {
+                case .success(let success):
+                    controller.configureFoodInformation(foodDetails: success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+
+            self?.service.getSimilarFoods(id: food.id, completion: { result in
+                switch result {
+                case .success(let success):
+                    controller.configureRecommendedFoods(foods: success.results)
+                    print(success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            })
+        }
+    }
+}
+
+extension HomeViewController: PopularFoodsTableViewCellDelegate {
+    func didTapFoodCell(food: PopularResponseDetails) {
+        guard let food = food.recipes?[0] else { return }
+//        let food = food.recipes?[0]
         
         let controller = FoodDetailsViewController()
         navigationController?.pushViewController(controller, animated: true)

@@ -7,14 +7,18 @@
 
 import UIKit
 
+protocol PopularFoodsTableViewCellDelegate: AnyObject {
+    func didTapFoodCell(food: PopularResponseDetails)
+}
+
 class PopularFoodsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private var popularList: [FoodResponse] = [FoodResponse]()
+    private var popularList: [PopularResponseDetails] = [PopularResponseDetails]()
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(style: .large)
     
-    weak var delegate: DefaultCellsDelegate?
+    weak var delegate: PopularFoodsTableViewCellDelegate?
     
     static let identifier: String = String(describing: PopularFoodsTableViewCell.self)
     
@@ -51,7 +55,7 @@ class PopularFoodsTableViewCell: UITableViewCell {
         }
     }
     
-    public func configure(with model: [FoodResponse]) {
+    public func configure(with model: [PopularResponseDetails]) {
         self.popularList = model.shuffled()
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
@@ -63,7 +67,7 @@ extension PopularFoodsTableViewCell: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell {
             if !popularList.isEmpty {
-                cell.setup(model: popularList[indexPath.row])
+                cell.setupPopular(model: popularList[indexPath.row])
             }
             cell.delegate = self
             return cell

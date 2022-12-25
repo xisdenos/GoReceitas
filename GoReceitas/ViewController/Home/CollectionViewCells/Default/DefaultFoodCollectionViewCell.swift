@@ -52,12 +52,21 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
         foodName.textAlignment = .center
     }
     
-    func setup(model: FoodResponse) {
+    func setupTryItOut(model: FoodResponse) {
         foodName.text = model.name
         additionalInfoLabel.text = model.yields ?? ""
         foodImageView.loadImageUsingCache(withUrl: model.thumbnail_url)
         foodName.font = .systemFont(ofSize: 22, weight: .bold)
     }
+    
+    func setupPopular(model: PopularResponseDetails) {
+        foodName.text = model.recipes?[0].name
+        additionalInfoLabel.text = model.recipes?[0].yields ?? ""
+        foodImageView.loadImageUsingCache(withUrl: model.recipes?[0].thumbnail_url ?? "")
+        foodName.font = .systemFont(ofSize: 22, weight: .bold)
+    }
+    
+    // PopularResponseDetails
     
     
     @IBAction func heartFavoriteTapped(_ sender: UIButton) {
