@@ -6,9 +6,16 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
+
+protocol TryItOutTableViewCellDelegate: AnyObject {
+    func didFavoriteItem(index: IndexPath)
+}
 
 class TryItOutTableViewCell: UITableViewCell {
     private var foodList: [FoodResponse] = [FoodResponse]()
+    private var favoritesArray: [FoodResponse] = [FoodResponse]()
     
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -86,6 +93,30 @@ extension TryItOutTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
 extension TryItOutTableViewCell: DefaultFoodCollectionViewCellDelegate {
     func didTapHeartButton(cell: UICollectionViewCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
-        print("index", indexPath.row, #function)
+        let foodSelected = foodList[indexPath.row]
+        favoritesArray.append(foodSelected)
+        print(foodSelected)
+        
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            if let user = Auth.auth().currentUser {
+                let database = Database.database().reference()
+                guard let email = user.email else { return }
+//                let data = [["name": foodSelected.name, "image": foodSelected.thumbnail_url, "yields": foodSelected.yields ?? "n/a"]]
+                let mappedArray = self?.favoritesArray.map { ["name": $0.name, "yields": $0.yields, "image": $0.thumbnail_url] }
+                let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+                database.child("users/\(emailFormatted)").child("favorites").setValue(mappedArray)
+            } else {
+                print("There is no currently signed-in user.")
+            }
+        }
     }
 }
+
+/*
+ let id: Int
+ let name: String
+ let thumbnail_url: String
+ let cook_time_minutes, prep_time_minutes: Int?
+ // rendimento
+ let yields: String?
+ */

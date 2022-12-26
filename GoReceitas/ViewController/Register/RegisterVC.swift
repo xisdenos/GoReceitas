@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import GoogleSignIn
+import FirebaseDatabase
 
 enum RegisterDescriptions: String {
     case goLabel = "Go"
@@ -38,9 +39,9 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var backLoginButton: UIButton!
     @IBOutlet weak var logoImage: UIImageView!
     
-    
-    var auth:Auth?
-    var alert: AlertController?
+
+    private var auth:Auth?
+    private var alert: AlertController?
     
     
     override func viewDidLoad() {
@@ -147,8 +148,9 @@ class RegisterVC: UIViewController {
     
     @IBAction func tappedCadastrarButton(_ sender: UIButton) {
         
-        let email:String = textFieldEmail.text ?? ""
-        let senha:String = textFieldSenha.text ?? ""
+        let email: String = textFieldEmail.text ?? ""
+        let senha: String = textFieldSenha.text ?? ""
+        let name: String = textFieldName.text ?? ""
         let confirmarSenha:String = textFieldConfirmarSenha.text ?? ""
         
         if senha == confirmarSenha {
@@ -158,6 +160,17 @@ class RegisterVC: UIViewController {
                 } else {
                     self?.alert?.alertInformation(title: "Parabens", message: "Usuario cadastrado com sucesso", completion: {
                         let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
+                        
+                        DispatchQueue.global(qos: .userInitiated).async {
+                            // igor-gmail-com
+                            let database = Database.database().reference()
+                            let emptyFavorites: [[String: Any]] = [[:]]
+                            let data = ["name": name, "email": email]
+                            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+                            database.child("users").child(emailFormatted).setValue(data)
+                            database.child("users").child(emailFormatted).child("favorites").setValue(emptyFavorites)
+                        }
+                        
                         self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
                     })
                 }

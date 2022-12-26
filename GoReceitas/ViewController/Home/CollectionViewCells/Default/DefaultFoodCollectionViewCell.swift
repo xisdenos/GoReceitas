@@ -37,7 +37,6 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         self.backgroundColor = .viewBackgroundColor
         configVisualElements()
-//        mockInfo()
     }
     
     func configVisualElements() {
@@ -65,9 +64,6 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
         foodImageView.loadImageUsingCache(withUrl: model.recipes?[0].thumbnail_url ?? "")
         foodName.font = .systemFont(ofSize: 22, weight: .bold)
     }
-    
-    // PopularResponseDetails
-    
     
     @IBAction func heartFavoriteTapped(_ sender: UIButton) {
         delegate?.didTapHeartButton(cell: self)
