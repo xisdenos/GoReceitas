@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol DefaultFoodCollectionViewCellDelegate: AnyObject {
+    func didTapHeartButton(cell: UICollectionViewCell)
+}
+
 class DefaultFoodCollectionViewCell: UICollectionViewCell {
     // containers
     @IBOutlet weak var favoriteButtonContainer: UIView!
@@ -19,6 +23,10 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var foodName: UILabel!
     @IBOutlet weak var additionalInfoLabel: UILabel!
     
+    weak var delegate: DefaultFoodCollectionViewCellDelegate?
+    
+    private var isActive: Bool = false
+    
     static let identifier: String = String(describing: DefaultFoodCollectionViewCell.self)
     
     static func nib() -> UINib {
@@ -29,14 +37,14 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         self.backgroundColor = .viewBackgroundColor
         configVisualElements()
-        mockInfo()
+//        mockInfo()
     }
     
     func configVisualElements() {
-        foodNameContainer.cornerRadius = 5
-        favoriteButtonContainer.cornerRadius = 5
-        additionalInfoContainer.cornerRadius = 5
-        foodImageView.cornerRadius = 5
+        foodNameContainer.layer.cornerRadius = 5
+        favoriteButtonContainer.layer.cornerRadius = 5
+        additionalInfoContainer.layer.cornerRadius = 5
+        foodImageView.layer.cornerRadius = 5
         
         foodImageView.contentMode = .scaleAspectFill
         foodName.textColor = .white
@@ -44,14 +52,32 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
         foodName.textAlignment = .center
     }
     
-    func mockInfo() {
-        additionalInfoLabel.text = "Yields 5 portions"
-        foodName.text = "Croissant Breakfast"
-        foodImageView.image = UIImage(named: "croissant-breakfast-pizza")
-//        UIFont.systemFont(ofSize: <#T##CGFloat#>, weight: <#T##UIFont.Weight#>)
+    func setupTryItOut(model: FoodResponse) {
+        foodName.text = model.name
+        additionalInfoLabel.text = model.yields ?? ""
+        foodImageView.loadImageUsingCache(withUrl: model.thumbnail_url)
+        foodName.font = .systemFont(ofSize: 22, weight: .bold)
     }
     
-    func setup(font size: CGFloat, weight: UIFont.Weight) {
-        foodName.font = .systemFont(ofSize: size, weight: weight)
+    func setupPopular(model: PopularResponseDetails) {
+        foodName.text = model.recipes?[0].name
+        additionalInfoLabel.text = model.recipes?[0].yields ?? ""
+        foodImageView.loadImageUsingCache(withUrl: model.recipes?[0].thumbnail_url ?? "")
+        foodName.font = .systemFont(ofSize: 22, weight: .bold)
+    }
+    
+    // PopularResponseDetails
+    
+    
+    @IBAction func heartFavoriteTapped(_ sender: UIButton) {
+        delegate?.didTapHeartButton(cell: self)
+        print("heart tapped default", #function)
+        if isActive == false {
+            sender.setImage(UIImage(named: "heart-fill"), for: .normal)
+            isActive = true
+        } else if isActive == true {
+            sender.setImage(UIImage(named: "heart-empty"), for: .normal)
+            isActive = false
+        }
     }
 }

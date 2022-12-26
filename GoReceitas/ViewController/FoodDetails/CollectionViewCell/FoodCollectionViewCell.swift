@@ -17,6 +17,12 @@ class FoodCollectionViewCell: UICollectionViewCell {
         setConstraints()
     }
     
+    public func configure(food: FoodResponse) {
+        topFadedLabel.setTitle(food.name, for: .normal)
+        timerView.setTitle(with: food.yields ?? "N/A")
+        foodImageView.loadImageUsingCache(withUrl: food.thumbnail_url)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

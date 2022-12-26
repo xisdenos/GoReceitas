@@ -23,12 +23,25 @@ class DescriptionTableViewCell: UITableViewCell {
 
         • Filling
         700 milliliters of milk
+        
+        • Pasta
+        1 cup of wheat flour
+        1 beaten yolk
+        100 grams of unsalted butter
+        2 tablespoons of sugar
+        1 tablespoon of baking powder
+        
+        • Filling
+        700 milliliters of milk
         """
         label.font = UIFont.systemFont(ofSize: 20)
         label.numberOfLines = 0
         return label
     }()
     
+    public func configure(description: String) {
+        instructionsLabel.text = description
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

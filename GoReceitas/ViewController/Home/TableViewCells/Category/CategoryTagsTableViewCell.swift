@@ -8,6 +8,8 @@
 import UIKit
 
 class CategoryTagsTableViewCell: UITableViewCell {
+    private var tagsList: [TagsResponse] = [TagsResponse]()
+    
     static let identifier: String = String(describing: CategoryTagsTableViewCell.self)
     
     static func nib() -> UINib {
@@ -34,11 +36,21 @@ class CategoryTagsTableViewCell: UITableViewCell {
             layout.sectionInset = .init(top: 10, left: 10, bottom: 5, right: 10)
         }
     }
+    
+    public func configureTags(with tags: [TagsResponse]) {
+        self.tagsList = tags
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+        }
+    }
 }
 
 extension CategoryTagsTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryTagsCollectionViewCell.identifier, for: indexPath) as? CategoryTagsCollectionViewCell {
+            if !tagsList.isEmpty {
+                cell.setupTagsButtons(model: tagsList[indexPath.row])
+            }
             cell.delegate = self
             return cell
         }
@@ -52,12 +64,16 @@ extension CategoryTagsTableViewCell: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 30)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.row)
+    }
 }
 
 extension CategoryTagsTableViewCell: CategoryTagsCollectionViewCellDelegate {
     func didTapCategoryButton(cell: UICollectionViewCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
-        print(indexPath.row)
-        delegate?.categoryChosed()
+        print(tagsList[indexPath.row])
+        delegate?.categoryChosed(categoryInfo: tagsList[indexPath.row])
     }
 }
