@@ -101,7 +101,7 @@ extension TryItOutTableViewCell: DefaultFoodCollectionViewCellDelegate {
             if let user = Auth.auth().currentUser {
                 let database = Database.database().reference()
                 guard let email = user.email else { return }
-//                let data = [["name": foodSelected.name, "image": foodSelected.thumbnail_url, "yields": foodSelected.yields ?? "n/a"]]
+
                 let mappedArray = self?.favoritesArray.map { ["name": $0.name, "yields": $0.yields, "image": $0.thumbnail_url] }
                 let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
                 database.child("users/\(emailFormatted)").child("favorites").setValue(mappedArray)
@@ -111,12 +111,3 @@ extension TryItOutTableViewCell: DefaultFoodCollectionViewCellDelegate {
         }
     }
 }
-
-/*
- let id: Int
- let name: String
- let thumbnail_url: String
- let cook_time_minutes, prep_time_minutes: Int?
- // rendimento
- let yields: String?
- */
