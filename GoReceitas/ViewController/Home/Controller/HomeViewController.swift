@@ -63,11 +63,6 @@ class HomeViewController: UIViewController {
         userProfilePictureImageView.contentMode = .scaleAspectFill
     }
     
-  
-    
-
-  
-    
     func setActivityIndicator() {
         self.view.addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -122,7 +117,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             service.getFoodList { [weak self] result in
                 switch result {
                 case .success(let success):
-                    cell.configure(with: success.results)
+                    let filteredArray = success.results.filter({ $0.yields != nil })
+                    
+                    cell.configure(with: filteredArray.shuffled())
                     self?.delegate?.stopLoading()
                 case .failure(let failure):
                     self?.delegate?.stopLoading()
@@ -242,7 +239,6 @@ extension HomeViewController: HomeViewControllerDelegate {
 
 extension HomeViewController: DefaultCellsDelegate {
     func didTapFoodCell(food: FoodResponse) {
-        print(food)
         
         let controller = FoodDetailsViewController()
         navigationController?.pushViewController(controller, animated: true)
@@ -278,7 +274,6 @@ extension HomeViewController: DefaultCellsDelegate {
 extension HomeViewController: PopularFoodsTableViewCellDelegate {
     func didTapFoodCell(food: PopularResponseDetails) {
         guard let food = food.recipes?[0] else { return }
-//        let food = food.recipes?[0]
         
         let controller = FoodDetailsViewController()
         navigationController?.pushViewController(controller, animated: true)

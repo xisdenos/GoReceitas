@@ -40,7 +40,7 @@ class TryItOutTableViewCell: UITableViewCell {
     }
     
     public func configure(with model: [FoodResponse]) {
-        self.foodList = model.shuffled()
+        self.foodList = model
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
         }
