@@ -37,19 +37,8 @@
   if (!passwordData) {
     return nil;
   }
-  GTMAppAuthFetcherAuthorization *authorization;
-  if (@available(iOS 11.0, macOS 10.13, tvOS 11.0, watchOS 4.0, *)) {
-    authorization = (GTMAppAuthFetcherAuthorization *)
-        [NSKeyedUnarchiver unarchivedObjectOfClass:[GTMAppAuthFetcherAuthorization class]
-                                          fromData:passwordData
-                                             error:nil];
-  } else {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    authorization = (GTMAppAuthFetcherAuthorization *)
-        [NSKeyedUnarchiver unarchiveObjectWithData:passwordData];
-#pragma clang diagnostic pop
-  }
+  GTMAppAuthFetcherAuthorization *authorization = (GTMAppAuthFetcherAuthorization *)
+      [NSKeyedUnarchiver unarchiveObjectWithData:passwordData];
   return authorization;
 }
 
@@ -80,17 +69,7 @@
 + (BOOL)saveAuthorization:(GTMAppAuthFetcherAuthorization *)auth
              toKeychainForName:(NSString *)keychainItemName
      useDataProtectionKeychain:(BOOL)useDataProtectionKeychain {
-  NSData *authorizationData;
-  if (@available(iOS 11.0, macOS 10.13, tvOS 11.0, watchOS 4.0, *)) {
-    authorizationData = [NSKeyedArchiver archivedDataWithRootObject:auth
-                                              requiringSecureCoding:YES
-                                                              error:nil];
-  } else {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    authorizationData = [NSKeyedArchiver archivedDataWithRootObject:auth];
-#pragma clang diagnostic pop
-  }
+  NSData *authorizationData = [NSKeyedArchiver archivedDataWithRootObject:auth];
   return [GTMKeychain savePasswordDataToKeychainForName:keychainItemName
                                            passwordData:authorizationData
                               useDataProtectionKeychain:useDataProtectionKeychain];

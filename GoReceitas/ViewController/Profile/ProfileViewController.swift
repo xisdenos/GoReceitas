@@ -7,9 +7,10 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
 
 class ProfileViewController: UIViewController {
-
+    
     @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var textUsername: UITextField!
     @IBOutlet weak var textEmail: UITextField!
@@ -17,8 +18,10 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var buttonChangePassword: UIButton!
     @IBOutlet weak var buttonGoOut: UIButton!
     
+    @IBOutlet weak var buttonEditPhoto: UIButton!
     var auth:Auth?
     var alert: AlertController?
+    let imagePicker: UIImagePickerController = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,21 +31,38 @@ class ProfileViewController: UIViewController {
         exitButtonBorder()
         cornerRadiusElements()
         self.view.backgroundColor = .viewBackgroundColor
-//        self.tabBarController?.tabBar.isHidden = false
-        
+        configImagePicker()
     }
-
+    
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
     }
-   
+    
     override func viewWillDisappear(_ animated: Bool) {
-//        self.tabBarController?.tabBar.isHidden = true
+        //        self.tabBarController?.tabBar.isHidden = true
     }
-  
     
-    
+    @IBAction func tappedEditPhoto(_ sender: UIButton) {
+        NotificationCenter.default.post(name: .updateImage, object: nil)
+        
+        
+        self.alert?.alertEditPhoto(completion: { option in
+            switch option {
+            case .camera:
+                self.imagePicker.sourceType = .camera
+                self.present(self.imagePicker, animated: true)
+                
+            case .library:
+                self.imagePicker.sourceType = .photoLibrary
+                self.present(self.imagePicker, animated: true)
+                
+            case .cancel:
+                break
+            }
+        })
+    }
+
     @IBAction func tapChangePasswordScreen(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
@@ -64,7 +84,7 @@ class ProfileViewController: UIViewController {
             let defauts = UserDefaults.standard
             defauts.set(false, forKey: "isUserSignedIn ")
             self.dismiss(animated: true,completion: nil)
-        } catch let singOutError {
+        } catch {
             self.alert?.alertInformation(title: "Atenção", message: "Erro ao Sair")
         }
         
@@ -92,4 +112,25 @@ class ProfileViewController: UIViewController {
         buttonGoOut.layer.borderWidth = 1
         buttonGoOut.layer.borderColor = UIColor.red.cgColor
     }
+    func configImagePicker(){
+        imagePicker.delegate = self
+    }
+}
+
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.imageProfile.image = image
+        }
+        
+        picker.dismiss(animated: true)
+    }
+    func saveImage(image: String){
+//        let image = imageProfile.image.jpg
+    }
+    
+}
+extension NSNotification.Name {
+    static let updateImage = Notification.Name("updateImage")
 }

@@ -59,10 +59,7 @@ typedef void (^GIDAuthenticationAction)(GIDAuthentication *_Nullable authenticat
 /// Gets a new authorizer for `GTLService`, `GTMSessionFetcher`, or `GTMHTTPFetcher`.
 ///
 /// @return A new authorizer
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 - (id<GTMFetcherAuthorizationProtocol>)fetcherAuthorizer;
-#pragma clang diagnostic pop
 
 /// Get a valid access token and a valid ID token, refreshing them first if they have expired or are
 /// about to expire.

@@ -5,16 +5,14 @@
 //  Created by Daiane Goncalves on 21/10/22.
 //
 
+
 import UIKit
 
 class FavoriteCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var foodImageView: UIImageView!
-    
     @IBOutlet weak var foodLabel: UILabel!
-    
     @IBOutlet weak var prepTimeLabel: UILabel!
-    
     @IBOutlet weak var heartImage: UIButton!
     
     
@@ -38,47 +36,27 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         foodLabel.layer.masksToBounds = true
         prepTimeLabel.layer.cornerRadius = 10.0
         prepTimeLabel.layer.masksToBounds = true
-        
     }
-    
-    
-    func setupCell(foodinfo: CellsInfoSections){
-        foodImageView.image = UIImage(named: foodinfo.foodImage)
-        prepTimeLabel.text = foodinfo.prepTime
-        foodLabel.text = foodinfo.foodName
-        
-    }
-    
     
     @IBAction func toggleHeartImage(_ sender: UIButton) {
         toggleHeartImage(for: sender)
-        
     }
 
-
+    
     private func toggleHeartImage(for button: UIButton) {
-        if isActive == false {
-            button.setImage(UIImage(named: "heart-fill-fav"), for: .normal)
-            isActive = true
-        } else if isActive == true {
-            showAlert()
-           
-        }
+        showAlert()
     }
     
     func showAlert () {
         let alertController: UIAlertController = UIAlertController(title: "Atenção", message: "Tem certeza que deseja remover esse item?", preferredStyle: .alert)
-
-        let ok: UIAlertAction = UIAlertAction(title: "ok", style: .default) {
-            (action) in
-            self.heartImage.setImage(UIImage(named: "heart-empty-fav"), for: .normal)
+        
+        let ok: UIAlertAction = UIAlertAction(title: "ok", style: .default) { [weak self] _ in
+            guard let self = self else { return }
             self.isActive = false
-            }
-
-        let cancel: UIAlertAction = UIAlertAction(title: "cancelar", style: .destructive) {
-            (action) in
-           
+//            self.delegate?.didTapHeartButton(cell: self)
         }
+
+        let cancel: UIAlertAction = UIAlertAction(title: "cancelar", style: .destructive)
         alertController.addAction(cancel)
         alertController.addAction(ok)
 
