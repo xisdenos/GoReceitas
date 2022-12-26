@@ -8,11 +8,12 @@
 import Foundation
 import UIKit
 
-class purpleFadedView: UIButton {
+class PurpleFadedView: UIButton {
     
     //MARK: - Initializer
+    private lazy var insideContainer = PurpleInsideView()
     
-    init(labelText: String, numberText: String) {
+    init(labelText: String) {
         super.init(frame: CGRect.zero)
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = UIColor(red: 185/255, green: 142/255, blue: 255/255, alpha: 0.9)
@@ -23,18 +24,26 @@ class purpleFadedView: UIButton {
         layer.cornerRadius = 6
         layer.shadowRadius = .greatestFiniteMagnitude
         
-        let insideConteiner = PurpleInsideView(initialNumber: numberText)
-        insideConteiner.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(insideConteiner)
-        
         self.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         self.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         self.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         self.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         self.heightAnchor.constraint(equalToConstant: 40).isActive = true
         self.widthAnchor.constraint(equalToConstant: 175).isActive = true
-        insideConteiner.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 2).isActive = true
-        insideConteiner.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+        
+        setInsideContainer()
+    }
+    
+    private func setInsideContainer() {
+        insideContainer.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(insideContainer)
+        
+        insideContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 2).isActive = true
+        insideContainer.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+    }
+    
+    func setNumber(of nutrients: String) {
+        insideContainer.setNumber(of: nutrients)
     }
     
     required init?(coder: NSCoder) {

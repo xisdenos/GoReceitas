@@ -7,8 +7,12 @@
 
 import UIKit
 import FirebaseAuth
+
 import FirebaseStorage
 import FirebaseFirestore
+
+import Firebase
+
 
 class ProfileViewController: UIViewController {
     
@@ -141,6 +145,12 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         picker.dismiss(animated: true)
 
     }
+
+    func saveImage(image: String){
+//        let image = imageProfile.image.jpg
+    }
+    
+
 }
 extension NSNotification.Name {
     static let updateImage = Notification.Name("updateImage")

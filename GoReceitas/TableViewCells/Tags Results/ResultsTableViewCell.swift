@@ -28,10 +28,10 @@ class ResultsTableViewCell: UITableViewCell {
         return UINib(nibName: identifier, bundle: nil)
     }
     
-    func setup(_ cellInfo: CellsInfoSections) {
-        foodName.text = cellInfo.foodName
-        prepTime.text = cellInfo.prepTime
-        foodImage.image = UIImage(named: cellInfo.foodImage)
+    func setup(_ cellInfo: FoodResponse) {
+        foodName.text = cellInfo.name
+        prepTime.text = cellInfo.yields ?? "N/A"
+        foodImage.loadImageUsingCache(withUrl: cellInfo.thumbnail_url)
         foodImage.contentMode = .scaleAspectFill
         foodImage.layer.cornerRadius = 10
         foodImage.layer.masksToBounds = true

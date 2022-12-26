@@ -7,8 +7,15 @@
 
 import UIKit
 
+protocol RecommendedFoodsTableViewCellDelegate: AnyObject {
+    func didTapRecommendedFoodCell(details: FoodResponse)
+}
+
 class RecommendedFoodsTableViewCell: UITableViewCell {
     static let identifier: String = "RecommendedFoodsTableViewCell"
+    private var recommendedFoods: [FoodResponse] = [FoodResponse]()
+    
+    weak var delegate: RecommendedFoodsTableViewCellDelegate?
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -41,20 +48,28 @@ class RecommendedFoodsTableViewCell: UITableViewCell {
         super.layoutSubviews()
         collectionView.frame = bounds
     }
+    
+    func setup(foods: [FoodResponse]) {
+        self.recommendedFoods = foods
+    }
 }
-
 
 extension RecommendedFoodsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return recommendedFoods.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodCollectionViewCell.identifier, for: indexPath) as? FoodCollectionViewCell
+        cell?.configure(food: recommendedFoods[indexPath.row])
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 160, height: 210)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didTapRecommendedFoodCell(details: recommendedFoods[indexPath.row])
     }
 }

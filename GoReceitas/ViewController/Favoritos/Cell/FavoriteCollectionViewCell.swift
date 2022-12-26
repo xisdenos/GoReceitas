@@ -5,9 +5,6 @@
 //  Created by Daiane Goncalves on 21/10/22.
 //
 
-protocol FavoriteCollectionViewCellDelegate: AnyObject {
-    func didTapHeartButton(cell: UICollectionViewCell)
-}
 
 import UIKit
 
@@ -25,7 +22,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
-    weak var delegate: FavoriteCollectionViewCellDelegate?
+    
     weak var viewController: UIViewController?
     
     private var isActive: Bool = false
@@ -40,14 +37,6 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         prepTimeLabel.layer.cornerRadius = 10.0
         prepTimeLabel.layer.masksToBounds = true
     }
-    
-    
-    func setupCell(foodinfo: CellsInfoSections){
-        foodImageView.image = UIImage(named: foodinfo.foodImage)
-        prepTimeLabel.text = foodinfo.prepTime
-        foodLabel.text = foodinfo.foodName
-    }
-    
     
     @IBAction func toggleHeartImage(_ sender: UIButton) {
         toggleHeartImage(for: sender)
@@ -64,7 +53,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         let ok: UIAlertAction = UIAlertAction(title: "ok", style: .default) { [weak self] _ in
             guard let self = self else { return }
             self.isActive = false
-            self.delegate?.didTapHeartButton(cell: self)
+//            self.delegate?.didTapHeartButton(cell: self)
         }
 
         let cancel: UIAlertAction = UIAlertAction(title: "cancelar", style: .destructive)

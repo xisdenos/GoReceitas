@@ -7,17 +7,30 @@
 
 import UIKit
 
+protocol HomeViewControllerDelegate: AnyObject {
+    func startLoading()
+    func stopLoading()
+}
+
 class HomeViewController: UIViewController {
+    private var tagsList: [TagsResponse] = [TagsResponse]()
+    private var service: Service = Service()
     
     @IBOutlet weak var userProfilePictureImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var welcomeLabel: UILabel!
     
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(style: .large)
+    
+    weak var delegate: HomeViewControllerDelegate?
+    
     // MARK: Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .viewBackgroundColor
+        delegate = self
         userProfilePictureImageView.image = UIImage(systemName: "person")
+        setActivityIndicator()
         configTableView()
         setTabBarIcons()
         configObserver()
@@ -34,10 +47,11 @@ class HomeViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
-    func configObserver(){
+    func configObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateImage), name: .updateImage, object: nil)
     }
     
+
     @objc func updateImage(notification: NSNotification){
         userProfilePictureImageView.image = notification.object as? UIImage
     }
@@ -51,6 +65,20 @@ class HomeViewController: UIViewController {
     
   
     
+
+  
+    
+    func setActivityIndicator() {
+        self.view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+        ])
+    }
+    
+
     func configTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -72,27 +100,54 @@ class HomeViewController: UIViewController {
         self.tabBarController?.tabBar.items?[2].title = "Favorites"
         self.tabBarController?.tabBar.items?[3].title = "Profile"
     }
-    
-    @objc func allTagsTapped() {
-        print(#function)
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "AllTagsViewController") as! AllTagsViewController
-        navigationController?.pushViewController(viewController, animated: true)
-    }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTagsTableViewCell.identifier) as? CategoryTagsTableViewCell else { return UITableViewCell() }
+            service.getTagsList { tags in
+                switch tags {
+                case .success(let tags):
+                    cell.configureTags(with: tags.results)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
             cell.delegate = self
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TryItOutTableViewCell.identifier) as? TryItOutTableViewCell else { return UITableViewCell() }
+            delegate?.startLoading()
+            service.getFoodList { [weak self] result in
+                switch result {
+                case .success(let success):
+                    cell.configure(with: success.results)
+                    self?.delegate?.stopLoading()
+                case .failure(let failure):
+                    self?.delegate?.stopLoading()
+                    print(failure.localizedDescription)
+                }
+            }
             cell.delegate = self
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
+            cell.activityIndicator.startAnimating()
+            service.getPopularList { result in
+                switch result {
+                case .success(let success):
+                    let popularRecipes = success.results?.compactMap({ $0.item }).filter({ $0.recipes != nil })
+
+                    if let popularRecipes {
+                        cell.configure(with: popularRecipes)
+                        cell.activityIndicator.stopAnimating()
+                    }
+
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
             cell.delegate = self
             return cell
         }
@@ -130,24 +185,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if section == 0 {
-            guard let header = view as? UITableViewHeaderFooterView else { return }
-            let allTagsButton: UIButton = UIButton(frame: CGRect(x: header.frame.midX + 120, y: 0, width: 50, height: 30))
-            allTagsButton.setTitle("All Tags", for: .normal)
-            allTagsButton.setTitleColor(.systemPurple, for: .normal)
-            allTagsButton.addTarget(self, action: #selector(allTagsTapped), for: .touchUpInside)
-            allTagsButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
-            allTagsButton.titleLabel?.textAlignment = .center
-            allTagsButton.titleLabel?.numberOfLines = 0
-            
-            header.addSubview(allTagsButton)
-            
-            header.textLabel?.textColor = UIColor.systemPurple
-            header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-            header.textLabel?.frame = header.bounds
-        }
-        
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {        
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.textLabel?.textColor = UIColor.systemPurple
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
@@ -156,22 +194,119 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     // MARK: Did Select Row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }
 
 extension HomeViewController: CategoryTagsTableViewCellDelegate {
-    func categoryChosed() {
-        print("category chosed")
+    func categoryChosed(categoryInfo: TagsResponse) {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "TagsResultsViewController") as! TagsResultsViewController
-        navigationController?.pushViewController(viewController, animated: true)
+        let viewController = storyboard.instantiateViewController(withIdentifier: TagsResultsViewController.identifier) as! TagsResultsViewController
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
+
+        viewController.activityIndicator.startAnimating()
+        service.getTagSelectedWith(tagName: categoryInfo.name) { tagResult in
+            
+            switch tagResult {
+            case .success(let tags):
+                DispatchQueue.main.async {
+                    viewController.title = categoryInfo.display_name
+                    viewController.configureFoodInformation(foodsInfo: tags.results)
+                    viewController.activityIndicator.stopAnimating()
+                }
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+    }
+}
+
+extension HomeViewController: HomeViewControllerDelegate {
+    func startLoading() {
+        print("start loading")
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.isHidden = true
+            self?.activityIndicator.startAnimating()
+        }
+    }
+    
+    func stopLoading() {
+        print("stop loading")
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.isHidden = false
+            self?.activityIndicator.stopAnimating()
+        }
     }
 }
 
 extension HomeViewController: DefaultCellsDelegate {
-    func didTapFoodCell() {
-        let viewController = FoodDetailsViewController()
-        navigationController?.pushViewController(viewController, animated: true)
+    func didTapFoodCell(food: FoodResponse) {
+        print(food)
+        
+        let controller = FoodDetailsViewController()
+        navigationController?.pushViewController(controller, animated: true)
+
+        DispatchQueue.main.async { [weak self] in
+            controller.activityIndicator.startAnimating()
+            controller.foodDetailsView.tableView.isHidden = true
+            controller.foodDetailsView.topFadedLabel.isHidden = true
+            controller.foodDetailsView.purpheHearthView.isHidden = true
+            controller.foodDetailsView.timeView.isHidden = true
+            self?.service.getMoreInfo(id: food.id) { details in
+                switch details {
+                case .success(let success):
+                    controller.configureFoodInformation(foodDetails: success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+
+            self?.service.getSimilarFoods(id: food.id, completion: { result in
+                switch result {
+                case .success(let success):
+                    controller.configureRecommendedFoods(foods: success.results)
+                    print(success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            })
+        }
+    }
+}
+
+extension HomeViewController: PopularFoodsTableViewCellDelegate {
+    func didTapFoodCell(food: PopularResponseDetails) {
+        guard let food = food.recipes?[0] else { return }
+//        let food = food.recipes?[0]
+        
+        let controller = FoodDetailsViewController()
+        navigationController?.pushViewController(controller, animated: true)
+
+        DispatchQueue.main.async { [weak self] in
+            controller.activityIndicator.startAnimating()
+            controller.foodDetailsView.tableView.isHidden = true
+            controller.foodDetailsView.topFadedLabel.isHidden = true
+            controller.foodDetailsView.purpheHearthView.isHidden = true
+            controller.foodDetailsView.timeView.isHidden = true
+            self?.service.getMoreInfo(id: food.id) { details in
+                switch details {
+                case .success(let success):
+                    controller.configureFoodInformation(foodDetails: success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+
+            self?.service.getSimilarFoods(id: food.id, completion: { result in
+                switch result {
+                case .success(let success):
+                    controller.configureRecommendedFoods(foods: success.results)
+                    print(success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            })
+        }
     }
 }

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol DefaultCellsDelegate: AnyObject {
-    func didTapFoodCell()
+    func didTapFoodCell(food: FoodResponse)
 }

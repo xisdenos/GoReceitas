@@ -9,7 +9,6 @@ import UIKit
 
 class FoodDetailsView: UIView {
     
-    lazy var scrollView = UIScrollView()
     lazy var contentView = UIView()
     
     lazy var tableView: UITableView = {
@@ -26,7 +25,6 @@ class FoodDetailsView: UIView {
     lazy var foodImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(named: "mac-and-cheese")
         imageView.contentMode = .scaleToFill
         return imageView
     }()
@@ -51,6 +49,10 @@ class FoodDetailsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func configure(prepTimeText: String) {
+        timeView.setTitle(with: prepTimeText)
+    }
+    
     lazy var topFadedLabel: UIButton = {
         let view = NextScreenGreenButton()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -64,7 +66,7 @@ class FoodDetailsView: UIView {
     }()
     
     lazy var timeView: TimerView = {
-        let timer = TimerView(height: 35, width: 100)
+        let timer = TimerView()
         timer.translatesAutoresizingMaskIntoConstraints = false
         return timer
     }()
@@ -83,7 +85,7 @@ class FoodDetailsView: UIView {
             topFadedLabel.leadingAnchor.constraint(equalTo: foodImageView.leadingAnchor, constant: 20),
             topFadedLabel.trailingAnchor.constraint(equalTo: purpheHearthView.leadingAnchor, constant: -15),
 
-            purpheHearthView.topAnchor.constraint(equalTo: foodImageView.topAnchor, constant: 50),
+            purpheHearthView.topAnchor.constraint(equalTo: foodImageView.topAnchor, constant: 30),
             purpheHearthView.trailingAnchor.constraint(equalTo: foodImageView.trailingAnchor, constant: -20),
             purpheHearthView.widthAnchor.constraint(equalToConstant: 50),
             purpheHearthView.heightAnchor.constraint(equalToConstant: 50),
@@ -95,7 +97,6 @@ class FoodDetailsView: UIView {
             tableView.leadingAnchor.constraint(equalTo: foodImageView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: foodImageView.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            
         ])
     }
 }
