@@ -9,7 +9,7 @@ import UIKit
 
 class ChangeEmailViewController: UIViewController {
 
-    @IBOutlet weak var imageProfile: UIImageView!
+//    @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var newEmailText: UITextField!
     @IBOutlet weak var currentPasswordText: UITextField!
     @IBOutlet weak var confirmButton: UIButton!
@@ -17,10 +17,15 @@ class ChangeEmailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageRound()
+//        imageRound()
         configFontAndColors()
         self.view.backgroundColor = .viewBackgroundColor
+//        imageProfile.image = UIImage(systemName: "person")
+//        configObserver()
+        print("Email", #function)
+
     }
+  
     
     @IBAction func tapBackButton(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
@@ -34,10 +39,20 @@ class ChangeEmailViewController: UIViewController {
         alertVerification()
     }
     
-    func imageRound() {
-        imageProfile.layer.masksToBounds = true
-        imageProfile.layer.cornerRadius =  75
-    }
+//    func imageRound() {
+//        imageProfile.layer.masksToBounds = true
+//        imageProfile.layer.cornerRadius =  75
+//    }
+    
+//    func configObserver(){
+//        NotificationCenter.default.addObserver(self, selector: #selector(updateImageEmail), name: .updateImage, object: nil)
+//
+//    }
+//
+//    @objc func updateImageEmail(notification: NSNotification){
+//        print("DeuCerto")
+//        imageProfile.image = notification.object as? UIImage
+//    }
     
     func configFontAndColors(){
         confirmButton.isEnabled = false
