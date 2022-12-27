@@ -18,7 +18,8 @@ class HomeViewController: UIViewController {
     private var tagsList: [TagsResponse] = [TagsResponse]()
     private var service: Service = Service()
     
-    private var favoritesArray: [[String : Any]] = [[:]]
+    private var favoritesArray: [[String : Any]]?
+    let database = Database.database().reference()
     
     @IBOutlet weak var userProfilePictureImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
@@ -39,7 +40,20 @@ class HomeViewController: UIViewController {
         setTabBarIcons()
         configObserver()
         configHome()
-        populateArray()
+//        populateArray()
+        
+        if let user = Auth.auth().currentUser {
+            
+            guard let email = user.email else { return }
+            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+            database.child("users/\(emailFormatted)").child("favorites").observeSingleEvent(of: .value) { (snapshot) in
+                if let value = snapshot.value as? [String: Any] {
+                    print(value)
+                } else {
+                    print("Error retrieving data")
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -198,21 +212,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     /// fetch data from favorites item in the firebase realtime database
     func populateArray() {
-        if let user = Auth.auth().currentUser {
-            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                let database = Database.database().reference()
-                guard let email = user.email else { return }
-                let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-                database.child("users/\(emailFormatted)").child("favorites").observeSingleEvent(of: .value, with: { (snapshot) in
-                    // Get the data from the snapshot and assign it to favorites array
-                    if let data = snapshot.value as? [[String : Any]] {
-                        self?.favoritesArray = data
-                    }
-                })
-            }
-        } else {
-            print("There is no currently signed-in user.")
-        }
+//        if let user = Auth.auth().currentUser {
+//            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+//                let database = Database.database().reference()
+//                guard let email = user.email else { return }
+//                let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+//                database.child("users/\(emailFormatted)").child("favorites").observeSingleEvent(of: .value, with: { (snapshot) in
+//                    // Get the data from the snapshot and assign it to favorites array
+//                    if let data = snapshot.value as? [[String : Any]] {
+//                        self?.favoritesArray = data
+//                    }
+//                })
+//            }
+//        } else {
+//            print("There is no currently signed-in user.")
+//        }
     }
 }
 
@@ -261,31 +275,17 @@ extension HomeViewController: HomeViewControllerDelegate {
 extension HomeViewController: DefaultCellsDelegate {
     func didFavoriteItem(itemSelected: FoodResponse, favorited: Bool) {
         if let user = Auth.auth().currentUser {
-            DispatchQueue.global(qos: .userInitiated).async {
-                let database = Database.database().reference()
                 guard let email = user.email else { return }
                 let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-
+            
                 let favArray: [FoodResponse] = [FoodResponse(id: itemSelected.id, name: itemSelected.name, thumbnail_url: itemSelected.thumbnail_url, cook_time_minutes: itemSelected.cook_time_minutes ?? 0, prep_time_minutes: itemSelected.prep_time_minutes ?? 0, yields: itemSelected.yields ?? "n/a")]
 
                 let mappedArray = favArray.map { ["name": $0.name, "yields": $0.yields ?? "n/a", "image": $0.thumbnail_url, "isFavorited": favorited] }
+            
+                let dictionary = Dictionary(uniqueKeysWithValues: mappedArray.map { ($0["name"] as! String, $0) })
+            
+                database.child("users/\(emailFormatted)").child("favorites").childByAutoId().updateChildValues(dictionary)
 
-                // so we can track the array of favorites and update the values correctly
-                self.favoritesArray.append(contentsOf: mappedArray)
-
-                database.child("users/\(emailFormatted)").observeSingleEvent(of: .value, with: { (snapshot) in
-                    if snapshot.hasChild("favorites") {
-
-                        let updates = ["users/\(emailFormatted)/favorites": self.favoritesArray]
-                        database.updateChildValues(updates as [AnyHashable : Any])
-
-                        print("The value already exists in the database.")
-                    } else {
-                        database.child("users/\(emailFormatted)").child("favorites").setValue(mappedArray)
-                        print("The value does not exist in the database.")
-                    }
-                })
-            }
         } else {
             print("There is no currently signed-in user.")
         }

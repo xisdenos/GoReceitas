@@ -168,7 +168,7 @@ class RegisterVC: UIViewController {
                             let data = ["name": name, "email": email]
                             let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
                             database.child("users").child(emailFormatted).setValue(data)
-                            database.child("users").child(emailFormatted).child("favorites").setValue(emptyFavorites)
+//                            database.child("users").child(emailFormatted).child("favorites").setValue(emptyFavorites)
                         }
                         
                         self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
