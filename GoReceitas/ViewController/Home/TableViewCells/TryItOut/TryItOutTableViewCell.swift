@@ -45,29 +45,15 @@ class TryItOutTableViewCell: UITableViewCell {
                 guard let email = user.email else { return }
                 let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
                 database.child("users/\(emailFormatted)").child("favorites").observeSingleEvent(of: .value, with: { (snapshot) in
-                    // Get the data from the snapshot
-//                    print(snapshot.value)
+                    // Get the data from the snapshot and assign it to favorites array
                     if let data = snapshot.value as? [[String : Any]] {
-//                        print(data)
-                        for dictionary in data {
-                            guard let name = dictionary["name"] as? String else { return }
-                            guard let yields = dictionary["yields"] as? String else { return }
-                            guard let isFavorited = dictionary["isFavorited"] as? Bool else { return }
-                            guard let image = dictionary["image"] as? String else { return }
-                            
-                            let newArray = self?.favoritesArray.map { _ in ["name": name, "yields": yields, "image": image, "isFavorited": isFavorited ] }
-                            self?.favoritesArray = newArray!
-
-                            print("self.favoritesArray", self?.favoritesArray as Any)
-                            print("self.favoritesArray.count", self?.favoritesArray.count as Any)
-                        }
+                        self?.favoritesArray = data
                     }
                 })
             }
         } else {
             print("There is no currently signed-in user.")
         }
-
     }
     
     func configCollectionView() {
@@ -127,35 +113,29 @@ extension TryItOutTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
 }
 
 extension TryItOutTableViewCell: DefaultFoodCollectionViewCellDelegate {
-    //    func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
-    //        guard let indexPath = collectionView.indexPath(for: cell) else { return }
-    //        var foodSelected = foodList[indexPath.row]
-    //        foodSelected.isFavorited = isActive
-    //    }
-    
     func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
         let foodSelected = foodList[indexPath.row]
-
+        
         if let user = Auth.auth().currentUser {
             DispatchQueue.global(qos: .userInitiated).async {
                 let database = Database.database().reference()
                 guard let email = user.email else { return }
                 let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-                
+
                 let favArray: [FoodResponse] = [FoodResponse(id: foodSelected.id, name: foodSelected.name, thumbnail_url: foodSelected.thumbnail_url, cook_time_minutes: foodSelected.cook_time_minutes ?? 0, prep_time_minutes: foodSelected.prep_time_minutes ?? 0, yields: foodSelected.yields ?? "n/a")]
-                
+
                 let mappedArray = favArray.map { ["name": $0.name, "yields": $0.yields ?? "n/a", "image": $0.thumbnail_url, "isFavorited": isActive] }
-                
+
                 // so we can track the array of favorites and update the values correctly
                 self.favoritesArray.append(contentsOf: mappedArray)
-                
+
                 database.child("users/\(emailFormatted)").observeSingleEvent(of: .value, with: { (snapshot) in
                     if snapshot.hasChild("favorites") {
 
                         let updates = ["users/\(emailFormatted)/favorites": self.favoritesArray]
                         database.updateChildValues(updates as [AnyHashable : Any])
-                        
+
                         print("The value already exists in the database.")
                     } else {
                         database.child("users/\(emailFormatted)").child("favorites").setValue(mappedArray)
