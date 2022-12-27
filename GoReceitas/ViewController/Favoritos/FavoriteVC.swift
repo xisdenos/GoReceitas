@@ -71,8 +71,12 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
 }
 
 extension FavoriteVC: DefaultFoodCollectionViewCellDelegate {
-    func didTapHeartButton(cell: UICollectionViewCell) {
-        guard let indexPath = collectionView.indexPath(for: cell) else { return }
-        print("index", indexPath.row, #function)
+    func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
+        
     }
+    
+//    func didTapHeartButton(cell: UICollectionViewCell) {
+//        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+//        print("index", indexPath.row, #function)
+//    }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DefaultFoodCollectionViewCellDelegate: AnyObject {
-    func didTapHeartButton(cell: UICollectionViewCell)
+    func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool)
 }
 
 class DefaultFoodCollectionViewCell: UICollectionViewCell {
@@ -25,7 +25,7 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
     
     weak var delegate: DefaultFoodCollectionViewCellDelegate?
     
-    private var isActive: Bool = false
+    var isActive: Bool = false
     
     static let identifier: String = String(describing: DefaultFoodCollectionViewCell.self)
     
@@ -66,14 +66,14 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func heartFavoriteTapped(_ sender: UIButton) {
-        delegate?.didTapHeartButton(cell: self)
+        isActive = !isActive
         print("heart tapped default", #function)
-        if isActive == false {
+        if isActive {
             sender.setImage(UIImage(named: "heart-fill"), for: .normal)
-            isActive = true
-        } else if isActive == true {
+            delegate?.didTapHeartButton(cell: self, isActive: isActive)
+        } else {
+            delegate?.didTapHeartButton(cell: self, isActive: isActive)
             sender.setImage(UIImage(named: "heart-empty"), for: .normal)
-            isActive = false
         }
     }
 }

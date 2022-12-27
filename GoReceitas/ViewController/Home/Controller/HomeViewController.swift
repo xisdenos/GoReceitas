@@ -72,7 +72,6 @@ class HomeViewController: UIViewController {
             activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
         ])
     }
-    
 
     func configTableView() {
         tableView.delegate = self
@@ -118,11 +117,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 switch result {
                 case .success(let success):
                     let filteredArray = success.results.filter({ $0.yields != nil })
-                    
                     cell.configure(with: filteredArray.shuffled())
-//                    self?.delegate?.stopLoading()
+                    self?.delegate?.stopLoading()
                 case .failure(let failure):
-//                    self?.delegate?.stopLoading()
+                    self?.delegate?.stopLoading()
                     print(failure.localizedDescription)
                 }
             }
