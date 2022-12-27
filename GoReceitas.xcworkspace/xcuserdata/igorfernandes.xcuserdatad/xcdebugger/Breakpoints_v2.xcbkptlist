@@ -46,8 +46,8 @@
             filePath = "GoReceitas/ViewController/Home/Controller/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "setTabBarIcons()"
             landmarkType = "7">
             <Locations>
@@ -238,8 +238,8 @@
             filePath = "GoReceitas/ViewController/Home/Controller/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -254,8 +254,8 @@
             filePath = "GoReceitas/ViewController/Home/Controller/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -270,8 +270,8 @@
             filePath = "GoReceitas/ViewController/Home/Controller/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -286,8 +286,8 @@
             filePath = "GoReceitas/ViewController/Home/Controller/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -302,8 +302,8 @@
             filePath = "GoReceitas/ViewController/Home/Controller/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -318,313 +318,10 @@
             filePath = "GoReceitas/ViewController/Home/Controller/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "89D077A5-845D-45A1-898B-1880A9F2130F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "populateArray()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "00692A84-4C7D-4C0E-927C-838AC4E44CC0"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "populateArray()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "00692A84-4C7D-4C0E-927C-838AC4E44CC0 - da0b2312b4ed88a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GoReceitas.TryItOutTableViewCell.populateArray() -&gt; ()"
-                  moduleName = "GoReceitas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43"
-                  offsetFromSymbolStart = "327">
-               </Location>
-               <Location
-                  uuid = "00692A84-4C7D-4C0E-927C-838AC4E44CC0 - ee11ad641242a19e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in GoReceitas.TryItOutTableViewCell.populateArray() -&gt; ()"
-                  moduleName = "GoReceitas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43"
-                  offsetFromSymbolStart = "147">
-               </Location>
-               <Location
-                  uuid = "00692A84-4C7D-4C0E-927C-838AC4E44CC0 - 6c46f76684150694"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.FIRDataSnapshot) -&gt; () in closure #1 () -&gt; () in GoReceitas.TryItOutTableViewCell.populateArray() -&gt; ()"
-                  moduleName = "GoReceitas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43"
-                  offsetFromSymbolStart = "109">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FD579E28-7544-47CD-9A60-038139DC6A34"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "populateArray()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4D7E8356-5B13-425F-A1FB-BB0D5C4FFBCC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "populateArray()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "4D7E8356-5B13-425F-A1FB-BB0D5C4FFBCC - ee11ad641242a1e0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in GoReceitas.TryItOutTableViewCell.populateArray() -&gt; ()"
-                  moduleName = "GoReceitas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "258">
-               </Location>
-               <Location
-                  uuid = "4D7E8356-5B13-425F-A1FB-BB0D5C4FFBCC - ee11ad641242a1e0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in GoReceitas.TryItOutTableViewCell.populateArray() -&gt; ()"
-                  moduleName = "GoReceitas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "319">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "52E6191D-A444-4989-BD24-B4E9180C2407"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "populateArray()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "52E6191D-A444-4989-BD24-B4E9180C2407 - ee11ad641242a122"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in GoReceitas.TryItOutTableViewCell.populateArray() -&gt; ()"
-                  moduleName = "GoReceitas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "1000">
-               </Location>
-               <Location
-                  uuid = "52E6191D-A444-4989-BD24-B4E9180C2407 - 6c46f76684150694"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.FIRDataSnapshot) -&gt; () in closure #1 () -&gt; () in GoReceitas.TryItOutTableViewCell.populateArray() -&gt; ()"
-                  moduleName = "GoReceitas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "43"
-                  endingLineNumber = "43"
-                  offsetFromSymbolStart = "109">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6EAA0448-0CBF-4E14-8ECE-FDA133DC37BE"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "populateArray()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "42EBB702-1FCC-4516-84AA-A6711E47E963"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "populateArray()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "42EBB702-1FCC-4516-84AA-A6711E47E963 - 6c46f7668415066e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.FIRDataSnapshot) -&gt; () in closure #1 () -&gt; () in GoReceitas.TryItOutTableViewCell.populateArray() -&gt; ()"
-                  moduleName = "GoReceitas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "124">
-               </Location>
-               <Location
-                  uuid = "42EBB702-1FCC-4516-84AA-A6711E47E963 - 6c46f7668415066e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.FIRDataSnapshot) -&gt; () in closure #1 () -&gt; () in GoReceitas.TryItOutTableViewCell.populateArray() -&gt; ()"
-                  moduleName = "GoReceitas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "470">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BEFDA439-972A-4B7F-A0C9-0C79448C8677"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "populateArray()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "BEFDA439-972A-4B7F-A0C9-0C79448C8677 - 6c46f7668415066e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.FIRDataSnapshot) -&gt; () in closure #1 () -&gt; () in GoReceitas.TryItOutTableViewCell.populateArray() -&gt; ()"
-                  moduleName = "GoReceitas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "124">
-               </Location>
-               <Location
-                  uuid = "BEFDA439-972A-4B7F-A0C9-0C79448C8677 - 6c46f7668415066e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.FIRDataSnapshot) -&gt; () in closure #1 () -&gt; () in GoReceitas.TryItOutTableViewCell.populateArray() -&gt; ()"
-                  moduleName = "GoReceitas"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "470">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
