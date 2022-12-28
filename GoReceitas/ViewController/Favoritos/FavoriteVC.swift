@@ -24,7 +24,7 @@ class FavoriteVC: UIViewController {
         configCollectionView()
         populateArray()
     }
-    
+
     
     func populateArray() {
         let ref = Database.database().reference()
@@ -33,8 +33,9 @@ class FavoriteVC: UIViewController {
             let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
             
             
-            ref.child("users/\(emailFormatted)/favorites").observeSingleEvent(of: .value) { snapshot  in
+            ref.child("users/\(emailFormatted)/favorites").observe(.value) { snapshot  in
                 if let dictionary = snapshot.value as? [String: Any] {
+                    self.favorites.removeAll()
                     // Iterate over the dictionary of recipes
                     for item in dictionary {
                         // get the values: ex "Easy Chocolate Rugelach" = { "name": "Easy Chocolate Rugelach" }

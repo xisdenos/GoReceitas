@@ -116,17 +116,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TryItOutTableViewCell.identifier) as? TryItOutTableViewCell else { return UITableViewCell() }
 //            delegate?.startLoading()
-//            service.getFoodList { [weak self] result in
-//                switch result {
-//                case .success(let success):
-//                    let filteredArray = success.results.filter({ $0.yields != nil })
-//                    cell.configure(with: filteredArray.shuffled())
-//                    self?.delegate?.stopLoading()
-//                case .failure(let failure):
-//                    self?.delegate?.stopLoading()
-//                    print(failure.localizedDescription)
-//                }
-//            }
+            service.getFoodList { [weak self] result in
+                switch result {
+                case .success(let success):
+                    let filteredArray = success.results.filter({ $0.yields != nil })
+                    cell.configure(with: filteredArray.shuffled())
+                    self?.delegate?.stopLoading()
+                case .failure(let failure):
+                    self?.delegate?.stopLoading()
+                    print(failure.localizedDescription)
+                }
+            }
             cell.delegate = self
             return cell
         } else if indexPath.section == 2 {
