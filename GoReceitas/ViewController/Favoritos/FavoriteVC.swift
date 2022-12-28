@@ -44,16 +44,19 @@ class FavoriteVC: UIViewController {
                         for foodInfo in favoriteItem {
                             let details = foodInfo.value as! NSDictionary
                             
-                            print(details["name"] as! String)
-                            print(details["yields"] as! String)
-                            print(details["cook_time_minutes"] as! Int)
-                            print(details["id"] as! Int)
-                            print(details["image"] as! String)
-                            print(details["isFavorited"] as! Int)
-                            print(details["prep_time_minutes"])
-//                            print(details.name)
+                            let foodName = details["name"] as! String
+                            let foodYields = details["yields"] as! String
+                            let foodCookTime = details["cook_time_minutes"] as! Int
+                            let foodId = details["id"] as! Int
+                            let foodImage = details["image"] as! String
+                            let isFavorited = details["isFavorited"] as! Int
+                            let foodPrepTime = details["prep_time_minutes"] as! Int
                             
-//                            print(details)
+                            let recipe = FoodResponse(id: foodId, name: foodName, thumbnail_url: foodImage, cook_time_minutes: foodCookTime, prep_time_minutes: foodPrepTime, yields: foodYields)
+                            
+                            self.favorites.append(recipe)
+                            print(self.favorites)
+                            print(self.favorites.count)
                         }
                     }
                 }
