@@ -250,7 +250,8 @@ extension HomeViewController: DefaultCellsDelegate {
 
                 let dictionary = Dictionary(uniqueKeysWithValues: mappedArray.map { ($0["name"] as! String, $0) })
 
-                database.child("users/\(emailFormatted)").child("favorites").childByAutoId().updateChildValues(dictionary)
+//                database.child("users/\(emailFormatted)").child("favorites").childByAutoId().updateChildValues(dictionary)
+            database.child("users/\(emailFormatted)").child("favorites").child(String(itemSelected.id)).updateChildValues(dictionary)
         } else {
             print("There is no currently signed-in user.")
         }

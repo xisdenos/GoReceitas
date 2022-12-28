@@ -37,6 +37,8 @@ class FavoriteVC: UIViewController {
             
             ref.child("users/\(emailFormatted)/favorites").observe(.value) { snapshot in
                 if let dictionary = snapshot.value as? [String: Any] {
+                    // in order to overwrite the array, first we need to remove all items then set it again
+                    // otherwise the array will be doubled
                     self.favorites.removeAll()
                     // Iterate over the dictionary of recipes
                     for item in dictionary {
@@ -115,8 +117,30 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
 
 extension FavoriteVC: DefaultFoodCollectionViewCellDelegate {
     func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
-        //        guard let indexPath = collectionView.indexPath(for: cell) else { return }
-        //        print("index", indexPath.row, #function)
+        guard let foodIndexPath = collectionView.indexPath(for: cell) else { return }
+        let foodId = favorites[foodIndexPath.row].id
+        //   print("index", foodIndexPath.row, #function)
+        //   print("index", favorites[foodIndexPath.row], #function)
+        
+        if let user = Auth.auth().currentUser {
+            guard let email = user.email else { return }
+            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+            
+            database.child("users/\(emailFormatted)").child("favorites").observe(.value, with: { [weak self] (snapshot) in
+                if var value = snapshot.value as? [String: Any] {
+                    for (key, _) in value {
+                        if key == String(foodId) {
+                            print(key)
+                            value.removeValue(forKey: key)
+                            self?.database.child("users/\(emailFormatted)").child("favorites").setValue(value)
+                            break
+                        }
+                    }
+                }
+            })
+        } else {
+            print("There is no currently signed-in user.")
+        }
     }
 }
 
