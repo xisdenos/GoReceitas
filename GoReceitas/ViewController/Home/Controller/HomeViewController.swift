@@ -18,7 +18,6 @@ class HomeViewController: UIViewController {
     private var tagsList: [TagsResponse] = [TagsResponse]()
     private var service: Service = Service()
     
-    private var favoritesArray: [[String : Any]]?
     let database = Database.database().reference()
     
     @IBOutlet weak var userProfilePictureImageView: UIImageView!
@@ -40,20 +39,6 @@ class HomeViewController: UIViewController {
         setTabBarIcons()
         configObserver()
         configHome()
-//        populateArray()
-        
-        if let user = Auth.auth().currentUser {
-            
-            guard let email = user.email else { return }
-            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-            database.child("users/\(emailFormatted)").child("favorites").observeSingleEvent(of: .value) { (snapshot) in
-                if let value = snapshot.value as? [String: Any] {
-                    print(value)
-                } else {
-                    print("Error retrieving data")
-                }
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,17 +116,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TryItOutTableViewCell.identifier) as? TryItOutTableViewCell else { return UITableViewCell() }
 //            delegate?.startLoading()
-            service.getFoodList { [weak self] result in
-                switch result {
-                case .success(let success):
-                    let filteredArray = success.results.filter({ $0.yields != nil })
-                    cell.configure(with: filteredArray.shuffled())
-                    self?.delegate?.stopLoading()
-                case .failure(let failure):
-                    self?.delegate?.stopLoading()
-                    print(failure.localizedDescription)
-                }
-            }
+//            service.getFoodList { [weak self] result in
+//                switch result {
+//                case .success(let success):
+//                    let filteredArray = success.results.filter({ $0.yields != nil })
+//                    cell.configure(with: filteredArray.shuffled())
+//                    self?.delegate?.stopLoading()
+//                case .failure(let failure):
+//                    self?.delegate?.stopLoading()
+//                    print(failure.localizedDescription)
+//                }
+//            }
             cell.delegate = self
             return cell
         } else if indexPath.section == 2 {
@@ -209,25 +194,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
     }
-    
-    /// fetch data from favorites item in the firebase realtime database
-    func populateArray() {
-//        if let user = Auth.auth().currentUser {
-//            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-//                let database = Database.database().reference()
-//                guard let email = user.email else { return }
-//                let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-//                database.child("users/\(emailFormatted)").child("favorites").observeSingleEvent(of: .value, with: { (snapshot) in
-//                    // Get the data from the snapshot and assign it to favorites array
-//                    if let data = snapshot.value as? [[String : Any]] {
-//                        self?.favoritesArray = data
-//                    }
-//                })
-//            }
-//        } else {
-//            print("There is no currently signed-in user.")
-//        }
-    }
 }
 
 extension HomeViewController: CategoryTagsTableViewCellDelegate {
@@ -277,15 +243,14 @@ extension HomeViewController: DefaultCellsDelegate {
         if let user = Auth.auth().currentUser {
                 guard let email = user.email else { return }
                 let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-            
+
                 let favArray: [FoodResponse] = [FoodResponse(id: itemSelected.id, name: itemSelected.name, thumbnail_url: itemSelected.thumbnail_url, cook_time_minutes: itemSelected.cook_time_minutes ?? 0, prep_time_minutes: itemSelected.prep_time_minutes ?? 0, yields: itemSelected.yields ?? "n/a")]
 
-                let mappedArray = favArray.map { ["name": $0.name, "yields": $0.yields ?? "n/a", "image": $0.thumbnail_url, "isFavorited": favorited] }
-            
-                let dictionary = Dictionary(uniqueKeysWithValues: mappedArray.map { ($0["name"] as! String, $0) })
-            
-                database.child("users/\(emailFormatted)").child("favorites").childByAutoId().updateChildValues(dictionary)
+            let mappedArray = favArray.map { ["name": $0.name, "yields": $0.yields ?? "n/a", "image": $0.thumbnail_url, "isFavorited": favorited, "id": $0.id, "cook_time_minutes": $0.cook_time_minutes ?? 0, "prep_time_minutes": $0.prep_time_minutes ?? 0] }
 
+                let dictionary = Dictionary(uniqueKeysWithValues: mappedArray.map { ($0["name"] as! String, $0) })
+
+                database.child("users/\(emailFormatted)").child("favorites").childByAutoId().updateChildValues(dictionary)
         } else {
             print("There is no currently signed-in user.")
         }

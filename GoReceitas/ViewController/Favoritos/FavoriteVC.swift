@@ -6,35 +6,71 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class FavoriteVC: UIViewController {
     
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
-//    var favorites: [CellsInfoSections] = [
-//        .init(foodName: "Macarrão", prepTime: "60min", foodImage: "macarrao"),
-//        .init(foodName: "Lasanha", prepTime: "40min", foodImage: "lasanha"),
-//    ]
+    private var favorites: [FoodResponse] = [FoodResponse]()
     
+    let database = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .viewBackgroundColor
         collectionView.backgroundColor = .viewBackgroundColor
         configCollectionView()
+        populateArray()
+    }
+    
+    
+    func populateArray() {
+        let ref = Database.database().reference()
+        if let user = Auth.auth().currentUser {
+            guard let email = user.email else { return }
+            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+            
+            
+            ref.child("users/\(emailFormatted)/favorites").observeSingleEvent(of: .value) { snapshot  in
+                if let dictionary = snapshot.value as? [String: Any] {
+                    // Iterate over the dictionary of recipes
+                    for item in dictionary {
+                        // get the values: ex "Easy Chocolate Rugelach" = { "name": "Easy Chocolate Rugelach" }
+                        let favoriteItem = item.value as! [String: Any]
+                        
+                        // iterate once again so we can get the inner dictionary values: ex { "name": "Easy Chocolate Rugelach" }
+                        for foodInfo in favoriteItem {
+                            let details = foodInfo.value as! NSDictionary
+                            
+                            print(details["name"] as! String)
+                            print(details["yields"] as! String)
+                            print(details["cook_time_minutes"] as! Int)
+                            print(details["id"] as! Int)
+                            print(details["image"] as! String)
+                            print(details["isFavorited"] as! Int)
+                            print(details["prep_time_minutes"])
+//                            print(details.name)
+                            
+//                            print(details)
+                        }
+                    }
+                }
+            }
+        }
     }
     
     func configCollectionView(){
         collectionView.delegate = self
         collectionView.dataSource = self
-                if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-                    layout.sectionInset = .init(top: 0, left: 17, bottom: 0, right: 17)
-                    layout.estimatedItemSize = .zero
-                    layout.minimumInteritemSpacing = 0
         
-                  
-                }
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.sectionInset = .init(top: 0, left: 17, bottom: 0, right: 17)
+            layout.estimatedItemSize = .zero
+            layout.minimumInteritemSpacing = 0
+        }
+        
         collectionView.register(DefaultFoodCollectionViewCell.nib(), forCellWithReuseIdentifier: DefaultFoodCollectionViewCell.identifier)
         collectionView.register(NoFavoritesCollectionViewCell.nib(), forCellWithReuseIdentifier: NoFavoritesCollectionViewCell.identifier)
     }
@@ -43,30 +79,30 @@ class FavoriteVC: UIViewController {
 extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
-//        return !favorites.isEmpty ? favorites.count : 1
+        //  return !favorites.isEmpty ? favorites.count : 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        if favorites.isEmpty {
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoFavoritesCollectionViewCell.identifier, for: indexPath) as? NoFavoritesCollectionViewCell
-//            return cell ?? UICollectionViewCell()
-//        }
+        //        if favorites.isEmpty {
+        //            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoFavoritesCollectionViewCell.identifier, for: indexPath) as? NoFavoritesCollectionViewCell
+        //            return cell ?? UICollectionViewCell()
+        //        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell
-//        cell?.setup(font: 15, weight: .bold)
+        //        cell?.setup(font: 15, weight: .bold)
         cell?.delegate = self
         return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return !favorites.isEmpty ?
-//        CGSize(width: self.view.frame.size.width / 2.3, height: 150) :
-//        CGSize(width: 230, height: 280)
+        //        return !favorites.isEmpty ?
+        //        CGSize(width: self.view.frame.size.width / 2.3, height: 150) :
+        //        CGSize(width: 230, height: 280)
         return CGSize(width: self.view.frame.size.width / 2.3, height: 150)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let viewController = FoodDetailsViewController()
-//        navigationController?.pushViewController(viewController, animated: true)
+        //        let viewController = FoodDetailsViewController()
+        //        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
@@ -75,8 +111,8 @@ extension FavoriteVC: DefaultFoodCollectionViewCellDelegate {
         
     }
     
-//    func didTapHeartButton(cell: UICollectionViewCell) {
-//        guard let indexPath = collectionView.indexPath(for: cell) else { return }
-//        print("index", indexPath.row, #function)
-//    }
+    //    func didTapHeartButton(cell: UICollectionViewCell) {
+    //        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+    //        print("index", indexPath.row, #function)
+    //    }
 }
