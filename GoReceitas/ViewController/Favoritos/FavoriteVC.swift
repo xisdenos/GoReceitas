@@ -14,6 +14,9 @@ class FavoriteVC: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var favorites: [FoodResponse] = [FoodResponse]()
+    private var isFavorited: Bool = true
+    
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(style: .large)
     
     let database = Database.database().reference()
     
@@ -24,7 +27,6 @@ class FavoriteVC: UIViewController {
         configCollectionView()
         populateArray()
     }
-
     
     func populateArray() {
         let ref = Database.database().reference()
@@ -33,7 +35,7 @@ class FavoriteVC: UIViewController {
             let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
             
             
-            ref.child("users/\(emailFormatted)/favorites").observe(.value) { snapshot  in
+            ref.child("users/\(emailFormatted)/favorites").observe(.value) { snapshot in
                 if let dictionary = snapshot.value as? [String: Any] {
                     self.favorites.removeAll()
                     // Iterate over the dictionary of recipes
@@ -55,21 +57,14 @@ class FavoriteVC: UIViewController {
                             
                             let recipe = FoodResponse(id: foodId, name: foodName, thumbnail_url: foodImage, cook_time_minutes: foodCookTime, prep_time_minutes: foodPrepTime, yields: foodYields)
                             
+                            self.isFavorited = isFavorited == 1 ? true : false
                             self.favorites.append(recipe)
-//                            print(self.favorites)
-//                            print(self.favorites.count)
-                            
-//                            print("TERMINOU 1")
                         }
-//                        print("TERMINOU 2")
                     }
-//                    print("TERMINOU 3")
                 }
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
+                DispatchQueue.main.async { [weak self] in
+                    self?.collectionView.reloadData()
                 }
-                
-                print("TERMINOU 4")
             }
         }
     }
@@ -91,30 +86,25 @@ class FavoriteVC: UIViewController {
 
 extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return favorites.count
-        //  return !favorites.isEmpty ? favorites.count : 1
+        return !favorites.isEmpty ? favorites.count : 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //        if favorites.isEmpty {
-        //            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoFavoritesCollectionViewCell.identifier, for: indexPath) as? NoFavoritesCollectionViewCell
-        //            return cell ?? UICollectionViewCell()
-        //        }
-        
-        if !favorites.isEmpty {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell
-            cell?.setupTryItOut(model: favorites[indexPath.row])
-            cell?.delegate = self
+        if favorites.isEmpty {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoFavoritesCollectionViewCell.identifier, for: indexPath) as? NoFavoritesCollectionViewCell
             return cell ?? UICollectionViewCell()
         }
-        return UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell
+        cell?.setupTryItOut(model: favorites[indexPath.row], isFavorited: isFavorited)
+        cell?.delegate = self
+        return cell ?? UICollectionViewCell()
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //        return !favorites.isEmpty ?
-        //        CGSize(width: self.view.frame.size.width / 2.3, height: 150) :
-        //        CGSize(width: 230, height: 280)
-        return CGSize(width: self.view.frame.size.width / 2.3, height: 150)
+        return !favorites.isEmpty ?
+        CGSize(width: self.view.frame.size.width / 2.3, height: 150) :
+        CGSize(width: 230, height: 280)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -129,3 +119,4 @@ extension FavoriteVC: DefaultFoodCollectionViewCellDelegate {
         //        print("index", indexPath.row, #function)
     }
 }
+
