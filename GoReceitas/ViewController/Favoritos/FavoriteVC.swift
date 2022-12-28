@@ -84,6 +84,27 @@ class FavoriteVC: UIViewController {
         collectionView.register(DefaultFoodCollectionViewCell.nib(), forCellWithReuseIdentifier: DefaultFoodCollectionViewCell.identifier)
         collectionView.register(NoFavoritesCollectionViewCell.nib(), forCellWithReuseIdentifier: NoFavoritesCollectionViewCell.identifier)
     }
+    
+    func unfavoriteItem(at foodId: Int) {
+        if let user = Auth.auth().currentUser {
+            guard let email = user.email else { return }
+            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+            
+            database.child("users/\(emailFormatted)").child("favorites").observe(.value, with: { [weak self] (snapshot) in
+                if var value = snapshot.value as? [String: Any] {
+                    for (key, _) in value {
+                        if key == String(foodId) {
+                            value.removeValue(forKey: key)
+                            self?.database.child("users/\(emailFormatted)").child("favorites").setValue(value)
+                            break
+                        }
+                    }
+                }
+            })
+        } else {
+            print("There is no currently signed-in user.")
+        }
+    }
 }
 
 extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -110,8 +131,8 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //        let viewController = FoodDetailsViewController()
-        //        navigationController?.pushViewController(viewController, animated: true)
+        //    let viewController = FoodDetailsViewController()
+        //    navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
@@ -119,28 +140,9 @@ extension FavoriteVC: DefaultFoodCollectionViewCellDelegate {
     func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
         guard let foodIndexPath = collectionView.indexPath(for: cell) else { return }
         let foodId = favorites[foodIndexPath.row].id
-        //   print("index", foodIndexPath.row, #function)
-        //   print("index", favorites[foodIndexPath.row], #function)
-        
-        if let user = Auth.auth().currentUser {
-            guard let email = user.email else { return }
-            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-            
-            database.child("users/\(emailFormatted)").child("favorites").observe(.value, with: { [weak self] (snapshot) in
-                if var value = snapshot.value as? [String: Any] {
-                    for (key, _) in value {
-                        if key == String(foodId) {
-                            print(key)
-                            value.removeValue(forKey: key)
-                            self?.database.child("users/\(emailFormatted)").child("favorites").setValue(value)
-                            break
-                        }
-                    }
-                }
-            })
-        } else {
-            print("There is no currently signed-in user.")
-        }
+        unfavoriteItem(at: foodId)
+        favorites.remove(at: foodIndexPath.row)
+        collectionView.reloadData()
     }
 }
 
