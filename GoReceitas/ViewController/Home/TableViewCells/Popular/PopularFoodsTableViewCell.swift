@@ -7,18 +7,13 @@
 
 import UIKit
 
-protocol PopularFoodsTableViewCellDelegate: AnyObject {
-    func didTapFoodCell(food: PopularResponseDetails)
-}
-
 class PopularFoodsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private var popularList: [PopularResponseDetails] = [PopularResponseDetails]()
-    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(style: .large)
+    private var popularList: [FoodResponse] = [FoodResponse]()
     
-    weak var delegate: PopularFoodsTableViewCellDelegate?
+    weak var delegate: DefaultCellsDelegate?
     
     static let identifier: String = String(describing: PopularFoodsTableViewCell.self)
     
@@ -31,17 +26,6 @@ class PopularFoodsTableViewCell: UITableViewCell {
         selectionStyle = .none
         self.backgroundColor = .viewBackgroundColor
         configCollectionView()
-        setActivityIndicator()
-    }
-    
-    func setActivityIndicator() {
-        self.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-        ])
     }
     
     func configCollectionView() {
@@ -55,8 +39,11 @@ class PopularFoodsTableViewCell: UITableViewCell {
         }
     }
     
-    public func configure(with model: [PopularResponseDetails]) {
-        self.popularList = model.shuffled()
+    public func configure(with model: [FoodResponse]) {
+        DispatchQueue.main.async { [weak self] in
+            self?.popularList = model.shuffled()
+        }
+        
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
         }
@@ -66,9 +53,7 @@ class PopularFoodsTableViewCell: UITableViewCell {
 extension PopularFoodsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell {
-            if !popularList.isEmpty {
-                cell.setupPopular(model: popularList[indexPath.row])
-            }
+            cell.setup(model: popularList[indexPath.row])
             cell.delegate = self
             return cell
         }
@@ -76,10 +61,13 @@ extension PopularFoodsTableViewCell: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didTapFoodCell(food: popularList[indexPath.row])
+        delegate?.didTapDefaultFoodCell(food: popularList[indexPath.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if popularList.count > 8 {
+            return 8
+        }
         return popularList.count
     }
     
@@ -90,11 +78,9 @@ extension PopularFoodsTableViewCell: UICollectionViewDelegate, UICollectionViewD
 
 extension PopularFoodsTableViewCell: DefaultFoodCollectionViewCellDelegate {
     func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
-        
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        let foodSelected = popularList[indexPath.row]
+
+        delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
     }
-    
-//    func didTapHeartButton(cell: UICollectionViewCell) {
-//        guard let indexPath = collectionView.indexPath(for: cell) else { return }
-//        print("index", indexPath.row, #function)
-//    }
 }

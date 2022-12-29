@@ -118,7 +118,7 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
             return cell ?? UICollectionViewCell()
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell
-        cell?.setupTryItOut(model: favorites[indexPath.row], isFavorited: isFavorited)
+        cell?.setup(model: favorites[indexPath.row], isFavorited: isFavorited)
         cell?.delegate = self
         return cell ?? UICollectionViewCell()
         

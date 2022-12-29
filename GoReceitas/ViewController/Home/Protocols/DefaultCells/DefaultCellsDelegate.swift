@@ -8,6 +8,6 @@
 import Foundation
 
 protocol DefaultCellsDelegate: AnyObject {
-    func didTapFoodCell(food: FoodResponse)
+    func didTapDefaultFoodCell(food: FoodResponse)
     func didFavoriteItem(itemSelected: FoodResponse, favorited: Bool)
 }

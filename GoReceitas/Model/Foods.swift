@@ -18,6 +18,4 @@ struct FoodResponse: Codable {
     let cook_time_minutes, prep_time_minutes: Int?
     // rendimento
     let yields: String?
-    
-//    var isFavorited: Bool = false
 }

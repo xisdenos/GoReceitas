@@ -51,18 +51,11 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
         foodName.textAlignment = .center
     }
     
-    func setupTryItOut(model: FoodResponse, isFavorited: Bool = false) {
+    func setup(model: FoodResponse, isFavorited: Bool = false) {
         foodName.text = model.name
         additionalInfoLabel.text = model.yields ?? ""
         foodImageView.loadImageUsingCache(withUrl: model.thumbnail_url)
         isFavorited == true ? favoriteButton.setImage(UIImage(named: "heart-fill"), for: .normal) : favoriteButton.setImage(UIImage(named: "heart-empty"), for: .normal)
-        foodName.font = .systemFont(ofSize: 22, weight: .bold)
-    }
-    
-    func setupPopular(model: PopularResponseDetails) {
-        foodName.text = model.recipes?[0].name
-        additionalInfoLabel.text = model.recipes?[0].yields ?? ""
-        foodImageView.loadImageUsingCache(withUrl: model.recipes?[0].thumbnail_url ?? "")
         foodName.font = .systemFont(ofSize: 22, weight: .bold)
     }
     

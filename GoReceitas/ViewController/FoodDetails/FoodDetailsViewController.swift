@@ -91,7 +91,6 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
             if foodDetails != nil {
                 if let nutrition = foodDetails?.nutrition {
                     cell.configure(nutritions: nutrition)
-                    print(nutrition)
                     DispatchQueue.main.async { [weak self] in
                         self?.activityIndicator.stopAnimating()
                         self?.foodDetailsView.tableView.isHidden = false
@@ -118,6 +117,7 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: RecommendedFoodsTableViewCell.identifier, for: indexPath) as! RecommendedFoodsTableViewCell
             cell.delegate = self
+            // TODO: Create emtpy cell state
             cell.setup(foods: recommendedFoods)
             return cell
         default:
@@ -182,7 +182,6 @@ extension FoodDetailsViewController: RecommendedFoodsTableViewCellDelegate {
                 switch result {
                 case .success(let success):
                     controller.configureRecommendedFoods(foods: success.results)
-                    print(success)
                 case .failure(let failure):
                     print(failure)
                 }

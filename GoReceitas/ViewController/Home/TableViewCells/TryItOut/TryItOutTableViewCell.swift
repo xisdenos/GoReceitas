@@ -8,7 +8,11 @@
 import UIKit
 
 class TryItOutTableViewCell: UITableViewCell {
-    private var foodList: [FoodResponse] = [FoodResponse]()
+    private var foodList: [FoodResponse] = [FoodResponse]() {
+        didSet {
+            pageControl.numberOfPages = foodList.count
+        }
+    }
     
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -26,6 +30,7 @@ class TryItOutTableViewCell: UITableViewCell {
         backgroundColor = .viewBackgroundColor
         selectionStyle = .none
         configCollectionView()
+        
     }
     
     func configCollectionView() {
@@ -52,7 +57,7 @@ extension TryItOutTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell {
             
             if !foodList.isEmpty {
-                cell.setupTryItOut(model: foodList[indexPath.row])
+                cell.setup(model: foodList[indexPath.row])
             }
             
             cell.delegate = self
@@ -62,7 +67,7 @@ extension TryItOutTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didTapFoodCell(food: foodList[indexPath.row])
+        delegate?.didTapDefaultFoodCell(food: foodList[indexPath.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
