@@ -81,7 +81,6 @@ struct NetworkModel {
             case .success(let success):
                 if let recipeResults = success.results {
                     let recipes = filterRecipes(popularResponses: recipeResults)
-                    print(recipes)
                     completion(.success(recipes))
                 }
             case .failure(let failure):

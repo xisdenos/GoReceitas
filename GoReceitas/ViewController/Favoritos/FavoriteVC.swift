@@ -85,7 +85,7 @@ class FavoriteVC: UIViewController {
         collectionView.register(NoFavoritesCollectionViewCell.nib(), forCellWithReuseIdentifier: NoFavoritesCollectionViewCell.identifier)
     }
     
-    func unfavoriteItem(at foodId: Int) {
+    func unfavoriteItem(at food: FoodResponse) {
         if let user = Auth.auth().currentUser {
             guard let email = user.email else { return }
             let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
@@ -93,8 +93,8 @@ class FavoriteVC: UIViewController {
             database.child("users/\(emailFormatted)").child("favorites").observe(.value, with: { [weak self] (snapshot) in
                 if var value = snapshot.value as? [String: Any] {
                     for (key, _) in value {
-                        if key == String(foodId) {
-                            value.removeValue(forKey: key)
+                        if key == String(food.id) {
+                            self?.database.child("users/\(emailFormatted)").child("favorites").child(key).child(food.name).child("isFavorited").setValue(false)
                             self?.database.child("users/\(emailFormatted)").child("favorites").setValue(value)
                             break
                         }
@@ -139,8 +139,8 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
 extension FavoriteVC: DefaultFoodCollectionViewCellDelegate {
     func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
         guard let foodIndexPath = collectionView.indexPath(for: cell) else { return }
-        let foodId = favorites[foodIndexPath.row].id
-        unfavoriteItem(at: foodId)
+        let food = favorites[foodIndexPath.row]
+        unfavoriteItem(at: food)
         favorites.remove(at: foodIndexPath.row)
         collectionView.reloadData()
     }

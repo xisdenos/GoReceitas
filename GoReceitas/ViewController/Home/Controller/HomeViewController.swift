@@ -37,18 +37,19 @@ class HomeViewController: UIViewController {
         configObserver()
         configHome()
         fetchData()
-        configTableView()
+//        configTableView()
+        observeUIChanges()
     }
     
     func fetchData() {
-//        model.fetchTryItOut { result in
-//            switch result {
-//            case .success(let success):
-//                self.tryItOut = success
-//            case .failure(let failure):
-//                print(failure)
-//            }
-//        }
+        model.fetchTryItOut { result in
+            switch result {
+            case .success(let success):
+                self.tryItOut = success
+            case .failure(let failure):
+                print(failure)
+            }
+        }
 //
 //        model.fetchTagsList { tags in
 //            switch tags {
@@ -68,14 +69,14 @@ class HomeViewController: UIViewController {
 //            }
 //        }
         
-        model.fetchPopular2 { result in
-            switch result {
-            case .success(let success):
-                self.popularList = success
-            case .failure(let failure):
-                print(failure.localizedDescription)
-            }
-        }
+//        model.fetchPopular2 { result in
+//            switch result {
+//            case .success(let success):
+//                self.popularList = success
+//            case .failure(let failure):
+//                print(failure.localizedDescription)
+//            }
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,6 +92,23 @@ class HomeViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateImage), name: .updateImage, object: nil)
     }
     
+    func observeUIChanges() {
+        if let user = Auth.auth().currentUser {
+            guard let email = user.email else { return }
+            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+            
+            let databaseRef = Database.database().reference()
+            
+            databaseRef.child("users/\(emailFormatted)").child("favorites").observe(.value) { (snapshot) in
+                if let value = snapshot.value as? [String: Any] {
+                    print("value=========", value)
+                    let isFavorite = value["isFavorite"] as? Bool
+                    print(isFavorite)
+                    // Update the UI of the cell corresponding to the unfavorited item
+                }
+            }
+        }
+    }
     
     @objc func updateImage(notification: NSNotification){
         userProfilePictureImageView.image = notification.object as? UIImage
@@ -145,12 +163,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TryItOutTableViewCell.identifier) as? TryItOutTableViewCell else { return UITableViewCell() }
-//            cell.configure(with: tryItOut)
+            cell.configure(with: tryItOut)
             cell.delegate = self
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
-            cell.configure(with: popularList)
+//            cell.configure(with: popularList)
             cell.delegate = self
             return cell
         }
