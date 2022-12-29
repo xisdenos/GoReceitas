@@ -10,7 +10,6 @@ import FirebaseAuth
 
 import FirebaseStorage
 import FirebaseFirestore
-
 import Firebase
 
 
@@ -22,8 +21,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var changeEmailButton: UIButton!
     @IBOutlet weak var buttonChangePassword: UIButton!
     @IBOutlet weak var buttonGoOut: UIButton!
-    
     @IBOutlet weak var buttonEditPhoto: UIButton!
+    
+    
     var auth:Auth?
     var alert: AlertController?
     let imagePicker: UIImagePickerController = UIImagePickerController()
@@ -39,9 +39,11 @@ class ProfileViewController: UIViewController {
         cornerRadiusElements()
         self.view.backgroundColor = .viewBackgroundColor
         configImagePicker()
-        imageProfile.image = imageProfile.image
+        //        imageProfile.image = imageProfile.image
         textUsername.isUserInteractionEnabled = false
         textEmail.isUserInteractionEnabled = false
+        updateImage()
+        
     }
     
     
@@ -54,7 +56,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func tappedEditPhoto(_ sender: UIButton) {
-    
+        
         
         
         self.alert?.alertEditPhoto(completion: { option in
@@ -73,7 +75,7 @@ class ProfileViewController: UIViewController {
         })
         
     }
-
+    
     @IBAction func tapChangePasswordScreen(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
@@ -129,6 +131,21 @@ class ProfileViewController: UIViewController {
         imagePicker.delegate = self
     }
     
+    func updateImage(){
+        guard let urlString = UserDefaults.standard.value(forKey: "url") as? String,
+              let url = URL(string: urlString) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data, error == nil else { return }
+            
+            DispatchQueue.main.async {
+                let image = UIImage(data: data)
+                self.imageProfile.image = image
+            }
+        }
+        task.resume()
+    }
+    
     
     
     
@@ -141,16 +158,46 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             self.imageProfile.image = image
             NotificationCenter.default.post(name: .updateImage, object: imageProfile.image)
             
+            guard let imageData = image.pngData() else { return }
+            
+            
+            
+            storage.child("images/file.png").putData(imageData,metadata: nil) { _, error in
+                guard error == nil else {
+                    print("failed to upload")
+                    return
+                }
+                self.storage.child("images/file.png").downloadURL { url, error in
+                    guard let url = url, error == nil else {return}
+                    let urlString = url.absoluteString
+                    
+                    DispatchQueue.main.async {
+                        self.imageProfile.image = image
+                    }
+                    
+                    print("Download URL: \(urlString)")
+                    UserDefaults.standard.set(urlString, forKey: "url")
+                    
+                    if let id = self.auth?.currentUser?.uid {
+                        self.firestore.collection("usuarios").document(id).setData([
+                            "image":urlString,
+                            
+                        ])
+                    }
+                    
+                    
+                }
+            }
+            
         }
         picker.dismiss(animated: true)
-
-    }
-
-    func saveImage(image: String){
-//        let image = imageProfile.image.jpg
+        
     }
     
-
+    
+    
+    
+    
 }
 extension NSNotification.Name {
     static let updateImage = Notification.Name("updateImage")

@@ -20,11 +20,8 @@ class ChangePasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        imageRound()
         configFontAndColors()
         self.view.backgroundColor = .viewBackgroundColor
-//       configObeserver()
-        print("senha", #function)
     }
 
     @IBAction func tapBackButton(_ sender: UIButton) {
@@ -37,21 +34,9 @@ class ChangePasswordViewController: UIViewController {
     
     @IBAction func alertNewPassword(_ sender: UIButton) {
         alertVerification()
+        
+        
     }
-    
-    
-//    func imageRound() {
-//        imageProfile.layer.masksToBounds = true
-//        imageProfile.layer.cornerRadius =  75
-//    }
-    
-//    func configObeserver(){
-//        NotificationCenter.default.addObserver(self, selector: #selector(updateImageSenha), name: .updateImage, object: nil)
-//    }
-//
-//    @objc func updateImageSenha(notification: NSNotification){
-//        imageProfile.image = notification.object as? UIImage
-//    }
     
     func configFontAndColors(){
         saveEditionsButton.isEnabled = false
@@ -111,4 +96,6 @@ extension ChangePasswordViewController: UITextFieldDelegate {
         }
         return true
     }
+    
+    
 }

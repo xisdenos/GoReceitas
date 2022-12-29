@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import GoogleSignIn
+import FirebaseFirestore
 
 enum RegisterDescriptions: String {
     case goLabel = "Go"
@@ -38,7 +39,7 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var backLoginButton: UIButton!
     @IBOutlet weak var logoImage: UIImageView!
     
-    
+    var firestore: Firestore?
     var auth:Auth?
     var alert: AlertController?
     
@@ -47,6 +48,7 @@ class RegisterVC: UIViewController {
         super.viewDidLoad()
         alert = AlertController(controller: self)
         self.auth = Auth.auth()
+        self.firestore = Firestore.firestore()
         configCaracteres()
         backLogin()
     }
@@ -156,6 +158,23 @@ class RegisterVC: UIViewController {
                 if error != nil{
                     self?.alert?.alertInformation(title: "Atenção", message: "Erro ao cadastrar, verifique os dados e tente novamente")
                 } else {
+                    
+                    
+                    
+                    if let idUsuario = result?.user.uid{
+                        self?.firestore?.collection("usuarios").document(idUsuario).setData([
+                            "nome":self?.textFieldName.text ?? "",
+                            "email":self?.textFieldEmail.text ?? "",
+                            "senha":self?.textFieldSenha.text ?? "",
+                            "id":idUsuario
+                        ])
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
                     self?.alert?.alertInformation(title: "Parabens", message: "Usuario cadastrado com sucesso", completion: {
                         let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
                         self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)

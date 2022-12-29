@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Firebase
 
 class ChangeEmailViewController: UIViewController {
 
@@ -15,14 +17,13 @@ class ChangeEmailViewController: UIViewController {
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
+    var auth: Auth?
+    var alert: AlertController?
     override func viewDidLoad() {
         super.viewDidLoad()
-//        imageRound()
+        alert = AlertController(controller: self)
         configFontAndColors()
         self.view.backgroundColor = .viewBackgroundColor
-//        imageProfile.image = UIImage(systemName: "person")
-//        configObserver()
-        print("Email", #function)
 
     }
   
@@ -37,22 +38,9 @@ class ChangeEmailViewController: UIViewController {
     
     @IBAction func alertChangeEmail(_ sender: UIButton) {
         alertVerification()
+        
+        
     }
-    
-//    func imageRound() {
-//        imageProfile.layer.masksToBounds = true
-//        imageProfile.layer.cornerRadius =  75
-//    }
-    
-//    func configObserver(){
-//        NotificationCenter.default.addObserver(self, selector: #selector(updateImageEmail), name: .updateImage, object: nil)
-//
-//    }
-//
-//    @objc func updateImageEmail(notification: NSNotification){
-//        print("DeuCerto")
-//        imageProfile.image = notification.object as? UIImage
-//    }
     
     func configFontAndColors(){
         confirmButton.isEnabled = false
