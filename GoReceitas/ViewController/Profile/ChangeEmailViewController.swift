@@ -26,7 +26,7 @@ class ChangeEmailViewController: UIViewController {
         self.view.backgroundColor = .viewBackgroundColor
 
     }
-  
+    
     
     @IBAction func tapBackButton(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
@@ -38,8 +38,26 @@ class ChangeEmailViewController: UIViewController {
     
     @IBAction func alertChangeEmail(_ sender: UIButton) {
         alertVerification()
+        changeEmail()
         
+    }
+    
+    func changeEmail () {
+        let db = Firestore.firestore()
+        let userID = Auth.auth().currentUser?.uid
+        let userEmail = Auth.auth().currentUser?.email
+        let currentUser = Auth.auth().currentUser
         
+        if newEmailText.text != nil {
+            db.collection("email").document("\(userID)").updateData(["email": newEmailText.text ])
+            if newEmailText.text != userEmail {
+                currentUser?.updateEmail(to: newEmailText.text ?? "") {error in
+                    if let error = error {
+                        print(error)
+                    }
+                }
+            }
+        }
     }
     
     func configFontAndColors(){
