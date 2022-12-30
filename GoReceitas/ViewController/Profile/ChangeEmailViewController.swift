@@ -10,8 +10,8 @@ import FirebaseAuth
 import Firebase
 
 class ChangeEmailViewController: UIViewController {
-
-//    @IBOutlet weak var imageProfile: UIImageView!
+    
+    //    @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var newEmailText: UITextField!
     @IBOutlet weak var currentPasswordText: UITextField!
     @IBOutlet weak var confirmButton: UIButton!
@@ -24,7 +24,7 @@ class ChangeEmailViewController: UIViewController {
         alert = AlertController(controller: self)
         configFontAndColors()
         self.view.backgroundColor = .viewBackgroundColor
-
+        
     }
     
     
@@ -84,7 +84,7 @@ class ChangeEmailViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
-
+    
 }
 
 extension ChangeEmailViewController: UITextFieldDelegate {

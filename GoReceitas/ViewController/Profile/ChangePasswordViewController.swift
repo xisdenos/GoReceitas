@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Firebase
 
 class ChangePasswordViewController: UIViewController {
-
-  
-//    @IBOutlet weak var imageProfile: UIImageView!
+    
+    
+    //    @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var currentPasswordText: UITextField!
     @IBOutlet weak var newPasswordText: UITextField!
     @IBOutlet weak var confirmNewPasswordText: UITextField!
@@ -23,7 +25,7 @@ class ChangePasswordViewController: UIViewController {
         configFontAndColors()
         self.view.backgroundColor = .viewBackgroundColor
     }
-
+    
     @IBAction func tapBackButton(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
@@ -34,6 +36,7 @@ class ChangePasswordViewController: UIViewController {
     
     @IBAction func alertNewPassword(_ sender: UIButton) {
         alertVerification()
+        changePassword()
         
         
     }
@@ -50,7 +53,7 @@ class ChangePasswordViewController: UIViewController {
         currentPasswordText.delegate = self
         newPasswordText.delegate = self
         confirmNewPasswordText.delegate = self
-
+        
     }
     
     func alertVerification(){
@@ -64,6 +67,25 @@ class ChangePasswordViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
+    func changePassword () {
+        let db = Firestore.firestore()
+        let userID = Auth.auth().currentUser?.uid
+        let userPassword = Auth.auth().currentUser?.email
+        let currentUser = Auth.auth().currentUser
+        
+        if currentPasswordText.text != nil {
+            db.collection("senha").document("\(userID)").updateData(["senha": newPasswordText.text ])
+            if newPasswordText.text != userPassword {
+                currentUser?.updatePassword(to: newPasswordText.text ?? "") {error in
+                    if let error = error {
+                        print(error)
+                    }
+                }
+            }
+        }
+    }
+    
     
 }
 
