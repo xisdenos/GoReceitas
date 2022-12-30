@@ -65,10 +65,8 @@ class TryItOutTableViewCell: UITableViewCell {
     
     func hasFavorites(food: FoodResponse) -> Bool {
         if favoriteKeys.contains(String(food.id)) {
-            print("FAVORITE KEY!!")
             return true
         } else {
-            print("NO FAVORITE")
             return false
         }
     }
@@ -98,7 +96,7 @@ class TryItOutTableViewCell: UITableViewCell {
             
             let databaseRef = Database.database().reference()
             
-            databaseRef.child("users/\(emailFormatted)").child("favorites").observeSingleEvent(of: .value) { snapshot in
+            databaseRef.child("users/\(emailFormatted)").child("favorites").observe(.value) { snapshot in
                 if let dictionary = snapshot.value as? [String: Any] {
                     for (key, _) in dictionary {
                         self.favoriteKeys.append(key)
