@@ -50,19 +50,6 @@ struct NetworkModel {
         }
     }
     
-//    func fetchPopular(completion: @escaping (Result<[PopularResponseDetails], Error>) -> Void) {
-//        service.getPopularList { result in
-//            switch result {
-//            case .success(let success):
-//                guard let popularRecipes = success.results?.compactMap({ $0.item }).filter({ $0.recipes != nil }) else { return }
-//                completion(.success(popularRecipes))
-//            case .failure(let failure):
-//                completion(.failure(failure))
-//                print(failure)
-//            }
-//        }
-//    }
-    
     func filterRecipes(popularResponses: [PopularResponse]) -> [FoodResponse] {
       var recipes: [FoodResponse] = []
 
@@ -75,7 +62,7 @@ struct NetworkModel {
       return recipes
     }
     
-    func fetchPopular2(completion: @escaping (Result<[FoodResponse], Error>) -> Void) {
+    func fetchPopular(completion: @escaping (Result<[FoodResponse], Error>) -> Void) {
         service.getPopularList { result in
             switch result {
             case .success(let success):

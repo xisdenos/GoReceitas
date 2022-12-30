@@ -38,7 +38,7 @@ class HomeViewController: UIViewController {
         configHome()
         fetchData()
 //        configTableView()
-        observeUIChanges()
+        checkFavoriteStatus()
     }
     
     func fetchData() {
@@ -65,15 +65,6 @@ class HomeViewController: UIViewController {
 //            case .success(let success):
 //                self.popularList = success
 //            case .failure(let failure):
-//                print(failure)
-//            }
-//        }
-        
-//        model.fetchPopular2 { result in
-//            switch result {
-//            case .success(let success):
-//                self.popularList = success
-//            case .failure(let failure):
 //                print(failure.localizedDescription)
 //            }
 //        }
@@ -92,7 +83,7 @@ class HomeViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateImage), name: .updateImage, object: nil)
     }
     
-    func observeUIChanges() {
+    func checkFavoriteStatus() {
         if let user = Auth.auth().currentUser {
             guard let email = user.email else { return }
             let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
@@ -100,11 +91,11 @@ class HomeViewController: UIViewController {
             let databaseRef = Database.database().reference()
             
             databaseRef.child("users/\(emailFormatted)").child("favorites").observe(.value) { (snapshot) in
-                if let value = snapshot.value as? [String: Any] {
-                    print("value=========", value)
-                    let isFavorite = value["isFavorite"] as? Bool
-                    print(isFavorite)
-                    // Update the UI of the cell corresponding to the unfavorited item
+                if var snapshotValue = snapshot.value as? [String: Any] {
+                    print("snapshotValue=========", snapshotValue)
+                    for (key, value) in snapshotValue {
+                        print("value========", value)
+                    }
                 }
             }
         }
