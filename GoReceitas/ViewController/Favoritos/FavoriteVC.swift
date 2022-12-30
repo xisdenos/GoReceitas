@@ -9,6 +9,10 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
+protocol FavoritesUpdateDelegate: AnyObject {
+    func favoritesUpdated()
+}
+
 class FavoriteVC: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -19,6 +23,8 @@ class FavoriteVC: UIViewController {
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(style: .large)
     
     let database = Database.database().reference()
+    
+    weak var delegate: FavoritesUpdateDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,17 +91,25 @@ class FavoriteVC: UIViewController {
         collectionView.register(NoFavoritesCollectionViewCell.nib(), forCellWithReuseIdentifier: NoFavoritesCollectionViewCell.identifier)
     }
     
+    let favoritesUpdatedNotification = Notification.Name("favoritesUpdated")
+    
     func unfavoriteItem(at food: FoodResponse) {
         if let user = Auth.auth().currentUser {
             guard let email = user.email else { return }
             let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
             
             database.child("users/\(emailFormatted)").child("favorites").observe(.value, with: { [weak self] (snapshot) in
-                if var value = snapshot.value as? [String: Any] {
+                if let value = snapshot.value as? [String: Any] {
                     for (key, _) in value {
                         if key == String(food.id) {
-//                            self?.database.child("users/\(emailFormatted)").child("favorites").child(key).child(food.name).child("isFavorited").setValue(false)
                             self?.database.child("users/\(emailFormatted)").child("favorites").setValue(value)
+                            
+                            // Create a dictionary with the additional information
+                            let userInfo: [String: Any] = [
+                                "favoriteId": key
+                            ]
+                            // Post the notification with the userInfo dictionary
+                            NotificationCenter.default.post(name: .favoritesUpdated, object: nil, userInfo: userInfo)
                             break
                         }
                     }

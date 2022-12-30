@@ -49,6 +49,15 @@ class TryItOutTableViewCell: UITableViewCell {
         selectionStyle = .none
         configCollectionView()
         checkFavoriteStatusAndUpdate()
+        NotificationCenter.default.addObserver(self, selector: #selector(favoritesUpdated(_:)), name: .favoritesUpdated, object: nil)
+    }
+    
+    @objc func favoritesUpdated(_ notification: Notification) {
+        // Get the additional information from the notification's userInfo property
+        if let userInfo = notification.userInfo {
+            // Use the information as needed
+            print(userInfo.values.first as! String)
+        }
     }
     
     func hasFavorites(food: FoodResponse) -> Bool {
@@ -87,6 +96,11 @@ class TryItOutTableViewCell: UITableViewCell {
             let databaseRef = Database.database().reference()
             
             databaseRef.child("users/\(emailFormatted)").child("favorites").observeSingleEvent(of: .value) { snapshot in
+                // provavelmente (pode ser que nao!) o problem esta aqui.. ele so identifica quando há chave
+                // tambem precisa detectar a falta dela e retornar algum valor, remover da array ou algo do tipo..
+                // talvez quando remova o item tambem remova a key da array ja que ela quem trackeia todas as chaves..
+                // como nada esta sendo feito depois de remover os items, as 3 keys (por exemplo) se mantem na array,
+                // logo, os coracoes permanecem acesos!
                 if let dictionary = snapshot.value as? [String: Any] {
                     for (key, _) in dictionary {
                         self.favoriteKeys.append(key)
@@ -148,4 +162,8 @@ extension TryItOutTableViewCell: DefaultFoodCollectionViewCellDelegate {
         
         delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
     }
+}
+
+extension Notification.Name {
+    static let favoritesUpdated = Notification.Name("favoritesUpdated")
 }
