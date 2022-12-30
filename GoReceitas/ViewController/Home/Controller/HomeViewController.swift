@@ -38,7 +38,7 @@ class HomeViewController: UIViewController {
         configHome()
         fetchData()
 //        configTableView()
-        checkFavoriteStatus()
+        checkFavoriteStatusAndUpdate()
     }
     
     func fetchData() {
@@ -83,20 +83,29 @@ class HomeViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateImage), name: .updateImage, object: nil)
     }
     
-    func checkFavoriteStatus() {
+    func checkFavoriteStatusAndUpdate() {
         if let user = Auth.auth().currentUser {
             guard let email = user.email else { return }
             let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
             
             let databaseRef = Database.database().reference()
             
-            databaseRef.child("users/\(emailFormatted)").child("favorites").observe(.value) { (snapshot) in
-                if var snapshotValue = snapshot.value as? [String: Any] {
-                    print("snapshotValue=========", snapshotValue)
-                    for (key, value) in snapshotValue {
-                        print("value========", value)
-                    }
+            databaseRef.child("users/\(emailFormatted)").child("favorites").child("8599").observe(.value) { (snapshot) in
+                if snapshot.hasChildren() {
+                    print(true)
+                } else {
+                    print(false)
                 }
+//                if var snapshotValue = snapshot.value as? [String: Any] {
+//                    print(snapshotValue)
+//                    if snapshot.hasChildren()
+
+//                    for item in snapshotValue {
+//                        // get the values: ex "Easy Chocolate Rugelach" = { "name": "Easy Chocolate Rugelach" }
+//                        let favoriteItem = item.value as! [String: Any]
+//
+//                    }
+//                }
             }
         }
     }
