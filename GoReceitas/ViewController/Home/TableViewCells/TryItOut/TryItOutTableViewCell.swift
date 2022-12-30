@@ -56,7 +56,10 @@ class TryItOutTableViewCell: UITableViewCell {
         // Get the additional information from the notification's userInfo property
         if let userInfo = notification.userInfo {
             // Use the information as needed
-            print(userInfo.values.first as! String)
+            let foodID = userInfo.values.first as! String
+            if let index = favoriteKeys.firstIndex(of: foodID) {
+                favoriteKeys.remove(at: index)
+            }
         }
     }
     
