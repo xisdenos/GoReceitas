@@ -38,7 +38,7 @@ class HomeViewController: UIViewController {
         configHome()
         fetchData()
 //        configTableView()
-        checkFavoriteStatusAndUpdate()
+//        checkFavoriteStatusAndUpdate()
     }
     
     func fetchData() {
@@ -82,33 +82,23 @@ class HomeViewController: UIViewController {
     func configObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateImage), name: .updateImage, object: nil)
     }
-    
-    func checkFavoriteStatusAndUpdate() {
-        if let user = Auth.auth().currentUser {
-            guard let email = user.email else { return }
-            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-            
-            let databaseRef = Database.database().reference()
-            
-            databaseRef.child("users/\(emailFormatted)").child("favorites").child("8599").observe(.value) { (snapshot) in
-                if snapshot.hasChildren() {
-                    print(true)
-                } else {
-                    print(false)
-                }
-//                if var snapshotValue = snapshot.value as? [String: Any] {
-//                    print(snapshotValue)
-//                    if snapshot.hasChildren()
-
-//                    for item in snapshotValue {
-//                        // get the values: ex "Easy Chocolate Rugelach" = { "name": "Easy Chocolate Rugelach" }
-//                        let favoriteItem = item.value as! [String: Any]
 //
-//                    }
+//    func checkFavoriteStatusAndUpdate(food: FoodResponse) {
+//        if let user = Auth.auth().currentUser {
+//            guard let email = user.email else { return }
+//            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+//
+//            let databaseRef = Database.database().reference()
+//
+//            databaseRef.child("users/\(emailFormatted)").child("favorites").child(String(food.id)).observe(.value) { (snapshot) in
+//                if snapshot.hasChildren() {
+//                    print(true)
+//                } else {
+//                    print(false)
 //                }
-            }
-        }
-    }
+//            }
+//        }
+//    }
     
     @objc func updateImage(notification: NSNotification){
         userProfilePictureImageView.image = notification.object as? UIImage
@@ -262,7 +252,6 @@ extension HomeViewController: DefaultCellsDelegate {
     }
     
     func didTapDefaultFoodCell(food: FoodResponse) {
-        
         let controller = FoodDetailsViewController()
         navigationController?.pushViewController(controller, animated: true)
         

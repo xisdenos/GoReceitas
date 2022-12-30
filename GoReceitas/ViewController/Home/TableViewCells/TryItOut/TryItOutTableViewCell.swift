@@ -6,6 +6,12 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
+
+protocol TryItOutTableViewCellProtocol {
+    func setupCell(cell: DefaultFoodCollectionViewCell)
+}
 
 class TryItOutTableViewCell: UITableViewCell {
     private var foodList: [FoodResponse] = [FoodResponse]() {
@@ -14,10 +20,20 @@ class TryItOutTableViewCell: UITableViewCell {
         }
     }
     
+    private var favoriteKeys: [String] = [String]() {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+            }
+        }
+    }
+    
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var collectionView: UICollectionView!
     
     weak var delegate: DefaultCellsDelegate?
+    
+    let database = Database.database().reference()
     
     static let identifier: String = String(describing: TryItOutTableViewCell.self)
     
@@ -25,12 +41,24 @@ class TryItOutTableViewCell: UITableViewCell {
         return UINib(nibName: identifier, bundle: nil)
     }
     
+    private var hasFavorite: Bool = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .viewBackgroundColor
         selectionStyle = .none
         configCollectionView()
-        
+        checkFavoriteStatusAndUpdate()
+    }
+    
+    func hasFavorites(food: FoodResponse) -> Bool {
+        if favoriteKeys.contains(String(food.id)) {
+            print("FAVORITE KEY!!")
+            return true
+        } else {
+            print("NO FAVORITE")
+            return false
+        }
     }
     
     func configCollectionView() {
@@ -50,15 +78,31 @@ class TryItOutTableViewCell: UITableViewCell {
             self?.collectionView.reloadData()
         }
     }
+    
+    func checkFavoriteStatusAndUpdate() {
+        if let user = Auth.auth().currentUser {
+            guard let email = user.email else { return }
+            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+            
+            let databaseRef = Database.database().reference()
+            
+            databaseRef.child("users/\(emailFormatted)").child("favorites").observe(.value) { snapshot in
+                if let dictionary = snapshot.value as? [String: Any] {
+                    for (key, _) in dictionary {
+                        self.favoriteKeys.append(key)
+                    }
+                }
+            }
+        }
+    }
 }
 
 extension TryItOutTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell {
-            
-            if !foodList.isEmpty {
-                cell.setup(model: foodList[indexPath.row])
-            }
+
+            let isFavorited = self.hasFavorites(food: self.foodList[indexPath.row])
+            cell.setup(model: self.foodList[indexPath.row], isFavorited: isFavorited)
             
             cell.delegate = self
             return cell

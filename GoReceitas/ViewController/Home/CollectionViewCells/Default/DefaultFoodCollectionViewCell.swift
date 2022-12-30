@@ -25,7 +25,7 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
     
     weak var delegate: DefaultFoodCollectionViewCellDelegate?
     
-    var isActive: Bool = false
+    private var isActive: Bool = false
     
     static let identifier: String = String(describing: DefaultFoodCollectionViewCell.self)
     
