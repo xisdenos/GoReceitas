@@ -86,13 +86,21 @@ class TryItOutTableViewCell: UITableViewCell {
             
             let databaseRef = Database.database().reference()
             
-            databaseRef.child("users/\(emailFormatted)").child("favorites").observe(.value) { snapshot in
+            databaseRef.child("users/\(emailFormatted)").child("favorites").observeSingleEvent(of: .value) { snapshot in
                 if let dictionary = snapshot.value as? [String: Any] {
                     for (key, _) in dictionary {
                         self.favoriteKeys.append(key)
                     }
                 }
             }
+            
+//            databaseRef.child("users/\(emailFormatted)").child("favorites").observe(.value) { snapshot in
+//                if let dictionary = snapshot.value as? [String: Any] {
+//                    for (key, _) in dictionary {
+//                        self.favoriteKeys.append(key)
+//                    }
+//                }
+//            }
         }
     }
 }

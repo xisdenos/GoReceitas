@@ -94,7 +94,7 @@ class FavoriteVC: UIViewController {
                 if var value = snapshot.value as? [String: Any] {
                     for (key, _) in value {
                         if key == String(food.id) {
-                            self?.database.child("users/\(emailFormatted)").child("favorites").child(key).child(food.name).child("isFavorited").setValue(false)
+//                            self?.database.child("users/\(emailFormatted)").child("favorites").child(key).child(food.name).child("isFavorited").setValue(false)
                             self?.database.child("users/\(emailFormatted)").child("favorites").setValue(value)
                             break
                         }
