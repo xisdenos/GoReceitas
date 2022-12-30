@@ -99,17 +99,19 @@ class FavoriteVC: UIViewController {
             let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
             
             database.child("users/\(emailFormatted)").child("favorites").observe(.value, with: { [weak self] (snapshot) in
-                if let value = snapshot.value as? [String: Any] {
+                if var value = snapshot.value as? [String: Any] {
                     for (key, _) in value {
                         if key == String(food.id) {
-                            self?.database.child("users/\(emailFormatted)").child("favorites").setValue(value)
-                            
                             // Create a dictionary with the additional information
                             let userInfo: [String: Any] = [
                                 "favoriteId": key
                             ]
                             // Post the notification with the userInfo dictionary
                             NotificationCenter.default.post(name: .favoritesUpdated, object: nil, userInfo: userInfo)
+                            
+                            value.removeValue(forKey: key)
+                            
+                            self?.database.child("users/\(emailFormatted)").child("favorites").setValue(value)
                             break
                         }
                     }

@@ -16,7 +16,7 @@ protocol TryItOutTableViewCellProtocol {
 class TryItOutTableViewCell: UITableViewCell {
     private var foodList: [FoodResponse] = [FoodResponse]() {
         didSet {
-            pageControl.numberOfPages = foodList.count
+            pageControl.numberOfPages = foodList.count - 1
         }
     }
     
@@ -86,9 +86,9 @@ class TryItOutTableViewCell: UITableViewCell {
     
     public func configure(with model: [FoodResponse]) {
         self.foodList = model
-        DispatchQueue.main.async { [weak self] in
-            self?.collectionView.reloadData()
-        }
+//        DispatchQueue.main.async { [weak self] in
+//            self?.collectionView.reloadData()
+//        }
     }
     
     func checkFavoriteStatusAndUpdate() {
@@ -99,25 +99,14 @@ class TryItOutTableViewCell: UITableViewCell {
             let databaseRef = Database.database().reference()
             
             databaseRef.child("users/\(emailFormatted)").child("favorites").observeSingleEvent(of: .value) { snapshot in
-                // provavelmente (pode ser que nao!) o problem esta aqui.. ele so identifica quando há chave
-                // tambem precisa detectar a falta dela e retornar algum valor, remover da array ou algo do tipo..
-                // talvez quando remova o item tambem remova a key da array ja que ela quem trackeia todas as chaves..
-                // como nada esta sendo feito depois de remover os items, as 3 keys (por exemplo) se mantem na array,
-                // logo, os coracoes permanecem acesos!
                 if let dictionary = snapshot.value as? [String: Any] {
                     for (key, _) in dictionary {
                         self.favoriteKeys.append(key)
+                        print(key)
+                        print(self.favoriteKeys)
                     }
                 }
             }
-            
-//            databaseRef.child("users/\(emailFormatted)").child("favorites").observe(.value) { snapshot in
-//                if let dictionary = snapshot.value as? [String: Any] {
-//                    for (key, _) in dictionary {
-//                        self.favoriteKeys.append(key)
-//                    }
-//                }
-//            }
         }
     }
 }
@@ -140,8 +129,8 @@ extension TryItOutTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if foodList.count > 10 {
-            return 10
+        if foodList.count > 7 {
+            return 7
         }
         return foodList.count
     }
