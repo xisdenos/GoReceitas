@@ -38,7 +38,6 @@ class HomeViewController: UIViewController {
         configHome()
         fetchData()
 //        configTableView()
-//        checkFavoriteStatusAndUpdate()
     }
     
     func fetchData() {
@@ -60,14 +59,14 @@ class HomeViewController: UIViewController {
 //            }
 //        }
         
-//        model.fetchPopular { result in
-//            switch result {
-//            case .success(let success):
-//                self.popularList = success
-//            case .failure(let failure):
-//                print(failure.localizedDescription)
-//            }
-//        }
+        model.fetchPopular { result in
+            switch result {
+            case .success(let success):
+                self.popularList = success
+            case .failure(let failure):
+                print(failure.localizedDescription)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,23 +81,6 @@ class HomeViewController: UIViewController {
     func configObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateImage), name: .updateImage, object: nil)
     }
-//
-//    func checkFavoriteStatusAndUpdate(food: FoodResponse) {
-//        if let user = Auth.auth().currentUser {
-//            guard let email = user.email else { return }
-//            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-//
-//            let databaseRef = Database.database().reference()
-//
-//            databaseRef.child("users/\(emailFormatted)").child("favorites").child(String(food.id)).observe(.value) { (snapshot) in
-//                if snapshot.hasChildren() {
-//                    print(true)
-//                } else {
-//                    print(false)
-//                }
-//            }
-//        }
-//    }
     
     @objc func updateImage(notification: NSNotification){
         userProfilePictureImageView.image = notification.object as? UIImage
@@ -158,7 +140,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
-//            cell.configure(with: popularList)
+            cell.configure(with: popularList)
             cell.delegate = self
             return cell
         }

@@ -34,6 +34,11 @@ class FavoriteVC: UIViewController {
         populateArray()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     func populateArray() {
         let ref = Database.database().reference()
         if let user = Auth.auth().currentUser {

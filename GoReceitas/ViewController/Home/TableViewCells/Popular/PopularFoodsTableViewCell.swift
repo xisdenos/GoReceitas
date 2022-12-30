@@ -6,12 +6,24 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class PopularFoodsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     private var popularList: [FoodResponse] = [FoodResponse]()
+    
+    private var favoriteKeys: [String] = [String]() {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+            }
+        }
+    }
+    
+    let database = Database.database().reference()
     
     weak var delegate: DefaultCellsDelegate?
     
@@ -20,12 +32,33 @@ class PopularFoodsTableViewCell: UITableViewCell {
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
         self.backgroundColor = .viewBackgroundColor
         configCollectionView()
+        checkFavoriteStatusAndUpdate()
+        NotificationCenter.default.addObserver(self, selector: #selector(favoritesUpdated(_:)), name: .favoritesUpdated, object: nil)
+    }
+    
+    @objc func favoritesUpdated(_ notification: Notification) {
+        // Get the additional information from the notification's userInfo property
+        if let userInfo = notification.userInfo {
+            // Use the information as needed
+            let foodID = userInfo.values.first as! String
+            if let index = favoriteKeys.firstIndex(of: foodID) {
+                favoriteKeys.remove(at: index)
+            }
+        }
+    }
+    
+    func hasFavorites(food: FoodResponse) -> Bool {
+        if favoriteKeys.contains(String(food.id)) {
+            return true
+        } else {
+            return false
+        }
     }
     
     func configCollectionView() {
@@ -39,13 +72,27 @@ class PopularFoodsTableViewCell: UITableViewCell {
         }
     }
     
+    func checkFavoriteStatusAndUpdate() {
+        if let user = Auth.auth().currentUser {
+            guard let email = user.email else { return }
+            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+            
+            let databaseRef = Database.database().reference()
+            
+            databaseRef.child("users/\(emailFormatted)").child("favorites").observe(.value) { snapshot in
+                if let dictionary = snapshot.value as? [String: Any] {
+                    self.favoriteKeys.removeAll()
+                    for (key, _) in dictionary {
+                        self.favoriteKeys.append(key)
+                    }
+                }
+            }
+        }
+    }
+    
     public func configure(with model: [FoodResponse]) {
         DispatchQueue.main.async { [weak self] in
             self?.popularList = model.shuffled()
-        }
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.collectionView.reloadData()
         }
     }
 }
@@ -53,7 +100,9 @@ class PopularFoodsTableViewCell: UITableViewCell {
 extension PopularFoodsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell {
-            cell.setup(model: popularList[indexPath.row])
+            
+            let isFavorited = hasFavorites(food: popularList[indexPath.row])
+            cell.setup(model: popularList[indexPath.row], isFavorited: isFavorited)
             cell.delegate = self
             return cell
         }
@@ -80,7 +129,7 @@ extension PopularFoodsTableViewCell: DefaultFoodCollectionViewCellDelegate {
     func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
         let foodSelected = popularList[indexPath.row]
-
+        
         delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
     }
 }

@@ -41,8 +41,6 @@ class TryItOutTableViewCell: UITableViewCell {
         return UINib(nibName: identifier, bundle: nil)
     }
     
-    private var hasFavorite: Bool = false
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .viewBackgroundColor
@@ -98,10 +96,9 @@ class TryItOutTableViewCell: UITableViewCell {
             
             databaseRef.child("users/\(emailFormatted)").child("favorites").observe(.value) { snapshot in
                 if let dictionary = snapshot.value as? [String: Any] {
+                    self.favoriteKeys.removeAll()
                     for (key, _) in dictionary {
                         self.favoriteKeys.append(key)
-                        print(key)
-                        print(self.favoriteKeys)
                     }
                 }
             }
@@ -113,8 +110,8 @@ extension TryItOutTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell {
 
-            let isFavorited = self.hasFavorites(food: self.foodList[indexPath.row])
-            cell.setup(model: self.foodList[indexPath.row], isFavorited: isFavorited)
+            let isFavorited = hasFavorites(food: foodList[indexPath.row])
+            cell.setup(model: foodList[indexPath.row], isFavorited: isFavorited)
             
             cell.delegate = self
             return cell
