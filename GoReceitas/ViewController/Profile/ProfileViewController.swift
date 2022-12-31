@@ -179,7 +179,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                     UserDefaults.standard.set(urlString, forKey: "url")
                     
                     if let id = self.auth?.currentUser?.uid {
-                        self.firestore.collection("usuarios").document(id).setData([
+                        self.firestore.collection("usuarios").document(id).updateData([
                             "image":urlString,
                         ])
                     }
