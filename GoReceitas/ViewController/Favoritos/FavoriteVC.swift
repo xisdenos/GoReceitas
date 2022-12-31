@@ -95,37 +95,6 @@ class FavoriteVC: UIViewController {
         collectionView.register(DefaultFoodCollectionViewCell.nib(), forCellWithReuseIdentifier: DefaultFoodCollectionViewCell.identifier)
         collectionView.register(NoFavoritesCollectionViewCell.nib(), forCellWithReuseIdentifier: NoFavoritesCollectionViewCell.identifier)
     }
-    
-    let favoritesUpdatedNotification = Notification.Name("favoritesUpdated")
-    
-    func unfavoriteItem(at food: FoodResponse) {
-        if let user = Auth.auth().currentUser {
-            guard let email = user.email else { return }
-            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-            
-            database.child("users/\(emailFormatted)").child("favorites").observe(.value, with: { [weak self] (snapshot) in
-                if var value = snapshot.value as? [String: Any] {
-                    for (key, _) in value {
-                        if key == String(food.id) {
-                            // Create a dictionary with the additional information
-                            let userInfo: [String: Any] = [
-                                "favoriteId": key
-                            ]
-                            // Post the notification with the userInfo dictionary
-                            NotificationCenter.default.post(name: .favoritesUpdated, object: nil, userInfo: userInfo)
-                            
-                            value.removeValue(forKey: key)
-                            
-                            self?.database.child("users/\(emailFormatted)").child("favorites").setValue(value)
-                            break
-                        }
-                    }
-                }
-            })
-        } else {
-            print("There is no currently signed-in user.")
-        }
-    }
 }
 
 extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -161,7 +130,7 @@ extension FavoriteVC: DefaultFoodCollectionViewCellDelegate {
     func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
         guard let foodIndexPath = collectionView.indexPath(for: cell) else { return }
         let food = favorites[foodIndexPath.row]
-        unfavoriteItem(at: food)
+        Favorite.unfavoriteItem(at: food, database: database)
         favorites.remove(at: foodIndexPath.row)
         collectionView.reloadData()
     }

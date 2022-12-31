@@ -54,6 +54,8 @@
 		827E2AA92936925D009F3C43 /* CategoryTagsTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E2AA82936925D009F3C43 /* CategoryTagsTableViewCellDelegate.swift */; };
 		827E2AAC29369279009F3C43 /* DefaultCellsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E2AAB29369279009F3C43 /* DefaultCellsDelegate.swift */; };
 		8282B5BD2957492300726303 /* Popular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8282B5BC2957492300726303 /* Popular.swift */; };
+		82873C7F295FAFEF001E353D /* NotificationName+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82873C7E295FAFEF001E353D /* NotificationName+.swift */; };
+		82873C82295FB0FA001E353D /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82873C81295FB0FA001E353D /* Favorite.swift */; };
 		82A4040228DAA4F700F38990 /* TagsResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A4040128DAA4F700F38990 /* TagsResultsTableViewCell.swift */; };
 		82A4040428DAA57800F38990 /* TagsResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A4040328DAA57800F38990 /* TagsResultsViewController.swift */; };
 		82A68AEE293FD9AE0039D74D /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A68AED293FD9AE0039D74D /* Service.swift */; };
@@ -129,6 +131,8 @@
 		827E2AA82936925D009F3C43 /* CategoryTagsTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTagsTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		827E2AAB29369279009F3C43 /* DefaultCellsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCellsDelegate.swift; sourceTree = "<group>"; };
 		8282B5BC2957492300726303 /* Popular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popular.swift; sourceTree = "<group>"; };
+		82873C7E295FAFEF001E353D /* NotificationName+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+.swift"; sourceTree = "<group>"; };
+		82873C81295FB0FA001E353D /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		82A4040128DAA4F700F38990 /* TagsResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsResultsTableViewCell.swift; sourceTree = "<group>"; };
 		82A4040328DAA57800F38990 /* TagsResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsResultsViewController.swift; sourceTree = "<group>"; };
 		82A68AED293FD9AE0039D74D /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 		06459BB128B01A060054F510 /* GoReceitas */ = {
 			isa = PBXGroup;
 			children = (
+				82873C80295FB0D9001E353D /* Helpers */,
 				82A68AEC293FD9A40039D74D /* Network */,
 				EB0892B92902F16800FF33E8 /* AlertController */,
 				8259F92B28DAB12400476299 /* Enums */,
@@ -405,6 +410,7 @@
 			children = (
 				8279DC482904B71C00E526A8 /* Colors+.swift */,
 				8269F343294134F9000C226F /* UIImageView+.swift */,
+				82873C7E295FAFEF001E353D /* NotificationName+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -456,6 +462,14 @@
 				820FC37D29354BB200247C6F /* HomeViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		82873C80295FB0D9001E353D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				82873C81295FB0FA001E353D /* Favorite.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		82A403FF28DAA4D500F38990 /* TableViewCells */ = {
@@ -714,6 +728,7 @@
 				EB43688C28FE15370023A2F9 /* RegisterVC.swift in Sources */,
 				06DB88FA291170D0004489BC /* TimeView.swift in Sources */,
 				826CDD16295CD76B008D00E4 /* NetworkModel.swift in Sources */,
+				82873C7F295FAFEF001E353D /* NotificationName+.swift in Sources */,
 				5CC71FAA28FE26F200FF75ED /* ProfileViewController.swift in Sources */,
 				5CC71FA628FE25D100FF75ED /* ChangePasswordViewController.swift in Sources */,
 				06AC22CA2910A6E3008E4D0B /* FoodDetailsViewController.swift in Sources */,
@@ -733,6 +748,7 @@
 				1FAA32B528EDFED300AB6B9C /* FavoriteVC.swift in Sources */,
 				06459BB528B01A060054F510 /* SceneDelegate.swift in Sources */,
 				820FC39929355E0600247C6F /* PopularFoodsTableViewCell.swift in Sources */,
+				82873C82295FB0FA001E353D /* Favorite.swift in Sources */,
 				1F55854B2902E7A100580185 /* FavoriteEmptyVC.swift in Sources */,
 				06AC22CC2910A6F4008E4D0B /* FoodDetailsView.swift in Sources */,
 				8248DB762944D7E800C6B73F /* FoodDetailsInfo.swift in Sources */,

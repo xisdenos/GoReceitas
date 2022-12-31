@@ -129,7 +129,7 @@ extension PopularFoodsTableViewCell: DefaultFoodCollectionViewCellDelegate {
     func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
         let foodSelected = popularList[indexPath.row]
-        
+//        Favorite.unfavoriteItem(at: foodSelected, database: database)
         delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
     }
 }

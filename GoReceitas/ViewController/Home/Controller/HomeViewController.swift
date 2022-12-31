@@ -59,14 +59,14 @@ class HomeViewController: UIViewController {
 //            }
 //        }
         
-        model.fetchPopular { result in
-            switch result {
-            case .success(let success):
-                self.popularList = success
-            case .failure(let failure):
-                print(failure.localizedDescription)
-            }
-        }
+//        model.fetchPopular { result in
+//            switch result {
+//            case .success(let success):
+//                self.popularList = success
+//            case .failure(let failure):
+//                print(failure.localizedDescription)
+//            }
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

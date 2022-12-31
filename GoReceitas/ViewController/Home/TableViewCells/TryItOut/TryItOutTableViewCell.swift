@@ -82,10 +82,19 @@ class TryItOutTableViewCell: UITableViewCell {
     
     public func configure(with model: [FoodResponse]) {
         self.foodList = model
-//        DispatchQueue.main.async { [weak self] in
-//            self?.collectionView.reloadData()
-//        }
     }
+    
+//    func getCurrentUserEmail() -> String {
+//        if let user = Auth.auth().currentUser {
+//            if let email = user.email {
+//                let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+//                return emailFormatted
+//            }
+//        }
+//        return ""
+//    }
+    
+    
     
     func checkFavoriteStatusAndUpdate() {
         if let user = Auth.auth().currentUser {
@@ -147,10 +156,23 @@ extension TryItOutTableViewCell: DefaultFoodCollectionViewCellDelegate {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
         let foodSelected = foodList[indexPath.row]
         
-        delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
+        if let user = Auth.auth().currentUser {
+            guard let email = user.email else { return }
+            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+            
+            let databaseRef = Database.database().reference()
+            
+            databaseRef.child("users/\(emailFormatted)").child("favorites").child(String(foodSelected.id)).observe(.value) { snapshot in
+                if snapshot.hasChildren() {
+                    print("ITEM IS FAVORITED!!")
+                    Favorite.unfavoriteItem(at: foodSelected, database: self.database)
+                } else {
+                    self.delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
+                }
+            }
+        }
+        
+//        Favorite.unfavoriteItem(at: foodSelected, database: database)
+//        delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
     }
-}
-
-extension Notification.Name {
-    static let favoritesUpdated = Notification.Name("favoritesUpdated")
 }

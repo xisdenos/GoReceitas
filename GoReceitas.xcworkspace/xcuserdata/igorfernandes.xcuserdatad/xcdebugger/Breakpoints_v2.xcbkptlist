@@ -318,8 +318,8 @@
             filePath = "GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -350,8 +350,8 @@
             filePath = "GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "checkFavoriteStatusAndUpdate()"
             landmarkType = "7">
          </BreakpointContent>
@@ -366,8 +366,8 @@
             filePath = "GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "checkFavoriteStatusAndUpdate()"
             landmarkType = "7">
             <Locations>
@@ -414,8 +414,8 @@
             filePath = "GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "checkFavoriteStatusAndUpdate()"
             landmarkType = "7">
          </BreakpointContent>
