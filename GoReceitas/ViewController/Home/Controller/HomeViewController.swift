@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 protocol HomeViewControllerDelegate: AnyObject {
     func startLoading()
@@ -15,6 +16,8 @@ protocol HomeViewControllerDelegate: AnyObject {
 class HomeViewController: UIViewController {
     private var tagsList: [TagsResponse] = [TagsResponse]()
     private var service: Service = Service()
+    
+    let db = Firestore.firestore()
     
     @IBOutlet weak var userProfilePictureImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
@@ -35,7 +38,27 @@ class HomeViewController: UIViewController {
         setTabBarIcons()
         configObserver()
         configHome()
+        fetchFirestoreData()
         print("home", #function)
+
+    }
+    
+    func fetchFirestoreData() {
+        let usersCollection = db.collection("usuarios")
+
+        usersCollection.getDocuments { (snapshot, error) in
+          if let error = error {
+              print(error.localizedDescription)
+            return
+          }
+          guard let snapshot = snapshot else {
+            print(snapshot)
+            return
+          }
+          for document in snapshot.documents {
+            print("\(document.documentID) => \(document.data())")
+          }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -101,50 +124,50 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTagsTableViewCell.identifier) as? CategoryTagsTableViewCell else { return UITableViewCell() }
-            service.getTagsList { tags in
-                switch tags {
-                case .success(let tags):
-                    cell.configureTags(with: tags.results)
-                case .failure(let failure):
-                    print(failure)
-                }
-            }
+//            service.getTagsList { tags in
+//                switch tags {
+//                case .success(let tags):
+//                    cell.configureTags(with: tags.results)
+//                case .failure(let failure):
+//                    print(failure)
+//                }
+//            }
             cell.delegate = self
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TryItOutTableViewCell.identifier) as? TryItOutTableViewCell else { return UITableViewCell() }
-            delegate?.startLoading()
-            service.getFoodList { [weak self] result in
-                switch result {
-                case .success(let success):
-                    let filteredArray = success.results.filter({ $0.yields != nil })
-                    
-                    cell.configure(with: filteredArray.shuffled())
-                    self?.delegate?.stopLoading()
-                case .failure(let failure):
-                    self?.delegate?.stopLoading()
-                    print(failure.localizedDescription)
-                }
-            }
+//            delegate?.startLoading()
+//            service.getFoodList { [weak self] result in
+//                switch result {
+//                case .success(let success):
+//                    let filteredArray = success.results.filter({ $0.yields != nil })
+//
+//                    cell.configure(with: filteredArray.shuffled())
+//                    self?.delegate?.stopLoading()
+//                case .failure(let failure):
+//                    self?.delegate?.stopLoading()
+//                    print(failure.localizedDescription)
+//                }
+//            }
             cell.delegate = self
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
             cell.activityIndicator.startAnimating()
-            service.getPopularList { result in
-                switch result {
-                case .success(let success):
-                    let popularRecipes = success.results?.compactMap({ $0.item }).filter({ $0.recipes != nil })
-
-                    if let popularRecipes {
-                        cell.configure(with: popularRecipes)
-                        cell.activityIndicator.stopAnimating()
-                    }
-
-                case .failure(let failure):
-                    print(failure)
-                }
-            }
+//            service.getPopularList { result in
+//                switch result {
+//                case .success(let success):
+//                    let popularRecipes = success.results?.compactMap({ $0.item }).filter({ $0.recipes != nil })
+//
+//                    if let popularRecipes {
+//                        cell.configure(with: popularRecipes)
+//                        cell.activityIndicator.stopAnimating()
+//                    }
+//
+//                case .failure(let failure):
+//                    print(failure)
+//                }
+//            }
             cell.delegate = self
             return cell
         }

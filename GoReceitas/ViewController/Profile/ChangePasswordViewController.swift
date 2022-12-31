@@ -7,7 +7,7 @@
 
 import UIKit
 import FirebaseAuth
-import Firebase
+import FirebaseFirestore
 
 class ChangePasswordViewController: UIViewController {
     
@@ -36,9 +36,7 @@ class ChangePasswordViewController: UIViewController {
     
     @IBAction func alertNewPassword(_ sender: UIButton) {
         alertVerification()
-        changePassword()
-        
-        
+//        changePassword()
     }
     
     func configFontAndColors(){
@@ -73,7 +71,7 @@ class ChangePasswordViewController: UIViewController {
         let userID = Auth.auth().currentUser?.uid
         let userPassword = Auth.auth().currentUser?.email
         let currentUser = Auth.auth().currentUser
-        
+
         if currentPasswordText.text != nil {
             db.collection("senha").document("\(userID)").updateData(["senha": newPasswordText.text ])
             if newPasswordText.text != userPassword {

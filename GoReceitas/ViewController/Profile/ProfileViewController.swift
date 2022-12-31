@@ -164,7 +164,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             
             storage.child("images/file.png").putData(imageData,metadata: nil) { _, error in
                 guard error == nil else {
-                    print("failed to upload")
+                    print("failed to upload", error?.localizedDescription)
                     return
                 }
                 self.storage.child("images/file.png").downloadURL { url, error in
@@ -181,17 +181,13 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                     if let id = self.auth?.currentUser?.uid {
                         self.firestore.collection("usuarios").document(id).setData([
                             "image":urlString,
-                            
                         ])
                     }
-                    
-                    
                 }
             }
             
         }
         picker.dismiss(animated: true)
-        
     }
     
     
