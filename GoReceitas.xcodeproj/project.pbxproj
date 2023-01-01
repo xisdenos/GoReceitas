@@ -451,6 +451,9 @@
 		827E2AB0293694D0009F3C43 /* TagsResults */ = {
 			isa = PBXGroup;
 			children = (
+				82CC509D29098FB70032FC25 /* ResultsTableViewCell.swift */,
+				82CC509E29098FB70032FC25 /* ResultsTableViewCell.xib */,
+				82A4040128DAA4F700F38990 /* TagsResultsTableViewCell.swift */,
 				82A4040328DAA57800F38990 /* TagsResultsViewController.swift */,
 			);
 			path = TagsResults;
@@ -483,9 +486,6 @@
 		82A4040028DAA4DE00F38990 /* Tags Results */ = {
 			isa = PBXGroup;
 			children = (
-				82A4040128DAA4F700F38990 /* TagsResultsTableViewCell.swift */,
-				82CC509D29098FB70032FC25 /* ResultsTableViewCell.swift */,
-				82CC509E29098FB70032FC25 /* ResultsTableViewCell.xib */,
 			);
 			path = "Tags Results";
 			sourceTree = "<group>";

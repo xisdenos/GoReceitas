@@ -50,23 +50,23 @@ class HomeViewController: UIViewController {
             }
         }
 //
-//        model.fetchTagsList { tags in
-//            switch tags {
-//            case .success(let tags):
-//                self.tagsList = tags
-//            case .failure(let failure):
-//                print(failure)
-//            }
-//        }
-        
-        model.fetchPopular { result in
-            switch result {
-            case .success(let success):
-                self.popularList = success
+        model.fetchTagsList { tags in
+            switch tags {
+            case .success(let tags):
+                self.tagsList = tags
             case .failure(let failure):
-                print(failure.localizedDescription)
+                print(failure)
             }
         }
+        
+//        model.fetchPopular { result in
+//            switch result {
+//            case .success(let success):
+//                self.popularList = success
+//            case .failure(let failure):
+//                print(failure.localizedDescription)
+//            }
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,7 +130,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTagsTableViewCell.identifier) as? CategoryTagsTableViewCell else { return UITableViewCell() }
-//            cell.configureTags(with: tagsList)
+            cell.configureTags(with: tagsList)
             cell.delegate = self
             return cell
         } else if indexPath.section == 1 {
@@ -140,7 +140,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
-            cell.configure(with: popularList)
+//            cell.configure(with: popularList)
             cell.delegate = self
             return cell
         }
@@ -195,6 +195,7 @@ extension HomeViewController: CategoryTagsTableViewCellDelegate {
     func categoryChosed(categoryInfo: TagsResponse) {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: TagsResultsViewController.identifier) as! TagsResultsViewController
+        viewController.delegate = self
         
         self.navigationController?.pushViewController(viewController, animated: true)
         

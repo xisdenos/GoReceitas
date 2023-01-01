@@ -9,10 +9,6 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-protocol TryItOutTableViewCellProtocol {
-    func setupCell(cell: DefaultFoodCollectionViewCell)
-}
-
 class TryItOutTableViewCell: UITableViewCell {
     private var foodList: [FoodResponse] = [FoodResponse]() {
         didSet {
