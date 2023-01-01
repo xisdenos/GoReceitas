@@ -68,12 +68,10 @@ class FavoriteVC: UIViewController {
                             let foodCookTime = details["cook_time_minutes"] as! Int
                             let foodId = details["id"] as! Int
                             let foodImage = details["image"] as! String
-                            let isFavorited = details["isFavorited"] as! Int
                             let foodPrepTime = details["prep_time_minutes"] as! Int
 
                             let recipe = FoodResponse(id: foodId, name: foodName, thumbnail_url: foodImage, cook_time_minutes: foodCookTime, prep_time_minutes: foodPrepTime, yields: foodYields)
 
-                            self.isFavorited = isFavorited == 1 ? true : false
                             self.favorites.append(recipe)
                         }
                     }
@@ -111,7 +109,7 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
             return cell ?? UICollectionViewCell()
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell
-        cell?.setup(model: favorites[indexPath.row], isFavorited: isFavorited)
+        cell?.setup(model: favorites[indexPath.row], isFavorited: true)
         cell?.delegate = self
         return cell ?? UICollectionViewCell()
         
