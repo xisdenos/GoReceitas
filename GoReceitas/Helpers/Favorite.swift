@@ -15,7 +15,7 @@ struct Favorite {
             guard let email = user.email else { return }
             let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
             
-            database.child("users/\(emailFormatted)").child("favorites").observe(.value, with: { (snapshot) in
+            database.child("users/\(emailFormatted)").child("favorites").observeSingleEvent(of: .value, with: { (snapshot) in
                 if var value = snapshot.value as? [String: Any] {
                     for (key, _) in value {
                         if key == String(food.id) {

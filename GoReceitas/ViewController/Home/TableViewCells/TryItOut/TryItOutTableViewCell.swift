@@ -159,20 +159,16 @@ extension TryItOutTableViewCell: DefaultFoodCollectionViewCellDelegate {
         if let user = Auth.auth().currentUser {
             guard let email = user.email else { return }
             let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-            
-            let databaseRef = Database.database().reference()
-            
-            databaseRef.child("users/\(emailFormatted)").child("favorites").child(String(foodSelected.id)).observe(.value) { snapshot in
-                if snapshot.hasChildren() {
-                    print("ITEM IS FAVORITED!!")
+
+            let foodId = String(foodSelected.id)
+
+            database.child("users/\(emailFormatted)").child("favorites").observeSingleEvent(of: .value) { snapshot in
+                if snapshot.hasChild(foodId) {
                     Favorite.unfavoriteItem(at: foodSelected, database: self.database)
                 } else {
                     self.delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
                 }
             }
         }
-        
-//        Favorite.unfavoriteItem(at: foodSelected, database: database)
-//        delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
     }
 }

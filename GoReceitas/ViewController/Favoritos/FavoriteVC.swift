@@ -42,9 +42,10 @@ class FavoriteVC: UIViewController {
     func populateArray() {
         let ref = Database.database().reference()
         if let user = Auth.auth().currentUser {
+            print(user.email)
             guard let email = user.email else { return }
             let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-            
+            print(emailFormatted)
             
             ref.child("users/\(emailFormatted)/favorites").observe(.value) { snapshot in
                 if let dictionary = snapshot.value as? [String: Any] {
@@ -55,11 +56,13 @@ class FavoriteVC: UIViewController {
                     for item in dictionary {
                         // get the values: ex "Easy Chocolate Rugelach" = { "name": "Easy Chocolate Rugelach" }
                         let favoriteItem = item.value as! [String: Any]
-                        
+
+                        print(favoriteItem)
+
                         // iterate once again so we can get the inner dictionary values: ex { "name": "Easy Chocolate Rugelach" }
                         for foodInfo in favoriteItem {
                             let details = foodInfo.value as! NSDictionary
-                            
+
                             let foodName = details["name"] as! String
                             let foodYields = details["yields"] as! String
                             let foodCookTime = details["cook_time_minutes"] as! Int
@@ -67,9 +70,9 @@ class FavoriteVC: UIViewController {
                             let foodImage = details["image"] as! String
                             let isFavorited = details["isFavorited"] as! Int
                             let foodPrepTime = details["prep_time_minutes"] as! Int
-                            
+
                             let recipe = FoodResponse(id: foodId, name: foodName, thumbnail_url: foodImage, cook_time_minutes: foodCookTime, prep_time_minutes: foodPrepTime, yields: foodYields)
-                            
+
                             self.isFavorited = isFavorited == 1 ? true : false
                             self.favorites.append(recipe)
                         }
