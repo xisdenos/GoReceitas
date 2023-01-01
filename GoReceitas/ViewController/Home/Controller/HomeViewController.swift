@@ -217,21 +217,16 @@ extension HomeViewController: CategoryTagsTableViewCellDelegate {
 
 extension HomeViewController: DefaultCellsDelegate {
     func didFavoriteItem(itemSelected: FoodResponse, favorited: Bool) {
-        if let user = Auth.auth().currentUser {
-            guard let email = user.email else { return }
-            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-            
-            let favArray: [FoodResponse] = [FoodResponse(id: itemSelected.id, name: itemSelected.name, thumbnail_url: itemSelected.thumbnail_url, cook_time_minutes: itemSelected.cook_time_minutes ?? 0, prep_time_minutes: itemSelected.prep_time_minutes ?? 0, yields: itemSelected.yields ?? "n/a")]
-            
-            let mappedArray = favArray.map { ["name": $0.name, "yields": $0.yields ?? "n/a", "image": $0.thumbnail_url, "isFavorited": favorited, "id": $0.id, "cook_time_minutes": $0.cook_time_minutes ?? 0, "prep_time_minutes": $0.prep_time_minutes ?? 0] }
-            
-            let dictionary = Dictionary(uniqueKeysWithValues: mappedArray.map { ($0["name"] as! String, $0) })
-            
-//            database.child("users/\(emailFormatted)").child("favorites").child(String(itemSelected.id)).updateChildValues(dictionary)
-            database.child("users/\(emailFormatted)").child("favorites").child(String(itemSelected.id)).setValue(dictionary)
-        } else {
-            print("There is no currently signed-in user.")
-        }
+        let userEmail = Favorite.getCurrentUserEmail
+        
+        let favArray: [FoodResponse] = [FoodResponse(id: itemSelected.id, name: itemSelected.name, thumbnail_url: itemSelected.thumbnail_url, cook_time_minutes: itemSelected.cook_time_minutes ?? 0, prep_time_minutes: itemSelected.prep_time_minutes ?? 0, yields: itemSelected.yields ?? "n/a")]
+        
+        let mappedArray = favArray.map { ["name": $0.name, "yields": $0.yields ?? "n/a", "image": $0.thumbnail_url, "isFavorited": favorited, "id": $0.id, "cook_time_minutes": $0.cook_time_minutes ?? 0, "prep_time_minutes": $0.prep_time_minutes ?? 0] }
+        
+        let dictionary = Dictionary(uniqueKeysWithValues: mappedArray.map { ($0["name"] as! String, $0) })
+        
+//            database.child("users/\(userEmail)").child("favorites").child(String(itemSelected.id)).updateChildValues(dictionary)
+        database.child("users/\(userEmail)").child("favorites").child(String(itemSelected.id)).setValue(dictionary)
     }
     
     func didTapDefaultFoodCell(food: FoodResponse) {

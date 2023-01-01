@@ -41,44 +41,39 @@ class FavoriteVC: UIViewController {
     
     func populateArray() {
         let ref = Database.database().reference()
-        if let user = Auth.auth().currentUser {
-            print(user.email)
-            guard let email = user.email else { return }
-            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-            print(emailFormatted)
-            
-            ref.child("users/\(emailFormatted)/favorites").observe(.value) { snapshot in
-                if let dictionary = snapshot.value as? [String: Any] {
-                    // in order to overwrite the array, first we need to remove all items then set it again
-                    // otherwise the array will be doubled
-                    self.favorites.removeAll()
-                    // Iterate over the dictionary of recipes
-                    for item in dictionary {
-                        // get the values: ex "Easy Chocolate Rugelach" = { "name": "Easy Chocolate Rugelach" }
-                        let favoriteItem = item.value as! [String: Any]
+        let userEmail = Favorite.getCurrentUserEmail
+        
+        ref.child("users/\(userEmail)/favorites").observe(.value) { snapshot in
+            if let dictionary = snapshot.value as? [String: Any] {
+                // in order to overwrite the array, first we need to remove all items then set it again
+                // otherwise the array will be doubled
+                self.favorites.removeAll()
+                // Iterate over the dictionary of recipes
+                for item in dictionary {
+                    // get the values: ex "Easy Chocolate Rugelach" = { "name": "Easy Chocolate Rugelach" }
+                    let favoriteItem = item.value as! [String: Any]
 
-                        print(favoriteItem)
+                    print(favoriteItem)
 
-                        // iterate once again so we can get the inner dictionary values: ex { "name": "Easy Chocolate Rugelach" }
-                        for foodInfo in favoriteItem {
-                            let details = foodInfo.value as! NSDictionary
+                    // iterate once again so we can get the inner dictionary values: ex { "name": "Easy Chocolate Rugelach" }
+                    for foodInfo in favoriteItem {
+                        let details = foodInfo.value as! NSDictionary
 
-                            let foodName = details["name"] as! String
-                            let foodYields = details["yields"] as! String
-                            let foodCookTime = details["cook_time_minutes"] as! Int
-                            let foodId = details["id"] as! Int
-                            let foodImage = details["image"] as! String
-                            let foodPrepTime = details["prep_time_minutes"] as! Int
+                        let foodName = details["name"] as! String
+                        let foodYields = details["yields"] as! String
+                        let foodCookTime = details["cook_time_minutes"] as! Int
+                        let foodId = details["id"] as! Int
+                        let foodImage = details["image"] as! String
+                        let foodPrepTime = details["prep_time_minutes"] as! Int
 
-                            let recipe = FoodResponse(id: foodId, name: foodName, thumbnail_url: foodImage, cook_time_minutes: foodCookTime, prep_time_minutes: foodPrepTime, yields: foodYields)
+                        let recipe = FoodResponse(id: foodId, name: foodName, thumbnail_url: foodImage, cook_time_minutes: foodCookTime, prep_time_minutes: foodPrepTime, yields: foodYields)
 
-                            self.favorites.append(recipe)
-                        }
+                        self.favorites.append(recipe)
                     }
                 }
-                DispatchQueue.main.async { [weak self] in
-                    self?.collectionView.reloadData()
-                }
+            }
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
             }
         }
     }

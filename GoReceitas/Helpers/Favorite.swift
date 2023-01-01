@@ -38,4 +38,14 @@ struct Favorite {
             print("There is no currently signed-in user.")
         }
     }
+    
+    static var getCurrentUserEmail: String {
+        if let user = Auth.auth().currentUser {
+            if let email = user.email {
+                let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+                return emailFormatted
+            }
+        }
+        return ""
+    }
 }

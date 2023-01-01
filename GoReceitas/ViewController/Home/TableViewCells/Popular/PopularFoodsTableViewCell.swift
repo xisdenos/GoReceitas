@@ -73,18 +73,13 @@ class PopularFoodsTableViewCell: UITableViewCell {
     }
     
     func checkFavoriteStatusAndUpdate() {
-        if let user = Auth.auth().currentUser {
-            guard let email = user.email else { return }
-            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-            
-            let databaseRef = Database.database().reference()
-            
-            databaseRef.child("users/\(emailFormatted)").child("favorites").observe(.value) { snapshot in
-                if let dictionary = snapshot.value as? [String: Any] {
-                    self.favoriteKeys.removeAll()
-                    for (key, _) in dictionary {
-                        self.favoriteKeys.append(key)
-                    }
+        let userEmail = Favorite.getCurrentUserEmail
+        
+        database.child("users/\(userEmail)").child("favorites").observe(.value) { snapshot in
+            if let dictionary = snapshot.value as? [String: Any] {
+                self.favoriteKeys.removeAll()
+                for (key, _) in dictionary {
+                    self.favoriteKeys.append(key)
                 }
             }
         }

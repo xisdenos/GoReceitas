@@ -84,31 +84,14 @@ class TryItOutTableViewCell: UITableViewCell {
         self.foodList = model
     }
     
-//    func getCurrentUserEmail() -> String {
-//        if let user = Auth.auth().currentUser {
-//            if let email = user.email {
-//                let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-//                return emailFormatted
-//            }
-//        }
-//        return ""
-//    }
-    
-    
-    
     func checkFavoriteStatusAndUpdate() {
-        if let user = Auth.auth().currentUser {
-            guard let email = user.email else { return }
-            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-            
-            let databaseRef = Database.database().reference()
-            
-            databaseRef.child("users/\(emailFormatted)").child("favorites").observe(.value) { snapshot in
-                if let dictionary = snapshot.value as? [String: Any] {
-                    self.favoriteKeys.removeAll()
-                    for (key, _) in dictionary {
-                        self.favoriteKeys.append(key)
-                    }
+        let userEmail = Favorite.getCurrentUserEmail
+        
+        database.child("users/\(userEmail)").child("favorites").observe(.value) { snapshot in
+            if let dictionary = snapshot.value as? [String: Any] {
+                self.favoriteKeys.removeAll()
+                for (key, _) in dictionary {
+                    self.favoriteKeys.append(key)
                 }
             }
         }
@@ -155,19 +138,14 @@ extension TryItOutTableViewCell: DefaultFoodCollectionViewCellDelegate {
     func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
         let foodSelected = foodList[indexPath.row]
+        let foodId = String(foodSelected.id)
+        let userEmail = Favorite.getCurrentUserEmail
         
-        if let user = Auth.auth().currentUser {
-            guard let email = user.email else { return }
-            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-
-            let foodId = String(foodSelected.id)
-
-            database.child("users/\(emailFormatted)").child("favorites").observeSingleEvent(of: .value) { snapshot in
-                if snapshot.hasChild(foodId) {
-                    Favorite.unfavoriteItem(at: foodSelected, database: self.database)
-                } else {
-                    self.delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
-                }
+        database.child("users/\(userEmail)").child("favorites").observeSingleEvent(of: .value) { snapshot in
+            if snapshot.hasChild(foodId) {
+                Favorite.unfavoriteItem(at: foodSelected, database: self.database)
+            } else {
+                self.delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
             }
         }
     }
