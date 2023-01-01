@@ -42,6 +42,7 @@ class RegisterVC: UIViewController {
     var firestore: Firestore?
     var auth:Auth?
     var alert: AlertController?
+    var user = Auth.auth().currentUser
     
     
     override func viewDidLoad() {
@@ -170,11 +171,6 @@ class RegisterVC: UIViewController {
                         ])
                     }
                     
-                    
-                    
-                    
-                    
-                    
                     self?.alert?.alertInformation(title: "Parabens", message: "Usuario cadastrado com sucesso", completion: {
                         let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
                         self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
@@ -186,7 +182,7 @@ class RegisterVC: UIViewController {
         }
     }
     
-    
+
     @IBAction func tappedJaTemLoginButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }

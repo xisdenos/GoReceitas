@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseAuth
 
 protocol HomeViewControllerDelegate: AnyObject {
     func startLoading()
@@ -17,11 +18,15 @@ class HomeViewController: UIViewController {
     private var tagsList: [TagsResponse] = [TagsResponse]()
     private var service: Service = Service()
     
-    let db = Firestore.firestore()
+    let firestore = Firestore.firestore()
+    var user: [User] = []
+    var currentUser = Auth.auth().currentUser
     
     @IBOutlet weak var userProfilePictureImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var welcomeLabel: UILabel!
+    
+    
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(style: .large)
     
@@ -36,48 +41,58 @@ class HomeViewController: UIViewController {
         setActivityIndicator()
         configTableView()
         setTabBarIcons()
-        configObserver()
         configHome()
-        fetchFirestoreData()
         print("home", #function)
 
     }
-    
-    func fetchFirestoreData() {
-        let usersCollection = db.collection("usuarios")
 
-        usersCollection.getDocuments { (snapshot, error) in
-          if let error = error {
-              print(error.localizedDescription)
-            return
-          }
-          guard let snapshot = snapshot else {
-            print(snapshot)
-            return
-          }
-          for document in snapshot.documents {
-            print("\(document.documentID) => \(document.data())")
-          }
-        }
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+        getUserData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
     }
     
-    func configObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateImage), name: .updateImage, object: nil)
+    
+    func getUserData(){
+        firestore.collection("usuarios").getDocuments { snapchot, error in
+            if error == nil {
+                if let snapchot {
+                    DispatchQueue.main.async {
+                        self.user = snapchot.documents.map({ document in
+                            print("bola \(self.currentUser?.email)")
+                            return User(nome: document["nome"] as? String ?? "",
+                                        email: document["email"] as? String ?? "",
+                        image: document["image"] as? String ?? "")
+                        })
+                        self.populateView(index: self.getIndex(email: self.currentUser?.email ?? ""))
+                        print(self.currentUser?.email)
+                        print(self.user)
+                    }
+                }
+            }
+        }
     }
     
-
-    @objc func updateImage(notification: NSNotification){
-        userProfilePictureImageView.image = notification.object as? UIImage
+    
+    func populateView(index: Int){
+        welcomeLabel.text = "Hello, \(user[index].nome.capitalized)!"
+        let url = URL(string: user[index].image) ?? URL(fileURLWithPath: "")
+        userProfilePictureImageView.af.setImage(withURL: url)
     }
+    
+    func getIndex(email: String) -> Int {
+        let index = user.firstIndex { $0.email == email } ?? 0
+        print("banana \(index)")
+            return index
+    
+    }
+    
+ 
     
     func configHome(){
         userProfilePictureImageView.clipsToBounds = true
