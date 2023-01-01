@@ -124,7 +124,15 @@ extension PopularFoodsTableViewCell: DefaultFoodCollectionViewCellDelegate {
     func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
         let foodSelected = popularList[indexPath.row]
-//        Favorite.unfavoriteItem(at: foodSelected, database: database)
-        delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
+        let foodId = String(foodSelected.id)
+        let userEmail = Favorite.getCurrentUserEmail
+        
+        database.child("users/\(userEmail)").child("favorites").observeSingleEvent(of: .value) { snapshot in
+            if snapshot.hasChild(foodId) {
+                Favorite.unfavoriteItem(at: foodSelected, database: self.database)
+            } else {
+                self.delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
+            }
+        }
     }
 }
