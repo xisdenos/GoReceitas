@@ -191,13 +191,12 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
 extension FoodDetailsViewController: DefaultCellsDelegate {
     func didFavoriteItem(itemSelected: FoodResponse, favorited: Bool) {
         Favorite.favoriteItem(itemSelected: itemSelected, favorited: favorited, database: database)
-        print(itemSelected)
-        print(favorited)
     }
     
     
     func didTapDefaultFoodCell(food: FoodResponse) {
         let controller = FoodDetailsViewController()
+        controller.foodId = food.id
         navigationController?.pushViewController(controller, animated: true)
         
         DispatchQueue.main.async { [weak self] in
