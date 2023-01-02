@@ -36,8 +36,8 @@ class HomeViewController: UIViewController {
         setTabBarIcons()
         configObserver()
         configHome()
-//        fetchData()
-        configTableView()
+        fetchData()
+        //        configTableView()
     }
     
     func fetchData() {
@@ -59,14 +59,14 @@ class HomeViewController: UIViewController {
             }
         }
         
-        //        model.fetchPopular { result in
-        //            switch result {
-        //            case .success(let success):
-        //                self.popularList = success
-        //            case .failure(let failure):
-        //                print(failure.localizedDescription)
-        //            }
-        //        }
+        model.fetchPopular { result in
+            switch result {
+            case .success(let success):
+                self.popularList = success
+            case .failure(let failure):
+                print(failure.localizedDescription)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,17 +130,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTagsTableViewCell.identifier) as? CategoryTagsTableViewCell else { return UITableViewCell() }
-//            cell.configureTags(with: tagsList)
+            cell.configureTags(with: tagsList)
             cell.delegate = self
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TryItOutTableViewCell.identifier) as? TryItOutTableViewCell else { return UITableViewCell() }
-//            cell.configure(with: tryItOut)
+            cell.configure(with: tryItOut)
             cell.delegate = self
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
-            // cell.configure(with: popularList)
+            cell.configure(with: popularList)
             cell.delegate = self
             return cell
         }
