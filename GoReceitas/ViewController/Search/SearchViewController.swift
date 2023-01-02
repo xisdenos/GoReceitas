@@ -26,6 +26,8 @@ class SearchViewController: UIViewController {
         search.searchBar.searchBarStyle = .minimal
         search.searchResultsUpdater = self
         search.searchBar.delegate = self
+        search.searchBar.isTranslucent = false
+        search.searchBar.barTintColor = .viewBackgroundColor
         // corrige search bar sobrepondo a navigation da proxima tela quando disparada
         // https://stackoverflow.com/a/42392069
         search.hidesNavigationBarDuringPresentation = true
@@ -38,13 +40,11 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Search"
-//        delegate = self
-        
+
         tableView.backgroundColor = .viewBackgroundColor
         self.view.backgroundColor = .viewBackgroundColor
         
-        containerSearchBar.addSubview(searchController.searchBar)
-        configTableView()
+        navigationItem.searchController = searchController
         setActivityIndicator()
     }
     
@@ -52,14 +52,8 @@ class SearchViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    func configTableView() {
-//        tableView.delegate = self
-//        tableView.dataSource = self
-//        tableView.register(ResultsTableViewCell.nib(), forCellReuseIdentifier: ResultsTableViewCell.identifier)
-    }
-    
     func setActivityIndicator() {
-        self.view.addSubview(activityIndicator)
+        view.addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([

@@ -37,12 +37,8 @@ class SearchResultsController: UIViewController, DefaultTableViewCellDelegate {
         
         view.backgroundColor = .viewBackgroundColor
         view.addSubview(tableView)
-        
-//        loadingDelegate?.startLoading()
-        
         setActivityIndicator()
         configTableView()
-        setTableViewConstraints()
     }
     
     func setActivityIndicator() {
@@ -50,8 +46,8 @@ class SearchResultsController: UIViewController, DefaultTableViewCellDelegate {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
     }
     
@@ -62,19 +58,10 @@ class SearchResultsController: UIViewController, DefaultTableViewCellDelegate {
         tableView.register(ResultsTableViewCell.nib(), forCellReuseIdentifier: ResultsTableViewCell.identifier)
     }
     
-    func setTableViewConstraints() {
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
     }
-    
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        tableView.frame = view.bounds
-//    }
 }
 
 extension SearchResultsController: UITableViewDelegate, UITableViewDataSource {
@@ -84,9 +71,6 @@ extension SearchResultsController: UITableViewDelegate, UITableViewDataSource {
             cell.setup(foodResult[indexPath.row])
             cell.delegate = self
         }
-        print("array count", foodResult.count, #function)
-//        cell.setup(foodResult[indexPath.row])
-//        cell.delegate = self
         return cell
     }
     
