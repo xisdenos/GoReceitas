@@ -14,6 +14,14 @@ class RecommendedFoodsTableViewCell: UITableViewCell {
     
     weak var delegate: DefaultCellsDelegate?
     
+    private var favoriteKeys: [String] = [String]() {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+            }
+        }
+    }
+    
     let database = Database.database().reference()
     
     lazy var collectionView: UICollectionView = {
@@ -35,8 +43,29 @@ class RecommendedFoodsTableViewCell: UITableViewCell {
         contentView.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
-        
+        checkFavoriteStatusAndUpdate()
         self.backgroundColor = .viewBackgroundColor
+    }
+    
+    func hasFavorites(food: FoodResponse) -> Bool {
+        if favoriteKeys.contains(String(food.id)) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func checkFavoriteStatusAndUpdate() {
+        let userEmail = Favorite.getCurrentUserEmail
+        
+        database.child("users/\(userEmail)").child("favorites").observe(.value) { snapshot in
+            if let dictionary = snapshot.value as? [String: Any] {
+                self.favoriteKeys.removeAll()
+                for (key, _) in dictionary {
+                    self.favoriteKeys.append(key)
+                }
+            }
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -60,7 +89,9 @@ extension RecommendedFoodsTableViewCell: UICollectionViewDelegate, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodCollectionViewCell.identifier, for: indexPath) as? FoodCollectionViewCell
-        cell?.configure(food: recommendedFoods[indexPath.row])
+        
+        let isFavorited = hasFavorites(food: recommendedFoods[indexPath.row])
+        cell?.configure(food: recommendedFoods[indexPath.row], isFavorited: isFavorited)
         cell?.delegate = self
         return cell ?? UICollectionViewCell()
     }

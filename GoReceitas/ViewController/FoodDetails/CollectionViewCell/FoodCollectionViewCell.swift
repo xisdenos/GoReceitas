@@ -21,26 +21,16 @@ class FoodCollectionViewCell: UICollectionViewCell {
     
     weak var delegate: PurpleHeartViewProtocol?
     
-    public func configure(food: FoodResponse) {
+    public func configure(food: FoodResponse, isFavorited: Bool = false) {
         topFadedLabel.setTitle(food.name, for: .normal)
         timerView.setTitle(with: food.yields ?? "N/A")
         foodImageView.loadImageUsingCache(withUrl: food.thumbnail_url)
+        isFavorited == true ? purpheHearthView.hearthButton.setImage(UIImage(named: "heart-fill"), for: .normal) : purpheHearthView.hearthButton.setImage(UIImage(named: "heart-empty"), for: .normal)
     }
     
     @objc private func toggleHeartImage() {
         isActive = !isActive
         delegate?.didTapHeartButton(cell: self, isActive: isActive)
-//        if isActive == false {
-//            button.setImage(UIImage(named: "heart-fill"), for: .normal)
-//            isActive = true
-            print("tapp")
-            
-//        } else if isActive == true {
-//            button.setImage(UIImage(named: "heart-empty"), for: .normal)
-//            delegate?.didTapHeartButton(cell: self, isActive: isActive)
-//            isActive = false
-//            print(false)
-//        }
     }
     
     required init?(coder: NSCoder) {

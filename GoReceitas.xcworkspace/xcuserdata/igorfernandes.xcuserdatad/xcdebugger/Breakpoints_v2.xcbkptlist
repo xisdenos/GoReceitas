@@ -810,8 +810,8 @@
             filePath = "GoReceitas/ViewController/FoodDetails/FoodDetailsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "didFavoriteItem(itemSelected:favorited:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -826,8 +826,8 @@
             filePath = "GoReceitas/ViewController/FoodDetails/TableViewCell/RecommendedFoodsTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -842,8 +842,8 @@
             filePath = "GoReceitas/ViewController/FoodDetails/TableViewCell/RecommendedFoodsTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "didTapHeartButton(cell:isActive:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -858,8 +858,8 @@
             filePath = "GoReceitas/ViewController/FoodDetails/CollectionViewCell/FoodCollectionViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "toggleHeartImage()"
             landmarkType = "7">
          </BreakpointContent>

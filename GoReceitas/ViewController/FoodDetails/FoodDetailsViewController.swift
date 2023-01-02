@@ -88,7 +88,6 @@ class FoodDetailsViewController: UIViewController {
         let ref = Database.database().reference()
         let userEmail = Favorite.getCurrentUserEmail
         
-        
         if let foodId {
             ref.child("users/\(userEmail)/favorites").child(String(foodId)).observeSingleEvent(of: .value) { snapshot in
                 if let dictionary = snapshot.value as? [String: Any] {
@@ -98,7 +97,7 @@ class FoodDetailsViewController: UIViewController {
                         // get the values: ex "Easy Chocolate Rugelach" = { "name": "Easy Chocolate Rugelach" }
                         let favoriteItem = item.value as! [String: Any]
                         let favorite = favoriteItem["isFavorited"] as! Int
-                        print(favorite)
+
                         favorite == 1 ? self.foodDetailsView.purpheHearthView.hearthButton.setImage(UIImage(named: "heart-fill"), for: .normal) : self.foodDetailsView.purpheHearthView.hearthButton.setImage(UIImage(named: "heart-empty"), for: .normal)
                     }
                 }
