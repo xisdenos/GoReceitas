@@ -26,6 +26,7 @@ class FoodDetailsView: UIView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleToFill
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -59,8 +60,8 @@ class FoodDetailsView: UIView {
         return view
     }()
     
-    lazy var purpheHearthView: purpleHearth = {
-        let view = purpleHearth()
+    lazy var purpheHearthView: PurpleHeart = {
+        let view = PurpleHeart()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -79,7 +80,7 @@ class FoodDetailsView: UIView {
             foodImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             foodImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             foodImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            foodImageView.heightAnchor.constraint(equalToConstant: 300),
+            foodImageView.heightAnchor.constraint(equalToConstant: 270),
             
             topFadedLabel.topAnchor.constraint(equalTo: foodImageView.topAnchor, constant: 30),
             topFadedLabel.leadingAnchor.constraint(equalTo: foodImageView.leadingAnchor, constant: 20),

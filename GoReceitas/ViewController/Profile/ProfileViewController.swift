@@ -7,7 +7,12 @@
 
 import UIKit
 import FirebaseAuth
+
+import FirebaseStorage
+import FirebaseFirestore
+
 import Firebase
+
 
 class ProfileViewController: UIViewController {
     
@@ -22,6 +27,8 @@ class ProfileViewController: UIViewController {
     var auth:Auth?
     var alert: AlertController?
     let imagePicker: UIImagePickerController = UIImagePickerController()
+    let storage = Storage.storage().reference()
+    let firestore = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +39,9 @@ class ProfileViewController: UIViewController {
         cornerRadiusElements()
         self.view.backgroundColor = .viewBackgroundColor
         configImagePicker()
+        imageProfile.image = imageProfile.image
+        textUsername.isUserInteractionEnabled = false
+        textEmail.isUserInteractionEnabled = false
     }
     
     
@@ -44,7 +54,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func tappedEditPhoto(_ sender: UIButton) {
-        NotificationCenter.default.post(name: .updateImage, object: nil)
+    
         
         
         self.alert?.alertEditPhoto(completion: { option in
@@ -61,18 +71,21 @@ class ProfileViewController: UIViewController {
                 break
             }
         })
+        
     }
 
     @IBAction func tapChangePasswordScreen(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
         navigationController?.pushViewController(viewController, animated: true)
+        
     }
     
     @IBAction func tapChangeEmailScreen(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "changeEmail")
         navigationController?.pushViewController(viewController, animated: true)
+        
     }
     
     
@@ -115,6 +128,10 @@ class ProfileViewController: UIViewController {
     func configImagePicker(){
         imagePicker.delegate = self
     }
+    
+    
+    
+    
 }
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -122,15 +139,21 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.imageProfile.image = image
+            NotificationCenter.default.post(name: .updateImage, object: imageProfile.image)
+            
         }
-        
         picker.dismiss(animated: true)
+
     }
+
     func saveImage(image: String){
 //        let image = imageProfile.image.jpg
     }
     
+
 }
 extension NSNotification.Name {
     static let updateImage = Notification.Name("updateImage")
+    static let updateImageEmail = Notification.Name("updateImageEmail")
+    static let updateImageSenha = Notification.Name("updateImageSenha")
 }

@@ -8,12 +8,13 @@
 import Foundation
 
 struct FoodDetailsInfo: Codable {
+    let id: Int
     let name: String
     let cook_time_minutes, prep_time_minutes: Int?
     let yields: String?
     let thumbnail_url: String
-    let nutrition: Nutrition
-    let instructions: [Instruction]
+    let nutrition: Nutrition?
+    let instructions: [Instruction]?
 }
 
 struct Instruction: Codable {

@@ -6,49 +6,47 @@
 //
 
 import UIKit
-
-protocol SearchViewControllerProtocol: AnyObject {
-    func startLoading()
-    func stopLoading()
-}
+import FirebaseDatabase
 
 class SearchViewController: UIViewController {
     
-    public var foodData: [FoodResponse] = []
+    private var userTyped: Bool = false
     
     private var service: Service = Service()
-    private var currentDataSource: [FoodResponse] = []
     private var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     
-    weak var delegate: SearchViewControllerProtocol?
+    weak var delegate: DefaultCellsDelegate?
+    
+    let database = Database.database().reference()
+    
+    var model: NetworkModel = NetworkModel()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerSearchBar: UIView!
     
     lazy var searchController: UISearchController = {
-        let search = UISearchController(searchResultsController: nil)
+        let search = UISearchController(searchResultsController: SearchResultsController())
         search.searchBar.placeholder = "Food name..."
         search.searchBar.searchBarStyle = .minimal
         search.searchResultsUpdater = self
         search.searchBar.delegate = self
+        search.searchBar.isTranslucent = false
+        search.searchBar.barTintColor = .viewBackgroundColor
         // corrige search bar sobrepondo a navigation da proxima tela quando disparada
         // https://stackoverflow.com/a/42392069
         search.hidesNavigationBarDuringPresentation = true
         self.definesPresentationContext = true
         return search
     }()
+//    let resultController = searchController.searchResultsController as! SearchResultsController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Search"
-        currentDataSource = foodData
-        delegate = self
-        
         tableView.backgroundColor = .viewBackgroundColor
         self.view.backgroundColor = .viewBackgroundColor
         
-        containerSearchBar.addSubview(searchController.searchBar)
-        configTableView()
+        navigationItem.searchController = searchController
         setActivityIndicator()
     }
     
@@ -56,14 +54,8 @@ class SearchViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    func configTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(ResultsTableViewCell.nib(), forCellReuseIdentifier: ResultsTableViewCell.identifier)
-    }
-    
     func setActivityIndicator() {
-        self.view.addSubview(activityIndicator)
+        view.addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -73,30 +65,10 @@ class SearchViewController: UIViewController {
     }
 }
 
-extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentDataSource.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ResultsTableViewCell.identifier, for: indexPath) as! ResultsTableViewCell
-        if !currentDataSource.isEmpty {
-            cell.setup(currentDataSource[indexPath.row])
-        }
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 155
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let food = currentDataSource[indexPath.row]
-        
-        print(food)
+extension SearchViewController: DefaultCellsDelegate {
+    func didTapDefaultFoodCell(food: FoodResponse) {
         let viewController = FoodDetailsViewController()
+        viewController.foodId = food.id
         navigationController?.pushViewController(viewController, animated: true)
         
         DispatchQueue.main.async { [weak self] in
@@ -126,51 +98,43 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             })
         }
     }
+    
+    func didFavoriteItem(itemSelected: FoodResponse, favorited: Bool) {
+        Favorite.favoriteItem(itemSelected: itemSelected, favorited: favorited, database: database)
+    }
 }
 
 extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text else { return }
-
-        if searchText.count >= 3 {
-            self.delegate?.startLoading()
-            service.searchFoodWith(term: searchText) { [weak self] foodsResult in
-                switch foodsResult {
-                case .success(let foods):
-                    self?.currentDataSource = foods.results
-                    self?.delegate?.stopLoading()
-                case .failure(let failure):
-                    self?.delegate?.stopLoading()
-                    print(failure)
-                }
-            }
-        }
+        let resultController = searchController.searchResultsController as! SearchResultsController
+        resultController.delegate = self
         
-        if searchText.count == 0 {
-            currentDataSource = foodData
-            tableView.reloadData()
+        guard let searchText = searchController.searchBar.text,
+        !searchText.trimmingCharacters(in: .whitespaces).isEmpty,
+        searchText.trimmingCharacters(in: .whitespaces).count >= 3 else {
+            // if text is less than 3, clean the array
+            // this is useful because it takes both cases when user tap cancel
+            // and X button to clear search bar text.
+            resultController.foodResult.removeAll()
+            DispatchQueue.main.async {
+                resultController.tableView.reloadData()
+            }
+            return
         }
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        currentDataSource = foodData
-        tableView.reloadData()
-    }
-}
 
-extension SearchViewController: SearchViewControllerProtocol {
-    func startLoading() {
-        DispatchQueue.main.async { [weak self] in
-            self?.tableView.isHidden = true
-            self?.activityIndicator.startAnimating()
-        }
-    }
-    
-    func stopLoading() {
-        DispatchQueue.main.async { [weak self] in
-            self?.activityIndicator.stopAnimating()
-            self?.tableView.reloadData()
-            self?.tableView.isHidden = false
+        model.search(text: searchText) { result in
+            DispatchQueue.main.async {
+                resultController.activityIndicator.startAnimating()
+            }
+            switch result {
+            case .success(let foods):
+                resultController.foodResult = foods.results
+                DispatchQueue.main.async {
+                    resultController.tableView.reloadData()
+                }
+            case .failure(let failure):
+                print(failure)
+            }
         }
     }
 }

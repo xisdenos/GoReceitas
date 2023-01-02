@@ -1,4 +1,6 @@
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class TagsResultsViewController: UIViewController {
     static let identifier = String(describing: TagsResultsViewController.self)
@@ -8,6 +10,10 @@ class TagsResultsViewController: UIViewController {
     @IBOutlet weak var resultsLabel: UILabel!
     
     private var foodInformation: [FoodResponse] = []
+    
+    let database = Database.database().reference()
+    
+    weak var delegate: DefaultCellsDelegate?
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     
@@ -68,8 +74,7 @@ extension TagsResultsViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let foodInfoCell = tableView.dequeueReusableCell(withIdentifier: TagsResultsTableViewCell.identifier, for: indexPath) as! TagsResultsTableViewCell
-        
-//        let food = foodInformation[indexPath.row]
+        foodInfoCell.delegate = self
         
         if !foodInformation.isEmpty {
             foodInfoCell.setup(foodInfo: foodInformation[indexPath.row])
@@ -118,5 +123,22 @@ extension TagsResultsViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 170
+    }
+}
+
+extension TagsResultsViewController: DefaultTableViewCellDelegate {
+    func didTapHeartButton(cell: UITableViewCell, isActive: Bool) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        let foodSelected = foodInformation[indexPath.row]
+        let foodId = String(foodSelected.id)
+        let userEmail = Favorite.getCurrentUserEmail
+        
+        database.child("users/\(userEmail)").child("favorites").observeSingleEvent(of: .value) { snapshot in
+            if snapshot.hasChild(foodId) {
+                Favorite.unfavoriteItem(at: foodSelected, database: self.database)
+            } else {
+                self.delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
+            }
+        }
     }
 }
