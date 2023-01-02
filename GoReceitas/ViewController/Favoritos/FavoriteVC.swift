@@ -17,6 +17,8 @@ class FavoriteVC: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    private var service: Service = Service()
+    
     private var favorites: [FoodResponse] = [FoodResponse]()
     private var isFavorited: Bool = true
     
@@ -24,7 +26,7 @@ class FavoriteVC: UIViewController {
     
     let database = Database.database().reference()
     
-    weak var delegate: FavoritesUpdateDelegate?
+    weak var delegate: DefaultCellsDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,11 @@ class FavoriteVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = false
     }
     
     func populateArray() {
@@ -117,8 +124,35 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //    let viewController = FoodDetailsViewController()
-        //    navigationController?.pushViewController(viewController, animated: true)
+        let controller = FoodDetailsViewController()
+        let foodSelected = favorites[indexPath.row]
+        controller.foodId = foodSelected.id
+        navigationController?.pushViewController(controller, animated: true)
+        
+        DispatchQueue.main.async { [weak self] in
+            controller.activityIndicator.startAnimating()
+            controller.foodDetailsView.tableView.isHidden = true
+            controller.foodDetailsView.topFadedLabel.isHidden = true
+            controller.foodDetailsView.purpheHearthView.isHidden = true
+            controller.foodDetailsView.timeView.isHidden = true
+            self?.service.getMoreInfo(id: foodSelected.id) { details in
+                switch details {
+                case .success(let success):
+                    controller.configureFoodInformation(foodDetails: success)
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+            
+            self?.service.getSimilarFoods(id: foodSelected.id, completion: { result in
+                switch result {
+                case .success(let success):
+                    controller.configureRecommendedFoods(foods: success.results)
+                case .failure(let failure):
+                    print(failure)
+                }
+            })
+        }
     }
 }
 
