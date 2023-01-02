@@ -10,6 +10,8 @@ import UIKit
 class FoodCollectionViewCell: UICollectionViewCell {
     static let identifier: String = String(describing: FoodCollectionViewCell.self)
     
+    private var isActive: Bool = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.clipsToBounds = true
@@ -17,18 +19,27 @@ class FoodCollectionViewCell: UICollectionViewCell {
         setConstraints()
     }
     
-    public func configure(food: FoodResponse) {
+    weak var delegate: PurpleHeartViewProtocol?
+    
+    public func configure(food: FoodResponse, isFavorited: Bool = false) {
         topFadedLabel.setTitle(food.name, for: .normal)
         timerView.setTitle(with: food.yields ?? "N/A")
         foodImageView.loadImageUsingCache(withUrl: food.thumbnail_url)
+        isFavorited == true ? purpheHearthView.hearthButton.setImage(UIImage(named: "heart-fill"), for: .normal) : purpheHearthView.hearthButton.setImage(UIImage(named: "heart-empty"), for: .normal)
+    }
+    
+    @objc private func toggleHeartImage() {
+        isActive = !isActive
+        delegate?.didTapHeartButton(cell: self, isActive: isActive)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var purpheHearthView: purpleHearth = {
-        let view = purpleHearth()
+    lazy var purpheHearthView: PurpleHeart = {
+        let view = PurpleHeart()
+        view.hearthButton.addTarget(self, action: #selector(toggleHeartImage), for: .touchUpInside)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -50,6 +61,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "mac-and-cheese")
         imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
@@ -58,7 +70,6 @@ class FoodCollectionViewCell: UICollectionViewCell {
         foodImageView.addSubview(purpheHearthView)
         foodImageView.addSubview(topFadedLabel)
         foodImageView.addSubview(timerView)
-        
         
         NSLayoutConstraint.activate([
             foodImageView.topAnchor.constraint(equalTo: contentView.topAnchor),

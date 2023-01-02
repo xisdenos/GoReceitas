@@ -6,42 +6,59 @@
 //
 
 import UIKit
-
-protocol PopularFoodsTableViewCellDelegate: AnyObject {
-    func didTapFoodCell(food: PopularResponseDetails)
-}
+import FirebaseDatabase
+import FirebaseAuth
 
 class PopularFoodsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private var popularList: [PopularResponseDetails] = [PopularResponseDetails]()
-    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(style: .large)
+    private var popularList: [FoodResponse] = [FoodResponse]()
     
-    weak var delegate: PopularFoodsTableViewCellDelegate?
+    private var favoriteKeys: [String] = [String]() {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+            }
+        }
+    }
+    
+    let database = Database.database().reference()
+    
+    weak var delegate: DefaultCellsDelegate?
     
     static let identifier: String = String(describing: PopularFoodsTableViewCell.self)
     
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
         self.backgroundColor = .viewBackgroundColor
         configCollectionView()
-        setActivityIndicator()
+        checkFavoriteStatusAndUpdate()
+        NotificationCenter.default.addObserver(self, selector: #selector(favoritesUpdated(_:)), name: .favoritesUpdated, object: nil)
     }
     
-    func setActivityIndicator() {
-        self.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-        ])
+    @objc func favoritesUpdated(_ notification: Notification) {
+        // Get the additional information from the notification's userInfo property
+        if let userInfo = notification.userInfo {
+            // Use the information as needed
+            let foodID = userInfo.values.first as! String
+            if let index = favoriteKeys.firstIndex(of: foodID) {
+                favoriteKeys.remove(at: index)
+            }
+        }
+    }
+    
+    func hasFavorites(food: FoodResponse) -> Bool {
+        if favoriteKeys.contains(String(food.id)) {
+            return true
+        } else {
+            return false
+        }
     }
     
     func configCollectionView() {
@@ -55,10 +72,22 @@ class PopularFoodsTableViewCell: UITableViewCell {
         }
     }
     
-    public func configure(with model: [PopularResponseDetails]) {
-        self.popularList = model.shuffled()
+    func checkFavoriteStatusAndUpdate() {
+        let userEmail = Favorite.getCurrentUserEmail
+        
+        database.child("users/\(userEmail)").child("favorites").observe(.value) { snapshot in
+            if let dictionary = snapshot.value as? [String: Any] {
+                self.favoriteKeys.removeAll()
+                for (key, _) in dictionary {
+                    self.favoriteKeys.append(key)
+                }
+            }
+        }
+    }
+    
+    public func configure(with model: [FoodResponse]) {
         DispatchQueue.main.async { [weak self] in
-            self?.collectionView.reloadData()
+            self?.popularList = model.shuffled()
         }
     }
 }
@@ -66,9 +95,9 @@ class PopularFoodsTableViewCell: UITableViewCell {
 extension PopularFoodsTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell {
-            if !popularList.isEmpty {
-                cell.setupPopular(model: popularList[indexPath.row])
-            }
+            
+            let isFavorited = hasFavorites(food: popularList[indexPath.row])
+            cell.setup(model: popularList[indexPath.row], isFavorited: isFavorited)
             cell.delegate = self
             return cell
         }
@@ -76,10 +105,13 @@ extension PopularFoodsTableViewCell: UICollectionViewDelegate, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didTapFoodCell(food: popularList[indexPath.row])
+        delegate?.didTapDefaultFoodCell(food: popularList[indexPath.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if popularList.count > 8 {
+            return 8
+        }
         return popularList.count
     }
     
@@ -89,8 +121,18 @@ extension PopularFoodsTableViewCell: UICollectionViewDelegate, UICollectionViewD
 }
 
 extension PopularFoodsTableViewCell: DefaultFoodCollectionViewCellDelegate {
-    func didTapHeartButton(cell: UICollectionViewCell) {
+    func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
-        print("index", indexPath.row, #function)
+        let foodSelected = popularList[indexPath.row]
+        let foodId = String(foodSelected.id)
+        let userEmail = Favorite.getCurrentUserEmail
+        
+        database.child("users/\(userEmail)").child("favorites").observeSingleEvent(of: .value) { snapshot in
+            if snapshot.hasChild(foodId) {
+                Favorite.unfavoriteItem(at: foodSelected, database: self.database)
+            } else {
+                self.delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
+            }
+        }
     }
 }

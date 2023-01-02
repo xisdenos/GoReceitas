@@ -1,5 +1,9 @@
 import UIKit
 
+protocol DefaultTableViewCellDelegate: AnyObject {
+    func didTapHeartButton(cell: UITableViewCell, isActive: Bool)
+}
+
 class TagsResultsTableViewCell: UITableViewCell {
     // cell identifier = "TagsResultsTableViewCell"
     static let identifier = String(describing: TagsResultsTableViewCell.self)
@@ -9,6 +13,8 @@ class TagsResultsTableViewCell: UITableViewCell {
     @IBOutlet weak var foodNameLbl: UILabel!
     @IBOutlet weak var prepTimeLbl: UILabel!
     @IBOutlet weak var heartButton: UIButton!
+    
+    weak var delegate: DefaultTableViewCellDelegate?
     
     func setup(foodInfo: FoodResponse) {
         // set image configs
@@ -30,8 +36,10 @@ class TagsResultsTableViewCell: UITableViewCell {
         if isActive == false {
             button.setImage(UIImage(named: "heart-fill"), for: .normal)
             isActive = true
+            delegate?.didTapHeartButton(cell: self, isActive: isActive)
         } else if isActive == true {
             button.setImage(UIImage(named: "heart-empty"), for: .normal)
+            delegate?.didTapHeartButton(cell: self, isActive: isActive)
             isActive = false
         }
     }

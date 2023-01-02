@@ -6,16 +6,23 @@
 //
 
 import UIKit
-
-protocol RecommendedFoodsTableViewCellDelegate: AnyObject {
-    func didTapRecommendedFoodCell(details: FoodResponse)
-}
+import FirebaseDatabase
 
 class RecommendedFoodsTableViewCell: UITableViewCell {
     static let identifier: String = "RecommendedFoodsTableViewCell"
     private var recommendedFoods: [FoodResponse] = [FoodResponse]()
     
-    weak var delegate: RecommendedFoodsTableViewCellDelegate?
+    weak var delegate: DefaultCellsDelegate?
+    
+    private var favoriteKeys: [String] = [String]() {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+            }
+        }
+    }
+    
+    let database = Database.database().reference()
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -36,8 +43,29 @@ class RecommendedFoodsTableViewCell: UITableViewCell {
         contentView.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
-        
+        checkFavoriteStatusAndUpdate()
         self.backgroundColor = .viewBackgroundColor
+    }
+    
+    func hasFavorites(food: FoodResponse) -> Bool {
+        if favoriteKeys.contains(String(food.id)) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func checkFavoriteStatusAndUpdate() {
+        let userEmail = Favorite.getCurrentUserEmail
+        
+        database.child("users/\(userEmail)").child("favorites").observe(.value) { snapshot in
+            if let dictionary = snapshot.value as? [String: Any] {
+                self.favoriteKeys.removeAll()
+                for (key, _) in dictionary {
+                    self.favoriteKeys.append(key)
+                }
+            }
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -61,7 +89,10 @@ extension RecommendedFoodsTableViewCell: UICollectionViewDelegate, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodCollectionViewCell.identifier, for: indexPath) as? FoodCollectionViewCell
-        cell?.configure(food: recommendedFoods[indexPath.row])
+        
+        let isFavorited = hasFavorites(food: recommendedFoods[indexPath.row])
+        cell?.configure(food: recommendedFoods[indexPath.row], isFavorited: isFavorited)
+        cell?.delegate = self
         return cell ?? UICollectionViewCell()
     }
     
@@ -70,6 +101,23 @@ extension RecommendedFoodsTableViewCell: UICollectionViewDelegate, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didTapRecommendedFoodCell(details: recommendedFoods[indexPath.row])
+        delegate?.didTapDefaultFoodCell(food: recommendedFoods[indexPath.row])
+    }
+}
+
+extension RecommendedFoodsTableViewCell: PurpleHeartViewProtocol {
+    func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        let foodSelected = recommendedFoods[indexPath.row]
+        let foodId = String(foodSelected.id)
+        let userEmail = Favorite.getCurrentUserEmail
+        
+        database.child("users/\(userEmail)").child("favorites").observeSingleEvent(of: .value) { snapshot in
+            if snapshot.hasChild(foodId) {
+                Favorite.unfavoriteItem(at: foodSelected, database: self.database)
+            } else {
+                self.delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
+            }
+        }
     }
 }

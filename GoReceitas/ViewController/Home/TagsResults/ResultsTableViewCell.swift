@@ -17,6 +17,8 @@ class ResultsTableViewCell: UITableViewCell {
     
     private var isActive: Bool = false
     
+    weak var delegate: DefaultTableViewCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,13 +30,16 @@ class ResultsTableViewCell: UITableViewCell {
         return UINib(nibName: identifier, bundle: nil)
     }
     
-    func setup(_ cellInfo: FoodResponse) {
+    func setup(_ cellInfo: FoodResponse, isFavorited: Bool = false) {
         foodName.text = cellInfo.name
         prepTime.text = cellInfo.yields ?? "N/A"
         foodImage.loadImageUsingCache(withUrl: cellInfo.thumbnail_url)
         foodImage.contentMode = .scaleAspectFill
         foodImage.layer.cornerRadius = 10
         foodImage.layer.masksToBounds = true
+        heartButton.layer.cornerRadius = 10
+        heartButton.clipsToBounds = true
+        isFavorited == true ? heartButton.setImage(UIImage(named: "heart-fill"), for: .normal) : heartButton.setImage(UIImage(named: "heart-empty"), for: .normal)
     }
     
     @IBAction func heartTapped(_ sender: UIButton) {
@@ -42,12 +47,13 @@ class ResultsTableViewCell: UITableViewCell {
     }
     
     private func toggleHeartImage(for button: UIButton) {
-        if isActive == false {
+        isActive = !isActive
+        if isActive == true {
             button.setImage(UIImage(named: "heart-fill"), for: .normal)
-            isActive = true
-        } else if isActive == true {
+            delegate?.didTapHeartButton(cell: self, isActive: isActive)
+        } else if isActive == false {
             button.setImage(UIImage(named: "heart-empty"), for: .normal)
-            isActive = false
+            delegate?.didTapHeartButton(cell: self, isActive: isActive)
         }
     }
 }
