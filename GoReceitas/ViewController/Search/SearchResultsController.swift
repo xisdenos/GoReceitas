@@ -7,20 +7,10 @@
 
 import UIKit
 
-
-protocol SearchResultsControllerProtocol: AnyObject {
-    func startLoading()
-    func stopLoading()
-}
-
 class SearchResultsController: UIViewController, DefaultTableViewCellDelegate {
-    func didTapHeartButton(cell: UITableViewCell, isActive: Bool) {
-        
-    }
+    func didTapHeartButton(cell: UITableViewCell, isActive: Bool) {}
     
     public var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
-    
-    weak var loadingDelegate: SearchResultsControllerProtocol?
     
     weak var delegate: DefaultCellsDelegate?
     
@@ -34,7 +24,6 @@ class SearchResultsController: UIViewController, DefaultTableViewCellDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .viewBackgroundColor
         view.addSubview(tableView)
         setActivityIndicator()
@@ -42,7 +31,8 @@ class SearchResultsController: UIViewController, DefaultTableViewCellDelegate {
     }
     
     func setActivityIndicator() {
-        self.view.addSubview(activityIndicator)
+        tableView.addSubview(activityIndicator)
+//        view.addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -70,6 +60,9 @@ extension SearchResultsController: UITableViewDelegate, UITableViewDataSource {
         if !foodResult.isEmpty {
             cell.setup(foodResult[indexPath.row])
             cell.delegate = self
+            DispatchQueue.main.async { [weak self] in
+                self?.activityIndicator.stopAnimating()
+            }
         }
         return cell
     }

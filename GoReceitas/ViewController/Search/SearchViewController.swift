@@ -10,12 +10,16 @@ import FirebaseDatabase
 
 class SearchViewController: UIViewController {
     
+    private var userTyped: Bool = false
+    
     private var service: Service = Service()
     private var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     
     weak var delegate: DefaultCellsDelegate?
     
     let database = Database.database().reference()
+    
+    var model: NetworkModel = NetworkModel()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerSearchBar: UIView!
@@ -34,13 +38,11 @@ class SearchViewController: UIViewController {
         self.definesPresentationContext = true
         return search
     }()
-    
 //    let resultController = searchController.searchResultsController as! SearchResultsController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Search"
-
         tableView.backgroundColor = .viewBackgroundColor
         self.view.backgroundColor = .viewBackgroundColor
         
@@ -97,33 +99,11 @@ extension SearchViewController: DefaultCellsDelegate {
     }
 }
 
-extension SearchViewController: SearchResultsControllerProtocol {
-    func startLoading() {
-        print("start")
-//        DispatchQueue.main.async { [weak self] in
-//            self?.tableView.isHidden = true
-//            self?.activityIndicator.startAnimating()
-//        }
-    }
-    
-    func stopLoading() {
-        print("stop")
-//        DispatchQueue.main.async { [weak self] in
-//            self?.tableView.reloadData()
-//            self?.tableView.isHidden = false
-//            self?.activityIndicator.stopAnimating()
-//        }
-    }
-}
-
-
-
 extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         let resultController = searchController.searchResultsController as! SearchResultsController
         resultController.delegate = self
-        resultController.loadingDelegate = self
-
+        
         guard let searchText = searchController.searchBar.text,
         !searchText.trimmingCharacters(in: .whitespaces).isEmpty,
         searchText.trimmingCharacters(in: .whitespaces).count >= 3 else {
@@ -137,8 +117,11 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
             return
         }
 
-        service.searchFoodWith(term: searchText) { foodsResult in
-            switch foodsResult {
+        model.search(text: searchText) { result in
+            DispatchQueue.main.async {
+                resultController.activityIndicator.startAnimating()
+            }
+            switch result {
             case .success(let foods):
                 resultController.foodResult = foods.results
                 DispatchQueue.main.async {
@@ -151,22 +134,6 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     }
 }
 
-//extension SearchViewController: SearchViewControllerProtocol {
-//    func startLoading() {
-//        DispatchQueue.main.async { [weak self] in
-//            self?.tableView.isHidden = true
-//            self?.activityIndicator.startAnimating()
-//        }
-//    }
-//
-//    func stopLoading() {
-//        DispatchQueue.main.async { [weak self] in
-//            self?.tableView.reloadData()
-//            self?.tableView.isHidden = false
-//            self?.activityIndicator.stopAnimating()
-//        }
-//    }
-//}
 
 extension SearchViewController: DefaultTableViewCellDelegate {
     func didTapHeartButton(cell: UITableViewCell, isActive: Bool) {

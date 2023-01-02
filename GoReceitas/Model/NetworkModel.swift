@@ -14,6 +14,11 @@ protocol NetworkModelProtocol: AnyObject {
     func stopLoading()
 }
 
+extension NetworkModelProtocol {
+    func success() {}
+    func error(message: String) {}
+}
+
 struct NetworkModel {
     private var service: Service = Service()
     
@@ -50,10 +55,6 @@ struct NetworkModel {
         }
     }
     
-    func getMoreInfo() {
-        
-    }
-    
     func filterRecipes(popularResponses: [PopularResponse]) -> [FoodResponse] {
       var recipes: [FoodResponse] = []
 
@@ -76,6 +77,21 @@ struct NetworkModel {
                 }
             case .failure(let failure):
                 completion(.failure(failure))
+                print(failure)
+            }
+        }
+    }
+    
+    func search(text: String, _ completion: @escaping (Result<Foods, Error>) -> Void) {
+        delegate?.startLoading()
+        service.searchFoodWith(term: text) { foodsResult in
+            switch foodsResult {
+            case .success(let foods):
+                completion(.success(foods))
+                delegate?.stopLoading()
+            case .failure(let failure):
+                delegate?.stopLoading()
+//                completion(.failure(failure)
                 print(failure)
             }
         }
