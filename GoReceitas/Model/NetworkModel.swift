@@ -50,6 +50,10 @@ struct NetworkModel {
         }
     }
     
+    func getMoreInfo() {
+        
+    }
+    
     func filterRecipes(popularResponses: [PopularResponse]) -> [FoodResponse] {
       var recipes: [FoodResponse] = []
 

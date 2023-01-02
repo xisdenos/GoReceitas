@@ -484,7 +484,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "7FEDC7B1-490E-4B5E-8335-445604B63E73 - c2160f918e1f1c87"
+                  uuid = "7FEDC7B1-490E-4B5E-8335-445604B63E73 - c2160f918e1f1c0b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -494,12 +494,12 @@
                   urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
                   offsetFromSymbolStart = "152">
                </Location>
                <Location
-                  uuid = "7FEDC7B1-490E-4B5E-8335-445604B63E73 - c2160f918e1f1c87"
+                  uuid = "7FEDC7B1-490E-4B5E-8335-445604B63E73 - c2160f918e1f1c0b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -509,8 +509,8 @@
                   urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
                   offsetFromSymbolStart = "213">
                </Location>
             </Locations>
@@ -548,7 +548,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "E7BDB333-8D91-4304-8E6C-76C0EFF6AA79 - c2160f918e1f1b22"
+                  uuid = "E7BDB333-8D91-4304-8E6C-76C0EFF6AA79 - c2160f918e1f1ca6"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -558,12 +558,12 @@
                   urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
                   offsetFromSymbolStart = "592">
                </Location>
                <Location
-                  uuid = "E7BDB333-8D91-4304-8E6C-76C0EFF6AA79 - c2160f918e1f1b22"
+                  uuid = "E7BDB333-8D91-4304-8E6C-76C0EFF6AA79 - c2160f918e1f1ca6"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -573,8 +573,8 @@
                   urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Home/TableViewCells/TryItOut/TryItOutTableViewCell.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
                   offsetFromSymbolStart = "781">
                </Location>
             </Locations>
@@ -626,36 +626,176 @@
             endingLineNumber = "44"
             landmarkName = "populateArray()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8C475D9D-F0AE-4B80-A31E-F73017DB26EE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoReceitas/ViewController/FoodDetails/Components/PurpleHearthView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "hearthButton"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "32ADD336-4FC3-45B3-9037-6197BFF5CF3C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoReceitas/ViewController/FoodDetails/FoodDetailsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "configureFoodInformation(foodDetails:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BF145743-B69C-4F5D-AEF0-6F4FBA74B87F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoReceitas/ViewController/FoodDetails/Components/PurpleHearthView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "tappedHeart()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CC24FD07-36A6-4AA1-94B8-7832C892DFEA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoReceitas/ViewController/FoodDetails/FoodDetailsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "checkHeartStatus()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "67BB2821-18BA-42C3-8F74-D0361FF2D003"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoReceitas/ViewController/FoodDetails/FoodDetailsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "FoodDetailsViewController"
+            landmarkType = "3">
             <Locations>
                <Location
-                  uuid = "2166550B-99E1-4A20-98BA-1BA028370A9A - 1a36627833a7c178"
+                  uuid = "67BB2821-18BA-42C3-8F74-D0361FF2D003 - cd0f2b97aa4b7e27"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "GoReceitas.FavoriteVC.populateArray() -&gt; ()"
+                  symbolName = "GoReceitas.FoodDetailsViewController.foodId.getter : Swift.Optional&lt;Swift.Int&gt;"
                   moduleName = "GoReceitas"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Favoritos/FavoriteVC.swift"
+                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/FoodDetails/FoodDetailsViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "44"
-                  endingLineNumber = "44"
-                  offsetFromSymbolStart = "222">
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "96">
                </Location>
                <Location
-                  uuid = "2166550B-99E1-4A20-98BA-1BA028370A9A - 1a36627833a7c178"
+                  uuid = "67BB2821-18BA-42C3-8F74-D0361FF2D003 - 40dd1493ee0fe233"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "GoReceitas.FavoriteVC.populateArray() -&gt; ()"
+                  symbolName = "GoReceitas.FoodDetailsViewController.foodId.setter : Swift.Optional&lt;Swift.Int&gt;"
                   moduleName = "GoReceitas"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Favoritos/FavoriteVC.swift"
+                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/FoodDetails/FoodDetailsViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "44"
-                  endingLineNumber = "44"
-                  offsetFromSymbolStart = "323">
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "120">
+               </Location>
+               <Location
+                  uuid = "67BB2821-18BA-42C3-8F74-D0361FF2D003 - 52a6516fa14122"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoReceitas.FoodDetailsViewController.foodId.modify : Swift.Optional&lt;Swift.Int&gt;"
+                  moduleName = "GoReceitas"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/FoodDetails/FoodDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "67BB2821-18BA-42C3-8F74-D0361FF2D003 - cddce8aaa8adb06e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoReceitas.FoodDetailsViewController.foodId.modify : Swift.Optional&lt;Swift.Int&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "GoReceitas"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/FoodDetails/FoodDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "15">
+               </Location>
+               <Location
+                  uuid = "67BB2821-18BA-42C3-8F74-D0361FF2D003 - 582a1cf2e9b38ab9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoReceitas.FoodDetailsViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; GoReceitas.FoodDetailsViewController"
+                  moduleName = "GoReceitas"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/FoodDetails/FoodDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "337">
+               </Location>
+               <Location
+                  uuid = "67BB2821-18BA-42C3-8F74-D0361FF2D003 - 5c3f2d681654d27d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoReceitas.FoodDetailsViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;GoReceitas.FoodDetailsViewController&gt;"
+                  moduleName = "GoReceitas"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/FoodDetails/FoodDetailsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "279">
                </Location>
             </Locations>
          </BreakpointContent>

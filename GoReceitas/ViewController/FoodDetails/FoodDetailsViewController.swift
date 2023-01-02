@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 enum DetailsSections: Int {
     case details = 0
@@ -14,6 +16,15 @@ enum DetailsSections: Int {
 }
 
 class FoodDetailsViewController: UIViewController {
+    
+    private var isActive: Bool = false
+    
+    let database = Database.database().reference()
+    
+    var foodId2: ((Int) -> Void)?
+    
+    var foodId: Int?
+    
     private var service: Service = Service()
     private var foodDetails: FoodDetailsInfo?
     private var recommendedFoods: [FoodResponse] = [FoodResponse]()
@@ -21,7 +32,7 @@ class FoodDetailsViewController: UIViewController {
     
     lazy var foodDetailsView: FoodDetailsView = {
         let foodview = FoodDetailsView()
-
+        foodview.purpheHearthView.delegate = self
         foodview.tableView.delegate = self
         foodview.tableView.dataSource = self
         return foodview
@@ -47,6 +58,8 @@ class FoodDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setActivityIndicator()
+        checkHeartStatus()
+//        print(foodId)
     }
     
     override func loadView() {
@@ -72,6 +85,27 @@ class FoodDetailsViewController: UIViewController {
             activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
         ])
+    }
+    
+    func checkHeartStatus() {
+        let ref = Database.database().reference()
+        let userEmail = Favorite.getCurrentUserEmail
+        
+        if let foodId {
+            ref.child("users/\(userEmail)/favorites").child(String(foodId)).observeSingleEvent(of: .value) { snapshot in
+                if let dictionary = snapshot.value as? [String: Any] {
+                    
+                    // Iterate over the dictionary of recipes
+                    for item in dictionary {
+                        // get the values: ex "Easy Chocolate Rugelach" = { "name": "Easy Chocolate Rugelach" }
+                        let favoriteItem = item.value as! [String: Any]
+                        let favorite = favoriteItem["isFavorited"] as! Int
+                        print(favorite)
+                        
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -150,19 +184,19 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-            guard let header = view as? UITableViewHeaderFooterView else { return }
-            header.textLabel?.textColor = .textColorDefault
-            header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-            header.textLabel?.frame = header.bounds
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.textColor = .textColorDefault
+        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        header.textLabel?.frame = header.bounds
     }
 }
 
 extension FoodDetailsViewController: RecommendedFoodsTableViewCellDelegate {
     func didTapRecommendedFoodCell(details: FoodResponse) {
-
+        
         let controller = FoodDetailsViewController()
         navigationController?.pushViewController(controller, animated: true)
-
+        
         DispatchQueue.main.async { [weak self] in
             controller.activityIndicator.startAnimating()
             controller.foodDetailsView.tableView.isHidden = true
@@ -177,7 +211,7 @@ extension FoodDetailsViewController: RecommendedFoodsTableViewCellDelegate {
                     print(failure)
                 }
             }
-
+            
             self?.service.getSimilarFoods(id: details.id, completion: { result in
                 switch result {
                 case .success(let success):
@@ -187,5 +221,22 @@ extension FoodDetailsViewController: RecommendedFoodsTableViewCellDelegate {
                 }
             })
         }
+    }
+}
+
+extension FoodDetailsViewController: PurpleHeartViewProtocol {
+    func didTapHeartButton(isActive: Bool) {
+        let userEmail = Favorite.getCurrentUserEmail
+        
+        let details = FoodDetailsInfo(id: (foodDetails?.id ?? 0), name: foodDetails?.name ?? "", cook_time_minutes: foodDetails?.cook_time_minutes ?? 0, prep_time_minutes: foodDetails?.prep_time_minutes ?? 0, yields: foodDetails?.yields ?? "N/A", thumbnail_url: foodDetails?.thumbnail_url ?? "", nutrition: foodDetails?.nutrition ?? nil, instructions: foodDetails?.instructions ?? nil)
+        
+        let favArray: [FoodDetailsInfo] = [details]
+        
+        let mappedArray = favArray.map { ["name": $0.name, "yields": $0.yields ?? "n/a", "image": $0.thumbnail_url, "isFavorited": isActive, "id": $0.id, "cook_time_minutes": $0.cook_time_minutes ?? 0, "prep_time_minutes": $0.prep_time_minutes ?? 0] }
+//
+        let dictionary = Dictionary(uniqueKeysWithValues: mappedArray.map { ($0["name"] as! String, $0) })
+        
+//            database.child("users/\(userEmail)").child("favorites").child(String(itemSelected.id)).updateChildValues(dictionary)
+        database.child("users/\(userEmail)").child("favorites").child(String((details.id))).setValue(dictionary)
     }
 }

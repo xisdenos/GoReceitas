@@ -232,6 +232,7 @@ extension HomeViewController: DefaultCellsDelegate {
     
     func didTapDefaultFoodCell(food: FoodResponse) {
         let controller = FoodDetailsViewController()
+        controller.foodId = food.id
         navigationController?.pushViewController(controller, animated: true)
         
         DispatchQueue.main.async { [weak self] in
@@ -253,7 +254,6 @@ extension HomeViewController: DefaultCellsDelegate {
                 switch result {
                 case .success(let success):
                     controller.configureRecommendedFoods(foods: success.results)
-                    print(success)
                 case .failure(let failure):
                     print(failure)
                 }
