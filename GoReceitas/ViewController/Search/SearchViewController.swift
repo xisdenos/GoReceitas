@@ -68,6 +68,7 @@ class SearchViewController: UIViewController {
 extension SearchViewController: DefaultCellsDelegate {
     func didTapDefaultFoodCell(food: FoodResponse) {
         let viewController = FoodDetailsViewController()
+        viewController.foodId = food.id
         navigationController?.pushViewController(viewController, animated: true)
         
         DispatchQueue.main.async { [weak self] in
