@@ -36,8 +36,8 @@ class HomeViewController: UIViewController {
         setTabBarIcons()
         configObserver()
         configHome()
-        fetchData()
-        //        configTableView()
+//        fetchData()
+        configTableView()
     }
     
     func fetchData() {
@@ -130,12 +130,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTagsTableViewCell.identifier) as? CategoryTagsTableViewCell else { return UITableViewCell() }
-            cell.configureTags(with: tagsList)
+//            cell.configureTags(with: tagsList)
             cell.delegate = self
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TryItOutTableViewCell.identifier) as? TryItOutTableViewCell else { return UITableViewCell() }
-            cell.configure(with: tryItOut)
+//            cell.configure(with: tryItOut)
             cell.delegate = self
             return cell
         } else if indexPath.section == 2 {

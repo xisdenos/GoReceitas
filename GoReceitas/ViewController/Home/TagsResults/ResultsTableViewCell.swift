@@ -17,6 +17,8 @@ class ResultsTableViewCell: UITableViewCell {
     
     private var isActive: Bool = false
     
+    weak var delegate: DefaultTableViewCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -35,6 +37,8 @@ class ResultsTableViewCell: UITableViewCell {
         foodImage.contentMode = .scaleAspectFill
         foodImage.layer.cornerRadius = 10
         foodImage.layer.masksToBounds = true
+        heartButton.layer.cornerRadius = 10
+        heartButton.clipsToBounds = true
     }
     
     @IBAction func heartTapped(_ sender: UIButton) {
@@ -42,12 +46,13 @@ class ResultsTableViewCell: UITableViewCell {
     }
     
     private func toggleHeartImage(for button: UIButton) {
+        isActive = !isActive
         if isActive == false {
             button.setImage(UIImage(named: "heart-fill"), for: .normal)
-            isActive = true
+            delegate?.didTapHeartButton(cell: self, isActive: isActive)
         } else if isActive == true {
             button.setImage(UIImage(named: "heart-empty"), for: .normal)
-            isActive = false
+            delegate?.didTapHeartButton(cell: self, isActive: isActive)
         }
     }
 }
