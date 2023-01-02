@@ -97,6 +97,10 @@ extension SearchViewController: DefaultCellsDelegate {
             })
         }
     }
+    
+    func didFavoriteItem(itemSelected: FoodResponse, favorited: Bool) {
+        Favorite.favoriteItem(itemSelected: itemSelected, favorited: favorited, database: database)
+    }
 }
 
 extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
@@ -131,23 +135,5 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
                 print(failure)
             }
         }
-    }
-}
-
-
-extension SearchViewController: DefaultTableViewCellDelegate {
-    func didTapHeartButton(cell: UITableViewCell, isActive: Bool) {
-//        guard let indexPath = tableView.indexPath(for: cell) else { return }
-//        let foodSelected = currentDataSource[indexPath.row]
-//        let foodId = String(foodSelected.id)
-//        let userEmail = Favorite.getCurrentUserEmail
-//
-//        database.child("users/\(userEmail)").child("favorites").observeSingleEvent(of: .value) { snapshot in
-//            if snapshot.hasChild(foodId) {
-//                Favorite.unfavoriteItem(at: foodSelected, database: self.database)
-//            } else {
-//                self.delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
-//            }
-//        }
     }
 }

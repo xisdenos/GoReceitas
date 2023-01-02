@@ -14,4 +14,5 @@ protocol DefaultCellsDelegate: AnyObject {
 
 extension DefaultCellsDelegate {
     func didFavoriteItem(itemSelected: FoodResponse, favorited: Bool) {}
+    func didTapDefaultFoodCell(food: FoodResponse) {}
 }

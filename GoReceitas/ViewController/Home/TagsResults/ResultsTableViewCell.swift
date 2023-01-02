@@ -47,10 +47,10 @@ class ResultsTableViewCell: UITableViewCell {
     
     private func toggleHeartImage(for button: UIButton) {
         isActive = !isActive
-        if isActive == false {
+        if isActive == true {
             button.setImage(UIImage(named: "heart-fill"), for: .normal)
             delegate?.didTapHeartButton(cell: self, isActive: isActive)
-        } else if isActive == true {
+        } else if isActive == false {
             button.setImage(UIImage(named: "heart-empty"), for: .normal)
             delegate?.didTapHeartButton(cell: self, isActive: isActive)
         }

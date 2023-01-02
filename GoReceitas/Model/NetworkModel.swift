@@ -83,15 +83,12 @@ struct NetworkModel {
     }
     
     func search(text: String, _ completion: @escaping (Result<Foods, Error>) -> Void) {
-        delegate?.startLoading()
         service.searchFoodWith(term: text) { foodsResult in
             switch foodsResult {
             case .success(let foods):
                 completion(.success(foods))
-                delegate?.stopLoading()
             case .failure(let failure):
-                delegate?.stopLoading()
-//                completion(.failure(failure)
+                completion(.failure(failure))
                 print(failure)
             }
         }
