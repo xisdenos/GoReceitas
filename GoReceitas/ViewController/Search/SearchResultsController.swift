@@ -12,6 +12,8 @@ class SearchResultsController: UIViewController, DefaultTableViewCellDelegate {
         
     }
     
+    weak var delegate: DefaultCellsDelegate?
+    
     public var foodResult: [FoodResponse] = []
     
     lazy var tableView: UITableView = {
@@ -48,6 +50,10 @@ extension SearchResultsController: UITableViewDelegate, UITableViewDataSource {
             cell.delegate = self
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.didTapDefaultFoodCell(food: foodResult[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

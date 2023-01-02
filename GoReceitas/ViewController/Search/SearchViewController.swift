@@ -15,13 +15,9 @@ import FirebaseDatabase
 
 class SearchViewController: UIViewController {
     
-    public var foodData: [FoodResponse] = []
-    
     private var service: Service = Service()
-    private var currentDataSource: [FoodResponse] = []
     private var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     
-//    weak var delegate: SearchViewControllerProtocol?
     weak var delegate: DefaultCellsDelegate?
     
     let database = Database.database().reference()
@@ -45,7 +41,6 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Search"
-        currentDataSource = foodData
 //        delegate = self
         
         tableView.backgroundColor = .viewBackgroundColor
@@ -61,9 +56,9 @@ class SearchViewController: UIViewController {
     }
     
     func configTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(ResultsTableViewCell.nib(), forCellReuseIdentifier: ResultsTableViewCell.identifier)
+//        tableView.delegate = self
+//        tableView.dataSource = self
+//        tableView.register(ResultsTableViewCell.nib(), forCellReuseIdentifier: ResultsTableViewCell.identifier)
     }
     
     func setActivityIndicator() {
@@ -76,31 +71,46 @@ class SearchViewController: UIViewController {
         ])
     }
 }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//
+//        let food = currentDataSource[indexPath.row]
+//
+//        print(food)
+//        let viewController = FoodDetailsViewController()
+//        navigationController?.pushViewController(viewController, animated: true)
+//
+//        DispatchQueue.main.async { [weak self] in
+//            viewController.activityIndicator.startAnimating()
+//            viewController.foodDetailsView.tableView.isHidden = true
+//            viewController.foodDetailsView.topFadedLabel.isHidden = true
+//            viewController.foodDetailsView.purpheHearthView.isHidden = true
+//            viewController.foodDetailsView.timeView.isHidden = true
+//            self?.service.getMoreInfo(id: food.id) { details in
+//                switch details {
+//                case .success(let success):
+//                    viewController.configureFoodInformation(foodDetails: success)
+//                case .failure(let failure):
+//                    print(failure)
+//                }
+//            }
+//
+//            self?.service.getSimilarFoods(id: food.id, completion: { result in
+//                switch result {
+//                case .success(let success):
+//                    viewController.configureRecommendedFoods(foods: success.results)
+//
+//                    print(success)
+//                case .failure(let failure):
+//                    print(failure)
+//                }
+//            })
+//        }
+//    }
 
-extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentDataSource.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ResultsTableViewCell.identifier, for: indexPath) as! ResultsTableViewCell
-        if !currentDataSource.isEmpty {
-            cell.setup(currentDataSource[indexPath.row])
-            cell.delegate = self
-        }
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 175
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let food = currentDataSource[indexPath.row]
-        
-        print(food)
+extension SearchViewController: DefaultCellsDelegate {
+    func didTapDefaultFoodCell(food: FoodResponse) {
         let viewController = FoodDetailsViewController()
         navigationController?.pushViewController(viewController, animated: true)
         
@@ -136,6 +146,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         let resultController = searchController.searchResultsController as! SearchResultsController
+        resultController.delegate = self
         guard let searchText = searchController.searchBar.text else { return }
 //
         if searchText.count >= 3 {
