@@ -62,6 +62,7 @@ extension RecommendedFoodsTableViewCell: UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodCollectionViewCell.identifier, for: indexPath) as? FoodCollectionViewCell
         cell?.configure(food: recommendedFoods[indexPath.row])
+        cell?.delegate = self
         return cell ?? UICollectionViewCell()
     }
     
@@ -71,5 +72,11 @@ extension RecommendedFoodsTableViewCell: UICollectionViewDelegate, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.didTapRecommendedFoodCell(details: recommendedFoods[indexPath.row])
+    }
+}
+
+extension RecommendedFoodsTableViewCell: PurpleHeartViewProtocol {
+    func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
+        
     }
 }

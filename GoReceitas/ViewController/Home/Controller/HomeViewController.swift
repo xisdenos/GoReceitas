@@ -37,7 +37,7 @@ class HomeViewController: UIViewController {
         configObserver()
         configHome()
         fetchData()
-//        configTableView()
+        //        configTableView()
     }
     
     func fetchData() {
@@ -49,7 +49,7 @@ class HomeViewController: UIViewController {
                 print(failure)
             }
         }
-//
+        //
         model.fetchTagsList { tags in
             switch tags {
             case .success(let tags):
@@ -59,14 +59,14 @@ class HomeViewController: UIViewController {
             }
         }
         
-//        model.fetchPopular { result in
-//            switch result {
-//            case .success(let success):
-//                self.popularList = success
-//            case .failure(let failure):
-//                print(failure.localizedDescription)
-//            }
-//        }
+        //        model.fetchPopular { result in
+        //            switch result {
+        //            case .success(let success):
+        //                self.popularList = success
+        //            case .failure(let failure):
+        //                print(failure.localizedDescription)
+        //            }
+        //        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -140,7 +140,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
-//            cell.configure(with: popularList)
+            //            cell.configure(with: popularList)
             cell.delegate = self
             return cell
         }
@@ -224,9 +224,10 @@ extension HomeViewController: DefaultCellsDelegate {
         
         let mappedArray = favArray.map { ["name": $0.name, "yields": $0.yields ?? "n/a", "image": $0.thumbnail_url, "isFavorited": favorited, "id": $0.id, "cook_time_minutes": $0.cook_time_minutes ?? 0, "prep_time_minutes": $0.prep_time_minutes ?? 0] }
         
+        // create a dictionary of arrays with the key being food.name
         let dictionary = Dictionary(uniqueKeysWithValues: mappedArray.map { ($0["name"] as! String, $0) })
         
-//            database.child("users/\(userEmail)").child("favorites").child(String(itemSelected.id)).updateChildValues(dictionary)
+        // database.child("users/\(userEmail)").child("favorites").child(String(itemSelected.id)).updateChildValues(dictionary)
         database.child("users/\(userEmail)").child("favorites").child(String(itemSelected.id)).setValue(dictionary)
     }
     

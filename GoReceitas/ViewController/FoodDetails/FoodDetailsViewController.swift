@@ -225,16 +225,33 @@ extension FoodDetailsViewController: RecommendedFoodsTableViewCellDelegate {
 extension FoodDetailsViewController: PurpleHeartViewProtocol {
     func didTapHeartButton(isActive: Bool) {
         let userEmail = Favorite.getCurrentUserEmail
+        guard let foodId else { return }
+        let id = foodDetails?.id ?? 0
+        let name = foodDetails?.name ?? ""
+        let cook_time_minutes = foodDetails?.cook_time_minutes ?? 0
+        let prep_time_minutes = foodDetails?.prep_time_minutes ?? 0
+        let yields = foodDetails?.yields ?? ""
+        let thumbnail_url = foodDetails?.thumbnail_url ?? ""
+        let instructions = foodDetails?.instructions ?? nil
+        let nutrition = foodDetails?.nutrition ?? nil
         
-        let details = FoodDetailsInfo(id: (foodDetails?.id ?? 0), name: foodDetails?.name ?? "", cook_time_minutes: foodDetails?.cook_time_minutes ?? 0, prep_time_minutes: foodDetails?.prep_time_minutes ?? 0, yields: foodDetails?.yields ?? "N/A", thumbnail_url: foodDetails?.thumbnail_url ?? "", nutrition: foodDetails?.nutrition ?? nil, instructions: foodDetails?.instructions ?? nil)
+        database.child("users/\(userEmail)").child("favorites").observeSingleEvent(of: .value) { snapshot in
+            if snapshot.hasChild(String(foodId)) {
+                Favorite.unfavoriteItem(by: foodId, database: self.database)
+            } else {
+                // self.delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
+                let details = FoodDetailsInfo(id: id, name: name, cook_time_minutes: cook_time_minutes, prep_time_minutes: prep_time_minutes, yields: yields, thumbnail_url: thumbnail_url, nutrition: nutrition, instructions: instructions)
+                
+                let favArray: [FoodDetailsInfo] = [details]
+                
+                let mappedArray = favArray.map { ["name": $0.name, "yields": $0.yields ?? "n/a", "image": $0.thumbnail_url, "isFavorited": isActive, "id": $0.id, "cook_time_minutes": $0.cook_time_minutes ?? 0, "prep_time_minutes": $0.prep_time_minutes ?? 0] }
         
-        let favArray: [FoodDetailsInfo] = [details]
-        
-        let mappedArray = favArray.map { ["name": $0.name, "yields": $0.yields ?? "n/a", "image": $0.thumbnail_url, "isFavorited": isActive, "id": $0.id, "cook_time_minutes": $0.cook_time_minutes ?? 0, "prep_time_minutes": $0.prep_time_minutes ?? 0] }
-//
-        let dictionary = Dictionary(uniqueKeysWithValues: mappedArray.map { ($0["name"] as! String, $0) })
-        
-//            database.child("users/\(userEmail)").child("favorites").child(String(itemSelected.id)).updateChildValues(dictionary)
-        database.child("users/\(userEmail)").child("favorites").child(String((details.id))).setValue(dictionary)
+                // create a dictionary of arrays with the key being food.name
+                let dictionary = Dictionary(uniqueKeysWithValues: mappedArray.map { ($0["name"] as! String, $0) })
+                
+                // database.child("users/\(userEmail)").child("favorites").child(String(itemSelected.id)).updateChildValues(dictionary)
+                self.database.child("users/\(userEmail)").child("favorites").child(String((details.id))).setValue(dictionary)
+            }
+        }
     }
 }

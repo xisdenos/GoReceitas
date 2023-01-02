@@ -60,8 +60,8 @@ class FoodDetailsView: UIView {
         return view
     }()
     
-    lazy var purpheHearthView: purpleHearth = {
-        let view = purpleHearth()
+    lazy var purpheHearthView: PurpleHeart = {
+        let view = PurpleHeart()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

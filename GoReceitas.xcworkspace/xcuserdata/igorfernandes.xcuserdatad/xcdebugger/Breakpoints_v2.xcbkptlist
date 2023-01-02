@@ -638,8 +638,8 @@
             filePath = "GoReceitas/ViewController/FoodDetails/Components/PurpleHearthView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "hearthButton"
             landmarkType = "24">
          </BreakpointContent>
@@ -670,8 +670,8 @@
             filePath = "GoReceitas/ViewController/FoodDetails/Components/PurpleHearthView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "tappedHeart()"
             landmarkType = "7">
          </BreakpointContent>

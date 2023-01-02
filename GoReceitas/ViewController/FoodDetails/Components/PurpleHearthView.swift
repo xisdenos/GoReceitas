@@ -9,9 +9,15 @@ import UIKit
 
 protocol PurpleHeartViewProtocol: AnyObject {
     func didTapHeartButton(isActive: Bool)
+    func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool)
 }
 
-class purpleHearth: UIView {
+extension PurpleHeartViewProtocol {
+    func didTapHeartButton(isActive: Bool) {}
+    func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {}
+}
+
+class PurpleHeart: UIView {
     
     private var isActive: Bool = false
     
@@ -45,11 +51,11 @@ class purpleHearth: UIView {
     @objc func tappedHeart() {
         isActive = !isActive
         if isActive == true {
-            hearthButton.setImage(UIImage(named: "heart-fill"), for: .normal)
+            hearthButton.setImage(UIImage(named: "heart-empty"), for: .normal)
             print(isActive)
             delegate?.didTapHeartButton(isActive: isActive)
         } else if isActive == false {
-            hearthButton.setImage(UIImage(named: "heart-empty"), for: .normal)
+            hearthButton.setImage(UIImage(named: "heart-fill"), for: .normal)
             delegate?.didTapHeartButton(isActive: isActive)
             print(isActive)
         }
