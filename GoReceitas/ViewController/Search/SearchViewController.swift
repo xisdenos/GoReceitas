@@ -135,21 +135,26 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-//        guard let searchText = searchController.searchBar.text else { return }
+        let resultController = searchController.searchResultsController as! SearchResultsController
+        guard let searchText = searchController.searchBar.text else { return }
 //
-//        if searchText.count >= 3 {
+        if searchText.count >= 3 {
 //            self.delegate?.startLoading()
-//            service.searchFoodWith(term: searchText) { [weak self] foodsResult in
-//                switch foodsResult {
-//                case .success(let foods):
+            service.searchFoodWith(term: searchText) { [weak self] foodsResult in
+                switch foodsResult {
+                case .success(let foods):
+                    resultController.foodResult = foods.results
+                    DispatchQueue.main.async {
+                        resultController.tableView.reloadData()
+                    }
 //                    self?.currentDataSource = foods.results
 //                    self?.delegate?.stopLoading()
-//                case .failure(let failure):
+                case .failure(let failure):
 //                    self?.delegate?.stopLoading()
-//                    print(failure)
-//                }
-//            }
-//        }
+                    print(failure)
+                }
+            }
+        }
 //
 //        if searchText.count == 0 {
 //            currentDataSource = foodData

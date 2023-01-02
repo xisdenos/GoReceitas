@@ -7,7 +7,12 @@
 
 import UIKit
 
-class SearchResultsController: UIViewController {
+class SearchResultsController: UIViewController, DefaultTableViewCellDelegate {
+    func didTapHeartButton(cell: UITableViewCell, isActive: Bool) {
+        
+    }
+    
+    public var foodResult: [FoodResponse] = []
     
     lazy var tableView: UITableView = {
         let table = UITableView()
@@ -17,10 +22,16 @@ class SearchResultsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .viewBackgroundColor
+        configTableView()
+        view.addSubview(tableView)
+    }
+    
+    func configTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        view.addSubview(tableView)
+        tableView.backgroundColor = .viewBackgroundColor
+        tableView.register(ResultsTableViewCell.nib(), forCellReuseIdentifier: ResultsTableViewCell.identifier)
     }
     
     override func viewDidLayoutSubviews() {
@@ -31,10 +42,19 @@ class SearchResultsController: UIViewController {
 
 extension SearchResultsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: ResultsTableViewCell.identifier, for: indexPath) as! ResultsTableViewCell
+        if !foodResult.isEmpty {
+            cell.setup(foodResult[indexPath.row])
+            cell.delegate = self
+        }
+        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return foodResult.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 175
     }
 }
