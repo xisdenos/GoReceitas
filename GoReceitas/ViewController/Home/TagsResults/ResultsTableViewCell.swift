@@ -30,7 +30,7 @@ class ResultsTableViewCell: UITableViewCell {
         return UINib(nibName: identifier, bundle: nil)
     }
     
-    func setup(_ cellInfo: FoodResponse) {
+    func setup(_ cellInfo: FoodResponse, isFavorited: Bool = false) {
         foodName.text = cellInfo.name
         prepTime.text = cellInfo.yields ?? "N/A"
         foodImage.loadImageUsingCache(withUrl: cellInfo.thumbnail_url)
@@ -39,6 +39,7 @@ class ResultsTableViewCell: UITableViewCell {
         foodImage.layer.masksToBounds = true
         heartButton.layer.cornerRadius = 10
         heartButton.clipsToBounds = true
+        isFavorited == true ? heartButton.setImage(UIImage(named: "heart-fill"), for: .normal) : heartButton.setImage(UIImage(named: "heart-empty"), for: .normal)
     }
     
     @IBAction func heartTapped(_ sender: UIButton) {

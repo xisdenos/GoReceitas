@@ -17,6 +17,14 @@ class SearchResultsController: UIViewController {
     
     public var foodResult: [FoodResponse] = []
     
+    private var favoriteKeys: [String] = [String]() {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }
+    }
+    
     let database = Database.database().reference()
     
     lazy var tableView: UITableView = {
@@ -31,6 +39,7 @@ class SearchResultsController: UIViewController {
         view.addSubview(tableView)
         setActivityIndicator()
         configTableView()
+        checkFavoriteStatusAndUpdate()
     }
     
     func setActivityIndicator() {
@@ -42,6 +51,27 @@ class SearchResultsController: UIViewController {
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
+    }
+    
+    func hasFavorites(food: FoodResponse) -> Bool {
+        if favoriteKeys.contains(String(food.id)) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func checkFavoriteStatusAndUpdate() {
+        let userEmail = Favorite.getCurrentUserEmail
+        
+        database.child("users/\(userEmail)").child("favorites").observe(.value) { snapshot in
+            if let dictionary = snapshot.value as? [String: Any] {
+                self.favoriteKeys.removeAll()
+                for (key, _) in dictionary {
+                    self.favoriteKeys.append(key)
+                }
+            }
+        }
     }
     
     func configTableView() {
@@ -61,7 +91,9 @@ extension SearchResultsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ResultsTableViewCell.identifier, for: indexPath) as! ResultsTableViewCell
         if !foodResult.isEmpty {
-            cell.setup(foodResult[indexPath.row])
+            let isFavorited = hasFavorites(food: foodResult[indexPath.row])
+
+            cell.setup(foodResult[indexPath.row], isFavorited: isFavorited)
             cell.delegate = self
             DispatchQueue.main.async { [weak self] in
                 self?.activityIndicator.stopAnimating()
