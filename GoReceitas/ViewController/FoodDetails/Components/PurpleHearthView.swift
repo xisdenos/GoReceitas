@@ -51,11 +51,11 @@ class PurpleHeart: UIView {
     @objc func tappedHeart() {
         isActive = !isActive
         if isActive == true {
-            hearthButton.setImage(UIImage(named: "heart-empty"), for: .normal)
+            hearthButton.setImage(UIImage(named: "heart-fill"), for: .normal)
             print(isActive)
             delegate?.didTapHeartButton(isActive: isActive)
         } else if isActive == false {
-            hearthButton.setImage(UIImage(named: "heart-fill"), for: .normal)
+            hearthButton.setImage(UIImage(named: "heart-empty"), for: .normal)
             delegate?.didTapHeartButton(isActive: isActive)
             print(isActive)
         }

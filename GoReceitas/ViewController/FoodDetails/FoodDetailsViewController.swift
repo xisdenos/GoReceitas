@@ -189,9 +189,15 @@ extension FoodDetailsViewController: UITableViewDataSource, UITableViewDelegate 
     }
 }
 
-extension FoodDetailsViewController: RecommendedFoodsTableViewCellDelegate {
-    func didTapRecommendedFoodCell(details: FoodResponse) {
-        
+extension FoodDetailsViewController: DefaultCellsDelegate {
+    func didFavoriteItem(itemSelected: FoodResponse, favorited: Bool) {
+        Favorite.favoriteItem(itemSelected: itemSelected, favorited: favorited, database: database)
+        print(itemSelected)
+        print(favorited)
+    }
+    
+    
+    func didTapDefaultFoodCell(food: FoodResponse) {
         let controller = FoodDetailsViewController()
         navigationController?.pushViewController(controller, animated: true)
         
@@ -201,7 +207,7 @@ extension FoodDetailsViewController: RecommendedFoodsTableViewCellDelegate {
             controller.foodDetailsView.topFadedLabel.isHidden = true
             controller.foodDetailsView.purpheHearthView.isHidden = true
             controller.foodDetailsView.timeView.isHidden = true
-            self?.service.getMoreInfo(id: details.id) { details in
+            self?.service.getMoreInfo(id: food.id) { details in
                 switch details {
                 case .success(let success):
                     controller.configureFoodInformation(foodDetails: success)
@@ -210,7 +216,7 @@ extension FoodDetailsViewController: RecommendedFoodsTableViewCellDelegate {
                 }
             }
             
-            self?.service.getSimilarFoods(id: details.id, completion: { result in
+            self?.service.getSimilarFoods(id: food.id, completion: { result in
                 switch result {
                 case .success(let success):
                     controller.configureRecommendedFoods(foods: success.results)

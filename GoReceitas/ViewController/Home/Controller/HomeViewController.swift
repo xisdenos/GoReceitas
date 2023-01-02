@@ -49,7 +49,7 @@ class HomeViewController: UIViewController {
                 print(failure)
             }
         }
-        //
+        
         model.fetchTagsList { tags in
             switch tags {
             case .success(let tags):
@@ -140,7 +140,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
-            //            cell.configure(with: popularList)
+            // cell.configure(with: popularList)
             cell.delegate = self
             return cell
         }
@@ -218,17 +218,7 @@ extension HomeViewController: CategoryTagsTableViewCellDelegate {
 
 extension HomeViewController: DefaultCellsDelegate {
     func didFavoriteItem(itemSelected: FoodResponse, favorited: Bool) {
-        let userEmail = Favorite.getCurrentUserEmail
-        
-        let favArray: [FoodResponse] = [FoodResponse(id: itemSelected.id, name: itemSelected.name, thumbnail_url: itemSelected.thumbnail_url, cook_time_minutes: itemSelected.cook_time_minutes ?? 0, prep_time_minutes: itemSelected.prep_time_minutes ?? 0, yields: itemSelected.yields ?? "n/a")]
-        
-        let mappedArray = favArray.map { ["name": $0.name, "yields": $0.yields ?? "n/a", "image": $0.thumbnail_url, "isFavorited": favorited, "id": $0.id, "cook_time_minutes": $0.cook_time_minutes ?? 0, "prep_time_minutes": $0.prep_time_minutes ?? 0] }
-        
-        // create a dictionary of arrays with the key being food.name
-        let dictionary = Dictionary(uniqueKeysWithValues: mappedArray.map { ($0["name"] as! String, $0) })
-        
-        // database.child("users/\(userEmail)").child("favorites").child(String(itemSelected.id)).updateChildValues(dictionary)
-        database.child("users/\(userEmail)").child("favorites").child(String(itemSelected.id)).setValue(dictionary)
+        Favorite.favoriteItem(itemSelected: itemSelected, favorited: favorited, database: database)
     }
     
     func didTapDefaultFoodCell(food: FoodResponse) {

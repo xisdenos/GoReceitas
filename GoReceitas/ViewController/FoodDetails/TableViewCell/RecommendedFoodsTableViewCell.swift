@@ -6,16 +6,15 @@
 //
 
 import UIKit
-
-protocol RecommendedFoodsTableViewCellDelegate: AnyObject {
-    func didTapRecommendedFoodCell(details: FoodResponse)
-}
+import FirebaseDatabase
 
 class RecommendedFoodsTableViewCell: UITableViewCell {
     static let identifier: String = "RecommendedFoodsTableViewCell"
     private var recommendedFoods: [FoodResponse] = [FoodResponse]()
     
-    weak var delegate: RecommendedFoodsTableViewCellDelegate?
+    weak var delegate: DefaultCellsDelegate?
+    
+    let database = Database.database().reference()
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -71,12 +70,23 @@ extension RecommendedFoodsTableViewCell: UICollectionViewDelegate, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didTapRecommendedFoodCell(details: recommendedFoods[indexPath.row])
+        delegate?.didTapDefaultFoodCell(food: recommendedFoods[indexPath.row])
     }
 }
 
 extension RecommendedFoodsTableViewCell: PurpleHeartViewProtocol {
     func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        let foodSelected = recommendedFoods[indexPath.row]
+        let foodId = String(foodSelected.id)
+        let userEmail = Favorite.getCurrentUserEmail
         
+        database.child("users/\(userEmail)").child("favorites").observeSingleEvent(of: .value) { snapshot in
+            if snapshot.hasChild(foodId) {
+                Favorite.unfavoriteItem(at: foodSelected, database: self.database)
+            } else {
+                self.delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
+            }
+        }
     }
 }

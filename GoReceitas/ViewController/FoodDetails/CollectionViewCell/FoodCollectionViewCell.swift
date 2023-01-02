@@ -27,18 +27,20 @@ class FoodCollectionViewCell: UICollectionViewCell {
         foodImageView.loadImageUsingCache(withUrl: food.thumbnail_url)
     }
     
-    private func toggleHeartImage(for button: UIButton) {
-        if isActive == false {
+    @objc private func toggleHeartImage() {
+        isActive = !isActive
+        delegate?.didTapHeartButton(cell: self, isActive: isActive)
+//        if isActive == false {
 //            button.setImage(UIImage(named: "heart-fill"), for: .normal)
-            isActive = true
-            print(true)
-//            delegate?.didTapHeartButton(cell: self, isActive: isActive)
-        } else if isActive == true {
+//            isActive = true
+            print("tapp")
+            
+//        } else if isActive == true {
 //            button.setImage(UIImage(named: "heart-empty"), for: .normal)
 //            delegate?.didTapHeartButton(cell: self, isActive: isActive)
-            isActive = false
-            print(false)
-        }
+//            isActive = false
+//            print(false)
+//        }
     }
     
     required init?(coder: NSCoder) {
@@ -47,6 +49,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
     
     lazy var purpheHearthView: PurpleHeart = {
         let view = PurpleHeart()
+        view.hearthButton.addTarget(self, action: #selector(toggleHeartImage), for: .touchUpInside)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
