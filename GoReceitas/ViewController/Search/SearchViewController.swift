@@ -8,11 +8,6 @@
 import UIKit
 import FirebaseDatabase
 
-//protocol SearchViewControllerProtocol: AnyObject {
-//    func startLoading()
-//    func stopLoading()
-//}
-
 class SearchViewController: UIViewController {
     
     private var service: Service = Service()
@@ -37,6 +32,8 @@ class SearchViewController: UIViewController {
         self.definesPresentationContext = true
         return search
     }()
+    
+//    let resultController = searchController.searchResultsController as! SearchResultsController
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,43 +68,6 @@ class SearchViewController: UIViewController {
         ])
     }
 }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//
-//        let food = currentDataSource[indexPath.row]
-//
-//        print(food)
-//        let viewController = FoodDetailsViewController()
-//        navigationController?.pushViewController(viewController, animated: true)
-//
-//        DispatchQueue.main.async { [weak self] in
-//            viewController.activityIndicator.startAnimating()
-//            viewController.foodDetailsView.tableView.isHidden = true
-//            viewController.foodDetailsView.topFadedLabel.isHidden = true
-//            viewController.foodDetailsView.purpheHearthView.isHidden = true
-//            viewController.foodDetailsView.timeView.isHidden = true
-//            self?.service.getMoreInfo(id: food.id) { details in
-//                switch details {
-//                case .success(let success):
-//                    viewController.configureFoodInformation(foodDetails: success)
-//                case .failure(let failure):
-//                    print(failure)
-//                }
-//            }
-//
-//            self?.service.getSimilarFoods(id: food.id, completion: { result in
-//                switch result {
-//                case .success(let success):
-//                    viewController.configureRecommendedFoods(foods: success.results)
-//
-//                    print(success)
-//                case .failure(let failure):
-//                    print(failure)
-//                }
-//            })
-//        }
-//    }
 
 extension SearchViewController: DefaultCellsDelegate {
     func didTapDefaultFoodCell(food: FoodResponse) {
@@ -143,40 +103,58 @@ extension SearchViewController: DefaultCellsDelegate {
     }
 }
 
+extension SearchViewController: SearchResultsControllerProtocol {
+    func startLoading() {
+        print("start")
+//        DispatchQueue.main.async { [weak self] in
+//            self?.tableView.isHidden = true
+//            self?.activityIndicator.startAnimating()
+//        }
+    }
+    
+    func stopLoading() {
+        print("stop")
+//        DispatchQueue.main.async { [weak self] in
+//            self?.tableView.reloadData()
+//            self?.tableView.isHidden = false
+//            self?.activityIndicator.stopAnimating()
+//        }
+    }
+}
+
+
+
 extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         let resultController = searchController.searchResultsController as! SearchResultsController
         resultController.delegate = self
-        guard let searchText = searchController.searchBar.text else { return }
-//
-        if searchText.count >= 3 {
-//            self.delegate?.startLoading()
-            service.searchFoodWith(term: searchText) { [weak self] foodsResult in
-                switch foodsResult {
-                case .success(let foods):
-                    resultController.foodResult = foods.results
-                    DispatchQueue.main.async {
-                        resultController.tableView.reloadData()
-                    }
-//                    self?.currentDataSource = foods.results
-//                    self?.delegate?.stopLoading()
-                case .failure(let failure):
-//                    self?.delegate?.stopLoading()
-                    print(failure)
+        resultController.loadingDelegate = self
+
+        guard let searchText = searchController.searchBar.text,
+        !searchText.trimmingCharacters(in: .whitespaces).isEmpty,
+        searchText.trimmingCharacters(in: .whitespaces).count >= 3 else {
+            // if text is less than 3, clean the array
+            // this is useful because it takes both cases when user tap cancel
+            // and X button to clear search bar text.
+            resultController.foodResult.removeAll()
+            DispatchQueue.main.async {
+                resultController.tableView.reloadData()
+            }
+            return
+        }
+
+        service.searchFoodWith(term: searchText) { foodsResult in
+            switch foodsResult {
+            case .success(let foods):
+                resultController.foodResult = foods.results
+                DispatchQueue.main.async {
+                    resultController.tableView.reloadData()
                 }
+            case .failure(let failure):
+                print(failure)
             }
         }
-//
-//        if searchText.count == 0 {
-//            currentDataSource = foodData
-//            tableView.reloadData()
-//        }
     }
-    
-//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        currentDataSource = foodData
-//        tableView.reloadData()
-//    }
 }
 
 //extension SearchViewController: SearchViewControllerProtocol {

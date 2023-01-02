@@ -7,10 +7,20 @@
 
 import UIKit
 
+
+protocol SearchResultsControllerProtocol: AnyObject {
+    func startLoading()
+    func stopLoading()
+}
+
 class SearchResultsController: UIViewController, DefaultTableViewCellDelegate {
     func didTapHeartButton(cell: UITableViewCell, isActive: Bool) {
         
     }
+    
+    public var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
+    
+    weak var loadingDelegate: SearchResultsControllerProtocol?
     
     weak var delegate: DefaultCellsDelegate?
     
@@ -24,9 +34,25 @@ class SearchResultsController: UIViewController, DefaultTableViewCellDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .viewBackgroundColor
-        configTableView()
         view.addSubview(tableView)
+        
+//        loadingDelegate?.startLoading()
+        
+        setActivityIndicator()
+        configTableView()
+        setTableViewConstraints()
+    }
+    
+    func setActivityIndicator() {
+        self.view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+        ])
     }
     
     func configTableView() {
@@ -36,10 +62,19 @@ class SearchResultsController: UIViewController, DefaultTableViewCellDelegate {
         tableView.register(ResultsTableViewCell.nib(), forCellReuseIdentifier: ResultsTableViewCell.identifier)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
+    func setTableViewConstraints() {
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
     }
+    
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        tableView.frame = view.bounds
+//    }
 }
 
 extension SearchResultsController: UITableViewDelegate, UITableViewDataSource {
@@ -49,6 +84,9 @@ extension SearchResultsController: UITableViewDelegate, UITableViewDataSource {
             cell.setup(foodResult[indexPath.row])
             cell.delegate = self
         }
+        print("array count", foodResult.count, #function)
+//        cell.setup(foodResult[indexPath.row])
+//        cell.delegate = self
         return cell
     }
     
