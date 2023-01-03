@@ -19,8 +19,6 @@ class FavoriteVC: UIViewController {
     
     private var service: Service = Service()
     
-    private var alert: AlertController?
-    
     private var favorites: [FoodResponse] = [FoodResponse]()
     private var isFavorited: Bool = true
     
@@ -160,22 +158,11 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
 
 extension FavoriteVC: DefaultFoodCollectionViewCellDelegate {
     func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
-        
         guard let foodIndexPath = collectionView.indexPath(for: cell) else { return }
         let food = favorites[foodIndexPath.row]
-        
-        let alert = UIAlertController(title: "Attention", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
-        let remove = UIAlertAction(title: "OK", style: .destructive) { _ in
-            Favorite.unfavoriteItem(at: food, database: self.database)
-            self.favorites.remove(at: foodIndexPath.row)
-            self.collectionView.reloadData()
-        }
-        
-        let ok = UIAlertAction(title: "Cancel", style: .default)
-        
-        alert.addAction(remove)
-        alert.addAction(ok)
-        present(alert, animated: true)
+        Favorite.unfavoriteItem(at: food, database: database)
+        favorites.remove(at: foodIndexPath.row)
+        collectionView.reloadData()
     }
 }
 
