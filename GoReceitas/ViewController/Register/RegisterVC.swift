@@ -8,7 +8,11 @@
 import UIKit
 import FirebaseAuth
 import GoogleSignIn
+<<<<<<< HEAD
 import FirebaseDatabase
+=======
+import FirebaseFirestore
+>>>>>>> feature/FirabeseNewEmail
 
 enum RegisterDescriptions: String {
     case goLabel = "Go"
@@ -39,15 +43,23 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var backLoginButton: UIButton!
     @IBOutlet weak var logoImage: UIImageView!
     
+<<<<<<< HEAD
 
     private var auth:Auth?
     private var alert: AlertController?
+=======
+    var firestore: Firestore?
+    var auth:Auth?
+    var alert: AlertController?
+    var user = Auth.auth().currentUser
+>>>>>>> feature/FirabeseNewEmail
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         alert = AlertController(controller: self)
         self.auth = Auth.auth()
+        self.firestore = Firestore.firestore()
         configCaracteres()
         backLogin()
     }
@@ -156,9 +168,20 @@ class RegisterVC: UIViewController {
         if senha == confirmarSenha {
             self.auth?.createUser(withEmail: email, password: senha, completion: { [weak self] result, error in
                 if error != nil{
-                    self?.alert?.alertInformation(title: "Atenção", message: "Erro ao cadastrar, verifique os dados e tente novamente")
+                    self?.alert?.alertInformation(title: "Heads up", message: "Error registering, check the data and try again")
                 } else {
-                    self?.alert?.alertInformation(title: "Parabens", message: "Usuario cadastrado com sucesso", completion: {
+                    
+                    
+                    
+                    if let idUsuario = result?.user.uid{
+                        self?.firestore?.collection("usuarios").document(idUsuario).setData([
+                            "nome":self?.textFieldName.text ?? "",
+                            "email":self?.textFieldEmail.text ?? "",
+                            "id":idUsuario
+                        ])
+                    }
+                    
+                    self?.alert?.alertInformation(title: "Success", message: "Successfully registered user", completion: {
                         let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
                         
                         DispatchQueue.global(qos: .userInitiated).async {
@@ -176,11 +199,11 @@ class RegisterVC: UIViewController {
                 }
             })
         } else {
-            self.alert?.alertInformation(title: "Atenção", message: "Senhas Divergentes")
+            self.alert?.alertInformation(title: "Heads up", message: "Divergent Passwords")
         }
     }
     
-    
+
     @IBAction func tappedJaTemLoginButton(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }

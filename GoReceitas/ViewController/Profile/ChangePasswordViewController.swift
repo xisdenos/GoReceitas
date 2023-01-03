@@ -6,27 +6,28 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class ChangePasswordViewController: UIViewController {
-
-  
-//    @IBOutlet weak var imageProfile: UIImageView!
+    
+    
+    //    @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var currentPasswordText: UITextField!
     @IBOutlet weak var newPasswordText: UITextField!
     @IBOutlet weak var confirmNewPasswordText: UITextField!
     @IBOutlet weak var saveEditionsButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
+    var alert: AlertController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        imageRound()
         configFontAndColors()
+        alert = AlertController(controller: self)
         self.view.backgroundColor = .viewBackgroundColor
-//       configObeserver()
-        print("senha", #function)
     }
-
+    
     @IBAction func tapBackButton(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
@@ -37,21 +38,8 @@ class ChangePasswordViewController: UIViewController {
     
     @IBAction func alertNewPassword(_ sender: UIButton) {
         alertVerification()
+        changePassword()
     }
-    
-    
-//    func imageRound() {
-//        imageProfile.layer.masksToBounds = true
-//        imageProfile.layer.cornerRadius =  75
-//    }
-    
-//    func configObeserver(){
-//        NotificationCenter.default.addObserver(self, selector: #selector(updateImageSenha), name: .updateImage, object: nil)
-//    }
-//
-//    @objc func updateImageSenha(notification: NSNotification){
-//        imageProfile.image = notification.object as? UIImage
-//    }
     
     func configFontAndColors(){
         saveEditionsButton.isEnabled = false
@@ -65,20 +53,41 @@ class ChangePasswordViewController: UIViewController {
         currentPasswordText.delegate = self
         newPasswordText.delegate = self
         confirmNewPasswordText.delegate = self
-
+        
     }
     
     func alertVerification(){
         if currentPasswordText.text == "" || newPasswordText.text == "" || confirmNewPasswordText.text == ""{
-            let alert = UIAlertController(title: "Senha incorreta", message: "As senhas digitadas não são compatíveis", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok",style: UIAlertAction.Style.default,handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            self.alert?.alertInformation(title: "Incorrect password", message: "The passwords entered are not supported", completion: {
+                self.navigationController?.popViewController(animated: true)
+            })
         }else{
-            let alert = UIAlertController(title: "Parabéns!", message: "Senha alterada com sucesso!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok",style: UIAlertAction.Style.default,handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            self.alert?.alertInformation(title: "Success", message: "Password changed successfully!", completion: {
+                self.navigationController?.popViewController(animated: true)
+            })
+
+            
         }
     }
+    
+    func changePassword () {
+        let db = Firestore.firestore()
+        let userID = Auth.auth().currentUser?.uid
+        let userPassword = Auth.auth().currentUser?.email
+        let currentUser = Auth.auth().currentUser
+        
+        if currentPasswordText.text != nil {
+            db.collection("senha").document("\(userID ?? "")").updateData(["senha": newPasswordText.text ?? "" ])
+            if newPasswordText.text != userPassword {
+                currentUser?.updatePassword(to: newPasswordText.text ?? "") {error in
+                    if let error = error {
+                        print(error)
+                    }
+                }
+            }
+        }
+    }
+    
     
 }
 
@@ -111,4 +120,6 @@ extension ChangePasswordViewController: UITextFieldDelegate {
         }
         return true
     }
+    
+    
 }

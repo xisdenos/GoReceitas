@@ -132,11 +132,11 @@ class LoginVC: UIViewController {
         
         self.auth?.signIn(withEmail: email, password: password, completion: { [weak self] usuario, error in
             if error != nil {
-                self?.alert?.alertInformation(title: "Atenção", message: "Dados incorretos, tente novamente")
+                self?.alert?.alertInformation(title: "Heads up", message: "Incorrect data, try again")
                 
             } else {
                 if usuario == nil{
-                    self?.alert?.alertInformation(title: "Atenção", message: "Tivemos um problema inesperado")
+                    self?.alert?.alertInformation(title: "Heads up", message: "We had an unexpected problem")
                 } else {
                     let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
                     self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
@@ -158,7 +158,7 @@ class LoginVC: UIViewController {
         GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
             
             guard error == nil else {
-                self.alert?.alertInformation(title: "Atenção", message: "Falha ao tentar realizar o login, Tente Novamente!")
+                self.alert?.alertInformation(title: "Heads up", message: "Failed to login, please try again!")
                 return
             }
             
@@ -174,7 +174,7 @@ class LoginVC: UIViewController {
             
             Auth.auth().signIn(with: credential) { [weak self] dataResult, error in
                 guard error == nil else {
-                    self?.alert?.alertInformation(title: "Atenção", message: "Falha ao tentar realizar o login, Tente Novamente!")
+                    self?.alert?.alertInformation(title: "Heads up", message: "Failed to login, please try again!")
                     return
                 }
                 

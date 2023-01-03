@@ -90,7 +90,7 @@ class EsqueceuSenhaVC: UIViewController {
         let email:String = textFieldInformarEmail.text ?? ""
         self.auth?.sendPasswordReset(withEmail: email)
         
-        self.alert?.alertInformation(title: "Atenção", message: "E-mail enviado para redefinar a senha.",completion: {
+        self.alert?.alertInformation(title: "Heads up", message: "Email sent to reset password.",completion: {
             self.navigationController?.popViewController(animated: true)
         })
     }

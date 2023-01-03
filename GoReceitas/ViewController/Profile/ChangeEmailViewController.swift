@@ -6,26 +6,27 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class ChangeEmailViewController: UIViewController {
-
-//    @IBOutlet weak var imageProfile: UIImageView!
+    
+    //    @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var newEmailText: UITextField!
     @IBOutlet weak var currentPasswordText: UITextField!
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
+    var auth: Auth?
+    var alert: AlertController?
     override func viewDidLoad() {
         super.viewDidLoad()
-//        imageRound()
+        alert = AlertController(controller: self)
         configFontAndColors()
         self.view.backgroundColor = .viewBackgroundColor
-//        imageProfile.image = UIImage(systemName: "person")
-//        configObserver()
-        print("Email", #function)
-
+        
     }
-  
+    
     
     @IBAction func tapBackButton(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
@@ -37,22 +38,26 @@ class ChangeEmailViewController: UIViewController {
     
     @IBAction func alertChangeEmail(_ sender: UIButton) {
         alertVerification()
+        changeEmail()
     }
     
-//    func imageRound() {
-//        imageProfile.layer.masksToBounds = true
-//        imageProfile.layer.cornerRadius =  75
-//    }
-    
-//    func configObserver(){
-//        NotificationCenter.default.addObserver(self, selector: #selector(updateImageEmail), name: .updateImage, object: nil)
-//
-//    }
-//
-//    @objc func updateImageEmail(notification: NSNotification){
-//        print("DeuCerto")
-//        imageProfile.image = notification.object as? UIImage
-//    }
+    func changeEmail () {
+        let db = Firestore.firestore()
+        let userID = Auth.auth().currentUser?.uid
+        let userEmail = Auth.auth().currentUser?.email
+        let currentUser = Auth.auth().currentUser
+
+        if newEmailText.text != nil {
+            db.collection("usuarios").document("\(userID ?? "")").updateData(["email": newEmailText.text ?? "" ])
+            if newEmailText.text != userEmail {
+                currentUser?.updateEmail(to: newEmailText.text ?? "") {error in
+                    if let error = error {
+                        print(error)
+                    }
+                }
+            }
+        }
+    }
     
     func configFontAndColors(){
         confirmButton.isEnabled = false
@@ -69,16 +74,18 @@ class ChangeEmailViewController: UIViewController {
     
     func alertVerification(){
         if newEmailText.text == "" || currentPasswordText.text == "" {
-            let alert = UIAlertController(title: "Erro", message: "Email ou senha inválido", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok",style: UIAlertAction.Style.default,handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            self.alert?.alertInformation(title: "Heads up", message: "Invalid email or password", completion: {
+                self.navigationController?.popViewController(animated: true)
+            })
+            
+            
         }else{
-            let alert = UIAlertController(title: "Parabéns!", message: "Email alterado com sucesso", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok",style: UIAlertAction.Style.default,handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            self.alert?.alertInformation(title: "Success", message: "Email changed successfully", completion: {
+                self.navigationController?.popViewController(animated: true)
+            })
         }
     }
-
+    
 }
 
 extension ChangeEmailViewController: UITextFieldDelegate {

@@ -6,8 +6,18 @@
 //
 
 import UIKit
+<<<<<<< HEAD
 import FirebaseDatabase
 import FirebaseAuth
+=======
+import FirebaseFirestore
+import FirebaseAuth
+
+protocol HomeViewControllerDelegate: AnyObject {
+    func startLoading()
+    func stopLoading()
+}
+>>>>>>> feature/FirabeseNewEmail
 
 class HomeViewController: UIViewController {
     private var tagsList: [TagsResponse] = [TagsResponse]()
@@ -16,15 +26,29 @@ class HomeViewController: UIViewController {
     
     private var service: Service = Service()
     
+<<<<<<< HEAD
     private var model = NetworkModel()
     
     let database = Database.database().reference()
+=======
+    let firestore = Firestore.firestore()
+    var user: [User] = []
+    var currentUser = Auth.auth().currentUser
+>>>>>>> feature/FirabeseNewEmail
     
     @IBOutlet weak var userProfilePictureImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var welcomeLabel: UILabel!
     
+<<<<<<< HEAD
     private var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(style: .large)
+=======
+    
+    
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(style: .large)
+    
+    weak var delegate: HomeViewControllerDelegate?
+>>>>>>> feature/FirabeseNewEmail
     
     // MARK: Life cycles
     override func viewDidLoad() {
@@ -34,8 +58,8 @@ class HomeViewController: UIViewController {
         userProfilePictureImageView.image = UIImage(systemName: "person")
         setActivityIndicator()
         setTabBarIcons()
-        configObserver()
         configHome()
+<<<<<<< HEAD
         fetchData()
         //        configTableView()
     }
@@ -67,24 +91,64 @@ class HomeViewController: UIViewController {
                 print(failure.localizedDescription)
             }
         }
+=======
+        print("home", #function)
+
+>>>>>>> feature/FirabeseNewEmail
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+        getUserData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
     }
     
-    func configObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateImage), name: .updateImage, object: nil)
+    
+    func getUserData(){
+        firestore.collection("usuarios").getDocuments { snapchot, error in
+            if error == nil {
+                if let snapchot {
+                    DispatchQueue.main.async {
+                        self.user = snapchot.documents.map({ document in
+                            print("bola \(self.currentUser?.email)")
+                            return User(nome: document["nome"] as? String ?? "",
+                                        email: document["email"] as? String ?? "",
+                        image: document["image"] as? String ?? "")
+                        })
+                        self.populateView(index: self.getIndex(email: self.currentUser?.email ?? ""))
+                        print(self.currentUser?.email)
+                        print(self.user)
+                    }
+                }
+            }
+        }
     }
     
+<<<<<<< HEAD
     @objc func updateImage(notification: NSNotification){
         userProfilePictureImageView.image = notification.object as? UIImage
+=======
+    
+    func populateView(index: Int){
+        welcomeLabel.text = "Hello, \(user[index].nome.capitalized)!"
+        let url = URL(string: user[index].image) ?? URL(fileURLWithPath: "")
+        userProfilePictureImageView.af.setImage(withURL: url)
+>>>>>>> feature/FirabeseNewEmail
     }
+    
+    func getIndex(email: String) -> Int {
+        let index = user.firstIndex { $0.email == email } ?? 0
+        print("banana \(index)")
+            return index
+    
+    }
+    
+ 
     
     func configHome(){
         userProfilePictureImageView.clipsToBounds = true
@@ -130,17 +194,62 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTagsTableViewCell.identifier) as? CategoryTagsTableViewCell else { return UITableViewCell() }
+<<<<<<< HEAD
             cell.configureTags(with: tagsList)
+=======
+//            service.getTagsList { tags in
+//                switch tags {
+//                case .success(let tags):
+//                    cell.configureTags(with: tags.results)
+//                case .failure(let failure):
+//                    print(failure)
+//                }
+//            }
+>>>>>>> feature/FirabeseNewEmail
             cell.delegate = self
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TryItOutTableViewCell.identifier) as? TryItOutTableViewCell else { return UITableViewCell() }
+<<<<<<< HEAD
             cell.configure(with: tryItOut)
+=======
+//            delegate?.startLoading()
+//            service.getFoodList { [weak self] result in
+//                switch result {
+//                case .success(let success):
+//                    let filteredArray = success.results.filter({ $0.yields != nil })
+//
+//                    cell.configure(with: filteredArray.shuffled())
+//                    self?.delegate?.stopLoading()
+//                case .failure(let failure):
+//                    self?.delegate?.stopLoading()
+//                    print(failure.localizedDescription)
+//                }
+//            }
+>>>>>>> feature/FirabeseNewEmail
             cell.delegate = self
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
+<<<<<<< HEAD
             cell.configure(with: popularList)
+=======
+            cell.activityIndicator.startAnimating()
+//            service.getPopularList { result in
+//                switch result {
+//                case .success(let success):
+//                    let popularRecipes = success.results?.compactMap({ $0.item }).filter({ $0.recipes != nil })
+//
+//                    if let popularRecipes {
+//                        cell.configure(with: popularRecipes)
+//                        cell.activityIndicator.stopAnimating()
+//                    }
+//
+//                case .failure(let failure):
+//                    print(failure)
+//                }
+//            }
+>>>>>>> feature/FirabeseNewEmail
             cell.delegate = self
             return cell
         }
