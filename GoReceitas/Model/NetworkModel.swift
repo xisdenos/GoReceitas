@@ -24,7 +24,7 @@ struct NetworkModel {
     
     weak var delegate: NetworkModelProtocol?
     
-    func fetchTryItOut(completion: @escaping (Result<[FoodResponse], Error>) -> Void) {
+    func fetchTryItOut(completion: @escaping (Result<[FoodResponse], Error>) -> Void) async {
         service.getFoodList { result in
             switch result {
             case .success(let success):
@@ -37,7 +37,7 @@ struct NetworkModel {
         }
     }
     
-    func fetchTagsList(completion: @escaping (Result<[TagsResponse], Error>) -> Void) {
+    func fetchTagsList(completion: @escaping (Result<[TagsResponse], Error>) -> Void) async {
         service.getTagsList { result in
             switch result {
             case .success(let success):
@@ -49,21 +49,16 @@ struct NetworkModel {
         }
     }
     
-    func fetchPopular(completion: @escaping (Result<[FoodResponse], Error>) -> Void) {
-        delegate?.startLoading()
+    func fetchPopular(completion: @escaping (Result<[FoodResponse], Error>) -> Void) async {
         service.getPopularList { result in
             switch result {
             case .success(let success):
                 if let recipeResults = success.results {
                     let recipes = filterRecipes(popularResponses: recipeResults)
                     completion(.success(recipes))
-                    delegate?.success()
-                    delegate?.stopLoading()
                 }
             case .failure(let failure):
                 completion(.failure(failure))
-                delegate?.stopLoading()
-                delegate?.stopLoading()
                 print(failure)
             }
         }
