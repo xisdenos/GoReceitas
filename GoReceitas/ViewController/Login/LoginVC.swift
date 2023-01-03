@@ -31,6 +31,8 @@ class LoginVC: UIViewController {
     @IBOutlet weak var riscoView3: UIView!
     @IBOutlet weak var imageLogoFundo: UIImageView!
     
+    let database = Database.database().reference()
+    
     var auth:Auth?
     var alert: AlertController?
     
@@ -42,11 +44,10 @@ class LoginVC: UIViewController {
         JaTemCadastro()
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
-        
     }
-    
     
     func configCaracteristicas(){
         
@@ -177,20 +178,19 @@ class LoginVC: UIViewController {
                     return
                 }
                 
+                // igor-gmail-com
+                let email = dataResult?.user.email ?? "no-email"
+                let name = dataResult?.user.displayName ?? "Username"
+                let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+                
                 let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
                 
-                // TODO: IF THE USER ALREADY EXISTS, THERE IS NO NEED TO SET ALL THIS DATA! OTHERWISE ALL DATA WILL BE ERASED
-                DispatchQueue.global(qos: .userInitiated).async {
-                    // igor-gmail-com
-                    let email = dataResult?.user.email ?? "no-email"
-                    let name = dataResult?.user.displayName ?? "Username"
-                    let database = Database.database().reference()
-                    let emptyFavorites: [[String: Any]] = [[:]]
-                    let data = ["name": name, "email": email]
-                    
-                    let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-                    database.child("users").child(emailFormatted).updateChildValues(data)
-//                    database.child("users").child(emailFormatted).child("favorites").setValue(emptyFavorites)
+                // if there is no user, set all the new data.
+                self?.database.child("users").observeSingleEvent(of: .value) { snapshot in
+                    if !snapshot.hasChild(emailFormatted) {
+                        let data = ["name": name, "email": email]
+                        self?.database.child("users").child(emailFormatted).setValue(data)
+                    }
                 }
                 
                 self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
