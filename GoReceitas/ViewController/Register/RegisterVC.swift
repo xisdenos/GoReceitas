@@ -157,7 +157,7 @@ class RegisterVC: UIViewController {
         if senha == confirmarSenha {
             self.auth?.createUser(withEmail: email, password: senha, completion: { [weak self] result, error in
                 if error != nil{
-                    self?.alert?.alertInformation(title: "Atenção", message: "Erro ao cadastrar, verifique os dados e tente novamente")
+                    self?.alert?.alertInformation(title: "Heads up", message: "Error registering, check the data and try again")
                 } else {
                     
                     
@@ -170,14 +170,14 @@ class RegisterVC: UIViewController {
                         ])
                     }
                     
-                    self?.alert?.alertInformation(title: "Parabens", message: "Usuario cadastrado com sucesso", completion: {
+                    self?.alert?.alertInformation(title: "Success", message: "Successfully registered user", completion: {
                         let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
                         self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
                     })
                 }
             })
         } else {
-            self.alert?.alertInformation(title: "Atenção", message: "Senhas Divergentes")
+            self.alert?.alertInformation(title: "Heads up", message: "Divergent Passwords")
         }
     }
     
