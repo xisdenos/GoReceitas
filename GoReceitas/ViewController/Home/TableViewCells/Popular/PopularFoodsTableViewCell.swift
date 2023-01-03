@@ -19,7 +19,11 @@ class PopularFoodsTableViewCell: UITableViewCell {
         }
     }
     
-    private var favoriteKeys: [String] = [String]()
+    private var favoriteKeys: [String] = [String]() {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     
     let database = Database.database().reference()
     
