@@ -171,7 +171,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
-            cell.configure(with: popularList)
+            if !popularList.isEmpty {
+                print(popularList.count)
+                cell.configure(with: popularList)
+            }
             cell.delegate = self
             return cell
         }
