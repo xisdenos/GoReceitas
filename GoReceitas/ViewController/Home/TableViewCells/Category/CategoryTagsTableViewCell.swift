@@ -77,3 +77,4 @@ extension CategoryTagsTableViewCell: CategoryTagsCollectionViewCellDelegate {
         delegate?.categoryChosed(categoryInfo: tagsList[indexPath.row])
     }
 }
+ 

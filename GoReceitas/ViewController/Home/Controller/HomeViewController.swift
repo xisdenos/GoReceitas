@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseFirestore
 
 class HomeViewController: UIViewController {
     private var tagsList: [TagsResponse] = [TagsResponse]()
@@ -19,6 +20,10 @@ class HomeViewController: UIViewController {
     private var model = NetworkModel()
     
     let database = Database.database().reference()
+    
+    let firestore = Firestore.firestore()
+    var user: [User] = []
+    var currentUser = Auth.auth().currentUser
     
     @IBOutlet weak var userProfilePictureImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
@@ -34,10 +39,8 @@ class HomeViewController: UIViewController {
         userProfilePictureImageView.image = UIImage(systemName: "person")
         setActivityIndicator()
         setTabBarIcons()
-        configObserver()
         configHome()
         fetchData()
-        //        configTableView()
     }
     
     func fetchData() {
@@ -69,21 +72,49 @@ class HomeViewController: UIViewController {
         }
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+        getUserData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
     }
     
-    func configObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateImage), name: .updateImage, object: nil)
+    
+    func getUserData(){
+        firestore.collection("usuarios").getDocuments { snapchot, error in
+            if error == nil {
+                if let snapchot {
+                    DispatchQueue.main.async {
+                        self.user = snapchot.documents.map({ document in
+                            return User(nome: document["nome"] as? String ?? "",
+                                        email: document["email"] as? String ?? "",
+                                        image: document["image"] as? String ?? "")
+                        })
+                        self.populateView(index: self.getIndex(email: self.currentUser?.email ?? ""))
+                    }
+                }
+            }
+        }
     }
     
     @objc func updateImage(notification: NSNotification){
         userProfilePictureImageView.image = notification.object as? UIImage
+    }
+    
+    func populateView(index: Int){
+        welcomeLabel.text = "Hello, \(user[index].nome.capitalized)!"
+        let url = URL(string: user[index].image) ?? URL(fileURLWithPath: "")
+        userProfilePictureImageView.af.setImage(withURL: url)
+    }
+    
+    func getIndex(email: String) -> Int {
+        let index = user.firstIndex { $0.email == email } ?? 0
+        print("banana \(index)")
+        return index
     }
     
     func configHome(){

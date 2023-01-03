@@ -78,6 +78,7 @@
 		EB43689428FE1CAE0023A2F9 /* LoginVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB43689328FE1CAE0023A2F9 /* LoginVC.storyboard */; };
 		EB43689728FE28D60023A2F9 /* EsqueceuSenhaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB43689628FE28D60023A2F9 /* EsqueceuSenhaVC.swift */; };
 		EB43689928FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB43689828FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard */; };
+		EB6FF62629621DDD000B1AF3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6FF62529621DDD000B1AF3 /* User.swift */; };
 		EBCBA2652910873B0073AE60 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCBA2642910873B0073AE60 /* MainTabBarController.swift */; };
 /* End PBXBuildFile section */
 
@@ -157,6 +158,7 @@
 		EB43689328FE1CAE0023A2F9 /* LoginVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginVC.storyboard; sourceTree = "<group>"; };
 		EB43689628FE28D60023A2F9 /* EsqueceuSenhaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EsqueceuSenhaVC.swift; sourceTree = "<group>"; };
 		EB43689828FE28F00023A2F9 /* EsqueceuSenhaVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EsqueceuSenhaVC.storyboard; sourceTree = "<group>"; };
+		EB6FF62529621DDD000B1AF3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EBCBA2642910873B0073AE60 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -372,6 +374,7 @@
 				5CC71FA528FE25D100FF75ED /* ChangePasswordViewController.swift */,
 				5CC71FA328FE242B00FF75ED /* Profile.storyboard */,
 				5CC71FA928FE26F200FF75ED /* ProfileViewController.swift */,
+				EB6FF62529621DDD000B1AF3 /* User.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -726,6 +729,7 @@
 				EB43689728FE28D60023A2F9 /* EsqueceuSenhaVC.swift in Sources */,
 				EBCBA2652910873B0073AE60 /* MainTabBarController.swift in Sources */,
 				82FD41DA2925365B00C49B37 /* DescriptionTableViewCell.swift in Sources */,
+				EB6FF62629621DDD000B1AF3 /* User.swift in Sources */,
 				82FD41DE292542E800C49B37 /* DetailsTableViewCell.swift in Sources */,
 				821BCA4129117A5400D9BDB3 /* NoFavoritesCollectionViewCell.swift in Sources */,
 				EB43688C28FE15370023A2F9 /* RegisterVC.swift in Sources */,

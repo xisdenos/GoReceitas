@@ -10,9 +10,8 @@ import FirebaseAuth
 
 import FirebaseStorage
 import FirebaseFirestore
-
 import Firebase
-
+import AlamofireImage
 
 class ProfileViewController: UIViewController {
     
@@ -22,13 +21,19 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var changeEmailButton: UIButton!
     @IBOutlet weak var buttonChangePassword: UIButton!
     @IBOutlet weak var buttonGoOut: UIButton!
-    
     @IBOutlet weak var buttonEditPhoto: UIButton!
+    
+    
+    
     var auth:Auth?
     var alert: AlertController?
     let imagePicker: UIImagePickerController = UIImagePickerController()
     let storage = Storage.storage().reference()
     let firestore = Firestore.firestore()
+    var user: [User] = []
+    var currentUser = Auth.auth().currentUser
+    
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,14 +44,18 @@ class ProfileViewController: UIViewController {
         cornerRadiusElements()
         self.view.backgroundColor = .viewBackgroundColor
         configImagePicker()
-        imageProfile.image = imageProfile.image
         textUsername.isUserInteractionEnabled = false
         textEmail.isUserInteractionEnabled = false
+        updateImage()
+        
     }
+    
+ 
     
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
+        getUserData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -54,7 +63,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func tappedEditPhoto(_ sender: UIButton) {
-    
+        
         
         
         self.alert?.alertEditPhoto(completion: { option in
@@ -73,7 +82,7 @@ class ProfileViewController: UIViewController {
         })
         
     }
-
+    
     @IBAction func tapChangePasswordScreen(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "changePassword") as! ChangePasswordViewController
@@ -109,7 +118,7 @@ class ProfileViewController: UIViewController {
     
     func imageRound() {
         imageProfile.layer.masksToBounds = true
-        imageProfile.layer.cornerRadius =  75
+        imageProfile.layer.cornerRadius =  70
     }
     
     func cornerRadiusElements(){
@@ -129,7 +138,61 @@ class ProfileViewController: UIViewController {
         imagePicker.delegate = self
     }
     
+    func updateImage(){
+        guard let urlString = UserDefaults.standard.value(forKey: "url") as? String,
+              let url = URL(string: urlString) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data, error == nil else { return }
+            
+            DispatchQueue.main.async {
+                let image = UIImage(data: data)
+                self.imageProfile.image = image
+            }
+        }
+        task.resume()
+    }
     
+    
+    
+    func getUserData(){
+        firestore.collection("usuarios").getDocuments { snapchot, error in
+            if error == nil {
+                if let snapchot {
+                    DispatchQueue.main.async {
+                        self.user = snapchot.documents.map({ document in
+                            print("bola \(self.currentUser?.email)")
+                            return User(nome: document["nome"] as? String ?? "",
+                                        email: document["email"] as? String ?? "",
+                        image: document["image"] as? String ?? "")
+                        })
+                        self.populateView(index: self.getIndex(email: self.currentUser?.email ?? ""))
+                        print(self.currentUser?.email)
+                        print(self.user)
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    func populateView(index: Int){
+        textEmail.text = user[index].email
+        textEmail.textColor = .lightGray
+        textUsername.text = user[index].nome
+        textUsername.textColor = .lightGray
+        let url = URL(string: user[index].image) ?? URL(fileURLWithPath: "")
+        imageProfile.af.setImage(withURL: url)
+    }
+    
+    func getIndex(email: String) -> Int {
+        let index = user.firstIndex { $0.email == email } ?? 0
+        print("banana \(index)")
+            return index
+    
+    }
+    
+
     
     
 }
@@ -139,18 +202,46 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.imageProfile.image = image
-            NotificationCenter.default.post(name: .updateImage, object: imageProfile.image)
+        
+            
+            guard let imageData = image.pngData() else { return }
+            
+            
+          
+            storage.child("images/file.png").putData(imageData,metadata: nil) { _, error in
+                guard error == nil else {
+                    print("failed to upload", error?.localizedDescription)
+                    return
+                }
+                self.storage.child("images/file.png").downloadURL { url, error in
+                    guard let url = url, error == nil else {return}
+                    let urlString = url.absoluteString
+
+                    DispatchQueue.main.async {
+                        self.imageProfile.image = image
+                    }
+
+                    print("Download URL: \(urlString)")
+//                    UserDefaults.standard.set(urlString, forKey: "url")
+                    
+                   
+                    let doc = self.firestore.collection("usuarios").document(self.currentUser?.uid ?? "")
+                    doc.updateData([
+                        "image": urlString
+                    ])
+
+                }
+            }
             
         }
         picker.dismiss(animated: true)
-
-    }
-
-    func saveImage(image: String){
-//        let image = imageProfile.image.jpg
     }
     
-
+    
+    
+    
+    
+    
 }
 extension NSNotification.Name {
     static let updateImage = Notification.Name("updateImage")

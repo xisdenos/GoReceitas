@@ -31,6 +31,8 @@ class LoginVC: UIViewController {
     @IBOutlet weak var riscoView3: UIView!
     @IBOutlet weak var imageLogoFundo: UIImageView!
     
+    let database = Database.database().reference()
+    
     var auth:Auth?
     var alert: AlertController?
     
@@ -42,11 +44,10 @@ class LoginVC: UIViewController {
         JaTemCadastro()
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
-        
     }
-    
     
     func configCaracteristicas(){
         
@@ -131,11 +132,11 @@ class LoginVC: UIViewController {
         
         self.auth?.signIn(withEmail: email, password: password, completion: { [weak self] usuario, error in
             if error != nil {
-                self?.alert?.alertInformation(title: "Atenção", message: "Dados incorretos, tente novamente")
+                self?.alert?.alertInformation(title: "Heads up", message: "Incorrect data, try again")
                 
             } else {
                 if usuario == nil{
-                    self?.alert?.alertInformation(title: "Atenção", message: "Tivemos um problema inesperado")
+                    self?.alert?.alertInformation(title: "Heads up", message: "We had an unexpected problem")
                 } else {
                     let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
                     self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
@@ -157,7 +158,7 @@ class LoginVC: UIViewController {
         GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
             
             guard error == nil else {
-                self.alert?.alertInformation(title: "Atenção", message: "Falha ao tentar realizar o login, Tente Novamente!")
+                self.alert?.alertInformation(title: "Heads up", message: "Failed to login, please try again!")
                 return
             }
             
@@ -173,24 +174,23 @@ class LoginVC: UIViewController {
             
             Auth.auth().signIn(with: credential) { [weak self] dataResult, error in
                 guard error == nil else {
-                    self?.alert?.alertInformation(title: "Atenção", message: "Falha ao tentar realizar o login, Tente Novamente!")
+                    self?.alert?.alertInformation(title: "Heads up", message: "Failed to login, please try again!")
                     return
                 }
                 
+                // igor-gmail-com
+                let email = dataResult?.user.email ?? "no-email"
+                let name = dataResult?.user.displayName ?? "Username"
+                let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+                
                 let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
                 
-                // TODO: IF THE USER ALREADY EXISTS, THERE IS NO NEED TO SET ALL THIS DATA! OTHERWISE ALL DATA WILL BE ERASED
-                DispatchQueue.global(qos: .userInitiated).async {
-                    // igor-gmail-com
-                    let email = dataResult?.user.email ?? "no-email"
-                    let name = dataResult?.user.displayName ?? "Username"
-                    let database = Database.database().reference()
-                    let emptyFavorites: [[String: Any]] = [[:]]
-                    let data = ["name": name, "email": email]
-                    
-                    let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-                    database.child("users").child(emailFormatted).updateChildValues(data)
-//                    database.child("users").child(emailFormatted).child("favorites").setValue(emptyFavorites)
+                // if there is no user, set all the new data.
+                self?.database.child("users").observeSingleEvent(of: .value) { snapshot in
+                    if !snapshot.hasChild(emailFormatted) {
+                        let data = ["name": name, "email": email]
+                        self?.database.child("users").child(emailFormatted).setValue(data)
+                    }
                 }
                 
                 self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)

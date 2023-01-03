@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import GoogleSignIn
 import FirebaseDatabase
+import FirebaseFirestore
 
 enum RegisterDescriptions: String {
     case goLabel = "Go"
@@ -39,15 +40,17 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var backLoginButton: UIButton!
     @IBOutlet weak var logoImage: UIImageView!
     
-
-    private var auth:Auth?
+    private var auth: Auth?
     private var alert: AlertController?
     
+    var firestore: Firestore?
+    var user = Auth.auth().currentUser
     
     override func viewDidLoad() {
         super.viewDidLoad()
         alert = AlertController(controller: self)
         self.auth = Auth.auth()
+        self.firestore = Firestore.firestore()
         configCaracteres()
         backLogin()
     }
@@ -156,9 +159,20 @@ class RegisterVC: UIViewController {
         if senha == confirmarSenha {
             self.auth?.createUser(withEmail: email, password: senha, completion: { [weak self] result, error in
                 if error != nil{
-                    self?.alert?.alertInformation(title: "Atenção", message: "Erro ao cadastrar, verifique os dados e tente novamente")
+                    self?.alert?.alertInformation(title: "Heads up", message: "Error registering, check the data and try again")
                 } else {
-                    self?.alert?.alertInformation(title: "Parabens", message: "Usuario cadastrado com sucesso", completion: {
+                    
+                    
+                    
+                    if let idUsuario = result?.user.uid{
+                        self?.firestore?.collection("usuarios").document(idUsuario).setData([
+                            "nome":self?.textFieldName.text ?? "",
+                            "email":self?.textFieldEmail.text ?? "",
+                            "id":idUsuario
+                        ])
+                    }
+                    
+                    self?.alert?.alertInformation(title: "Success", message: "Successfully registered user", completion: {
                         let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
                         
                         DispatchQueue.global(qos: .userInitiated).async {
@@ -168,7 +182,7 @@ class RegisterVC: UIViewController {
                             let data = ["name": name, "email": email]
                             let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
                             database.child("users").child(emailFormatted).setValue(data)
-//                            database.child("users").child(emailFormatted).child("favorites").setValue(emptyFavorites)
+                            //                            database.child("users").child(emailFormatted).child("favorites").setValue(emptyFavorites)
                         }
                         
                         self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
@@ -176,7 +190,7 @@ class RegisterVC: UIViewController {
                 }
             })
         } else {
-            self.alert?.alertInformation(title: "Atenção", message: "Senhas Divergentes")
+            self.alert?.alertInformation(title: "Heads up", message: "Divergent Passwords")
         }
     }
     
