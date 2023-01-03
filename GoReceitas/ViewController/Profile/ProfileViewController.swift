@@ -44,7 +44,6 @@ class ProfileViewController: UIViewController {
         cornerRadiusElements()
         self.view.backgroundColor = .viewBackgroundColor
         configImagePicker()
-        //        imageProfile.image = imageProfile.image
         textUsername.isUserInteractionEnabled = false
         textEmail.isUserInteractionEnabled = false
         updateImage()
@@ -119,7 +118,7 @@ class ProfileViewController: UIViewController {
     
     func imageRound() {
         imageProfile.layer.masksToBounds = true
-        imageProfile.layer.cornerRadius =  75
+        imageProfile.layer.cornerRadius =  70
     }
     
     func cornerRadiusElements(){
@@ -179,7 +178,9 @@ class ProfileViewController: UIViewController {
     
     func populateView(index: Int){
         textEmail.text = user[index].email
+        textEmail.textColor = .lightGray
         textUsername.text = user[index].nome
+        textUsername.textColor = .lightGray
         let url = URL(string: user[index].image) ?? URL(fileURLWithPath: "")
         imageProfile.af.setImage(withURL: url)
     }

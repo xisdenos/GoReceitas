@@ -36,7 +36,7 @@ class ChangePasswordViewController: UIViewController {
     
     @IBAction func alertNewPassword(_ sender: UIButton) {
         alertVerification()
-//        changePassword()
+        changePassword()
     }
     
     func configFontAndColors(){

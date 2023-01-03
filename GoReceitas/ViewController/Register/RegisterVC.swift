@@ -166,7 +166,6 @@ class RegisterVC: UIViewController {
                         self?.firestore?.collection("usuarios").document(idUsuario).setData([
                             "nome":self?.textFieldName.text ?? "",
                             "email":self?.textFieldEmail.text ?? "",
-                            "senha":self?.textFieldSenha.text ?? "",
                             "id":idUsuario
                         ])
                     }
