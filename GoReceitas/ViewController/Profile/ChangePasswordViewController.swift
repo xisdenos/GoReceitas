@@ -73,7 +73,7 @@ class ChangePasswordViewController: UIViewController {
         let currentUser = Auth.auth().currentUser
 
         if currentPasswordText.text != nil {
-            db.collection("senha").document("\(userID)").updateData(["senha": newPasswordText.text ])
+            db.collection("senha").document("\(userID ?? "")").updateData(["senha": newPasswordText.text ?? "" ])
             if newPasswordText.text != userPassword {
                 currentUser?.updatePassword(to: newPasswordText.text ?? "") {error in
                     if let error = error {

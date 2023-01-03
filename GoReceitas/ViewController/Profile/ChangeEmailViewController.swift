@@ -48,7 +48,7 @@ class ChangeEmailViewController: UIViewController {
         let currentUser = Auth.auth().currentUser
 
         if newEmailText.text != nil {
-            db.collection("email").document("\(userID)").updateData(["email": newEmailText.text ])
+            db.collection("usuarios").document("\(userID ?? "")").updateData(["email": newEmailText.text ?? "" ])
             if newEmailText.text != userEmail {
                 currentUser?.updateEmail(to: newEmailText.text ?? "") {error in
                     if let error = error {
