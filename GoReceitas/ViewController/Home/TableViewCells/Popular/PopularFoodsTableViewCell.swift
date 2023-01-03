@@ -88,6 +88,7 @@ class PopularFoodsTableViewCell: UITableViewCell {
     public func configure(with model: [FoodResponse]) {
         DispatchQueue.main.async { [weak self] in
             self?.popularList = model.shuffled()
+            self?.collectionView.reloadData()
         }
     }
 }
