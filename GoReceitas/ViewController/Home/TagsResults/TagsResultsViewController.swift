@@ -11,6 +11,12 @@ class TagsResultsViewController: UIViewController {
     
     private var foodInformation: [FoodResponse] = []
     
+    private var favoriteKeys: [String] = [String]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
+    
     let database = Database.database().reference()
     
     weak var delegate: DefaultCellsDelegate?
@@ -33,6 +39,7 @@ class TagsResultsViewController: UIViewController {
         tableView.backgroundColor = .viewBackgroundColor
         tableView.separatorStyle = .none
         
+        checkFavoriteStatusAndUpdate()
         setActivityIndicator()
     }
     
@@ -45,6 +52,27 @@ class TagsResultsViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
+    
+    func hasFavorites(food: FoodResponse) -> Bool {
+        if favoriteKeys.contains(String(food.id)) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func checkFavoriteStatusAndUpdate() {
+        let userEmail = Favorite.getCurrentUserEmail
+        
+        database.child("users/\(userEmail)").child("favorites").observe(.value) { snapshot in
+            if let dictionary = snapshot.value as? [String: Any] {
+                self.favoriteKeys.removeAll()
+                for (key, _) in dictionary {
+                    self.favoriteKeys.append(key)
+                }
+            }
+        }
     }
     
     func setActivityIndicator() {
@@ -77,7 +105,8 @@ extension TagsResultsViewController: UITableViewDelegate, UITableViewDataSource 
         foodInfoCell.delegate = self
         
         if !foodInformation.isEmpty {
-            foodInfoCell.setup(foodInfo: foodInformation[indexPath.row])
+            let isFavorited = hasFavorites(food: foodInformation[indexPath.row])
+            foodInfoCell.setup(foodInfo: foodInformation[indexPath.row], isFavorited: isFavorited)
         }
         return foodInfoCell
     }

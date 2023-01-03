@@ -16,7 +16,7 @@ class TagsResultsTableViewCell: UITableViewCell {
     
     weak var delegate: DefaultTableViewCellDelegate?
     
-    func setup(foodInfo: FoodResponse) {
+    func setup(foodInfo: FoodResponse, isFavorited: Bool = false) {
         // set image configs
         imageFood.loadImageUsingCache(withUrl: foodInfo.thumbnail_url)
         imageFood.contentMode = .scaleAspectFill
@@ -26,6 +26,8 @@ class TagsResultsTableViewCell: UITableViewCell {
         // set food name and prepTime lbl configs
         foodNameLbl.text = foodInfo.name
         prepTimeLbl.text = foodInfo.yields ?? "N/A"
+        
+        isFavorited == true ? heartButton.setImage(UIImage(named: "heart-fill"), for: .normal) : heartButton.setImage(UIImage(named: "heart-empty"), for: .normal)
     }
     
     @IBAction func favoriteButton(_ sender: UIButton) {
