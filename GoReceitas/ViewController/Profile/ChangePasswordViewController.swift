@@ -19,10 +19,12 @@ class ChangePasswordViewController: UIViewController {
     @IBOutlet weak var saveEditionsButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
+    var alert: AlertController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configFontAndColors()
+        alert = AlertController(controller: self)
         self.view.backgroundColor = .viewBackgroundColor
     }
     
@@ -56,13 +58,15 @@ class ChangePasswordViewController: UIViewController {
     
     func alertVerification(){
         if currentPasswordText.text == "" || newPasswordText.text == "" || confirmNewPasswordText.text == ""{
-            let alert = UIAlertController(title: "Senha incorreta", message: "As senhas digitadas não são compatíveis", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok",style: UIAlertAction.Style.default,handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            self.alert?.alertInformation(title: "Incorrect password", message: "The passwords entered are not supported", completion: {
+                self.navigationController?.popViewController(animated: true)
+            })
         }else{
-            let alert = UIAlertController(title: "Parabéns!", message: "Senha alterada com sucesso!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok",style: UIAlertAction.Style.default,handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            self.alert?.alertInformation(title: "Success", message: "Password changed successfully!", completion: {
+                self.navigationController?.popViewController(animated: true)
+            })
+
+            
         }
     }
     
@@ -71,7 +75,7 @@ class ChangePasswordViewController: UIViewController {
         let userID = Auth.auth().currentUser?.uid
         let userPassword = Auth.auth().currentUser?.email
         let currentUser = Auth.auth().currentUser
-
+        
         if currentPasswordText.text != nil {
             db.collection("senha").document("\(userID ?? "")").updateData(["senha": newPasswordText.text ?? "" ])
             if newPasswordText.text != userPassword {

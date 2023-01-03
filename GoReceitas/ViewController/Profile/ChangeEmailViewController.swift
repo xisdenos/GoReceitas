@@ -74,13 +74,15 @@ class ChangeEmailViewController: UIViewController {
     
     func alertVerification(){
         if newEmailText.text == "" || currentPasswordText.text == "" {
-            let alert = UIAlertController(title: "Erro", message: "Email ou senha inválido", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok",style: UIAlertAction.Style.default,handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            self.alert?.alertInformation(title: "Heads up", message: "Invalid email or password", completion: {
+                self.navigationController?.popViewController(animated: true)
+            })
+            
+            
         }else{
-            let alert = UIAlertController(title: "Parabéns!", message: "Email alterado com sucesso", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok",style: UIAlertAction.Style.default,handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            self.alert?.alertInformation(title: "Success", message: "Email changed successfully", completion: {
+                self.navigationController?.popViewController(animated: true)
+            })
         }
     }
     
