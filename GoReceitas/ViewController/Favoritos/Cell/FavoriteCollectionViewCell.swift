@@ -15,7 +15,6 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var prepTimeLabel: UILabel!
     @IBOutlet weak var heartImage: UIButton!
     
-    
     // mesmo nome do arquivo é nome da classe que é nome do identificador (o mesmo nome pros tres)
     static let identifier: String = "FavoriteCollectionViewCell"
     
@@ -24,6 +23,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     }
     
     weak var viewController: UIViewController?
+    weak var delegate: DefaultFoodCollectionViewCellDelegate?
     
     private var isActive: Bool = false
     
@@ -41,22 +41,28 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     @IBAction func toggleHeartImage(_ sender: UIButton) {
         toggleHeartImage(for: sender)
     }
-
     
+    func setup(model: FoodResponse) {
+        foodLabel.text = model.name
+        prepTimeLabel.text = model.yields ?? ""
+        foodImageView.loadImageUsingCache(withUrl: model.thumbnail_url)
+        heartImage.setImage(UIImage(named: "heart-fill"), for: .normal)
+        foodLabel.font = .systemFont(ofSize: 20, weight: .bold)
+    }
+
     private func toggleHeartImage(for button: UIButton) {
         showAlert()
     }
     
     func showAlert () {
-        let alertController: UIAlertController = UIAlertController(title: "Atenção", message: "Tem certeza que deseja remover esse item?", preferredStyle: .alert)
+        let alertController: UIAlertController = UIAlertController(title: "Attention", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
         
-        let ok: UIAlertAction = UIAlertAction(title: "ok", style: .default) { [weak self] _ in
+        let ok: UIAlertAction = UIAlertAction(title: "OK", style: .destructive) { [weak self] _ in
             guard let self = self else { return }
-            self.isActive = false
-//            self.delegate?.didTapHeartButton(cell: self)
+            self.delegate?.didTapHeartButton(cell: self, isActive: false)
         }
 
-        let cancel: UIAlertAction = UIAlertAction(title: "cancelar", style: .destructive)
+        let cancel: UIAlertAction = UIAlertAction(title: "cancelar", style: .default)
         alertController.addAction(cancel)
         alertController.addAction(ok)
 

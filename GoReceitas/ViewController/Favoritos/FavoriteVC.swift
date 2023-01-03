@@ -53,33 +53,37 @@ class FavoriteVC: UIViewController {
         let userEmail = Favorite.getCurrentUserEmail
         
         ref.child("users/\(userEmail)/favorites").observe(.value) { snapshot in
-            if let dictionary = snapshot.value as? [String: Any] {
-                // in order to overwrite the array, first we need to remove all items then set it again
-                // otherwise the array will be doubled
-                self.favorites.removeAll()
-                // Iterate over the dictionary of recipes
-                for item in dictionary {
-                    // get the values: ex "Easy Chocolate Rugelach" = { "name": "Easy Chocolate Rugelach" }
-                    let favoriteItem = item.value as! [String: Any]
-
-                    print(favoriteItem)
-
-                    // iterate once again so we can get the inner dictionary values: ex { "name": "Easy Chocolate Rugelach" }
-                    for foodInfo in favoriteItem {
-                        let details = foodInfo.value as! NSDictionary
-
-                        let foodName = details["name"] as! String
-                        let foodYields = details["yields"] as! String
-                        let foodCookTime = details["cook_time_minutes"] as! Int
-                        let foodId = details["id"] as! Int
-                        let foodImage = details["image"] as! String
-                        let foodPrepTime = details["prep_time_minutes"] as! Int
-
-                        let recipe = FoodResponse(id: foodId, name: foodName, thumbnail_url: foodImage, cook_time_minutes: foodCookTime, prep_time_minutes: foodPrepTime, yields: foodYields)
-
-                        self.favorites.append(recipe)
+            if snapshot.hasChildren() {
+                if let dictionary = snapshot.value as? [String: Any] {
+                    // in order to overwrite the array, first we need to remove all items then set it again
+                    // otherwise the array will be doubled
+                    self.favorites.removeAll()
+                    // Iterate over the dictionary of recipes
+                    for item in dictionary {
+                        // get the values: ex "Easy Chocolate Rugelach" = { "name": "Easy Chocolate Rugelach" }
+                        let favoriteItem = item.value as! [String: Any]
+                        
+                        print(favoriteItem)
+                        
+                        // iterate once again so we can get the inner dictionary values: ex { "name": "Easy Chocolate Rugelach" }
+                        for foodInfo in favoriteItem {
+                            let details = foodInfo.value as! NSDictionary
+                            
+                            let foodName = details["name"] as! String
+                            let foodYields = details["yields"] as! String
+                            let foodCookTime = details["cook_time_minutes"] as! Int
+                            let foodId = details["id"] as! Int
+                            let foodImage = details["image"] as! String
+                            let foodPrepTime = details["prep_time_minutes"] as! Int
+                            
+                            let recipe = FoodResponse(id: foodId, name: foodName, thumbnail_url: foodImage, cook_time_minutes: foodCookTime, prep_time_minutes: foodPrepTime, yields: foodYields)
+                            
+                            self.favorites.append(recipe)
+                        }
                     }
                 }
+            } else {
+                self.favorites.removeAll()
             }
             DispatchQueue.main.async { [weak self] in
                 self?.collectionView.reloadData()
@@ -97,7 +101,8 @@ class FavoriteVC: UIViewController {
             layout.minimumInteritemSpacing = 0
         }
         
-        collectionView.register(DefaultFoodCollectionViewCell.nib(), forCellWithReuseIdentifier: DefaultFoodCollectionViewCell.identifier)
+//        collectionView.register(DefaultFoodCollectionViewCell.nib(), forCellWithReuseIdentifier: DefaultFoodCollectionViewCell.identifier)
+        collectionView.register(FavoriteCollectionViewCell.nib(), forCellWithReuseIdentifier: FavoriteCollectionViewCell.identifier)
         collectionView.register(NoFavoritesCollectionViewCell.nib(), forCellWithReuseIdentifier: NoFavoritesCollectionViewCell.identifier)
     }
 }
@@ -112,9 +117,10 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoFavoritesCollectionViewCell.identifier, for: indexPath) as? NoFavoritesCollectionViewCell
             return cell ?? UICollectionViewCell()
         }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DefaultFoodCollectionViewCell.identifier, for: indexPath) as? DefaultFoodCollectionViewCell
-        cell?.setup(model: favorites[indexPath.row], isFavorited: true)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCollectionViewCell.identifier, for: indexPath) as? FavoriteCollectionViewCell
+        cell?.setup(model: favorites[indexPath.row])
         cell?.delegate = self
+        cell?.viewController = self
         return cell ?? UICollectionViewCell()
         
     }
@@ -160,22 +166,11 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
 
 extension FavoriteVC: DefaultFoodCollectionViewCellDelegate {
     func didTapHeartButton(cell: UICollectionViewCell, isActive: Bool) {
-        
         guard let foodIndexPath = collectionView.indexPath(for: cell) else { return }
         let food = favorites[foodIndexPath.row]
-        
-        let alert = UIAlertController(title: "Attention", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
-        let remove = UIAlertAction(title: "OK", style: .destructive) { _ in
-            Favorite.unfavoriteItem(at: food, database: self.database)
-            self.favorites.remove(at: foodIndexPath.row)
-            self.collectionView.reloadData()
-        }
-        
-        let ok = UIAlertAction(title: "Cancel", style: .default)
-        
-        alert.addAction(remove)
-        alert.addAction(ok)
-        present(alert, animated: true)
+        Favorite.unfavoriteItem(at: food, database: self.database)
+        favorites.remove(at: foodIndexPath.row)
+        collectionView.reloadData()
     }
 }
 
