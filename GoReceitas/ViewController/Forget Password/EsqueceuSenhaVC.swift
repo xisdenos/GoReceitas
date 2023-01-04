@@ -28,6 +28,18 @@ class EsqueceuSenhaVC: UIViewController {
         alert = AlertController(controller: self)
         self.auth = Auth.auth()
         configCharacter()
+        view.backgroundColor = .viewBackgroundColor
+        setBackground()
+    }
+    
+    func setBackground() {
+        guard let background = Utils.getUserDefaults(key: "darkmode") as? Bool else { return }
+        
+        if background {
+            overrideUserInterfaceStyle = .dark
+        } else {
+            overrideUserInterfaceStyle = .light
+        }
     }
     
     func configCharacter() {

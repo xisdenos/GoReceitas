@@ -44,12 +44,23 @@ class LoginVC: UIViewController {
         alert = AlertController(controller: self)
         self.auth = Auth.auth()
         configCaracteristicas()
-        JaTemCadastro()
-        
+        alreadyRegistered()
+        view.backgroundColor = .viewBackgroundColor
+        setBackground()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    func setBackground() {
+        guard let background = Utils.getUserDefaults(key: "darkmode") as? Bool else { return }
+        
+        if background {
+            overrideUserInterfaceStyle = .dark
+        } else {
+            overrideUserInterfaceStyle = .light
+        }
     }
     
     func configCaracteristicas(){
@@ -104,15 +115,13 @@ class LoginVC: UIViewController {
         imageLogoFundo.image = UIImage(named: "logoFundo")
     }
     
-    func JaTemCadastro(){
-        let atts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(ciColor: .black), .font: UIFont.systemFont(ofSize: 15, weight: .semibold)]
+    func alreadyRegistered(){
+        let atts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(named: "textColorDefault") ?? .black, .font: UIFont.systemFont(ofSize: 15, weight: .semibold)]
         let attributedTitle = NSMutableAttributedString(string: LoginRegisterDescriptions.noAccountLabel.rawValue, attributes: atts)
         let boldAtts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(red: 101/255, green: 33/255, blue: 165/255, alpha: 1), .font: UIFont.systemFont(ofSize: 15, weight: .semibold)]
         attributedTitle.append(NSAttributedString(string: LoginRegisterDescriptions.signUpLabel.rawValue, attributes: boldAtts))
         fazerCadastroButton.setAttributedTitle(attributedTitle, for: .normal)
         fazerCadastroButton.setTitleColor(UIColor(red: 101/255, green: 33/255, blue: 165/255, alpha: 1), for: .normal)    }
-    
-    
     
     
     func validacaoTextField(){

@@ -53,6 +53,18 @@ class RegisterVC: UIViewController {
         self.firestore = Firestore.firestore()
         configCaracteres()
         backLogin()
+        view.backgroundColor = .viewBackgroundColor
+        setBackground()
+    }
+    
+    func setBackground() {
+        guard let background = Utils.getUserDefaults(key: "darkmode") as? Bool else { return }
+        
+        if background {
+            overrideUserInterfaceStyle = .dark
+        } else {
+            overrideUserInterfaceStyle = .light
+        }
     }
     
     func configCaracteres(){
