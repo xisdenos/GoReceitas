@@ -13,6 +13,8 @@ class ResultsTableViewCell: UITableViewCell {
     @IBOutlet weak var foodImage: UIImageView!
     @IBOutlet weak var prepTime: UILabel!
     
+    @IBOutlet weak var heartContainer: UIView!
+    
     @IBOutlet weak var heartButton: UIButton!
     
     private var isActive: Bool = false
@@ -37,9 +39,10 @@ class ResultsTableViewCell: UITableViewCell {
         foodImage.contentMode = .scaleAspectFill
         foodImage.layer.cornerRadius = 10
         foodImage.layer.masksToBounds = true
-        heartButton.layer.cornerRadius = 10
+        heartContainer.layer.cornerRadius = 5
         heartButton.clipsToBounds = true
         isFavorited == true ? heartButton.setImage(UIImage(named: "heart-fill"), for: .normal) : heartButton.setImage(UIImage(named: "heart-empty"), for: .normal)
+        self.isActive = isFavorited
     }
     
     @IBAction func heartTapped(_ sender: UIButton) {

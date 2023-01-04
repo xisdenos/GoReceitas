@@ -64,13 +64,9 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
         isActive = !isActive
         print("heart tapped default", #function)
         if isActive == true {
-            print(true)
-            print("isactive", isActive)
             sender.setImage(UIImage(named: "heart-fill"), for: .normal)
             delegate?.didTapHeartButton(cell: self, isActive: isActive)
         } else if isActive == false {
-            print(false)
-            print("isactive", isActive)
             delegate?.didTapHeartButton(cell: self, isActive: isActive)
             sender.setImage(UIImage(named: "heart-empty"), for: .normal)
         }

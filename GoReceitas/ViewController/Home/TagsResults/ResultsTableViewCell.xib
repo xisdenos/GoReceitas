@@ -101,6 +101,7 @@
                 <outlet property="foodImage" destination="QND-62-3Lx" id="qoe-VU-0aX"/>
                 <outlet property="foodName" destination="1lA-aQ-OlA" id="mzJ-jM-f8G"/>
                 <outlet property="heartButton" destination="I4X-Z1-OMH" id="ZvI-xl-xsB"/>
+                <outlet property="heartContainer" destination="alz-Mw-VB2" id="JAz-af-CHd"/>
                 <outlet property="prepTime" destination="qbQ-Ys-FPK" id="UKe-r5-8Jh"/>
             </connections>
             <point key="canvasLocation" x="60" y="51.895734597156398"/>

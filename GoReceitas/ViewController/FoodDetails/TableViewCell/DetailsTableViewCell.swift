@@ -54,7 +54,6 @@ class DetailsTableViewCell: UITableViewCell {
             caloriesContainer.setNumber(of: "N/A")
             carbContainer.setNumber(of: "N/A")
         }
-            
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

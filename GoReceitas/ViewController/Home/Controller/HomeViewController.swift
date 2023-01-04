@@ -263,7 +263,8 @@ extension HomeViewController: CategoryTagsTableViewCellDelegate {
             case .success(let tags):
                 DispatchQueue.main.async {
                     viewController.title = categoryInfo.display_name
-                    viewController.configureFoodInformation(foodsInfo: tags.results)
+                    let filteredArray = tags.results.filter({ $0.yields != nil })
+                    viewController.configureFoodInformation(foodsInfo: filteredArray)
                     viewController.activityIndicator.stopAnimating()
                 }
             case .failure(let failure):

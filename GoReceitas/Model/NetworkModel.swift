@@ -76,11 +76,12 @@ struct NetworkModel {
       return recipes
     }
     
-    func search(text: String, _ completion: @escaping (Result<Foods, Error>) -> Void) {
+    func search(text: String, _ completion: @escaping (Result<[FoodResponse], Error>) -> Void) {
         service.searchFoodWith(term: text) { foodsResult in
             switch foodsResult {
             case .success(let foods):
-                completion(.success(foods))
+                let filteredArray = foods.results.filter({ $0.yields != nil })
+                completion(.success(filteredArray))
             case .failure(let failure):
                 completion(.failure(failure))
                 print(failure)
