@@ -51,6 +51,7 @@
 		8232243D2965AE030060891B /* DarkModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8232243C2965AE030060891B /* DarkModeViewController.swift */; };
 		823224422965B3F50060891B /* DarkModeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823224402965B3F50060891B /* DarkModeTableViewCell.swift */; };
 		823224432965B3F50060891B /* DarkModeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 823224412965B3F50060891B /* DarkModeTableViewCell.xib */; };
+		823224462965BC3D0060891B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823224452965BC3D0060891B /* Utils.swift */; };
 		8248DB762944D7E800C6B73F /* FoodDetailsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8248DB752944D7E700C6B73F /* FoodDetailsInfo.swift */; };
 		8269F344294134F9000C226F /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8269F343294134F9000C226F /* UIImageView+.swift */; };
 		826CDD16295CD76B008D00E4 /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826CDD15295CD76B008D00E4 /* NetworkModel.swift */; };
@@ -133,6 +134,7 @@
 		8232243C2965AE030060891B /* DarkModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeViewController.swift; sourceTree = "<group>"; };
 		823224402965B3F50060891B /* DarkModeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeTableViewCell.swift; sourceTree = "<group>"; };
 		823224412965B3F50060891B /* DarkModeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DarkModeTableViewCell.xib; sourceTree = "<group>"; };
+		823224452965BC3D0060891B /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		8248DB752944D7E700C6B73F /* FoodDetailsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailsInfo.swift; sourceTree = "<group>"; };
 		8269F343294134F9000C226F /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		826CDD15295CD76B008D00E4 /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		06459BB128B01A060054F510 /* GoReceitas */ = {
 			isa = PBXGroup;
 			children = (
+				823224442965BC350060891B /* Utils */,
 				82873C80295FB0D9001E353D /* Helpers */,
 				82A68AEC293FD9A40039D74D /* Network */,
 				EB0892B92902F16800FF33E8 /* AlertController */,
@@ -389,6 +392,14 @@
 				823224412965B3F50060891B /* DarkModeTableViewCell.xib */,
 			);
 			path = "Table View Cell";
+			sourceTree = "<group>";
+		};
+		823224442965BC350060891B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				823224452965BC3D0060891B /* Utils.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		8247B8FF2909EC8B00437F1E /* Profile */ = {
@@ -775,6 +786,7 @@
 				82025B9D28EB8F890090376F /* SearchViewController.swift in Sources */,
 				1F5585482902CB6100580185 /* FavoriteCollectionViewCell.swift in Sources */,
 				820FC3942935575400247C6F /* DefaultFoodCollectionViewCell.swift in Sources */,
+				823224462965BC3D0060891B /* Utils.swift in Sources */,
 				EB0892BB2902F18900FF33E8 /* AlertController.swift in Sources */,
 				8279DC492904B71C00E526A8 /* Colors+.swift in Sources */,
 				820FC38F293555FD00247C6F /* TryItOutTableViewCell.swift in Sources */,

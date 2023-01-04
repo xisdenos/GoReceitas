@@ -26,10 +26,21 @@ class DarkModeTableViewCell: UITableViewCell {
     func configVisualElements() {
         darkModeLbl.text = "Dark mode"
         darkModeSwitch.isOn = false
+        configSwitch()
     }
     
+    func configSwitch() {
+        guard let background = Utils.getUserDefaults(key: "darkmode") as? Bool else { return }
+        
+        if background {
+            darkModeSwitch.isOn = true
+        } else {
+            darkModeSwitch.isOn = false
+        }
+    }
     
     @IBAction func switchTapped(_ sender: UISwitch) {
         NotificationCenter.default.post(name: Notification.Name("SwitchChanged"), object: sender)
+        Utils.saveUserDefaults(value: sender.isOn, key: "darkmode")
     }
 }

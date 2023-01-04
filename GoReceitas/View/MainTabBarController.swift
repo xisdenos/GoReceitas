@@ -13,6 +13,17 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         setTabBarViewControllers()
         NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: Notification.Name("SwitchChanged"), object: nil)
+        setBackground()
+    }
+    
+    func setBackground() {
+        guard let background = Utils.getUserDefaults(key: "darkmode") as? Bool else { return }
+        
+        if background {
+            overrideUserInterfaceStyle = .dark
+        } else {
+            overrideUserInterfaceStyle = .light
+        }
     }
     
     @objc func handleNotification(_ notification: Notification) {

@@ -48,8 +48,10 @@ class HomeViewController: UIViewController {
         
         Task {
             await fetchData() {
-                self.activityIndicator.stopAnimating()
-                self.configTableView()
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.configTableView()
+                }
             }
         }
     }
