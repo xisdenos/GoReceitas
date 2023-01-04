@@ -48,6 +48,9 @@
 		821BCA4229117A5400D9BDB3 /* NoFavoritesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821BCA4029117A5400D9BDB3 /* NoFavoritesCollectionViewCell.xib */; };
 		821BCA442911859100D9BDB3 /* LoginRegisterDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821BCA432911859100D9BDB3 /* LoginRegisterDescriptions.swift */; };
 		8232243B296321290060891B /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8232243A296321290060891B /* SearchResultsController.swift */; };
+		8232243D2965AE030060891B /* DarkModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8232243C2965AE030060891B /* DarkModeViewController.swift */; };
+		823224422965B3F50060891B /* DarkModeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823224402965B3F50060891B /* DarkModeTableViewCell.swift */; };
+		823224432965B3F50060891B /* DarkModeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 823224412965B3F50060891B /* DarkModeTableViewCell.xib */; };
 		8248DB762944D7E800C6B73F /* FoodDetailsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8248DB752944D7E700C6B73F /* FoodDetailsInfo.swift */; };
 		8269F344294134F9000C226F /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8269F343294134F9000C226F /* UIImageView+.swift */; };
 		826CDD16295CD76B008D00E4 /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826CDD15295CD76B008D00E4 /* NetworkModel.swift */; };
@@ -127,6 +130,9 @@
 		821BCA4029117A5400D9BDB3 /* NoFavoritesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoFavoritesCollectionViewCell.xib; sourceTree = "<group>"; };
 		821BCA432911859100D9BDB3 /* LoginRegisterDescriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterDescriptions.swift; sourceTree = "<group>"; };
 		8232243A296321290060891B /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
+		8232243C2965AE030060891B /* DarkModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeViewController.swift; sourceTree = "<group>"; };
+		823224402965B3F50060891B /* DarkModeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeTableViewCell.swift; sourceTree = "<group>"; };
+		823224412965B3F50060891B /* DarkModeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DarkModeTableViewCell.xib; sourceTree = "<group>"; };
 		8248DB752944D7E700C6B73F /* FoodDetailsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailsInfo.swift; sourceTree = "<group>"; };
 		8269F343294134F9000C226F /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		826CDD15295CD76B008D00E4 /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
@@ -367,9 +373,28 @@
 			path = Popular;
 			sourceTree = "<group>";
 		};
+		8232243E2965B3D40060891B /* Dark Mode */ = {
+			isa = PBXGroup;
+			children = (
+				8232243F2965B3E10060891B /* Table View Cell */,
+				8232243C2965AE030060891B /* DarkModeViewController.swift */,
+			);
+			path = "Dark Mode";
+			sourceTree = "<group>";
+		};
+		8232243F2965B3E10060891B /* Table View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				823224402965B3F50060891B /* DarkModeTableViewCell.swift */,
+				823224412965B3F50060891B /* DarkModeTableViewCell.xib */,
+			);
+			path = "Table View Cell";
+			sourceTree = "<group>";
+		};
 		8247B8FF2909EC8B00437F1E /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				8232243E2965B3D40060891B /* Dark Mode */,
 				5CC71FA728FE25DD00FF75ED /* ChangeEmailViewController.swift */,
 				5CC71FA528FE25D100FF75ED /* ChangePasswordViewController.swift */,
 				5CC71FA328FE242B00FF75ED /* Profile.storyboard */,
@@ -647,6 +672,7 @@
 				820FC3892935525D00247C6F /* CategoryTagsCollectionViewCell.xib in Resources */,
 				06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */,
 				EB43689428FE1CAE0023A2F9 /* LoginVC.storyboard in Resources */,
+				823224432965B3F50060891B /* DarkModeTableViewCell.xib in Resources */,
 				820FC3952935575400247C6F /* DefaultFoodCollectionViewCell.xib in Resources */,
 				06459BBF28B01A080054F510 /* Assets.xcassets in Resources */,
 				82064C3829034647005DA1FF /* Search.storyboard in Resources */,
@@ -740,6 +766,7 @@
 				5CC71FA628FE25D100FF75ED /* ChangePasswordViewController.swift in Sources */,
 				06AC22CA2910A6E3008E4D0B /* FoodDetailsViewController.swift in Sources */,
 				820FC383293550CE00247C6F /* CategoryTagsTableViewCell.swift in Sources */,
+				8232243D2965AE030060891B /* DarkModeViewController.swift in Sources */,
 				820FC3882935525D00247C6F /* CategoryTagsCollectionViewCell.swift in Sources */,
 				820FC37E29354BB200247C6F /* HomeViewController.swift in Sources */,
 				82FD41D42925144D00C49B37 /* FoodCollectionViewCell.swift in Sources */,
@@ -758,6 +785,7 @@
 				820FC39929355E0600247C6F /* PopularFoodsTableViewCell.swift in Sources */,
 				82873C82295FB0FA001E353D /* Favorite.swift in Sources */,
 				1F55854B2902E7A100580185 /* FavoriteEmptyVC.swift in Sources */,
+				823224422965B3F50060891B /* DarkModeTableViewCell.swift in Sources */,
 				06AC22CC2910A6F4008E4D0B /* FoodDetailsView.swift in Sources */,
 				8248DB762944D7E800C6B73F /* FoodDetailsInfo.swift in Sources */,
 				82FD41DC29253AD100C49B37 /* RecommendedFoodsTableViewCell.swift in Sources */,

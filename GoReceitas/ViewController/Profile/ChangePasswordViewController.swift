@@ -11,7 +11,6 @@ import FirebaseFirestore
 
 class ChangePasswordViewController: UIViewController {
     
-    
     //    @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var currentPasswordText: UITextField!
     @IBOutlet weak var newPasswordText: UITextField!
@@ -65,8 +64,6 @@ class ChangePasswordViewController: UIViewController {
             self.alert?.alertInformation(title: "Success", message: "Password changed successfully!", completion: {
                 self.navigationController?.popViewController(animated: true)
             })
-
-            
         }
     }
     
@@ -87,8 +84,6 @@ class ChangePasswordViewController: UIViewController {
             }
         }
     }
-    
-    
 }
 
 extension ChangePasswordViewController: UITextFieldDelegate {
@@ -112,14 +107,12 @@ extension ChangePasswordViewController: UITextFieldDelegate {
         if textField.isEqual(self.currentPasswordText){
             self.currentPasswordText.resignFirstResponder()
             self.newPasswordText.becomeFirstResponder()
-        }else if textField.isEqual(self.newPasswordText){
+        } else if textField.isEqual(self.newPasswordText){
             self.newPasswordText.resignFirstResponder()
             self.confirmNewPasswordText.becomeFirstResponder()
-        }else{
+        } else {
             self.confirmNewPasswordText.resignFirstResponder()
         }
         return true
     }
-    
-    
 }

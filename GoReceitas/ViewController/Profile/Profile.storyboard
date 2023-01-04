@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="n6t-CA-9Re">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="n6t-CA-9Re">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -116,15 +117,32 @@
                                     <action selector="tappedEditPhoto:" destination="ZYk-VY-Za2" eventType="touchUpInside" id="2rf-Ha-lLc"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0A8-l7-q7e">
+                                <rect key="frame" x="30" y="595" width="330" height="37"/>
+                                <color key="backgroundColor" red="0.58431372550000005" green="0.0039215686269999999" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="VOO-tW-oVk"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Dark mode">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="12"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="tappedDarkMode:" destination="ZYk-VY-Za2" eventType="touchUpInside" id="hAi-LO-fJU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PGG-rX-VIA"/>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.92549019610000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="0A8-l7-q7e" firstAttribute="trailing" secondItem="eDC-an-dBt" secondAttribute="trailing" id="3GU-3Y-gvC"/>
                             <constraint firstItem="qAY-jr-Q5s" firstAttribute="leading" secondItem="Hjd-h3-ndB" secondAttribute="leading" id="3IC-Fz-dxe"/>
                             <constraint firstItem="PGG-rX-VIA" firstAttribute="trailing" secondItem="XxZ-3u-LGk" secondAttribute="trailing" constant="30" id="3aB-3c-bHO"/>
                             <constraint firstItem="PGG-rX-VIA" firstAttribute="trailing" secondItem="3gj-k1-MyG" secondAttribute="trailing" constant="110" id="3ye-jS-BX1"/>
                             <constraint firstItem="Hjd-h3-ndB" firstAttribute="top" secondItem="6bG-Du-dvP" secondAttribute="bottom" constant="40" id="3z0-2W-TdD"/>
                             <constraint firstItem="PGG-rX-VIA" firstAttribute="trailing" secondItem="Hjd-h3-ndB" secondAttribute="trailing" constant="30" id="6C0-xr-Yh4"/>
+                            <constraint firstItem="0A8-l7-q7e" firstAttribute="leading" secondItem="eDC-an-dBt" secondAttribute="leading" id="CoT-sV-xkT"/>
                             <constraint firstItem="Hjd-h3-ndB" firstAttribute="leading" secondItem="PGG-rX-VIA" secondAttribute="leading" constant="30" id="FB8-5I-GHW"/>
                             <constraint firstItem="AyQ-xV-zw3" firstAttribute="leading" secondItem="vRY-BH-A0L" secondAttribute="trailing" id="HPF-xQ-IA7"/>
                             <constraint firstItem="3gj-k1-MyG" firstAttribute="top" secondItem="6bG-Du-dvP" secondAttribute="bottom" constant="-30" id="HfA-ge-xld"/>
@@ -140,6 +158,7 @@
                             <constraint firstItem="6bG-Du-dvP" firstAttribute="centerX" secondItem="frx-jq-uJQ" secondAttribute="centerX" id="ecH-sv-Rcl"/>
                             <constraint firstItem="qAY-jr-Q5s" firstAttribute="top" secondItem="Hjd-h3-ndB" secondAttribute="bottom" constant="15" id="enU-EQ-8xc"/>
                             <constraint firstItem="AyQ-xV-zw3" firstAttribute="centerX" secondItem="frx-jq-uJQ" secondAttribute="centerX" id="h4G-lM-yc2"/>
+                            <constraint firstItem="0A8-l7-q7e" firstAttribute="top" secondItem="eDC-an-dBt" secondAttribute="bottom" constant="15" id="mJe-mP-7R9"/>
                             <constraint firstItem="qAY-jr-Q5s" firstAttribute="trailing" secondItem="Hjd-h3-ndB" secondAttribute="trailing" id="ncG-4H-bzo"/>
                             <constraint firstItem="6bG-Du-dvP" firstAttribute="top" secondItem="AyQ-xV-zw3" secondAttribute="bottom" constant="91" id="oxh-bT-Gzt"/>
                             <constraint firstItem="PGG-rX-VIA" firstAttribute="bottom" secondItem="TA8-HC-h7m" secondAttribute="bottom" constant="20" id="r5y-Of-HgC"/>
@@ -154,6 +173,7 @@
                         <outlet property="buttonEditPhoto" destination="3gj-k1-MyG" id="QuX-Ib-BFY"/>
                         <outlet property="buttonGoOut" destination="TA8-HC-h7m" id="jj7-HX-Rng"/>
                         <outlet property="changeEmailButton" destination="XxZ-3u-LGk" id="vwg-7R-cdu"/>
+                        <outlet property="darkModeButton" destination="0A8-l7-q7e" id="DAm-G1-YnF"/>
                         <outlet property="imageProfile" destination="6bG-Du-dvP" id="8hs-eh-iAu"/>
                         <outlet property="textEmail" destination="qAY-jr-Q5s" id="RRf-LK-lmF"/>
                         <outlet property="textUsername" destination="Hjd-h3-ndB" id="Yec-LX-Oof"/>
@@ -436,6 +456,36 @@
             </objects>
             <point key="canvasLocation" x="6747.6923076923076" y="93.127962085308056"/>
         </scene>
+        <!--Dark Mode View Controller-->
+        <scene sceneID="eeS-Wj-oPn">
+            <objects>
+                <viewController storyboardIdentifier="dm" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UUN-5r-Nlc" customClass="DarkModeViewController" customModule="GoReceitas" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mVV-iU-FIw">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8ta-f3-HiX">
+                                <rect key="frame" x="0.0" y="47" width="390" height="763"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ByP-P6-24k"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="8ta-f3-HiX" firstAttribute="leading" secondItem="ByP-P6-24k" secondAttribute="leading" id="065-j5-qZa"/>
+                            <constraint firstItem="ByP-P6-24k" firstAttribute="trailing" secondItem="8ta-f3-HiX" secondAttribute="trailing" id="Fs6-ho-oeH"/>
+                            <constraint firstItem="ByP-P6-24k" firstAttribute="bottom" secondItem="8ta-f3-HiX" secondAttribute="bottom" id="sYj-6Y-2Ie"/>
+                            <constraint firstItem="8ta-f3-HiX" firstAttribute="top" secondItem="ByP-P6-24k" secondAttribute="top" id="scY-wt-jsq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="8ta-f3-HiX" id="Oa2-sl-ElT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a5a-2P-N3D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7491" y="93"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="2UC-HY-Dz4">
             <objects>
@@ -461,5 +511,8 @@
         <image name="logoTop" width="40" height="40"/>
         <image name="pencil.line" catalog="system" width="128" height="98"/>
         <image name="person" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
