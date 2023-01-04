@@ -9,6 +9,7 @@ import UIKit
 import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
+import FirebaseFirestore
 
 class LoginVC: UIViewController {
     
@@ -175,6 +176,22 @@ class LoginVC: UIViewController {
                     self?.alert?.alertInformation(title: "Heads up", message: "Failed to login, please try again!")
                     return
                 }
+                let idUsuario = dataResult?.user.uid
+                let firestore = Firestore.firestore()
+                let userRef = firestore.collection("usuarios").document(user?.userID ?? "")
+                userRef.setData([
+                  "nome": user?.profile?.name,
+                  "email": user?.profile?.email,
+                  "id": idUsuario
+                ]) { error in
+                  if let error = error {
+                    print("Error writing document: \(error.localizedDescription)")
+                  } else {
+                    print("User data successfully written to Firestore!")
+                  }
+                }
+            
+
                 
                 let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
                 self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
