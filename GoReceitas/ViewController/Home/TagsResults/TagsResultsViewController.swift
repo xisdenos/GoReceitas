@@ -117,6 +117,7 @@ extension TagsResultsViewController: UITableViewDelegate, UITableViewDataSource 
         let food = foodInformation[indexPath.row]
         
         let viewController = FoodDetailsViewController()
+        viewController.foodId = food.id
         navigationController?.pushViewController(viewController, animated: true)
         
         DispatchQueue.main.async { [weak self] in
