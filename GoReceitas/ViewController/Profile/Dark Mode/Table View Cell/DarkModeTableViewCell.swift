@@ -25,5 +25,11 @@ class DarkModeTableViewCell: UITableViewCell {
     
     func configVisualElements() {
         darkModeLbl.text = "Dark mode"
+        darkModeSwitch.isOn = false
+    }
+    
+    
+    @IBAction func switchTapped(_ sender: UISwitch) {
+        NotificationCenter.default.post(name: Notification.Name("SwitchChanged"), object: sender)
     }
 }
