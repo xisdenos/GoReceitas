@@ -56,16 +56,21 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
         additionalInfoLabel.text = model.yields ?? ""
         foodImageView.loadImageUsingCache(withUrl: model.thumbnail_url)
         isFavorited == true ? favoriteButton.setImage(UIImage(named: "heart-fill"), for: .normal) : favoriteButton.setImage(UIImage(named: "heart-empty"), for: .normal)
+        self.isActive = isFavorited
         foodName.font = .systemFont(ofSize: 22, weight: .bold)
     }
     
     @IBAction func heartFavoriteTapped(_ sender: UIButton) {
         isActive = !isActive
         print("heart tapped default", #function)
-        if isActive {
+        if isActive == true {
+            print(true)
+            print("isactive", isActive)
             sender.setImage(UIImage(named: "heart-fill"), for: .normal)
             delegate?.didTapHeartButton(cell: self, isActive: isActive)
-        } else {
+        } else if isActive == false {
+            print(false)
+            print("isactive", isActive)
             delegate?.didTapHeartButton(cell: self, isActive: isActive)
             sender.setImage(UIImage(named: "heart-empty"), for: .normal)
         }
