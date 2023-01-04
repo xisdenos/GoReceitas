@@ -24,33 +24,42 @@ struct NetworkModel {
     
     weak var delegate: NetworkModelProtocol?
     
-    func fetchTryItOut(completion: @escaping (Result<[FoodResponse], Error>) -> Void) {
-        delegate?.startLoading()
+    func fetchTryItOut(completion: @escaping (Result<[FoodResponse], Error>) -> Void) async {
         service.getFoodList { result in
             switch result {
             case .success(let success):
                 let filteredArray = success.results.filter({ $0.yields != nil })
                 completion(.success(filteredArray))
-                delegate?.success()
-                self.delegate?.stopLoading()
             case .failure(let failure):
                 completion(.failure(failure))
                 delegate?.error(message: failure.localizedDescription)
-                self.delegate?.stopLoading()
             }
         }
     }
     
-    func fetchTagsList(completion: @escaping (Result<[TagsResponse], Error>) -> Void) {
-//        delegate?.startLoading()
+    func fetchTagsList(completion: @escaping (Result<[TagsResponse], Error>) -> Void) async {
         service.getTagsList { result in
             switch result {
             case .success(let success):
                 completion(.success(success.results))
             case .failure(let failure):
                 completion(.failure(failure))
-//                delegate?.error(message: failure.localizedDescription)
                 self.delegate?.stopLoading()
+            }
+        }
+    }
+    
+    func fetchPopular(completion: @escaping (Result<[FoodResponse], Error>) -> Void) async {
+        service.getPopularList { result in
+            switch result {
+            case .success(let success):
+                if let recipeResults = success.results {
+                    let recipes = filterRecipes(popularResponses: recipeResults)
+                    completion(.success(recipes))
+                }
+            case .failure(let failure):
+                completion(.failure(failure))
+                print(failure)
             }
         }
     }
@@ -67,26 +76,12 @@ struct NetworkModel {
       return recipes
     }
     
-    func fetchPopular(completion: @escaping (Result<[FoodResponse], Error>) -> Void) {
-        service.getPopularList { result in
-            switch result {
-            case .success(let success):
-                if let recipeResults = success.results {
-                    let recipes = filterRecipes(popularResponses: recipeResults)
-                    completion(.success(recipes))
-                }
-            case .failure(let failure):
-                completion(.failure(failure))
-                print(failure)
-            }
-        }
-    }
-    
-    func search(text: String, _ completion: @escaping (Result<Foods, Error>) -> Void) {
+    func search(text: String, _ completion: @escaping (Result<[FoodResponse], Error>) -> Void) {
         service.searchFoodWith(term: text) { foodsResult in
             switch foodsResult {
             case .success(let foods):
-                completion(.success(foods))
+                let filteredArray = foods.results.filter({ $0.yields != nil })
+                completion(.success(filteredArray))
             case .failure(let failure):
                 completion(.failure(failure))
                 print(failure)

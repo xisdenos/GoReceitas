@@ -16,7 +16,18 @@ class TagsResultsTableViewCell: UITableViewCell {
     
     weak var delegate: DefaultTableViewCellDelegate?
     
-    func setup(foodInfo: FoodResponse) {
+    /*
+     foodNameContainer.layer.cornerRadius = 5
+     favoriteButtonContainer.layer.cornerRadius = 5
+     additionalInfoContainer.layer.cornerRadius = 5
+     foodImageView.layer.cornerRadius = 5
+     
+     foodImageView.contentMode = .scaleAspectFill
+     foodName.textColor = .white
+     additionalInfoLabel.textColor = .white
+     */
+    
+    func setup(foodInfo: FoodResponse, isFavorited: Bool = false) {
         // set image configs
         imageFood.loadImageUsingCache(withUrl: foodInfo.thumbnail_url)
         imageFood.contentMode = .scaleAspectFill
@@ -25,7 +36,13 @@ class TagsResultsTableViewCell: UITableViewCell {
         
         // set food name and prepTime lbl configs
         foodNameLbl.text = foodInfo.name
+        foodNameLbl.textAlignment = .center
+        foodNameLbl.font = .systemFont(ofSize: 22, weight: .bold)
+        
+        prepTimeLbl.textColor = .white
         prepTimeLbl.text = foodInfo.yields ?? "N/A"
+        
+        isFavorited == true ? heartButton.setImage(UIImage(named: "heart-fill"), for: .normal) : heartButton.setImage(UIImage(named: "heart-empty"), for: .normal)
     }
     
     @IBAction func favoriteButton(_ sender: UIButton) {

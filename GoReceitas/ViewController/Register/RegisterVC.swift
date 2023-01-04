@@ -162,9 +162,7 @@ class RegisterVC: UIViewController {
                     self?.alert?.alertInformation(title: "Heads up", message: "Error registering, check the data and try again")
                 } else {
                     
-                    
-                    
-                    if let idUsuario = result?.user.uid{
+                    if let idUsuario = result?.user.uid {
                         self?.firestore?.collection("usuarios").document(idUsuario).setData([
                             "nome":self?.textFieldName.text ?? "",
                             "email":self?.textFieldEmail.text ?? "",
@@ -178,11 +176,9 @@ class RegisterVC: UIViewController {
                         DispatchQueue.global(qos: .userInitiated).async {
                             // igor-gmail-com
                             let database = Database.database().reference()
-                            let emptyFavorites: [[String: Any]] = [[:]]
                             let data = ["name": name, "email": email]
                             let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
                             database.child("users").child(emailFormatted).setValue(data)
-                            //                            database.child("users").child(emailFormatted).child("favorites").setValue(emptyFavorites)
                         }
                         
                         self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)

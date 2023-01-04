@@ -10,6 +10,7 @@ import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
 import FirebaseDatabase
+import FirebaseFirestore
 
 class LoginVC: UIViewController {
     
@@ -33,8 +34,10 @@ class LoginVC: UIViewController {
     
     let database = Database.database().reference()
     
-    var auth:Auth?
+    var auth: Auth?
     var alert: AlertController?
+    
+    var firestore: Firestore?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -177,6 +180,14 @@ class LoginVC: UIViewController {
                     self?.alert?.alertInformation(title: "Heads up", message: "Failed to login, please try again!")
                     return
                 }
+                
+//                if let idUsuario = dataResult?.user.uid {
+//                    self?.firestore?.collection("usuarios").document(idUsuario).setData([
+//                        "nome": dataResult?.user.displayName ?? "",
+//                        "email": dataResult?.user.email ?? "",
+//                        "id": idUsuario
+//                    ])
+//                }
                 
                 // igor-gmail-com
                 let email = dataResult?.user.email ?? "no-email"

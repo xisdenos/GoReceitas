@@ -17,6 +17,8 @@ class HomeViewController: UIViewController {
     
     private var service: Service = Service()
     
+    private var successfulRequests = 0
+    
     private var model = NetworkModel()
     
     let database = Database.database().reference()
@@ -34,38 +36,61 @@ class HomeViewController: UIViewController {
     // MARK: Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .viewBackgroundColor
+        view.backgroundColor = .viewBackgroundColor
+        tableView.backgroundColor = .viewBackgroundColor
         model.delegate = self
         userProfilePictureImageView.image = UIImage(systemName: "person")
         setActivityIndicator()
         setTabBarIcons()
         configHome()
-        fetchData()
+        
+        activityIndicator.startAnimating()
+        
+        Task {
+            await fetchData() {
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.configTableView()
+                }
+            }
+        }
     }
     
-    func fetchData() {
-        model.fetchTryItOut { result in
+    func fetchData(completion: @escaping () -> Void) async {
+        await model.fetchTryItOut { result in
             switch result {
             case .success(let success):
                 self.tryItOut = success
+                self.successfulRequests += 1
+                if self.successfulRequests == 3 {
+                    completion()
+                }
             case .failure(let failure):
                 print(failure)
             }
         }
         
-        model.fetchTagsList { tags in
+        await model.fetchTagsList { tags in
             switch tags {
             case .success(let tags):
                 self.tagsList = tags
+                self.successfulRequests += 1
+                if self.successfulRequests == 3 {
+                    completion()
+                }
             case .failure(let failure):
                 print(failure)
             }
         }
         
-        model.fetchPopular { result in
+        await model.fetchPopular { result in
             switch result {
             case .success(let success):
                 self.popularList = success
+                self.successfulRequests += 1
+                if self.successfulRequests == 3 {
+                    completion()
+                }
             case .failure(let failure):
                 print(failure.localizedDescription)
             }
@@ -171,7 +196,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
-            cell.configure(with: popularList)
+            if !popularList.isEmpty {
+                print(popularList.count)
+                cell.configure(with: popularList)
+            }
             cell.delegate = self
             return cell
         }
@@ -237,7 +265,8 @@ extension HomeViewController: CategoryTagsTableViewCellDelegate {
             case .success(let tags):
                 DispatchQueue.main.async {
                     viewController.title = categoryInfo.display_name
-                    viewController.configureFoodInformation(foodsInfo: tags.results)
+                    let filteredArray = tags.results.filter({ $0.yields != nil })
+                    viewController.configureFoodInformation(foodsInfo: filteredArray)
                     viewController.activityIndicator.stopAnimating()
                 }
             case .failure(let failure):
@@ -287,7 +316,7 @@ extension HomeViewController: DefaultCellsDelegate {
 extension HomeViewController: NetworkModelProtocol {
     func success() {
         DispatchQueue.main.async { [weak self] in
-            self?.configTableView()
+//            self?.configTableView()
         }
     }
     

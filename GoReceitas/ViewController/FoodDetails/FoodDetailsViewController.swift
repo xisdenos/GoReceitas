@@ -17,7 +17,7 @@ enum DetailsSections: Int {
 
 class FoodDetailsViewController: UIViewController {
     
-    private var isActive: Bool = false
+//    private var isFavorited: Bool = false
     
     let database = Database.database().reference()
     
@@ -96,9 +96,11 @@ class FoodDetailsViewController: UIViewController {
                     for item in dictionary {
                         // get the values: ex "Easy Chocolate Rugelach" = { "name": "Easy Chocolate Rugelach" }
                         let favoriteItem = item.value as! [String: Any]
-                        let favorite = favoriteItem["isFavorited"] as! Int
+                        let favorite = favoriteItem["isFavorited"] as! Bool
+                        
+                        self.foodDetailsView.purpheHearthView.isActive = favorite
 
-                        favorite == 1 ? self.foodDetailsView.purpheHearthView.hearthButton.setImage(UIImage(named: "heart-fill"), for: .normal) : self.foodDetailsView.purpheHearthView.hearthButton.setImage(UIImage(named: "heart-empty"), for: .normal)
+                        favorite == true ? self.foodDetailsView.purpheHearthView.hearthButton.setImage(UIImage(named: "heart-fill"), for: .normal) : self.foodDetailsView.purpheHearthView.hearthButton.setImage(UIImage(named: "heart-empty"), for: .normal)
                     }
                 }
             }
@@ -239,20 +241,22 @@ extension FoodDetailsViewController: PurpleHeartViewProtocol {
         let instructions = foodDetails?.instructions ?? nil
         let nutrition = foodDetails?.nutrition ?? nil
         
+        let foodResponse = FoodResponse(id: id, name: name, thumbnail_url: thumbnail_url, cook_time_minutes: cook_time_minutes, prep_time_minutes: prep_time_minutes, yields: yields)
+        
         database.child("users/\(userEmail)").child("favorites").observeSingleEvent(of: .value) { snapshot in
             if snapshot.hasChild(String(foodId)) {
-                Favorite.unfavoriteItem(by: foodId, database: self.database)
+                Favorite.unfavoriteItem(at: foodResponse, database: self.database)
             } else {
                 // self.delegate?.didFavoriteItem(itemSelected: foodSelected, favorited: isActive)
                 let details = FoodDetailsInfo(id: id, name: name, cook_time_minutes: cook_time_minutes, prep_time_minutes: prep_time_minutes, yields: yields, thumbnail_url: thumbnail_url, nutrition: nutrition, instructions: instructions)
-                
+
                 let favArray: [FoodDetailsInfo] = [details]
-                
+
                 let mappedArray = favArray.map { ["name": $0.name, "yields": $0.yields ?? "n/a", "image": $0.thumbnail_url, "isFavorited": isActive, "id": $0.id, "cook_time_minutes": $0.cook_time_minutes ?? 0, "prep_time_minutes": $0.prep_time_minutes ?? 0] }
-        
+
                 // create a dictionary of arrays with the key being food.name
                 let dictionary = Dictionary(uniqueKeysWithValues: mappedArray.map { ($0["name"] as! String, $0) })
-                
+
                 // database.child("users/\(userEmail)").child("favorites").child(String(itemSelected.id)).updateChildValues(dictionary)
                 self.database.child("users/\(userEmail)").child("favorites").child(String((details.id))).setValue(dictionary)
             }

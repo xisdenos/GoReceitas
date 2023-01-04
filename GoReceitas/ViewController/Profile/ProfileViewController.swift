@@ -23,6 +23,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var buttonGoOut: UIButton!
     @IBOutlet weak var buttonEditPhoto: UIButton!
     
+    @IBOutlet weak var darkModeButton: UIButton!
     
     
     var auth:Auth?
@@ -47,11 +48,7 @@ class ProfileViewController: UIViewController {
         textUsername.isUserInteractionEnabled = false
         textEmail.isUserInteractionEnabled = false
         updateImage()
-        
     }
-    
- 
-    
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
@@ -59,13 +56,16 @@ class ProfileViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        //        self.tabBarController?.tabBar.isHidden = true
+        //   self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    
+    @IBAction func tappedDarkMode(_ sender: Any) {
+        let controller = UIStoryboard(name: "Profile", bundle: nil).instantiateViewController(withIdentifier: "dm") 
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     @IBAction func tappedEditPhoto(_ sender: UIButton) {
-        
-        
-        
         self.alert?.alertEditPhoto(completion: { option in
             switch option {
             case .camera:
@@ -94,9 +94,7 @@ class ProfileViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "changeEmail")
         navigationController?.pushViewController(viewController, animated: true)
-        
     }
-    
     
     @IBAction func tappedExit(_ sender: UIButton) {
         let auth = Auth.auth()
@@ -126,6 +124,7 @@ class ProfileViewController: UIViewController {
         textEmail.layer.cornerRadius = 10
         changeEmailButton.layer.cornerRadius = 10
         buttonChangePassword.layer.cornerRadius = 10
+        darkModeButton.layer.cornerRadius = 10
     }
     
     func exitButtonBorder() {

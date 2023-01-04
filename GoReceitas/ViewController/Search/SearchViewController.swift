@@ -128,7 +128,7 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
             }
             switch result {
             case .success(let foods):
-                resultController.foodResult = foods.results
+                resultController.foodResult = foods
                 DispatchQueue.main.async {
                     resultController.tableView.reloadData()
                 }

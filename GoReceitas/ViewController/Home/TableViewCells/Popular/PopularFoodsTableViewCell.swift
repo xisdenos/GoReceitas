@@ -13,13 +13,15 @@ class PopularFoodsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private var popularList: [FoodResponse] = [FoodResponse]()
+    private var popularList: [FoodResponse] = [FoodResponse]() {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     
     private var favoriteKeys: [String] = [String]() {
         didSet {
-            DispatchQueue.main.async { [weak self] in
-                self?.collectionView.reloadData()
-            }
+            self.collectionView.reloadData()
         }
     }
     
@@ -88,7 +90,6 @@ class PopularFoodsTableViewCell: UITableViewCell {
     public func configure(with model: [FoodResponse]) {
         DispatchQueue.main.async { [weak self] in
             self?.popularList = model.shuffled()
-            self?.collectionView.reloadData()
         }
     }
 }

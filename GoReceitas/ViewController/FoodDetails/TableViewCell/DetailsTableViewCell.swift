@@ -54,7 +54,6 @@ class DetailsTableViewCell: UITableViewCell {
             caloriesContainer.setNumber(of: "N/A")
             carbContainer.setNumber(of: "N/A")
         }
-            
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -66,6 +65,7 @@ class DetailsTableViewCell: UITableViewCell {
         contentView.addSubview(caloriesContainer)
         contentView.addSubview(carbContainer)
         
+        selectionStyle = .none
         setupConstraints()
     }
     

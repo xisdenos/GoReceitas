@@ -45,6 +45,7 @@ class RecommendedFoodsTableViewCell: UITableViewCell {
         collectionView.dataSource = self
         checkFavoriteStatusAndUpdate()
         self.backgroundColor = .viewBackgroundColor
+        selectionStyle = .none
     }
     
     func hasFavorites(food: FoodResponse) -> Bool {

@@ -62,7 +62,7 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
             self.delegate?.didTapHeartButton(cell: self, isActive: false)
         }
 
-        let cancel: UIAlertAction = UIAlertAction(title: "cancelar", style: .default)
+        let cancel: UIAlertAction = UIAlertAction(title: "Cancel", style: .default)
         alertController.addAction(cancel)
         alertController.addAction(ok)
 
