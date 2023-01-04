@@ -48,6 +48,7 @@ class DescriptionTableViewCell: UITableViewCell {
         contentView.addSubview(instructionsLabel)
         self.backgroundColor = .viewBackgroundColor
         setupConstraints()
+        selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {

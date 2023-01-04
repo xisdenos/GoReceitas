@@ -66,6 +66,7 @@ class DetailsTableViewCell: UITableViewCell {
         contentView.addSubview(caloriesContainer)
         contentView.addSubview(carbContainer)
         
+        selectionStyle = .none
         setupConstraints()
     }
     
