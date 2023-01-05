@@ -190,18 +190,29 @@ class LoginVC: UIViewController {
                     return
                 }
                 
-//                if let idUsuario = dataResult?.user.uid {
-//                    self?.firestore?.collection("usuarios").document(idUsuario).setData([
-//                        "nome": dataResult?.user.displayName ?? "",
-//                        "email": dataResult?.user.email ?? "",
-//                        "id": idUsuario
-//                    ])
-//                }
-                
                 // igor-gmail-com
                 let email = dataResult?.user.email ?? "no-email"
                 let name = dataResult?.user.displayName ?? "Username"
                 let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+                
+                let firestore = Firestore.firestore()
+                let userRef = firestore.collection("usuarios").document(emailFormatted)
+                // image google pfp
+                guard let pfp = user?.profile?.imageURL(withDimension: 100) else { return }
+                let urlString = pfp.absoluteString
+                
+                userRef.setData([
+                    "nome": user?.profile?.name,
+                    "email": user?.profile?.email,
+                    "image": urlString,
+                ]) { error in
+                    if let error = error {
+                        print("Error writing document: (error.localizedDescription)")
+                    } else {
+                        print("User data successfully written to Firestore!")
+                    }
+                }
+                
                 
                 let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
                 

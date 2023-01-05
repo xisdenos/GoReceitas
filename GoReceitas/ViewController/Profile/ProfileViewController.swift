@@ -202,11 +202,10 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.imageProfile.image = image
         
-            
             guard let imageData = image.pngData() else { return }
             
+            let currentUser = Favorite.getCurrentUserEmail
             
-          
             storage.child("images/file.png").putData(imageData,metadata: nil) { _, error in
                 guard error == nil else {
                     print("failed to upload", error?.localizedDescription)
@@ -221,14 +220,11 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                     }
 
                     print("Download URL: \(urlString)")
-//                    UserDefaults.standard.set(urlString, forKey: "url")
-                    
-                   
-                    let doc = self.firestore.collection("usuarios").document(self.currentUser?.uid ?? "")
+
+                    let doc = self.firestore.collection("usuarios").document(currentUser)
                     doc.updateData([
                         "image": urlString
                     ])
-
                 }
             }
             
