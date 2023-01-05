@@ -91,7 +91,7 @@ class ProfileViewController: UIViewController {
     
     @IBAction func tapChangeEmailScreen(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "changeEmail")
+        let viewController = storyboard.instantiateViewController(withIdentifier: "changeEmail") as! ChangeEmailViewController
         navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -210,13 +210,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         }
         picker.dismiss(animated: true)
     }
-    
-    
-    
-    
-    
-    
 }
+
 extension NSNotification.Name {
     static let updateImage = Notification.Name("updateImage")
     static let updateImageEmail = Notification.Name("updateImageEmail")

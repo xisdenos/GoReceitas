@@ -43,16 +43,19 @@ class ChangeEmailViewController: UIViewController {
     
     func changeEmail () {
         let db = Firestore.firestore()
-        let userID = Auth.auth().currentUser?.uid
+//        let userID = Auth.auth().currentUser?.uid
         let userEmail = Auth.auth().currentUser?.email
         let currentUser = Auth.auth().currentUser
+        let currentEmail = Favorite.getCurrentUserEmail
 
         if newEmailText.text != nil {
-            db.collection("usuarios").document("\(userID ?? "")").updateData(["email": newEmailText.text ?? "" ])
+            db.collection("usuarios").document(currentEmail).updateData(["email": newEmailText.text ?? "" ])
             if newEmailText.text != userEmail {
                 currentUser?.updateEmail(to: newEmailText.text ?? "") {error in
                     if let error = error {
                         print(error)
+                    } else {
+                        self.navigationController?.popViewController(animated: true)
                     }
                 }
             }
