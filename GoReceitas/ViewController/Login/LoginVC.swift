@@ -201,18 +201,22 @@ class LoginVC: UIViewController {
                 guard let pfp = user?.profile?.imageURL(withDimension: 100) else { return }
                 let urlString = pfp.absoluteString
                 
-                userRef.setData([
-                    "nome": user?.profile?.name,
-                    "email": user?.profile?.email,
-                    "image": urlString,
-                ]) { error in
-                    if let error = error {
-                        print("Error writing document: (error.localizedDescription)")
-                    } else {
-                        print("User data successfully written to Firestore!")
+                userRef.getDocument { snapshot, error in
+                    guard let snapshot else { return }
+                    if !snapshot.exists {
+                        userRef.setData([
+                            "nome": user?.profile?.name,
+                            "email": user?.profile?.email,
+                            "image": urlString,
+                        ]) { error in
+                            if let error = error {
+                                print("Error writing document: (error.localizedDescription)")
+                            } else {
+                                print("User data successfully written to Firestore!")
+                            }
+                        }
                     }
                 }
-                
                 
                 let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
                 
