@@ -47,6 +47,7 @@ class ProfileViewController: UIViewController {
         configImagePicker()
         textUsername.isUserInteractionEnabled = false
         textEmail.isUserInteractionEnabled = false
+        updateImage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -132,10 +133,26 @@ class ProfileViewController: UIViewController {
         buttonGoOut.layer.borderWidth = 1
         buttonGoOut.layer.borderColor = UIColor.red.cgColor
     }
-    
     func configImagePicker(){
         imagePicker.delegate = self
     }
+    
+    func updateImage(){
+        guard let urlString = UserDefaults.standard.value(forKey: "url") as? String,
+              let url = URL(string: urlString) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data, error == nil else { return }
+            
+            DispatchQueue.main.async {
+                let image = UIImage(data: data)
+                self.imageProfile.image = image
+            }
+        }
+        task.resume()
+    }
+    
+    
     
     func getUserData(){
         firestore.collection("usuarios").getDocuments { snapchot, error in
