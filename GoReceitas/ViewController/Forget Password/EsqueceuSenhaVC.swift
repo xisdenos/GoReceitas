@@ -11,7 +11,6 @@ import GoogleSignIn
 
 class EsqueceuSenhaVC: UIViewController {
     
-    
     @IBOutlet weak var voltatButton: UIButton!
     @IBOutlet weak var goLabel: UILabel!
     @IBOutlet weak var receitasLabel: UILabel!
@@ -106,11 +105,8 @@ class EsqueceuSenhaVC: UIViewController {
             self.navigationController?.popViewController(animated: true)
         })
     }
-    
-    
-    
-    
 }
+
 extension EsqueceuSenhaVC: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {

@@ -148,8 +148,6 @@ class ProfileViewController: UIViewController {
                         image: document["image"] as? String ?? "")
                         })
                         self.populateView(index: self.getIndex(email: self.currentUser?.email ?? ""))
-                        print(self.currentUser?.email)
-                        print(self.user)
                     }
                 }
             }

@@ -165,7 +165,7 @@ class RegisterVC: UIViewController {
         
         let email: String = textFieldEmail.text ?? ""
         let senha: String = textFieldSenha.text ?? ""
-        let name: String = textFieldName.text ?? ""
+        
         let confirmarSenha:String = textFieldConfirmarSenha.text ?? ""
         
         if senha == confirmarSenha {
@@ -173,7 +173,6 @@ class RegisterVC: UIViewController {
                 if error != nil{
                     self?.alert?.alertInformation(title: "Heads up", message: "Error registering, check the data and try again")
                 } else {
-                    
                     
                     let name = result?.user.email ?? "no email"
                     let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")

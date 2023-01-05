@@ -314,11 +314,7 @@ extension HomeViewController: DefaultCellsDelegate {
 }
 
 extension HomeViewController: NetworkModelProtocol {
-    func success() {
-        DispatchQueue.main.async { [weak self] in
-//            self?.configTableView()
-        }
-    }
+    func success() {}
     
     func error(message: String) {
         print(message)

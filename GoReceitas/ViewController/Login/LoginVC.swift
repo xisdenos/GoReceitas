@@ -204,13 +204,14 @@ class LoginVC: UIViewController {
                 userRef.getDocument { snapshot, error in
                     guard let snapshot else { return }
                     if !snapshot.exists {
+//                        let abc = user?.profile?.name
                         userRef.setData([
-                            "nome": user?.profile?.name,
-                            "email": user?.profile?.email,
+                            "nome": user?.profile?.name as? String,
+                            "email": user?.profile?.email as? String,
                             "image": urlString,
                         ]) { error in
                             if let error = error {
-                                print("Error writing document: (error.localizedDescription)")
+                                print("Error writing document: \(error.localizedDescription)")
                             } else {
                                 print("User data successfully written to Firestore!")
                             }
