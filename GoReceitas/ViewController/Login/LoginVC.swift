@@ -190,28 +190,43 @@ class LoginVC: UIViewController {
                     return
                 }
                 
-                let idUsuario = dataResult?.user.uid
-                             let firestore = Firestore.firestore()
-                             let userRef = firestore.collection("usuarios").document(user?.userID ?? "")
-                             // image google pfp
-                             guard let pfp = user?.profile?.imageURL(withDimension: 100) else { return }
-                             let urlString = pfp.absoluteString
-                             
-                             userRef.setData([
-                                 "nome": user?.profile?.name ?? "",
-                                 "email": user?.profile?.email ?? "",
-                                 "image": urlString,
-                                 "id": idUsuario ?? ""
-                             ]) { error in
-                                 if let error = error {
-                                     print("Error writing document: (error.localizedDescription)")
-                                 } else {
-                                     print("User data successfully written to Firestore!")
-                                 }
-                             }
+                // igor-gmail-com
+                let email = dataResult?.user.email ?? "no-email"
+                let name = dataResult?.user.displayName ?? "Username"
+                let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+                
+                let firestore = Firestore.firestore()
+                let userRef = firestore.collection("usuarios").document(emailFormatted)
+                // image google pfp
+                guard let pfp = user?.profile?.imageURL(withDimension: 100) else { return }
+                let urlString = pfp.absoluteString
+                
+                userRef.getDocument { snapshot, error in
+                    guard let snapshot else { return }
+                    if !snapshot.exists {
+                        userRef.setData([
+                            "nome": user?.profile?.name,
+                            "email": user?.profile?.email,
+                            "image": urlString,
+                        ]) { error in
+                            if let error = error {
+                                print("Error writing document: (error.localizedDescription)")
+                            } else {
+                                print("User data successfully written to Firestore!")
+                            }
+                        }
+                    }
+                }
                 
                 let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
-
+                
+                // if there is no user, set all the new data.
+                self?.database.child("users").observeSingleEvent(of: .value) { snapshot in
+                    if !snapshot.hasChild(emailFormatted) {
+                        let data = ["name": name, "email": email]
+                        self?.database.child("users").child(emailFormatted).setValue(data)
+                    }
+                }
                 
                 self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
             }

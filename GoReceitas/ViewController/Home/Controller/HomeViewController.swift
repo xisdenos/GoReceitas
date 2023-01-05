@@ -39,7 +39,7 @@ class HomeViewController: UIViewController {
         view.backgroundColor = .viewBackgroundColor
         tableView.backgroundColor = .viewBackgroundColor
         model.delegate = self
-        userProfilePictureImageView.image = UIImage(named: "profileImage")
+        userProfilePictureImageView.image = UIImage(systemName: "person")
         setActivityIndicator()
         setTabBarIcons()
         configHome()
