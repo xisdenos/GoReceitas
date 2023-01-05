@@ -176,20 +176,27 @@ class LoginVC: UIViewController {
                     self?.alert?.alertInformation(title: "Heads up", message: "Failed to login, please try again!")
                     return
                 }
+               
+                
                 let idUsuario = dataResult?.user.uid
-                let firestore = Firestore.firestore()
-                let userRef = firestore.collection("usuarios").document(user?.userID ?? "")
-                userRef.setData([
-                  "nome": user?.profile?.name,
-                  "email": user?.profile?.email,
-                  "id": idUsuario
-                ]) { error in
-                  if let error = error {
-                    print("Error writing document: \(error.localizedDescription)")
-                  } else {
-                    print("User data successfully written to Firestore!")
-                  }
-                }
+                            let firestore = Firestore.firestore()
+                            let userRef = firestore.collection("usuarios").document(user?.userID ?? "")
+                            // image google pfp
+                            guard let pfp = user?.profile?.imageURL(withDimension: 100) else { return }
+                            let urlString = pfp.absoluteString
+                            
+                            userRef.setData([
+                                "nome": user?.profile?.name,
+                                "email": user?.profile?.email,
+                                "image": urlString,
+                                "id": idUsuario
+                            ]) { error in
+                                if let error = error {
+                                    print("Error writing document: (error.localizedDescription)")
+                                } else {
+                                    print("User data successfully written to Firestore!")
+                                }
+                            }
             
 
                 
