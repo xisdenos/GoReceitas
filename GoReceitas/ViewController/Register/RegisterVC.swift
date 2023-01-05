@@ -174,12 +174,24 @@ class RegisterVC: UIViewController {
                     self?.alert?.alertInformation(title: "Heads up", message: "Error registering, check the data and try again")
                 } else {
                     
-                    if let idUsuario = result?.user.uid {
-                        self?.firestore?.collection("usuarios").document(idUsuario).setData([
-                            "nome":self?.textFieldName.text ?? "",
-                            "email":self?.textFieldEmail.text ?? "",
-                            "id":idUsuario
-                        ])
+                    let name = result?.user.email ?? "no email"
+                    let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+                    let userRef = self?.firestore?.collection("usuarios").document(emailFormatted)
+                    
+                    userRef?.getDocument { snapshot, error in
+                        guard let snapshot else { return }
+                        if !snapshot.exists {
+                            userRef?.setData([
+                                "nome": self?.textFieldName.text ?? "user",
+                                "email": self?.textFieldEmail.text ?? "no email",
+                            ]) { error in
+                                if let error = error {
+                                    print("Error writing document: (error.localizedDescription)")
+                                } else {
+                                    print("User data successfully written to Firestore!")
+                                }
+                            }
+                        }
                     }
                     
                     self?.alert?.alertInformation(title: "Success", message: "Successfully registered user", completion: {
