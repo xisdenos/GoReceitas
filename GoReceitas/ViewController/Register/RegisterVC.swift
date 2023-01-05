@@ -185,7 +185,7 @@ class RegisterVC: UIViewController {
                                 "nome": self?.textFieldName.text ?? "user",
                                 "email": self?.textFieldEmail.text ?? "no email",
                             ]) { error in
-                                if let error = error {
+                                if error != nil {
                                     print("Error writing document: (error.localizedDescription)")
                                 } else {
                                     print("User data successfully written to Firestore!")

@@ -204,10 +204,11 @@ class LoginVC: UIViewController {
                 userRef.getDocument { snapshot, error in
                     guard let snapshot else { return }
                     if !snapshot.exists {
-//                        let abc = user?.profile?.name
+                        guard let name = user?.profile?.name else { return }
+                        guard let email = user?.profile?.email else { return }
                         userRef.setData([
-                            "nome": user?.profile?.name as? String,
-                            "email": user?.profile?.email as? String,
+                            "nome": name,
+                            "email": email,
                             "image": urlString,
                         ]) { error in
                             if let error = error {

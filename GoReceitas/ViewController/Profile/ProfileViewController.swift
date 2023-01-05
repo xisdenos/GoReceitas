@@ -142,7 +142,6 @@ class ProfileViewController: UIViewController {
                 if let snapchot {
                     DispatchQueue.main.async {
                         self.user = snapchot.documents.map({ document in
-                            print("bola \(self.currentUser?.email)")
                             return User(nome: document["nome"] as? String ?? "",
                                         email: document["email"] as? String ?? "",
                         image: document["image"] as? String ?? "")
@@ -188,7 +187,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             
             storage.child("images/file.png").putData(imageData,metadata: nil) { _, error in
                 guard error == nil else {
-                    print("failed to upload", error?.localizedDescription)
+                    print("failed to upload", String(describing: error?.localizedDescription))
                     return
                 }
                 self.storage.child("images/file.png").downloadURL { url, error in
