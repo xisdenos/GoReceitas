@@ -165,14 +165,8 @@ class ProfileViewController: UIViewController {
     
     func getIndex(email: String) -> Int {
         let index = user.firstIndex { $0.email == email } ?? 0
-        print("banana \(index)")
             return index
-    
     }
-    
-
-    
-    
 }
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -198,15 +192,12 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                         self.imageProfile.image = image
                     }
 
-                    print("Download URL: \(urlString)")
-
                     let doc = self.firestore.collection("usuarios").document(currentUser)
                     doc.updateData([
                         "image": urlString
                     ])
                 }
             }
-            
         }
         picker.dismiss(animated: true)
     }

@@ -63,8 +63,6 @@ class FavoriteVC: UIViewController {
                         // get the values: ex "Easy Chocolate Rugelach" = { "name": "Easy Chocolate Rugelach" }
                         let favoriteItem = item.value as! [String: Any]
                         
-                        print(favoriteItem)
-                        
                         // iterate once again so we can get the inner dictionary values: ex { "name": "Easy Chocolate Rugelach" }
                         for foodInfo in favoriteItem {
                             let details = foodInfo.value as! NSDictionary
