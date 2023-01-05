@@ -53,6 +53,18 @@ class RegisterVC: UIViewController {
         self.firestore = Firestore.firestore()
         configCaracteres()
         backLogin()
+        view.backgroundColor = .viewBackgroundColor
+        setBackground()
+    }
+    
+    func setBackground() {
+        guard let background = Utils.getUserDefaults(key: "darkmode") as? Bool else { return }
+        
+        if background {
+            overrideUserInterfaceStyle = .dark
+        } else {
+            overrideUserInterfaceStyle = .light
+        }
     }
     
     func configCaracteres(){
@@ -153,7 +165,7 @@ class RegisterVC: UIViewController {
         
         let email: String = textFieldEmail.text ?? ""
         let senha: String = textFieldSenha.text ?? ""
-        let name: String = textFieldName.text ?? ""
+        
         let confirmarSenha:String = textFieldConfirmarSenha.text ?? ""
         
         if senha == confirmarSenha {
@@ -162,13 +174,26 @@ class RegisterVC: UIViewController {
                     self?.alert?.alertInformation(title: "Heads up", message: "Error registering, check the data and try again")
                 } else {
                     
-                    if let idUsuario = result?.user.uid {
-                        self?.firestore?.collection("usuarios").document(idUsuario).setData([
-                            "nome":self?.textFieldName.text ?? "",
-                            "email":self?.textFieldEmail.text ?? "",
-                            "id":idUsuario
-                        ])
+                    let name = result?.user.email ?? "no email"
+                    let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+                    let userRef = self?.firestore?.collection("usuarios").document(emailFormatted)
+                    
+                    userRef?.getDocument { snapshot, error in
+                        guard let snapshot else { return }
+                        if !snapshot.exists {
+                            userRef?.setData([
+                                "nome": self?.textFieldName.text ?? "user",
+                                "email": self?.textFieldEmail.text ?? "no email",
+                            ]) { error in
+                                if error != nil {
+                                    print("Error writing document: (error.localizedDescription)")
+                                } else {
+                                    print("User data successfully written to Firestore!")
+                                }
+                            }
+                        }
                     }
+
                     
                     self?.alert?.alertInformation(title: "Success", message: "Successfully registered user", completion: {
                         let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController

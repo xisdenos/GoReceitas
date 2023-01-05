@@ -62,7 +62,6 @@ class DefaultFoodCollectionViewCell: UICollectionViewCell {
     
     @IBAction func heartFavoriteTapped(_ sender: UIButton) {
         isActive = !isActive
-        print("heart tapped default", #function)
         if isActive == true {
             sender.setImage(UIImage(named: "heart-fill"), for: .normal)
             delegate?.didTapHeartButton(cell: self, isActive: isActive)

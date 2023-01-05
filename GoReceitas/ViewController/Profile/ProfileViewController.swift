@@ -47,7 +47,6 @@ class ProfileViewController: UIViewController {
         configImagePicker()
         textUsername.isUserInteractionEnabled = false
         textEmail.isUserInteractionEnabled = false
-        updateImage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,7 +91,7 @@ class ProfileViewController: UIViewController {
     
     @IBAction func tapChangeEmailScreen(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Profile", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "changeEmail")
+        let viewController = storyboard.instantiateViewController(withIdentifier: "changeEmail") as! ChangeEmailViewController
         navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -137,37 +136,17 @@ class ProfileViewController: UIViewController {
         imagePicker.delegate = self
     }
     
-    func updateImage(){
-        guard let urlString = UserDefaults.standard.value(forKey: "url") as? String,
-              let url = URL(string: urlString) else { return }
-        
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data, error == nil else { return }
-            
-            DispatchQueue.main.async {
-                let image = UIImage(data: data)
-                self.imageProfile.image = image
-            }
-        }
-        task.resume()
-    }
-    
-    
-    
     func getUserData(){
         firestore.collection("usuarios").getDocuments { snapchot, error in
             if error == nil {
                 if let snapchot {
                     DispatchQueue.main.async {
                         self.user = snapchot.documents.map({ document in
-                            print("bola \(self.currentUser?.email)")
                             return User(nome: document["nome"] as? String ?? "",
                                         email: document["email"] as? String ?? "",
                         image: document["image"] as? String ?? "")
                         })
                         self.populateView(index: self.getIndex(email: self.currentUser?.email ?? ""))
-                        print(self.currentUser?.email)
-                        print(self.user)
                     }
                 }
             }
@@ -186,14 +165,8 @@ class ProfileViewController: UIViewController {
     
     func getIndex(email: String) -> Int {
         let index = user.firstIndex { $0.email == email } ?? 0
-        print("banana \(index)")
             return index
-    
     }
-    
-
-    
-    
 }
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -202,14 +175,13 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.imageProfile.image = image
         
-            
             guard let imageData = image.pngData() else { return }
             
+            let currentUser = Favorite.getCurrentUserEmail
             
-          
             storage.child("images/file.png").putData(imageData,metadata: nil) { _, error in
                 guard error == nil else {
-                    print("failed to upload", error?.localizedDescription)
+                    print("failed to upload", String(describing: error?.localizedDescription))
                     return
                 }
                 self.storage.child("images/file.png").downloadURL { url, error in
@@ -220,28 +192,17 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                         self.imageProfile.image = image
                     }
 
-                    print("Download URL: \(urlString)")
-//                    UserDefaults.standard.set(urlString, forKey: "url")
-                    
-                   
-                    let doc = self.firestore.collection("usuarios").document(self.currentUser?.uid ?? "")
+                    let doc = self.firestore.collection("usuarios").document(currentUser)
                     doc.updateData([
                         "image": urlString
                     ])
-
                 }
             }
-            
         }
         picker.dismiss(animated: true)
     }
-    
-    
-    
-    
-    
-    
 }
+
 extension NSNotification.Name {
     static let updateImage = Notification.Name("updateImage")
     static let updateImageEmail = Notification.Name("updateImageEmail")

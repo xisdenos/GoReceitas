@@ -249,7 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				06AC22C82910A6D1008E4D0B /* FoodDetails */,
-				1FAA32B328EDF95800AB6B9C /* Favoritos */,
+				1FAA32B328EDF95800AB6B9C /* Favorites */,
 				EB43689528FE28B00023A2F9 /* Forget Password */,
 				8247B9002909EC9000437F1E /* Home */,
 				EB43689028FE1C820023A2F9 /* Login */,
@@ -283,7 +283,7 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		1FAA32B328EDF95800AB6B9C /* Favoritos */ = {
+		1FAA32B328EDF95800AB6B9C /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
 				1FAA32B428EDFED300AB6B9C /* FavoriteVC.swift */,
@@ -292,7 +292,7 @@
 				1F55854C2902E7FD00580185 /* FavoriteEmptyVC.storyboard */,
 				1F5585452902CB3D00580185 /* Cell */,
 			);
-			path = Favoritos;
+			path = Favorites;
 			sourceTree = "<group>";
 		};
 		47A8E7C147DCB1FDD8D1AF73 /* Frameworks */ = {

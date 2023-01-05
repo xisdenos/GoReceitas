@@ -63,8 +63,6 @@ class FavoriteVC: UIViewController {
                         // get the values: ex "Easy Chocolate Rugelach" = { "name": "Easy Chocolate Rugelach" }
                         let favoriteItem = item.value as! [String: Any]
                         
-                        print(favoriteItem)
-                        
                         // iterate once again so we can get the inner dictionary values: ex { "name": "Easy Chocolate Rugelach" }
                         for foodInfo in favoriteItem {
                             let details = foodInfo.value as! NSDictionary
@@ -115,6 +113,7 @@ extension FavoriteVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if favorites.isEmpty {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NoFavoritesCollectionViewCell.identifier, for: indexPath) as? NoFavoritesCollectionViewCell
+            cell?.isUserInteractionEnabled = false
             return cell ?? UICollectionViewCell()
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteCollectionViewCell.identifier, for: indexPath) as? FavoriteCollectionViewCell

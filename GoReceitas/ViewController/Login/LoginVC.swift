@@ -44,12 +44,23 @@ class LoginVC: UIViewController {
         alert = AlertController(controller: self)
         self.auth = Auth.auth()
         configCaracteristicas()
-        JaTemCadastro()
-        
+        alreadyRegistered()
+        view.backgroundColor = .viewBackgroundColor
+        setBackground()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    func setBackground() {
+        guard let background = Utils.getUserDefaults(key: "darkmode") as? Bool else { return }
+        
+        if background {
+            overrideUserInterfaceStyle = .dark
+        } else {
+            overrideUserInterfaceStyle = .light
+        }
     }
     
     func configCaracteristicas(){
@@ -104,15 +115,13 @@ class LoginVC: UIViewController {
         imageLogoFundo.image = UIImage(named: "logoFundo")
     }
     
-    func JaTemCadastro(){
-        let atts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(ciColor: .black), .font: UIFont.systemFont(ofSize: 15, weight: .semibold)]
+    func alreadyRegistered(){
+        let atts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(named: "textColorDefault") ?? .black, .font: UIFont.systemFont(ofSize: 15, weight: .semibold)]
         let attributedTitle = NSMutableAttributedString(string: LoginRegisterDescriptions.noAccountLabel.rawValue, attributes: atts)
         let boldAtts: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(red: 101/255, green: 33/255, blue: 165/255, alpha: 1), .font: UIFont.systemFont(ofSize: 15, weight: .semibold)]
         attributedTitle.append(NSAttributedString(string: LoginRegisterDescriptions.signUpLabel.rawValue, attributes: boldAtts))
         fazerCadastroButton.setAttributedTitle(attributedTitle, for: .normal)
         fazerCadastroButton.setTitleColor(UIColor(red: 101/255, green: 33/255, blue: 165/255, alpha: 1), for: .normal)    }
-    
-    
     
     
     func validacaoTextField(){
@@ -181,18 +190,35 @@ class LoginVC: UIViewController {
                     return
                 }
                 
-//                if let idUsuario = dataResult?.user.uid {
-//                    self?.firestore?.collection("usuarios").document(idUsuario).setData([
-//                        "nome": dataResult?.user.displayName ?? "",
-//                        "email": dataResult?.user.email ?? "",
-//                        "id": idUsuario
-//                    ])
-//                }
-                
                 // igor-gmail-com
                 let email = dataResult?.user.email ?? "no-email"
                 let name = dataResult?.user.displayName ?? "Username"
                 let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+                
+                let firestore = Firestore.firestore()
+                let userRef = firestore.collection("usuarios").document(emailFormatted)
+                // image google pfp
+                guard let pfp = user?.profile?.imageURL(withDimension: 100) else { return }
+                let urlString = pfp.absoluteString
+                
+                userRef.getDocument { snapshot, error in
+                    guard let snapshot else { return }
+                    if !snapshot.exists {
+                        guard let name = user?.profile?.name else { return }
+                        guard let email = user?.profile?.email else { return }
+                        userRef.setData([
+                            "nome": name,
+                            "email": email,
+                            "image": urlString,
+                        ]) { error in
+                            if let error = error {
+                                print("Error writing document: \(error.localizedDescription)")
+                            } else {
+                                print("User data successfully written to Firestore!")
+                            }
+                        }
+                    }
+                }
                 
                 let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
                 

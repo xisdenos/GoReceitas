@@ -39,7 +39,7 @@ class HomeViewController: UIViewController {
         view.backgroundColor = .viewBackgroundColor
         tableView.backgroundColor = .viewBackgroundColor
         model.delegate = self
-        userProfilePictureImageView.image = UIImage(systemName: "person")
+        userProfilePictureImageView.image = UIImage(named: "profileImage")
         setActivityIndicator()
         setTabBarIcons()
         configHome()
@@ -138,7 +138,6 @@ class HomeViewController: UIViewController {
     
     func getIndex(email: String) -> Int {
         let index = user.firstIndex { $0.email == email } ?? 0
-        print("banana \(index)")
         return index
     }
     
@@ -197,7 +196,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
             if !popularList.isEmpty {
-                print(popularList.count)
                 cell.configure(with: popularList)
             }
             cell.delegate = self
@@ -314,11 +312,7 @@ extension HomeViewController: DefaultCellsDelegate {
 }
 
 extension HomeViewController: NetworkModelProtocol {
-    func success() {
-        DispatchQueue.main.async { [weak self] in
-//            self?.configTableView()
-        }
-    }
+    func success() {}
     
     func error(message: String) {
         print(message)
