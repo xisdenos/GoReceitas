@@ -29,17 +29,17 @@ class AlertController: NSObject {
         
     func alertEditPhoto(completion: @escaping (_ option: TypeImageSelected) -> Void){
 
-        let alertController: UIAlertController = UIAlertController(title: "Selecione uma das opções abaixo", message: nil, preferredStyle: .actionSheet)
+        let alertController: UIAlertController = UIAlertController(title: "Select one of the options below", message: nil, preferredStyle: .actionSheet)
         
         let camera = UIAlertAction(title: "Camera", style: .default) { action in
             completion(.camera)
         }
         
-        let library = UIAlertAction(title: "Biblioteca", style: .default) { action in
+        let library = UIAlertAction(title: "Library", style: .default) { action in
             completion(.library)
         }
         
-        let cancel = UIAlertAction(title: "Cancelar", style: .cancel) { action in
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { action in
             completion(.cancel)
             
         }
