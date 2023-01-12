@@ -836,5 +836,69 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "33163582-EDE8-4474-83C3-FA5E689D8063"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoReceitas/ViewController/Register/RegisterVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
+            landmarkName = "showAlert(title:message:completion:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1379560C-E918-4582-800E-50C69A4913F6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoReceitas/ViewController/Register/RegisterVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "showAlert(title:message:completion:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "1379560C-E918-4582-800E-50C69A4913F6 - a2bddd1ab9b5cf6f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoReceitas.RegisterVC.showAlert(title: Swift.String, message: Swift.String, completion: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "GoReceitas"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Register/RegisterVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "153">
+               </Location>
+               <Location
+                  uuid = "1379560C-E918-4582-800E-50C69A4913F6 - 3e5b63ab7a2c8ccf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in GoReceitas.RegisterVC.showAlert(title: Swift.String, message: Swift.String, completion: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "GoReceitas"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Register/RegisterVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "187"
+                  endingLineNumber = "187"
+                  offsetFromSymbolStart = "50">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

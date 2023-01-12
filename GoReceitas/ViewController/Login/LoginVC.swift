@@ -35,7 +35,7 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         viewModel.delegate = self
         alert = AlertController(controller: self)
-        configCaracteristicas()
+        configVisualElements()
         alreadyRegistered()
         view.backgroundColor = .viewBackgroundColor
         setBackground()
@@ -55,7 +55,7 @@ class LoginVC: UIViewController {
         }
     }
     
-    func configCaracteristicas(){
+    func configVisualElements() {
         
         goLabel.text = LoginRegisterDescriptions.goLabel.rawValue
         goLabel.font = UIFont.systemFont(ofSize: 20, weight: .light)
@@ -132,7 +132,7 @@ class LoginVC: UIViewController {
     @IBAction func tappedLogin(_ sender: UIButton) {
         if let email = textFieldEmail.text,
            let password = textFieldSenha.text {
-            viewModel.createUser(email: email, password: password)
+            viewModel.login(email: email, password: password)
         }
     }
     

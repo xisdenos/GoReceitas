@@ -6,20 +6,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import GoogleSignIn
-import FirebaseDatabase
-import FirebaseFirestore
-
-enum RegisterDescriptions: String {
-    case goLabel = "Go"
-    case topLabel = "Receitas"
-    case registerLabel = "Register"
-    case nameLabel = "Name"
-    case nameTextField = "Your name..."
-    case emailLabel = "E-mail"
-    case emailTextField = "Your email..."
-}
 
 class RegisterVC: UIViewController {
     
@@ -40,17 +26,14 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var backLoginButton: UIButton!
     @IBOutlet weak var logoImage: UIImageView!
     
-    private var auth: Auth?
-    private var alert: AlertController?
     
-    var firestore: Firestore?
-    var user = Auth.auth().currentUser
+    private var alert: AlertController?
+    private var viewModel: RegisterViewModel = RegisterViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
         alert = AlertController(controller: self)
-        self.auth = Auth.auth()
-        self.firestore = Firestore.firestore()
         configCaracteres()
         backLogin()
         view.backgroundColor = .viewBackgroundColor
@@ -163,55 +146,11 @@ class RegisterVC: UIViewController {
     
     @IBAction func tappedCadastrarButton(_ sender: UIButton) {
         
-        let email: String = textFieldEmail.text ?? ""
-        let senha: String = textFieldSenha.text ?? ""
-        
-        let confirmarSenha:String = textFieldConfirmarSenha.text ?? ""
-        
-        if senha == confirmarSenha {
-            self.auth?.createUser(withEmail: email, password: senha, completion: { [weak self] result, error in
-                if error != nil{
-                    self?.alert?.alertInformation(title: "Heads up", message: "Error registering, check the data and try again")
-                } else {
-                    
-                    let name = result?.user.email ?? "no email"
-                    let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-                    let userRef = self?.firestore?.collection("usuarios").document(emailFormatted)
-                    
-                    userRef?.getDocument { snapshot, error in
-                        guard let snapshot else { return }
-                        if !snapshot.exists {
-                            userRef?.setData([
-                                "nome": self?.textFieldName.text ?? "user",
-                                "email": self?.textFieldEmail.text ?? "no email",
-                            ]) { error in
-                                if error != nil {
-                                    print("Error writing document: (error.localizedDescription)")
-                                } else {
-                                    print("User data successfully written to Firestore!")
-                                }
-                            }
-                        }
-                    }
-
-                    
-                    self?.alert?.alertInformation(title: "Success", message: "Successfully registered user", completion: {
-                        let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
-                        
-                        DispatchQueue.global(qos: .userInitiated).async {
-                            // igor-gmail-com
-                            let database = Database.database().reference()
-                            let data = ["name": name, "email": email]
-                            let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-                            database.child("users").child(emailFormatted).setValue(data)
-                        }
-                        
-                        self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
-                    })
-                }
-            })
-        } else {
-            self.alert?.alertInformation(title: "Heads up", message: "Divergent Passwords")
+        if let email = textFieldEmail.text,
+           let password = textFieldSenha.text,
+           let name = textFieldName.text,
+           let passwordConfirmation = textFieldConfirmarSenha.text {
+            viewModel.createUserWith(name, email, password, passwordConfirmation)
         }
     }
     
@@ -234,5 +173,18 @@ extension RegisterVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+extension RegisterVC: RegisterViewModelDelegate {
+    func signUp() {
+        let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
+        navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
+    }
+    
+    func showAlert(title: String, message: String, completion: (() -> Void)?) {
+        alert?.alertInformation(title: title, message: message, completion: {
+            completion?()
+        })
     }
 }

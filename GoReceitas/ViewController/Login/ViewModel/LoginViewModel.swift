@@ -17,7 +17,12 @@ protocol LoginViewModelDelegate: AnyObject {
     func signInUser()
 }
 
-final class LoginViewModel {
+protocol LoginViewModelProtocol {
+    func login(email: String, password: String)
+    func loginWithGoogle(presentingViewController: UIViewController)
+}
+
+final class LoginViewModel: LoginViewModelProtocol {
     
     let database = Database.database().reference()
     
@@ -29,7 +34,7 @@ final class LoginViewModel {
     
     weak var delegate: LoginViewModelDelegate?
     
-    func createUser(email: String, password: String) {
+    func login(email: String, password: String) {
         auth?.signIn(withEmail: email, password: password, completion: { [weak self] usuario, error in
             if error != nil {
                 self?.delegate?.showAlert(title: "Heads up", message: "Incorrect data, try again")

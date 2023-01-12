@@ -27,3 +27,13 @@ enum LoginRegisterDescriptions: String {
     case confirmPasswordTextField = "Your your password..."
     case alreadyHaveAccount = "Already have an account? "
 }
+
+enum RegisterDescriptions: String {
+    case goLabel = "Go"
+    case topLabel = "Receitas"
+    case registerLabel = "Register"
+    case nameLabel = "Name"
+    case nameTextField = "Your name..."
+    case emailLabel = "E-mail"
+    case emailTextField = "Your email..."
+}
