@@ -55,6 +55,8 @@
 		8248DB762944D7E800C6B73F /* FoodDetailsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8248DB752944D7E700C6B73F /* FoodDetailsInfo.swift */; };
 		824E616329709A8300F61A87 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824E616229709A8300F61A87 /* LoginViewModel.swift */; };
 		824E616629709FFA00F61A87 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824E616529709FFA00F61A87 /* RegisterViewModel.swift */; };
+		824E61702970A7DD00F61A87 /* GoReceitasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824E616F2970A7DD00F61A87 /* GoReceitasTests.swift */; };
+		824E61772970A89300F61A87 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824E61762970A89300F61A87 /* LoginTests.swift */; };
 		8269F344294134F9000C226F /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8269F343294134F9000C226F /* UIImageView+.swift */; };
 		826CDD16295CD76B008D00E4 /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826CDD15295CD76B008D00E4 /* NetworkModel.swift */; };
 		8279DC492904B71C00E526A8 /* Colors+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8279DC482904B71C00E526A8 /* Colors+.swift */; };
@@ -87,6 +89,16 @@
 		EB6FF62629621DDD000B1AF3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6FF62529621DDD000B1AF3 /* User.swift */; };
 		EBCBA2652910873B0073AE60 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCBA2642910873B0073AE60 /* MainTabBarController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		824E61712970A7DD00F61A87 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06459BA728B01A060054F510 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 06459BAE28B01A060054F510;
+			remoteInfo = GoReceitas;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		060DDF15291142F800D9A884 /* PurpleHearthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurpleHearthView.swift; sourceTree = "<group>"; };
@@ -140,6 +152,9 @@
 		8248DB752944D7E700C6B73F /* FoodDetailsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailsInfo.swift; sourceTree = "<group>"; };
 		824E616229709A8300F61A87 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		824E616529709FFA00F61A87 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		824E616D2970A7DC00F61A87 /* GoReceitasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoReceitasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		824E616F2970A7DD00F61A87 /* GoReceitasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoReceitasTests.swift; sourceTree = "<group>"; };
+		824E61762970A89300F61A87 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
 		8269F343294134F9000C226F /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		826CDD15295CD76B008D00E4 /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
 		8279DC482904B71C00E526A8 /* Colors+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors+.swift"; sourceTree = "<group>"; };
@@ -183,6 +198,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		824E616A2970A7DC00F61A87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -190,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				06459BB128B01A060054F510 /* GoReceitas */,
+				824E616E2970A7DD00F61A87 /* GoReceitasTests */,
 				06459BB028B01A060054F510 /* Products */,
 				5388B7A800C400F83F5FF5DA /* Pods */,
 				47A8E7C147DCB1FDD8D1AF73 /* Frameworks */,
@@ -200,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				06459BAF28B01A060054F510 /* GoReceitas.app */,
+				824E616D2970A7DC00F61A87 /* GoReceitasTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -458,6 +482,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		824E616E2970A7DD00F61A87 /* GoReceitasTests */ = {
+			isa = PBXGroup;
+			children = (
+				824E616F2970A7DD00F61A87 /* GoReceitasTests.swift */,
+				824E61762970A89300F61A87 /* LoginTests.swift */,
+			);
+			path = GoReceitasTests;
+			sourceTree = "<group>";
+		};
 		8259F92B28DAB12400476299 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -657,6 +690,24 @@
 			productReference = 06459BAF28B01A060054F510 /* GoReceitas.app */;
 			productType = "com.apple.product-type.application";
 		};
+		824E616C2970A7DC00F61A87 /* GoReceitasTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 824E61732970A7DD00F61A87 /* Build configuration list for PBXNativeTarget "GoReceitasTests" */;
+			buildPhases = (
+				824E61692970A7DC00F61A87 /* Sources */,
+				824E616A2970A7DC00F61A87 /* Frameworks */,
+				824E616B2970A7DC00F61A87 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				824E61722970A7DD00F61A87 /* PBXTargetDependency */,
+			);
+			name = GoReceitasTests;
+			productName = GoReceitasTests;
+			productReference = 824E616D2970A7DC00F61A87 /* GoReceitasTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -664,11 +715,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					06459BAE28B01A060054F510 = {
 						CreatedOnToolsVersion = 13.4.1;
+					};
+					824E616C2970A7DC00F61A87 = {
+						CreatedOnToolsVersion = 14.0;
+						TestTargetID = 06459BAE28B01A060054F510;
 					};
 				};
 			};
@@ -686,6 +741,7 @@
 			projectRoot = "";
 			targets = (
 				06459BAE28B01A060054F510 /* GoReceitas */,
+				824E616C2970A7DC00F61A87 /* GoReceitasTests */,
 			);
 		};
 /* End PBXProject section */
@@ -716,6 +772,13 @@
 				820FC384293550CE00247C6F /* CategoryTagsTableViewCell.xib in Resources */,
 				06459BBA28B01A060054F510 /* Main.storyboard in Resources */,
 				820FC390293555FD00247C6F /* TryItOutTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		824E616B2970A7DC00F61A87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,7 +891,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		824E61692970A7DC00F61A87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				824E61702970A7DD00F61A87 /* GoReceitasTests.swift in Sources */,
+				824E61772970A89300F61A87 /* LoginTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		824E61722970A7DD00F61A87 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 06459BAE28B01A060054F510 /* GoReceitas */;
+			targetProxy = 824E61712970A7DD00F61A87 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		06459BB828B01A060054F510 /* Main.storyboard */ = {
@@ -1022,6 +1102,58 @@
 			};
 			name = Release;
 		};
+		824E61742970A7DD00F61A87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X2R4Q8ATZU;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					HEADER_SEARCH_PATHS,
+					"=",
+					"\"${SRCROOT}/Pods/Firebase/CoreOnly/Sources\"",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gmail.igormedfer.GoReceitasTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoReceitas.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GoReceitas";
+			};
+			name = Debug;
+		};
+		824E61752970A7DD00F61A87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = X2R4Q8ATZU;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					HEADER_SEARCH_PATHS,
+					"=",
+					"\"${SRCROOT}/Pods/Firebase/CoreOnly/Sources\"",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gmail.igormedfer.GoReceitasTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GoReceitas.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GoReceitas";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1039,6 +1171,15 @@
 			buildConfigurations = (
 				06459BC728B01A080054F510 /* Debug */,
 				06459BC828B01A080054F510 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		824E61732970A7DD00F61A87 /* Build configuration list for PBXNativeTarget "GoReceitasTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				824E61742970A7DD00F61A87 /* Debug */,
+				824E61752970A7DD00F61A87 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

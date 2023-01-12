@@ -880,10 +880,10 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "186"
                   endingLineNumber = "186"
-                  offsetFromSymbolStart = "153">
+                  offsetFromSymbolStart = "171">
                </Location>
                <Location
-                  uuid = "1379560C-E918-4582-800E-50C69A4913F6 - 3e5b63ab7a2c8ccf"
+                  uuid = "1379560C-E918-4582-800E-50C69A4913F6 - 3e5b63ab7a2c8cee"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -893,9 +893,9 @@
                   urlString = "file:///Users/igorfernandes/Desktop/GoReceitas/GoReceitas/ViewController/Register/RegisterVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "187"
-                  endingLineNumber = "187"
-                  offsetFromSymbolStart = "50">
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "42">
                </Location>
             </Locations>
          </BreakpointContent>

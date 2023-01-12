@@ -24,23 +24,28 @@ protocol LoginViewModelProtocol {
 
 final class LoginViewModel: LoginViewModelProtocol {
     
-    let database = Database.database().reference()
-    
-    var auth: Auth?
+    private let database = Database.database().reference()
+    private weak var delegate: LoginViewModelDelegate?
+    private var auth: Auth?
+    public var isLoginSuccesful = false
     
     init() {
         self.auth = Auth.auth()
     }
     
-    weak var delegate: LoginViewModelDelegate?
+    public func set(delegate: LoginViewModelDelegate) {
+        self.delegate = delegate
+    }
     
     func login(email: String, password: String) {
         auth?.signIn(withEmail: email, password: password, completion: { [weak self] usuario, error in
             if error != nil {
                 self?.delegate?.showAlert(title: "Heads up", message: "Incorrect data, try again")
+                self?.isLoginSuccesful = true
             } else {
                 if usuario == nil {
                     self?.delegate?.showAlert(title: "Heads up", message: "We had an unexpected problem")
+                    self?.isLoginSuccesful = false
                 } else {
                     self?.delegate?.signInUser()
                 }

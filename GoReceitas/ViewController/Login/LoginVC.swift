@@ -33,7 +33,7 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.delegate = self
+        viewModel.set(delegate: self)
         alert = AlertController(controller: self)
         configVisualElements()
         alreadyRegistered()
