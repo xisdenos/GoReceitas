@@ -7,9 +7,7 @@
 
 import UIKit
 import FirebaseCore
-import FirebaseAuth
 import GoogleSignIn
-import FirebaseDatabase
 import FirebaseFirestore
 
 class LoginVC: UIViewController {
@@ -32,17 +30,16 @@ class LoginVC: UIViewController {
     @IBOutlet weak var riscoView3: UIView!
     @IBOutlet weak var imageLogoFundo: UIImageView!
     
-    let database = Database.database().reference()
-    
-    var auth: Auth?
     var alert: AlertController?
     
     var firestore: Firestore?
     
+    private var viewModel: LoginViewModel = LoginViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
         alert = AlertController(controller: self)
-        self.auth = Auth.auth()
         configCaracteristicas()
         alreadyRegistered()
         view.backgroundColor = .viewBackgroundColor
@@ -138,101 +135,86 @@ class LoginVC: UIViewController {
     }
     
     @IBAction func tappedLogin(_ sender: UIButton) {
-        
-        let email: String = self.textFieldEmail.text ?? ""
-        let password: String = self.textFieldSenha.text ?? ""
-        
-        self.auth?.signIn(withEmail: email, password: password, completion: { [weak self] usuario, error in
-            if error != nil {
-                self?.alert?.alertInformation(title: "Heads up", message: "Incorrect data, try again")
-                
-            } else {
-                if usuario == nil{
-                    self?.alert?.alertInformation(title: "Heads up", message: "We had an unexpected problem")
-                } else {
-                    let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
-                    self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
-                }
-            }
-        })
+        if let email = textFieldEmail.text,
+           let password = textFieldSenha.text {
+            viewModel.createUser(email: email, password: password)
+        }
     }
-    
-    
     
     @IBAction func tappedLoginGoogle(_ sender: UIButton) {
         
-        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-        
-        // Create Google Sign In configuration object.
-        let config = GIDConfiguration(clientID: clientID)
-        
-        // Start the sign in flow!
-        GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
-            
-            guard error == nil else {
-                self.alert?.alertInformation(title: "Heads up", message: "Failed to login, please try again!")
-                return
-            }
-            
-            guard
-                let authentication = user?.authentication,
-                let idToken = authentication.idToken
-            else {
-                return
-            }
-            
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                           accessToken: authentication.accessToken)
-            
-            Auth.auth().signIn(with: credential) { [weak self] dataResult, error in
-                guard error == nil else {
-                    self?.alert?.alertInformation(title: "Heads up", message: "Failed to login, please try again!")
-                    return
-                }
-                
-                // igor-gmail-com
-                let email = dataResult?.user.email ?? "no-email"
-                let name = dataResult?.user.displayName ?? "Username"
-                let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-                
-                let firestore = Firestore.firestore()
-                let userRef = firestore.collection("usuarios").document(emailFormatted)
-                // image google pfp
-                guard let pfp = user?.profile?.imageURL(withDimension: 100) else { return }
-                let urlString = pfp.absoluteString
-                
-                userRef.getDocument { snapshot, error in
-                    guard let snapshot else { return }
-                    if !snapshot.exists {
-                        guard let name = user?.profile?.name else { return }
-                        guard let email = user?.profile?.email else { return }
-                        userRef.setData([
-                            "nome": name,
-                            "email": email,
-                            "image": urlString,
-                        ]) { error in
-                            if let error = error {
-                                print("Error writing document: \(error.localizedDescription)")
-                            } else {
-                                print("User data successfully written to Firestore!")
-                            }
-                        }
-                    }
-                }
-                
-                let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
-                
-                // if there is no user, set all the new data.
-                self?.database.child("users").observeSingleEvent(of: .value) { snapshot in
-                    if !snapshot.hasChild(emailFormatted) {
-                        let data = ["name": name, "email": email]
-                        self?.database.child("users").child(emailFormatted).setValue(data)
-                    }
-                }
-                
-                self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
-            }
-        }
+//        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+//
+//        // Create Google Sign In configuration object.
+//        let config = GIDConfiguration(clientID: clientID)
+//
+//        // Start the sign in flow!
+//        GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
+//
+//            guard error == nil else {
+//                self.alert?.alertInformation(title: "Heads up", message: "Failed to login, please try again!")
+//                return
+//            }
+//
+//            guard
+//                let authentication = user?.authentication,
+//                let idToken = authentication.idToken
+//            else {
+//                return
+//            }
+//
+//            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+//                                                           accessToken: authentication.accessToken)
+//
+//            Auth.auth().signIn(with: credential) { [weak self] dataResult, error in
+//                guard error == nil else {
+//                    self?.alert?.alertInformation(title: "Heads up", message: "Failed to login, please try again!")
+//                    return
+//                }
+//
+//                // igor-gmail-com
+//                let email = dataResult?.user.email ?? "no-email"
+//                let name = dataResult?.user.displayName ?? "Username"
+//                let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+//
+//                let firestore = Firestore.firestore()
+//                let userRef = firestore.collection("usuarios").document(emailFormatted)
+//                // image google pfp
+//                guard let pfp = user?.profile?.imageURL(withDimension: 100) else { return }
+//                let urlString = pfp.absoluteString
+//
+//                userRef.getDocument { snapshot, error in
+//                    guard let snapshot else { return }
+//                    if !snapshot.exists {
+//                        guard let name = user?.profile?.name else { return }
+//                        guard let email = user?.profile?.email else { return }
+//                        userRef.setData([
+//                            "nome": name,
+//                            "email": email,
+//                            "image": urlString,
+//                        ]) { error in
+//                            if let error = error {
+//                                print("Error writing document: \(error.localizedDescription)")
+//                            } else {
+//                                print("User data successfully written to Firestore!")
+//                            }
+//                        }
+//                    }
+//                }
+//
+//                let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
+//
+//                // if there is no user, set all the new data.
+//                self?.database.child("users").observeSingleEvent(of: .value) { snapshot in
+//                    if !snapshot.hasChild(emailFormatted) {
+//                        let data = ["name": name, "email": email]
+//                        self?.database.child("users").child(emailFormatted).setValue(data)
+//                    }
+//                }
+//
+//                self?.navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
+//            }
+//        }
     }
     
     
@@ -257,4 +239,13 @@ extension LoginVC: UITextFieldDelegate {
     }
 }
 
-
+extension LoginVC: LoginViewModelDelegate {
+    func signInUser() {
+        let homeVC: MainTabBarController? =  UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar") as? MainTabBarController
+        navigationController?.pushViewController(homeVC ?? UIViewController(), animated: true)
+    }
+    
+    func showAlert(title: String, message: String) {
+        alert?.alertInformation(title: title, message: message)
+    }
+}

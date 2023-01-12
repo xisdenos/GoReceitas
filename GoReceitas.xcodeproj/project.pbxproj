@@ -53,6 +53,7 @@
 		823224432965B3F50060891B /* DarkModeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 823224412965B3F50060891B /* DarkModeTableViewCell.xib */; };
 		823224462965BC3D0060891B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823224452965BC3D0060891B /* Utils.swift */; };
 		8248DB762944D7E800C6B73F /* FoodDetailsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8248DB752944D7E700C6B73F /* FoodDetailsInfo.swift */; };
+		824E616329709A8300F61A87 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824E616229709A8300F61A87 /* LoginViewModel.swift */; };
 		8269F344294134F9000C226F /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8269F343294134F9000C226F /* UIImageView+.swift */; };
 		826CDD16295CD76B008D00E4 /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826CDD15295CD76B008D00E4 /* NetworkModel.swift */; };
 		8279DC492904B71C00E526A8 /* Colors+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8279DC482904B71C00E526A8 /* Colors+.swift */; };
@@ -136,6 +137,7 @@
 		823224412965B3F50060891B /* DarkModeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DarkModeTableViewCell.xib; sourceTree = "<group>"; };
 		823224452965BC3D0060891B /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		8248DB752944D7E700C6B73F /* FoodDetailsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailsInfo.swift; sourceTree = "<group>"; };
+		824E616229709A8300F61A87 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		8269F343294134F9000C226F /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		826CDD15295CD76B008D00E4 /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
 		8279DC482904B71C00E526A8 /* Colors+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors+.swift"; sourceTree = "<group>"; };
@@ -438,6 +440,14 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		824E616129709A7800F61A87 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				824E616229709A8300F61A87 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		8259F92B28DAB12400476299 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -598,6 +608,7 @@
 		EB43689028FE1C820023A2F9 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				824E616129709A7800F61A87 /* ViewModel */,
 				EB43689128FE1C9E0023A2F9 /* LoginVC.swift */,
 				EB43689328FE1CAE0023A2F9 /* LoginVC.storyboard */,
 			);
@@ -766,6 +777,7 @@
 				EB43689728FE28D60023A2F9 /* EsqueceuSenhaVC.swift in Sources */,
 				EBCBA2652910873B0073AE60 /* MainTabBarController.swift in Sources */,
 				82FD41DA2925365B00C49B37 /* DescriptionTableViewCell.swift in Sources */,
+				824E616329709A8300F61A87 /* LoginViewModel.swift in Sources */,
 				EB6FF62629621DDD000B1AF3 /* User.swift in Sources */,
 				82FD41DE292542E800C49B37 /* DetailsTableViewCell.swift in Sources */,
 				821BCA4129117A5400D9BDB3 /* NoFavoritesCollectionViewCell.swift in Sources */,
