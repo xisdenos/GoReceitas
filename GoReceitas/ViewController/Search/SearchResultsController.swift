@@ -9,13 +9,19 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
+enum TableViewState {
+    case normal
+    case noResults
+}
+
 class SearchResultsController: UIViewController {
     
+    public var state: TableViewState = .normal
+    public var foodResult: [FoodResponse] = []
+    public var searchText: String = ""
     public var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     
-    weak var delegate: DefaultCellsDelegate?
-    
-    public var foodResult: [FoodResponse] = []
+    public weak var delegate: DefaultCellsDelegate?
     
     private var favoriteKeys: [String] = [String]() {
         didSet {
@@ -30,6 +36,7 @@ class SearchResultsController: UIViewController {
     lazy var tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
+        table.backgroundColor = .viewBackgroundColor
         return table
     }()
     
@@ -42,9 +49,9 @@ class SearchResultsController: UIViewController {
         checkFavoriteStatusAndUpdate()
     }
     
-    func setActivityIndicator() {
-        tableView.addSubview(activityIndicator)
-//        view.addSubview(activityIndicator)
+    private func setActivityIndicator() {
+        view.addSubview(activityIndicator)
+
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -53,7 +60,7 @@ class SearchResultsController: UIViewController {
         ])
     }
     
-    func hasFavorites(food: FoodResponse) -> Bool {
+    private func hasFavorites(food: FoodResponse) -> Bool {
         if favoriteKeys.contains(String(food.id)) {
             return true
         } else {
@@ -61,7 +68,7 @@ class SearchResultsController: UIViewController {
         }
     }
     
-    func checkFavoriteStatusAndUpdate() {
+    private func checkFavoriteStatusAndUpdate() {
         let userEmail = Favorite.getCurrentUserEmail
         
         database.child("users/\(userEmail)").child("favorites").observe(.value) { snapshot in
@@ -74,11 +81,12 @@ class SearchResultsController: UIViewController {
         }
     }
     
-    func configTableView() {
+    private func configTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .viewBackgroundColor
         tableView.register(ResultsTableViewCell.nib(), forCellReuseIdentifier: ResultsTableViewCell.identifier)
+        tableView.register(EmptySearchTableViewCell.nib(), forCellReuseIdentifier: EmptySearchTableViewCell.identifier)
     }
     
     override func viewDidLayoutSubviews() {
@@ -89,17 +97,25 @@ class SearchResultsController: UIViewController {
 
 extension SearchResultsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ResultsTableViewCell.identifier, for: indexPath) as! ResultsTableViewCell
-        if !foodResult.isEmpty {
-            let isFavorited = hasFavorites(food: foodResult[indexPath.row])
+        switch state {
+        case .normal:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ResultsTableViewCell.identifier, for: indexPath) as! ResultsTableViewCell
+            if !foodResult.isEmpty {
+                let isFavorited = hasFavorites(food: foodResult[indexPath.row])
 
-            cell.setup(foodResult[indexPath.row], isFavorited: isFavorited)
-            cell.delegate = self
-            DispatchQueue.main.async { [weak self] in
-                self?.activityIndicator.stopAnimating()
+                cell.setup(foodResult[indexPath.row], isFavorited: isFavorited)
+                cell.delegate = self
+                DispatchQueue.main.async { [weak self] in
+                    self?.activityIndicator.stopAnimating()
+                }
             }
+            return cell
+        case .noResults:
+            let cell = tableView.dequeueReusableCell(withIdentifier: EmptySearchTableViewCell.identifier, for: indexPath) as! EmptySearchTableViewCell
+            let wrongInput = searchText
+            cell.setup(message: "No results found for: \(wrongInput)")
+            return cell
         }
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -107,11 +123,21 @@ extension SearchResultsController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return foodResult.count
+        switch state {
+        case .normal:
+            return foodResult.count
+        case .noResults:
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 175
+        switch state {
+        case .normal:
+            return 175
+        case .noResults:
+            return tableView.frame.size.height - 100
+        }
     }
 }
 
