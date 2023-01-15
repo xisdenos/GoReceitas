@@ -71,17 +71,29 @@ class Service {
         guard let urlCompUrl = urlComp.url else { return }
         var request = URLRequest(url: urlCompUrl)
         request.setValue(APIConstants.api_key, forHTTPHeaderField: "X-RapidAPI-Key")
-        
+        request.timeoutInterval = 7
         
         URLSession.shared.dataTask(with: request) { data, _, error in
             // no data, error occurred!
-            guard let data = data, error == nil else { return }
-            
-            do {
-                let json = try JSONDecoder().decode(Foods.self, from: data)
-                completion(.success(json))
-            } catch {
-                completion(.failure(error))
+            if let error = error as? URLError, error.code == .timedOut {
+                // show error message to user
+                print("network call timed out")
+            } else {
+                if let data {
+                    do {
+                        let json = try JSONDecoder().decode(Foods.self, from: data)
+                        if json.count == 0 || json.results.isEmpty {
+                            print("EMPTY RESULT")
+                            if let error {
+                                completion(.failure(error))
+                            }
+                        } else {
+                            completion(.success(json))
+                        }
+                    } catch {
+                        completion(.failure(error))
+                    }
+                }
             }
         }.resume()
     }

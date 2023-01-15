@@ -11,7 +11,7 @@ import FirebaseDatabase
 class SearchViewController: UIViewController {
     
     private var userTyped: Bool = false
-    
+    var searchTimer: Timer?
     private var service: Service = Service()
     private var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     
@@ -122,18 +122,25 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
             return
         }
 
-        model.search(text: searchText) { result in
-            DispatchQueue.main.async {
-                resultController.activityIndicator.startAnimating()
-            }
-            switch result {
-            case .success(let foods):
-                resultController.foodResult = foods
+        // Invalidate any existing timer
+        searchTimer?.invalidate()
+
+        // Start a new timer with a 0.5 second delay
+        searchTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
+            // Perform the search with the current text in the search bar
+            self?.model.search(text: searchText) { result in
                 DispatchQueue.main.async {
-                    resultController.tableView.reloadData()
+                    resultController.activityIndicator.startAnimating()
                 }
-            case .failure(let failure):
-                print(failure)
+                switch result {
+                case .success(let foods):
+                    resultController.foodResult = foods
+                    DispatchQueue.main.async {
+                        resultController.tableView.reloadData()
+                    }
+                case .failure(let failure):
+                    print(failure)
+                }
             }
         }
     }
