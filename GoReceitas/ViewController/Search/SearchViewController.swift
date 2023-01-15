@@ -142,9 +142,16 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
                         resultController.tableView.reloadData()
                     }
                 case .failure(let failure):
+                    // first we pass the text forward to show exacly where the user is wrong
+                    resultController.searchText = searchText
+                    // then we update the state to show the correct cell
                     resultController.state = .noResults
                     DispatchQueue.main.async {
+                        // show table view
                         resultController.tableView.isHidden = false
+                        // if a search is well succeded and right away we fail, we need to empty the
+                        // success array so we can show properly the empty state; otherwise
+                        // it would just keep showing the populated food cell even though our result failed.
                         resultController.foodResult.removeAll()
                         resultController.activityIndicator.stopAnimating()
                         resultController.tableView.reloadData()

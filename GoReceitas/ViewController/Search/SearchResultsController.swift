@@ -16,16 +16,12 @@ enum TableViewState {
 
 class SearchResultsController: UIViewController {
     
-    var state: TableViewState = .normal
-    
+    public var state: TableViewState = .normal
+    public var foodResult: [FoodResponse] = []
+    public var searchText: String = ""
     public var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     
-    weak var delegate: DefaultCellsDelegate?
-    
-    public var foodResult: [FoodResponse] = []
-    
-    public var isSearchFailed: Bool = false
-    public var configTableViewBool: Bool = false
+    public weak var delegate: DefaultCellsDelegate?
     
     private var favoriteKeys: [String] = [String]() {
         didSet {
@@ -53,7 +49,7 @@ class SearchResultsController: UIViewController {
         checkFavoriteStatusAndUpdate()
     }
     
-    func setActivityIndicator() {
+    private func setActivityIndicator() {
         view.addSubview(activityIndicator)
 
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -64,7 +60,7 @@ class SearchResultsController: UIViewController {
         ])
     }
     
-    func hasFavorites(food: FoodResponse) -> Bool {
+    private func hasFavorites(food: FoodResponse) -> Bool {
         if favoriteKeys.contains(String(food.id)) {
             return true
         } else {
@@ -72,7 +68,7 @@ class SearchResultsController: UIViewController {
         }
     }
     
-    func checkFavoriteStatusAndUpdate() {
+    private func checkFavoriteStatusAndUpdate() {
         let userEmail = Favorite.getCurrentUserEmail
         
         database.child("users/\(userEmail)").child("favorites").observe(.value) { snapshot in
@@ -85,7 +81,7 @@ class SearchResultsController: UIViewController {
         }
     }
     
-    func configTableView() {
+    private func configTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .viewBackgroundColor
@@ -116,7 +112,8 @@ extension SearchResultsController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .noResults:
             let cell = tableView.dequeueReusableCell(withIdentifier: EmptySearchTableViewCell.identifier, for: indexPath) as! EmptySearchTableViewCell
-            cell.setup(message: "No results found")
+            let wrongInput = searchText
+            cell.setup(message: "No results found for: \(wrongInput)")
             return cell
         }
     }
@@ -135,8 +132,12 @@ extension SearchResultsController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return !foodResult.isEmpty ? 175 : tableView.frame.size.height - 100
-//        return 175
+        switch state {
+        case .normal:
+            return 175
+        case .noResults:
+            return tableView.frame.size.height - 100
+        }
     }
 }
 
