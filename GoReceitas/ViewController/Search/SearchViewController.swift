@@ -11,7 +11,7 @@ import FirebaseDatabase
 class SearchViewController: UIViewController {
     
     private var userTyped: Bool = false
-    
+    private var searchTimer: Timer?
     private var service: Service = Service()
     private var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     
@@ -90,7 +90,6 @@ extension SearchViewController: DefaultCellsDelegate {
                 switch result {
                 case .success(let success):
                     viewController.configureRecommendedFoods(foods: success.results)
-                    
                     print(success)
                 case .failure(let failure):
                     print(failure)
@@ -121,19 +120,37 @@ extension SearchViewController: UISearchResultsUpdating, UISearchBarDelegate {
             }
             return
         }
-
-        model.search(text: searchText) { result in
-            DispatchQueue.main.async {
-                resultController.activityIndicator.startAnimating()
-            }
-            switch result {
-            case .success(let foods):
-                resultController.foodResult = foods
-                DispatchQueue.main.async {
-                    resultController.tableView.reloadData()
+        
+        DispatchQueue.main.async {
+            resultController.activityIndicator.startAnimating()
+            resultController.tableView.isHidden = true
+        }
+        
+        // Invalidate any existing timer
+        searchTimer?.invalidate()
+        
+        // Start a new timer with a 2.0 second delay
+        searchTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { [weak self] _ in
+            // Perform the search with the current text in the search bar
+            self?.model.search(text: searchText) { result in
+                switch result {
+                case .success(let foods):
+                    resultController.state = .normal
+                    resultController.foodResult = foods
+                    DispatchQueue.main.async {
+                        resultController.tableView.isHidden = false
+                        resultController.tableView.reloadData()
+                    }
+                case .failure(let failure):
+                    resultController.state = .noResults
+                    DispatchQueue.main.async {
+                        resultController.tableView.isHidden = false
+                        resultController.foodResult.removeAll()
+                        resultController.activityIndicator.stopAnimating()
+                        resultController.tableView.reloadData()
+                    }
+                    print("FAILURE,", failure)
                 }
-            case .failure(let failure):
-                print(failure)
             }
         }
     }

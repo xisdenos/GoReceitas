@@ -9,13 +9,23 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
+enum TableViewState {
+    case normal
+    case noResults
+}
+
 class SearchResultsController: UIViewController {
+    
+    var state: TableViewState = .normal
     
     public var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     
     weak var delegate: DefaultCellsDelegate?
     
     public var foodResult: [FoodResponse] = []
+    
+    public var isSearchFailed: Bool = false
+    public var configTableViewBool: Bool = false
     
     private var favoriteKeys: [String] = [String]() {
         didSet {
@@ -30,6 +40,7 @@ class SearchResultsController: UIViewController {
     lazy var tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
+        table.backgroundColor = .viewBackgroundColor
         return table
     }()
     
@@ -43,8 +54,8 @@ class SearchResultsController: UIViewController {
     }
     
     func setActivityIndicator() {
-        tableView.addSubview(activityIndicator)
-//        view.addSubview(activityIndicator)
+        view.addSubview(activityIndicator)
+
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -79,6 +90,7 @@ class SearchResultsController: UIViewController {
         tableView.dataSource = self
         tableView.backgroundColor = .viewBackgroundColor
         tableView.register(ResultsTableViewCell.nib(), forCellReuseIdentifier: ResultsTableViewCell.identifier)
+        tableView.register(EmptySearchTableViewCell.nib(), forCellReuseIdentifier: EmptySearchTableViewCell.identifier)
     }
     
     override func viewDidLayoutSubviews() {
@@ -89,17 +101,24 @@ class SearchResultsController: UIViewController {
 
 extension SearchResultsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ResultsTableViewCell.identifier, for: indexPath) as! ResultsTableViewCell
-        if !foodResult.isEmpty {
-            let isFavorited = hasFavorites(food: foodResult[indexPath.row])
+        switch state {
+        case .normal:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ResultsTableViewCell.identifier, for: indexPath) as! ResultsTableViewCell
+            if !foodResult.isEmpty {
+                let isFavorited = hasFavorites(food: foodResult[indexPath.row])
 
-            cell.setup(foodResult[indexPath.row], isFavorited: isFavorited)
-            cell.delegate = self
-            DispatchQueue.main.async { [weak self] in
-                self?.activityIndicator.stopAnimating()
+                cell.setup(foodResult[indexPath.row], isFavorited: isFavorited)
+                cell.delegate = self
+                DispatchQueue.main.async { [weak self] in
+                    self?.activityIndicator.stopAnimating()
+                }
             }
+            return cell
+        case .noResults:
+            let cell = tableView.dequeueReusableCell(withIdentifier: EmptySearchTableViewCell.identifier, for: indexPath) as! EmptySearchTableViewCell
+            cell.setup(message: "No results found")
+            return cell
         }
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -107,11 +126,17 @@ extension SearchResultsController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return foodResult.count
+        switch state {
+        case .normal:
+            return foodResult.count
+        case .noResults:
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 175
+        return !foodResult.isEmpty ? 175 : tableView.frame.size.height - 100
+//        return 175
     }
 }
 

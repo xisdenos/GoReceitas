@@ -84,7 +84,6 @@ struct NetworkModel {
                 completion(.success(filteredArray))
             case .failure(let failure):
                 completion(.failure(failure))
-                print(failure)
             }
         }
     }

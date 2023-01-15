@@ -47,6 +47,8 @@
 		821BCA4129117A5400D9BDB3 /* NoFavoritesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821BCA3F29117A5400D9BDB3 /* NoFavoritesCollectionViewCell.swift */; };
 		821BCA4229117A5400D9BDB3 /* NoFavoritesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821BCA4029117A5400D9BDB3 /* NoFavoritesCollectionViewCell.xib */; };
 		821BCA442911859100D9BDB3 /* LoginRegisterDescriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821BCA432911859100D9BDB3 /* LoginRegisterDescriptions.swift */; };
+		82282C5F2974994D00C93BF1 /* EmptySearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82282C5D2974994D00C93BF1 /* EmptySearchTableViewCell.swift */; };
+		82282C602974994D00C93BF1 /* EmptySearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82282C5E2974994D00C93BF1 /* EmptySearchTableViewCell.xib */; };
 		8232243B296321290060891B /* SearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8232243A296321290060891B /* SearchResultsController.swift */; };
 		8232243D2965AE030060891B /* DarkModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8232243C2965AE030060891B /* DarkModeViewController.swift */; };
 		823224422965B3F50060891B /* DarkModeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823224402965B3F50060891B /* DarkModeTableViewCell.swift */; };
@@ -130,6 +132,8 @@
 		821BCA3F29117A5400D9BDB3 /* NoFavoritesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFavoritesCollectionViewCell.swift; sourceTree = "<group>"; };
 		821BCA4029117A5400D9BDB3 /* NoFavoritesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoFavoritesCollectionViewCell.xib; sourceTree = "<group>"; };
 		821BCA432911859100D9BDB3 /* LoginRegisterDescriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterDescriptions.swift; sourceTree = "<group>"; };
+		82282C5D2974994D00C93BF1 /* EmptySearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchTableViewCell.swift; sourceTree = "<group>"; };
+		82282C5E2974994D00C93BF1 /* EmptySearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptySearchTableViewCell.xib; sourceTree = "<group>"; };
 		8232243A296321290060891B /* SearchResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsController.swift; sourceTree = "<group>"; };
 		8232243C2965AE030060891B /* DarkModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeViewController.swift; sourceTree = "<group>"; };
 		823224402965B3F50060891B /* DarkModeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeTableViewCell.swift; sourceTree = "<group>"; };
@@ -376,6 +380,15 @@
 			path = Popular;
 			sourceTree = "<group>";
 		};
+		82282C5C2974993B00C93BF1 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				82282C5D2974994D00C93BF1 /* EmptySearchTableViewCell.swift */,
+				82282C5E2974994D00C93BF1 /* EmptySearchTableViewCell.xib */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
 		8232243E2965B3D40060891B /* Dark Mode */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,6 +444,7 @@
 		8247B9012909EC9400437F1E /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				82282C5C2974993B00C93BF1 /* TableViewCell */,
 				82064C3729034647005DA1FF /* Search.storyboard */,
 				8232243A296321290060891B /* SearchResultsController.swift */,
 				82025B9C28EB8F890090376F /* SearchViewController.swift */,
@@ -682,6 +696,7 @@
 				5CC71FA428FE242B00FF75ED /* Profile.storyboard in Resources */,
 				820FC3892935525D00247C6F /* CategoryTagsCollectionViewCell.xib in Resources */,
 				06459BC228B01A080054F510 /* LaunchScreen.storyboard in Resources */,
+				82282C602974994D00C93BF1 /* EmptySearchTableViewCell.xib in Resources */,
 				EB43689428FE1CAE0023A2F9 /* LoginVC.storyboard in Resources */,
 				823224432965B3F50060891B /* DarkModeTableViewCell.xib in Resources */,
 				820FC3952935575400247C6F /* DefaultFoodCollectionViewCell.xib in Resources */,
@@ -755,6 +770,7 @@
 				8269F344294134F9000C226F /* UIImageView+.swift in Sources */,
 				06459BBD28B01A060054F510 /* GoReceitas.xcdatamodeld in Sources */,
 				82A4040428DAA57800F38990 /* TagsResultsViewController.swift in Sources */,
+				82282C5F2974994D00C93BF1 /* EmptySearchTableViewCell.swift in Sources */,
 				5CC71FA828FE25DD00FF75ED /* ChangeEmailViewController.swift in Sources */,
 				827E2AA92936925D009F3C43 /* CategoryTagsTableViewCellDelegate.swift in Sources */,
 				82CC509F29098FB70032FC25 /* ResultsTableViewCell.swift in Sources */,

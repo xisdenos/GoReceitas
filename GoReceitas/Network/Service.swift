@@ -17,7 +17,12 @@ struct APIEndpoints {
 
 struct APIConstants {
     static let base_url = "https://tasty.p.rapidapi.com"
-    static let api_key = "884f77094bmsha6e6d0682bf617cp1d470ejsn04db30fa408a"
+    static let api_key = "feb7743f0emsha633dde2780e25fp1df0e8jsn1115b5b7dc48"
+}
+
+enum FoodError: Error {
+    case noFoodFound
+    case invalidFoodId
 }
 
 class Service {
@@ -62,7 +67,7 @@ class Service {
     }
     
     // search
-    func searchFoodWith(term: String, completion: @escaping (Result<Foods, Error>) -> Void) {
+    func searchFoodWith(term: String, completion: @escaping (Result<Foods, FoodError>) -> Void) {
         guard var urlComp = URLComponents(string: APIConstants.base_url + APIEndpoints.foodList) else { return }
         urlComp.queryItems = [
             URLQueryItem(name: "q", value: term)
@@ -71,17 +76,26 @@ class Service {
         guard let urlCompUrl = urlComp.url else { return }
         var request = URLRequest(url: urlCompUrl)
         request.setValue(APIConstants.api_key, forHTTPHeaderField: "X-RapidAPI-Key")
-        
+        request.timeoutInterval = 7
         
         URLSession.shared.dataTask(with: request) { data, _, error in
             // no data, error occurred!
-            guard let data = data, error == nil else { return }
-            
-            do {
-                let json = try JSONDecoder().decode(Foods.self, from: data)
-                completion(.success(json))
-            } catch {
-                completion(.failure(error))
+            if let error = error as? URLError, error.code == .timedOut {
+                // show error message to user
+                print("network call timed out")
+            } else {
+                if let data {
+                    do {
+                        let json = try JSONDecoder().decode(Foods.self, from: data)
+                        if json.count == 0 || json.results.isEmpty {
+                            completion(.failure(.noFoodFound))
+                        } else {
+                            completion(.success(json))
+                        }
+                    } catch {
+                        completion(.failure(.invalidFoodId))
+                    }
+                }
             }
         }.resume()
     }

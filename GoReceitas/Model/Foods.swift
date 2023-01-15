@@ -8,6 +8,7 @@
 import Foundation
 
 struct Foods: Codable {
+    var count: Int
     var results: [FoodResponse]
 }
 
