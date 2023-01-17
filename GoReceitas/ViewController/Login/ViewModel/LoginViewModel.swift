@@ -22,7 +22,7 @@ protocol LoginViewModelProtocol {
     func loginWithGoogle(presentingViewController: UIViewController)
 }
 
-final class LoginViewModel: LoginViewModelProtocol {
+struct LoginViewModel: LoginViewModelProtocol {
     
     private let database = Database.database().reference()
     private weak var delegate: LoginViewModelDelegate?
@@ -33,21 +33,19 @@ final class LoginViewModel: LoginViewModelProtocol {
         self.auth = Auth.auth()
     }
     
-    public func set(delegate: LoginViewModelDelegate) {
+    public mutating func set(delegate: LoginViewModelDelegate) {
         self.delegate = delegate
     }
     
     func login(email: String, password: String) {
-        auth?.signIn(withEmail: email, password: password, completion: { [weak self] usuario, error in
+        auth?.signIn(withEmail: email, password: password, completion: { usuario, error in
             if error != nil {
-                self?.delegate?.showAlert(title: "Heads up", message: "Incorrect data, try again")
-                self?.isLoginSuccesful = true
+                delegate?.showAlert(title: "Heads up", message: "Incorrect data, try again")
             } else {
                 if usuario == nil {
-                    self?.delegate?.showAlert(title: "Heads up", message: "We had an unexpected problem")
-                    self?.isLoginSuccesful = false
+                    delegate?.showAlert(title: "Heads up", message: "User does not exist")
                 } else {
-                    self?.delegate?.signInUser()
+                    delegate?.signInUser()
                 }
             }
         })
@@ -61,7 +59,7 @@ final class LoginViewModel: LoginViewModelProtocol {
         
         // Start the sign in flow!
 
-        GIDSignIn.sharedInstance.signIn(with: config, presenting: presentingViewController) { [unowned self] user, error in
+        GIDSignIn.sharedInstance.signIn(with: config, presenting: presentingViewController) { user, error in
             
             guard error == nil else {
                 self.delegate?.showAlert(title: "Heads up", message: "Failed to login, please try again!")
@@ -78,9 +76,9 @@ final class LoginViewModel: LoginViewModelProtocol {
             let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                            accessToken: authentication.accessToken)
             
-            Auth.auth().signIn(with: credential) { [weak self] dataResult, error in
+            Auth.auth().signIn(with: credential) { dataResult, error in
                 guard error == nil else {
-                    self?.delegate?.showAlert(title: "Heads up", message: "Failed to login, please try again!")
+                    delegate?.showAlert(title: "Heads up", message: "Failed to login, please try again!")
                     return
                 }
                 
@@ -115,14 +113,13 @@ final class LoginViewModel: LoginViewModelProtocol {
                 }
                 
                 // if there is no user, set all the new data.
-                self?.database.child("users").observeSingleEvent(of: .value) { snapshot in
+                database.child("users").observeSingleEvent(of: .value) { snapshot in
                     if !snapshot.hasChild(emailFormatted) {
                         let data = ["name": name, "email": email]
-                        self?.database.child("users").child(emailFormatted).setValue(data)
+                        database.child("users").child(emailFormatted).setValue(data)
                     }
                 }
-                
-                self?.delegate?.signInUser()
+                delegate?.signInUser()
             }
         }
     }

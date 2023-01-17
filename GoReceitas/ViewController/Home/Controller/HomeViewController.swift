@@ -6,39 +6,29 @@
 //
 
 import UIKit
-import FirebaseDatabase
-import FirebaseAuth
 import FirebaseFirestore
+import FirebaseAuth
 
 class HomeViewController: UIViewController {
-    private var tagsList: [TagsResponse] = [TagsResponse]()
-    private var tryItOut: [FoodResponse] = [FoodResponse]()
-    private var popularList: [FoodResponse] = [FoodResponse]()
-    
-    private var service: Service = Service()
-    
-    private var successfulRequests = 0
-    
-    private var model = NetworkModel()
-    
-    let database = Database.database().reference()
-    
-    let firestore = Firestore.firestore()
-    var user: [User] = []
-    var currentUser = Auth.auth().currentUser
     
     @IBOutlet weak var userProfilePictureImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var welcomeLabel: UILabel!
     
     private var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(style: .large)
+    private let firestore = Firestore.firestore()
+    private var user: [User] = []
+    private var viewModel: HomeViewModel = HomeViewModel()
+    private var currentUser = Auth.auth().currentUser
     
     // MARK: Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel.set(delegate: self)
+        
         view.backgroundColor = .viewBackgroundColor
         tableView.backgroundColor = .viewBackgroundColor
-        model.delegate = self
         userProfilePictureImageView.image = UIImage(named: "profileImage")
         setActivityIndicator()
         setTabBarIcons()
@@ -47,52 +37,11 @@ class HomeViewController: UIViewController {
         activityIndicator.startAnimating()
         
         Task {
-            await fetchData() {
+            await viewModel.fetchData() { [weak self] in
                 DispatchQueue.main.async {
-                    self.activityIndicator.stopAnimating()
-                    self.configTableView()
+                    self?.activityIndicator.stopAnimating()
+                    self?.configTableView()
                 }
-            }
-        }
-    }
-    
-    func fetchData(completion: @escaping () -> Void) async {
-        await model.fetchTryItOut { result in
-            switch result {
-            case .success(let success):
-                self.tryItOut = success
-                self.successfulRequests += 1
-                if self.successfulRequests == 3 {
-                    completion()
-                }
-            case .failure(let failure):
-                print(failure)
-            }
-        }
-        
-        await model.fetchTagsList { tags in
-            switch tags {
-            case .success(let tags):
-                self.tagsList = tags
-                self.successfulRequests += 1
-                if self.successfulRequests == 3 {
-                    completion()
-                }
-            case .failure(let failure):
-                print(failure)
-            }
-        }
-        
-        await model.fetchPopular { result in
-            switch result {
-            case .success(let success):
-                self.popularList = success
-                self.successfulRequests += 1
-                if self.successfulRequests == 3 {
-                    completion()
-                }
-            case .failure(let failure):
-                print(failure.localizedDescription)
             }
         }
     }
@@ -109,7 +58,7 @@ class HomeViewController: UIViewController {
     }
     
     
-    func getUserData(){
+    func getUserData() {
         firestore.collection("usuarios").getDocuments { snapchot, error in
             if error == nil {
                 if let snapchot {
@@ -185,18 +134,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTagsTableViewCell.identifier) as? CategoryTagsTableViewCell else { return UITableViewCell() }
-            cell.configureTags(with: tagsList)
+            cell.configureTags(with: viewModel.tagsList)
             cell.delegate = self
             return cell
         } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TryItOutTableViewCell.identifier) as? TryItOutTableViewCell else { return UITableViewCell() }
-            cell.configure(with: tryItOut)
+            cell.configure(with: viewModel.tryItOut)
             cell.delegate = self
             return cell
         } else if indexPath.section == 2 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PopularFoodsTableViewCell.identifier) as? PopularFoodsTableViewCell else { return UITableViewCell() }
-            if !popularList.isEmpty {
-                cell.configure(with: popularList)
+            if !viewModel.isPopularListEmpty {
+                cell.configure(with: viewModel.popularList)
             }
             cell.delegate = self
             return cell
@@ -257,26 +206,14 @@ extension HomeViewController: CategoryTagsTableViewCellDelegate {
         self.navigationController?.pushViewController(viewController, animated: true)
         
         viewController.activityIndicator.startAnimating()
-        service.getTagSelectedWith(tagName: categoryInfo.name) { tagResult in
-            
-            switch tagResult {
-            case .success(let tags):
-                DispatchQueue.main.async {
-                    viewController.title = categoryInfo.display_name
-                    let filteredArray = tags.results.filter({ $0.yields != nil })
-                    viewController.configureFoodInformation(foodsInfo: filteredArray)
-                    viewController.activityIndicator.stopAnimating()
-                }
-            case .failure(let failure):
-                print(failure)
-            }
-        }
+        
+        viewModel.fetchTags(categoryInfo, tagsController: viewController)
     }
 }
 
 extension HomeViewController: DefaultCellsDelegate {
     func didFavoriteItem(itemSelected: FoodResponse, favorited: Bool) {
-        Favorite.favoriteItem(itemSelected: itemSelected, favorited: favorited, database: database)
+        Favorite.favoriteItem(itemSelected: itemSelected, favorited: favorited, database: viewModel.database)
     }
     
     func didTapDefaultFoodCell(food: FoodResponse) {
@@ -290,8 +227,9 @@ extension HomeViewController: DefaultCellsDelegate {
             controller.foodDetailsView.topFadedLabel.isHidden = true
             controller.foodDetailsView.purpheHearthView.isHidden = true
             controller.foodDetailsView.timeView.isHidden = true
-            self?.service.getMoreInfo(id: food.id) { details in
-                switch details {
+            
+            self?.viewModel.fetchMoreInfo(food) { result in
+                switch result {
                 case .success(let success):
                     controller.configureFoodInformation(foodDetails: success)
                 case .failure(let failure):
@@ -299,10 +237,10 @@ extension HomeViewController: DefaultCellsDelegate {
                 }
             }
             
-            self?.service.getSimilarFoods(id: food.id, completion: { result in
+            self?.viewModel.fetchSimilarFoods(food, completion: { result in
                 switch result {
                 case .success(let success):
-                    controller.configureRecommendedFoods(foods: success.results)
+                    controller.configureRecommendedFoods(foods: success)
                 case .failure(let failure):
                     print(failure)
                 }
@@ -311,26 +249,25 @@ extension HomeViewController: DefaultCellsDelegate {
     }
 }
 
-extension HomeViewController: NetworkModelProtocol {
-    func success() {}
+extension HomeViewController: HomeViewModelDelegate {
+    func success() {
+        
+    }
     
     func error(message: String) {
-        print(message)
+        
     }
     
     func startLoading() {
-        print("start loading")
-        DispatchQueue.main.async { [weak self] in
-            self?.tableView.isHidden = true
-            self?.activityIndicator.startAnimating()
-        }
+        
     }
     
     func stopLoading() {
-        print("stop loading")
-        DispatchQueue.main.async { [weak self] in
-            self?.tableView.isHidden = false
-            self?.activityIndicator.stopAnimating()
-        }
+    
     }
+    
+    func successTags(_ tagResponse: [FoodResponse], tagsController: TagsResultsViewController) {
+        
+    }
+    
 }

@@ -16,28 +16,31 @@ protocol RegisterViewModelDelegate: AnyObject {
     func signUp()
 }
 
-final class RegisterViewModel {
+struct RegisterViewModel {
     
     private var firestore: Firestore?
     private var user = Auth.auth().currentUser
     private var auth: Auth?
+    private weak var delegate: RegisterViewModelDelegate?
     
     init() {
         self.auth = Auth.auth()
         self.firestore = Firestore.firestore()
     }
     
-    weak var delegate: RegisterViewModelDelegate?
+    public mutating func set(delegate: RegisterViewModelDelegate) {
+        self.delegate = delegate
+    }
     
     func createUserWith(_ name: String, _ email: String, _ password: String, _ passwordConfirmation: String) {
         if password == passwordConfirmation {
-            self.auth?.createUser(withEmail: email, password: password, completion: { [weak self] result, error in
+            self.auth?.createUser(withEmail: email, password: password, completion: { result, error in
                 if error != nil{
-                    self?.delegate?.showAlert(title: "Heads up", message: "Error registering, check the data and try again", completion: nil)
+                    delegate?.showAlert(title: "Heads up", message: "Error registering, check the data and try again", completion: nil)
                 } else {
                     
                     let emailFormatted = email.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
-                    let userRef = self?.firestore?.collection("usuarios").document(emailFormatted)
+                    let userRef = firestore?.collection("usuarios").document(emailFormatted)
                     
                     userRef?.getDocument { snapshot, error in
                         guard let snapshot else { return }
@@ -55,7 +58,7 @@ final class RegisterViewModel {
                         }
                     }
                     
-                    self?.delegate?.showAlert(title: "Success", message: "Successfully registered user", completion: {
+                    delegate?.showAlert(title: "Success", message: "Successfully registered user", completion: {
                         
                         DispatchQueue.global(qos: .userInitiated).async {
                             // igor-gmail-com
@@ -65,12 +68,12 @@ final class RegisterViewModel {
                             database.child("users").child(emailFormatted).setValue(data)
                         }
                         
-                        self?.delegate?.signUp()
+                        delegate?.signUp()
                     })
                 }
             })
         } else {
-            self.delegate?.showAlert(title: "Heads up", message: "Divergent Passwords", completion: nil)
+            delegate?.showAlert(title: "Heads up", message: "Divergent Passwords", completion: nil)
         }
     }
 }
